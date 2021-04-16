@@ -27,3 +27,4 @@ Liste des documents de références.
 - [Convertisseurs numériques/analogiques MCP4822](https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf)
 - [Bibliothèque Arduino *SPI*](https://www.arduino.cc/en/reference/SPI)
 - [Bibliothèque Arduino *MCP48xx DAC*](https://www.arduino.cc/reference/en/libraries/mcp48xx-dac-library/)
+- [Bibliothèque Arduino *MIDI*](https://github.com/FortySevenEffects/arduino_midi_library) (et la [playlist YouTube](https://www.youtube.com/playlist?list=PL4_gPbvyebyH2xfPXePHtx8gK5zPBrVkg))
