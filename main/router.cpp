@@ -1,0 +1,71 @@
+#include "Arduino.h"
+#include "router.h"
+
+
+Router::Router() {
+    _dac_1 = new MCP4822(pin_ss_1);
+    _dac_2 = new MCP4822(pin_ss_2);
+    _dac_3 = new MCP4822(pin_ss_3);
+    _dac_4 = new MCP4822(pin_ss_4);
+    _lane_1 = new OutLane(_dac_1, true, pin_gate_1);
+    _lane_2 = new OutLane(_dac_1, false, pin_gate_2);
+    _lane_3 = new OutLane(_dac_2, true, pin_gate_3);
+    _lane_4 = new OutLane(_dac_2, false, pin_gate_4);
+    _lane_5 = new OutLane(_dac_3, true, pin_gate_5);
+    _lane_6 = new OutLane(_dac_3, false, pin_gate_6);
+    _lane_7 = new OutLane(_dac_4, true, pin_gate_7);
+    _lane_8 = new OutLane(_dac_4, false, pin_gate_8);
+}
+
+
+void Router::setup() {
+    _dac_1->init();
+    _dac_2->init();
+    _dac_3->init();
+    _dac_4->init();
+    _lane_1->setup();
+    _lane_2->setup();
+    _lane_3->setup();
+    _lane_4->setup();
+    _lane_5->setup();
+    _lane_6->setup();
+    _lane_7->setup();
+    _lane_8->setup();
+}
+
+
+OutLane* Router::select(int lane_id) {
+    switch (lane_id) {
+    case 1:
+        return _lane_1;
+        break;
+    case 2:
+        return _lane_2;
+        break;
+    case 3:
+        return _lane_3;
+        break;
+    case 4:
+        return _lane_4;
+        break;
+    case 5:
+        return _lane_5;
+        break;
+    case 6:
+        return _lane_6;
+        break;
+    case 7:
+        return _lane_7;
+        break;
+    case 8:
+        return _lane_8;
+        break;
+    default:
+        break;
+    }
+}
+
+void Router::play(int lane_id, double voltage, unsigned long duration) {
+    OutLane* lane = select(lane_id);
+    lane->play(voltage, duration);
+}
