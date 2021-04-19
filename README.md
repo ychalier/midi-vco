@@ -16,8 +16,8 @@ Nom | Description
 
 - [x] ~~Contrôle des convertisseurs numériques/analogiques~~
 - [x] ~~Contrôle des signaux *GATE*~~
-- [ ] **Test de l'interface MIDI**
-- [ ] Intégrer l'interface MIDI au système de génération de signal
+- [x] ~~Test de l'interface MIDI~~
+- [ ] **Intégrer l'interface MIDI au système de génération de signal**
 - [ ] Intégrer les éléments supplémentaires de l'interface utilisateur
 
 ## Documentation

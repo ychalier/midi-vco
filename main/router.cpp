@@ -3,18 +3,18 @@
 
 
 Router::Router() {
-    _dac_1 = new MCP4822(pin_ss_1);
-    _dac_2 = new MCP4822(pin_ss_2);
-    _dac_3 = new MCP4822(pin_ss_3);
-    _dac_4 = new MCP4822(pin_ss_4);
-    _lane_1 = new OutLane(_dac_1, true, pin_gate_1);
-    _lane_2 = new OutLane(_dac_1, false, pin_gate_2);
-    _lane_3 = new OutLane(_dac_2, true, pin_gate_3);
-    _lane_4 = new OutLane(_dac_2, false, pin_gate_4);
-    _lane_5 = new OutLane(_dac_3, true, pin_gate_5);
-    _lane_6 = new OutLane(_dac_3, false, pin_gate_6);
-    _lane_7 = new OutLane(_dac_4, true, pin_gate_7);
-    _lane_8 = new OutLane(_dac_4, false, pin_gate_8);
+    _dac_1 = new MCP4822(PIN_SS_1);
+    _dac_2 = new MCP4822(PIN_SS_2);
+    _dac_3 = new MCP4822(PIN_SS_3);
+    _dac_4 = new MCP4822(PIN_SS_4);
+    _lane_1 = new OutLane(_dac_1, true, PIN_GATE_1);
+    _lane_2 = new OutLane(_dac_1, false, PIN_GATE_2);
+    _lane_3 = new OutLane(_dac_2, true, PIN_GATE_3);
+    _lane_4 = new OutLane(_dac_2, false, PIN_GATE_4);
+    _lane_5 = new OutLane(_dac_3, true, PIN_GATE_5);
+    _lane_6 = new OutLane(_dac_3, false, PIN_GATE_6);
+    _lane_7 = new OutLane(_dac_4, true, PIN_GATE_7);
+    _lane_8 = new OutLane(_dac_4, false, PIN_GATE_8);
 }
 
 
@@ -63,9 +63,4 @@ OutLane* Router::select(int lane_id) {
     default:
         break;
     }
-}
-
-void Router::play(int lane_id, double voltage, unsigned long duration) {
-    OutLane* lane = select(lane_id);
-    lane->play(voltage, duration);
 }

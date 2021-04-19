@@ -1,12 +1,12 @@
 #include <MIDI.h>  // Add Midi Library
 
-#define LED 13    // Arduino Board LED is on Pin 13
+#define LED 34    // Arduino Board LED is on Pin 13
 
 //Create an instance of the library with default name, serial port and settings
 MIDI_CREATE_DEFAULT_INSTANCE();
 
 void setup() {
-    pinMode (LED, OUTPUT); // Set Arduino board pin 13 to output
+    pinMode(LED, OUTPUT);
     MIDI.begin(MIDI_CHANNEL_OMNI); // Initialize the Midi Library.
     // OMNI sets it to listen to all channels.. MIDI.begin(2) would set it 
     // to respond to notes on channel 2 only.
@@ -14,7 +14,7 @@ void setup() {
     // tells the Midi Library which function you want to call when a NOTE ON command
     // is received. In this case it's "MyHandleNoteOn".
     MIDI.setHandleNoteOff(MyHandleNoteOff); // This command tells the Midi Library 
-    // to call "MyHandleNoteOff" when a NOTE OFF command is received.
+    // to call "MyHandleNoteOff" when a NOTE OFF command is received.   
 }
 
 void loop() { // Main loop
