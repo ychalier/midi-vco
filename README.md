@@ -1,6 +1,6 @@
-# m2a
+# Interface polyphonique MIDI-VCO
 
-Micrologiciel pour une carte Arduino faisant l'intermédiraire entre un clavier MIDI et un ensemble d'oscillateurs analogiques.
+Micrologiciel pour une carte Arduino faisant l'intermédiraire entre un clavier MIDI et un ensemble d'oscillateurs commandés en tension.
 
 ## Installation
 
@@ -13,7 +13,7 @@ Micrologiciel pour une carte Arduino faisant l'intermédiraire entre un clavier 
     3. Installer la bibliothèque **MIDI Library** par **Francois Best** et **lathoub** (version 5.0.2)
 3. Télécharger le contenu de ce dépôt :
     - *(solution légère)* En téléchargeant [le code au format ZIP](https://github.com/ychalier/m2a/archive/refs/heads/main.zip) et en extrayant l'archive obtenue
-    - *(solution lourde)* En installant [git](https://git-scm.com/downloads) et en utilisant la commande `git clone https://github.com/ychalier/m2a`
+    - *(solution lourde)* En installant [git](https://git-scm.com/downloads) et en utilisant la commande `git clone https://github.com/ychalier/midi-vco`
 
 ### Téléverser un programme
 
