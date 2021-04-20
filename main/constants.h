@@ -36,5 +36,15 @@
 #define MIDI_PITCH_MIN 21  // A1
 #define MIDI_PITCH_RANGE 84  // 7 octaves * 12 semitones
 
+#define MODE_MONOPHONIC 0
+#define MODE_DUOPHONIC 1
+#define MODE_QUADROPHONIC 2
+#define MODE_OCTOPHONIC 3
+
+#define PRIORITY_FIRST 0
+#define PRIORITY_LAST_OLDEST 1
+#define PRIORITY_LAST_YOUNGEST 2
+
+#define POOL_COUNT 8
 
 #endif

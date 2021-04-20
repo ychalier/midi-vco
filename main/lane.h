@@ -13,6 +13,7 @@ class Lane {
         void set(double voltage);
         void start(double voltage);
         void stop();
+        static double pitch_to_voltage(double pitch);
     private:
         MCP4822* _dac;
         bool _dac_channel;

@@ -49,3 +49,14 @@ void Lane::set(double voltage) {
 void Lane::stop() {
     digitalWrite(_gate_pin, LOW);
 }
+
+
+double Lane::pitch_to_voltage(double pitch) {
+    double voltage = (double) DAC_MAX_VOLTAGE_TARGET * (pitch - (double) MIDI_PITCH_MIN) / (double) MIDI_PITCH_RANGE;
+    if (voltage < 0) {
+        voltage = 0;
+    } else if (voltage > DAC_MAX_VOLTAGE_TARGET) {
+        voltage = DAC_MAX_VOLTAGE_TARGET;
+    }
+    return voltage;
+}
