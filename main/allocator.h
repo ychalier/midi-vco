@@ -9,16 +9,16 @@
 
 class Allocator {
 
-	public:
-		Allocator(Config* config);
-		void note_on(Note note);
-		void note_off(Note note);
+    public:
+        Allocator(Config* config);
+        void note_on(Note note);
+        void note_off(Note note);
         void setup();
-		void set_masks();
-		// void pitch_bend(byte channel, int bend);  // TODO
-	private:
-		Config* _config;
-		Pool* _pools[POOL_COUNT];
+        void set_masks();
+        // void pitch_bend(byte channel, int bend);  // TODO
+    private:
+        Config* _config;
+        Pool* _pools[POOL_COUNT];
         Router* _router;
 
 };

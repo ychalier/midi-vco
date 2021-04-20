@@ -5,8 +5,8 @@
 
 
 typedef struct Note {
-	byte channel;
-	byte pitch;
+    byte channel;
+    byte pitch;
 } Note;
 
 
