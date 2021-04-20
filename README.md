@@ -1,6 +1,6 @@
 # m2a
 
-Programme pour une carte Arduino faisant l'intermédiraire entre un clavier MIDI et un ensemble d'oscillateurs analogiques.
+Micrologiciel pour une carte Arduino faisant l'intermédiraire entre un clavier MIDI et un ensemble d'oscillateurs analogiques.
 
 ## Installation
 
@@ -17,12 +17,12 @@ Programme pour une carte Arduino faisant l'intermédiraire entre un clavier MIDI
 
 ### Téléverser un programme
 
-1. __Ouvrir le fichier (`main/main.ino`) dans Arduino IDE__
+1. __Ouvrir le fichier *main/main.ino* dans Arduino IDE__
 2. __Brancher la carte en USB sur l'ordinateur__ ; afin d'éviter tout problème, il est préférable qu'à ce moment-là la carte ne soit alimentée que via sa connexion USB avec l'ordinateur, et que rien ne soit connecté sur ses ports RX
 3. __Vérifier que la communication entre Arduino IDE et la carte fonctionne :__
     1. Dans Arduino IDE, aller dans *Outils* > *Type de carte* et sélectionner si besoin *Arduino Mega or Mega 2560*
     2. Dans Arduino IDE, aller dans *Outils* > *Port* et sélectionner si besoin le port USB sur lequel la carte est connectée
-4. __**__Dans Arduino IDE, cliquer sur le bouton *Téléverser*__ (icone d'une fléche vers la droite) ; des informations relatives au bon déroulé de l'opération sont affichées en bas de la fenêtre. En cas d'erreur, essayer de rebrancher la carte ou de redémarrer Arduino IDE.
+4. __Dans Arduino IDE, cliquer sur le bouton *Téléverser*__ (icone d'une fléche vers la droite) ; des informations relatives au bon déroulé de l'opération sont affichées en bas de la fenêtre. En cas d'erreur, essayer de rebrancher la carte ou de redémarrer Arduino IDE.
 
 ## Feuille de route
 
