@@ -1,15 +1,15 @@
 #include "Arduino.h"
-#include "outlane.h"
+#include "lane.h"
 
 
-OutLane::OutLane(MCP4822* dac, bool dac_channel, int gate_pin) {
+Lane::Lane(MCP4822* dac, bool dac_channel, int gate_pin) {
     _dac = dac;
     _dac_channel = dac_channel;
     _gate_pin = gate_pin;
 }
 
 
-void OutLane::setup() {
+void Lane::setup() {
     if (_dac_channel) {
         _dac->turnOnChannelA();
         _dac->setGainA(MCP4822::High);
@@ -22,20 +22,20 @@ void OutLane::setup() {
 }
 
 
-void OutLane::play(double voltage, unsigned long duration) {
+void Lane::play(double voltage, unsigned long duration) {
     start(voltage);
     delay(duration);
     stop();
 }
 
 
-void OutLane::start(double voltage) {
+void Lane::start(double voltage) {
     set(voltage);
     digitalWrite(_gate_pin, HIGH);
 }
 
 
-void OutLane::set(double voltage) {
+void Lane::set(double voltage) {
     int scaled_voltage = (int) ((double) DAC_BITS * voltage / DAC_RANGE);
     if (_dac_channel) {
         _dac->setVoltageA(scaled_voltage);
@@ -46,6 +46,6 @@ void OutLane::set(double voltage) {
 }
 
 
-void OutLane::stop() {
+void Lane::stop() {
     digitalWrite(_gate_pin, LOW);
 }
