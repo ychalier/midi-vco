@@ -6,7 +6,7 @@
 Config::Config() {
     _polyphony_mode = MODE_MONOPHONIC;
     _priority_mode = PRIORITY_LAST_OLDEST;
-    _midi_channel_mode = 0;
+    _midi_channel_mode = CHANNEL_FILTER_OFF;
 }
 
 
@@ -17,6 +17,11 @@ byte Config::get_priority_mode() {
 
 byte Config::get_polyphony_mode() {
     return _polyphony_mode;
+}
+
+
+byte Config::get_midi_channel_mode() {
+    return _midi_channel_mode;
 }
 
 
@@ -49,7 +54,11 @@ byte categorize_priority_mode(int input_value) {
 
 
 byte categorize_midi_channel_mode(int input_value) {
-    return 0;
+    if (input_value == HIGH) {
+        return CHANNEL_FILTER_ON;
+    } else {
+        return CHANNEL_FILTER_OFF;
+    }
 }
 
 

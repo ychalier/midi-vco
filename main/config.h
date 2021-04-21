@@ -8,6 +8,7 @@ class Config {
         Config();
         byte get_polyphony_mode();
         byte get_priority_mode();
+        byte get_midi_channel_mode();
         void setup();
         bool read();
     private:

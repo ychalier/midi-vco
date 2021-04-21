@@ -19,28 +19,54 @@ void Allocator::set_masks() {
         _pools[i]->set_masks(0, 0);
         _pools[i]->set_free();
     }
-    switch (_config->get_polyphony_mode()) {
-    case MODE_MONOPHONIC:
-        _pools[0]->set_masks(0xFF, 0xFFFF);
-        break;
-    case MODE_DUOPHONIC:
-        _pools[0]->set_masks(0x0F, 0xFFFF);
-        _pools[1]->set_masks(0xF0, 0xFFFF);
-        break;
-    case MODE_QUADROPHONIC:
-        _pools[0]->set_masks(0x03, 0xFFFF);
-        _pools[1]->set_masks(0x0C, 0xFFFF);
-        _pools[2]->set_masks(0x30, 0xFFFF);
-        _pools[3]->set_masks(0xC0, 0xFFFF);
-        break;
-    case MODE_OCTOPHONIC:
-        for (int i = 0; i < POOL_COUNT; i++) {
-            _pools[i]->set_masks(1 << i, 0xFFFF);
-        }
-        break;
-    default:
-        break;
+    switch (_config->get_midi_channel_mode()) {
+        case CHANNEL_FILTER_OFF:
+            switch (_config->get_polyphony_mode()) {
+                case MODE_MONOPHONIC:
+                    _pools[0]->set_masks(0xFF, 0xFFFF);
+                    break;
+                case MODE_DUOPHONIC:
+                    _pools[0]->set_masks(0x0F, 0xFFFF);
+                    _pools[1]->set_masks(0xF0, 0xFFFF);
+                    break;
+                case MODE_QUADROPHONIC:
+                    _pools[0]->set_masks(0x03, 0xFFFF);
+                    _pools[1]->set_masks(0x0C, 0xFFFF);
+                    _pools[2]->set_masks(0x30, 0xFFFF);
+                    _pools[3]->set_masks(0xC0, 0xFFFF);
+                    break;
+                case MODE_OCTOPHONIC:
+                    for (int i = 0; i < POOL_COUNT; i++) {
+                        _pools[i]->set_masks(1 << i, 0xFFFF);
+                    }
+                    break;
+            }
+            break;
+        case CHANNEL_FILTER_ON:
+            switch (_config->get_polyphony_mode()) {
+                case MODE_MONOPHONIC:
+                    _pools[0]->set_masks(0xFF, 1);
+                    break;
+                case MODE_DUOPHONIC:
+                    _pools[0]->set_masks(0x0F, 1);
+                    _pools[1]->set_masks(0xF0, 2);
+                    break;
+                case MODE_QUADROPHONIC:
+                    _pools[0]->set_masks(0x03, 1);
+                    _pools[1]->set_masks(0x0C, 1);
+                    _pools[2]->set_masks(0x30, 2);
+                    _pools[3]->set_masks(0xC0, 2);
+                    break;
+                case MODE_OCTOPHONIC:
+                    _pools[0]->set_masks(0x03, 1);
+                    _pools[1]->set_masks(0x0C, 2);
+                    _pools[2]->set_masks(0x30, 4);
+                    _pools[3]->set_masks(0xC0, 8);
+                    break;
+            }
+            break;
     }
+    
 }
 
 
