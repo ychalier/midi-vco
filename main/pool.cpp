@@ -72,3 +72,7 @@ void Pool::bend(int bend_value) {
         }
     }
 }
+
+void Pool::set_free() {
+    _active = false;
+}

@@ -12,6 +12,7 @@ class Router {
         Router();
         void setup();
         Lane* select(int lane_id);
+        void stop_all();
     private:
         MCP4822* _dac_1;
         MCP4822* _dac_2;

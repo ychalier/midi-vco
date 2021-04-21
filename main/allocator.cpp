@@ -14,8 +14,10 @@ Allocator::Allocator(Config* config) {
 
 
 void Allocator::set_masks() {
+    _router->stop_all();
     for (int i = 0; i < POOL_COUNT; i++) {
         _pools[i]->set_masks(0, 0);
+        _pools[i]->set_free();
     }
     switch (_config->get_polyphony_mode()) {
     case MODE_MONOPHONIC:

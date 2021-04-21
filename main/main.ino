@@ -9,6 +9,8 @@ Allocator* allocator;
 
 void setup() {
     config = new Config();
+    config->setup();
+    config->read();
     allocator = new Allocator(config);
     allocator->setup();
     allocator->set_masks();
@@ -20,6 +22,10 @@ void setup() {
 
 void loop() {
     MIDI.read();
+    bool changed = config->read();
+    if (changed) {
+        allocator->set_masks();
+    }
 }
 
 void handle_note_on(byte channel, byte pitch, byte velocity) { 

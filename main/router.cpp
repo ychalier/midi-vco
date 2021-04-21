@@ -64,3 +64,15 @@ Lane* Router::select(int lane_id) {
         break;
     }
 }
+
+
+void Router::stop_all() {
+    _lane_1->stop();
+    _lane_2->stop();
+    _lane_3->stop();
+    _lane_4->stop();
+    _lane_5->stop();
+    _lane_6->stop();
+    _lane_7->stop();
+    _lane_8->stop();
+}

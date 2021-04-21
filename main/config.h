@@ -8,6 +8,8 @@ class Config {
         Config();
         byte get_polyphony_mode();
         byte get_priority_mode();
+        void setup();
+        bool read();
     private:
         byte _polyphony_mode;
         byte _priority_mode;

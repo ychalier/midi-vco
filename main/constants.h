@@ -2,7 +2,7 @@
 #define constants_h
 
 
-#define PIN_SELECT_MODE 44
+#define PIN_SELECT_MODE A0
 #define PIN_SELECT_PRIORITY 42
 #define PIN_SELECT_CHANNEL 40
 
