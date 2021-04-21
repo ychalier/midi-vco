@@ -6,7 +6,6 @@
 
 Allocator::Allocator(Config* config) {
     _config = config;
-    // _pools = new Pool[POOL_COUNT];
     _router = new Router();
     for (int i = 0; i < POOL_COUNT; i++) {
         _pools[i] = new Pool(_router);

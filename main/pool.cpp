@@ -6,6 +6,11 @@
 
 Pool::Pool(Router* router) {
     _router = router;
+    _lane_mask = 0;
+    _channel_mask = 0;
+    _current_note = Note { 1, 0 };
+    _era = 0;
+    _active = false;
 }
 
 
