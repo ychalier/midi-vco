@@ -9,11 +9,11 @@ class Lane {
     public:
         Lane(MCP4822* dac, bool dac_channel, int gate_pin);
         void setup();
-        void play(double voltage, unsigned long duration);
-        void set(double voltage);
-        void start(double voltage);
+        void play(int setpoint, unsigned long duration);
+        void set(int setpoint);
+        void start(int setpoint);
         void stop();
-        static double pitch_to_voltage(double pitch);
+        static int pitch_to_voltage(byte pitch, int bend);
     private:
         MCP4822* _dac;
         bool _dac_channel;

@@ -22,25 +22,24 @@ void Lane::setup() {
 }
 
 
-void Lane::play(double voltage, unsigned long duration) {
-    start(voltage);
+void Lane::play(int setpoint, unsigned long duration) {
+    start(setpoint);
     delay(duration);
     stop();
 }
 
 
-void Lane::start(double voltage) {
-    set(voltage);
+void Lane::start(int setpoint) {
+    set(setpoint);
     digitalWrite(_gate_pin, HIGH);
 }
 
 
-void Lane::set(double voltage) {
-    int scaled_voltage = (int) ((double) DAC_BITS * voltage / DAC_RANGE);
+void Lane::set(int setpoint) {
     if (_dac_channel) {
-        _dac->setVoltageA(scaled_voltage);
+        _dac->setVoltageA(setpoint);
     } else {
-        _dac->setVoltageB(scaled_voltage);
+        _dac->setVoltageB(setpoint);
     }
     _dac->updateDAC();
 }
@@ -51,12 +50,13 @@ void Lane::stop() {
 }
 
 
-double Lane::pitch_to_voltage(double pitch) {
-    double voltage = (double) DAC_MAX_VOLTAGE_TARGET * (pitch - (double) MIDI_PITCH_MIN) / (double) MIDI_PITCH_RANGE;
+int Lane::pitch_to_voltage(byte pitch, int bend) {
+    double bent_pitch = (double) pitch + (double) bend * PITCH_BEND_RANGE / 8192.0;
+    double voltage = (bent_pitch - MIDI_MIN_PITCH) / 12.0 / AMP_GAIN;
     if (voltage < 0) {
         voltage = 0;
-    } else if (voltage > DAC_MAX_VOLTAGE_TARGET) {
-        voltage = DAC_MAX_VOLTAGE_TARGET;
+    } else if (voltage > DAC_VMAX) {
+        voltage = DAC_VMAX;
     }
-    return voltage;
+    return (int) (1000 * voltage);
 }

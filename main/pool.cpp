@@ -41,7 +41,7 @@ void Pool::load(Note note) {
     _current_note = note;
     for (byte lane_id = 0; lane_id < 8; lane_id++) {
         if ((_lane_mask & (1 << lane_id)) > 0) {
-            _router->select(lane_id + 1)->start(Lane::pitch_to_voltage(note.pitch));  // TODO who takes care of pitch to voltage transition?
+            _router->select(lane_id + 1)->start(Lane::pitch_to_voltage(note.pitch, 0));  // TODO who takes care of pitch to voltage transition?
         }
     }
 }

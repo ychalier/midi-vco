@@ -29,12 +29,10 @@
 #define PIN_GATE_7 25
 #define PIN_GATE_8 23
 
-#define DAC_RANGE 7.54  // Volts
-#define DAC_BITS 4096  // 2^12
-#define DAC_MAX_VOLTAGE_TARGET 7.0  // Volts
-
-#define MIDI_PITCH_MIN 21  // A1
-#define MIDI_PITCH_RANGE 84  // 7 octaves * 12 semitones
+#define DAC_VMAX 4.096
+#define AMP_GAIN 1.8408203125
+#define MIDI_MIN_PITCH 20
+#define PITCH_BEND_RANGE 2.0
 
 #define MODE_MONOPHONIC 0
 #define MODE_DUOPHONIC 1
