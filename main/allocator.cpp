@@ -95,3 +95,14 @@ void Allocator::pitch_bend(byte channel, int bend_value) {
 void Allocator::setup() {
     _router->setup();
 }
+
+
+void Allocator::start_display(Display* display) {
+    byte target = 0;
+    for (int i = 0; i < POOL_COUNT; i++) {
+        if (_pools[i]->is_usable()) {
+            target = target || (1 << i);
+        }
+    }
+    display->start(target, DEFAULT_DISPLAY_DURATION);
+}

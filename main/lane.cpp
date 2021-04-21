@@ -2,10 +2,11 @@
 #include "lane.h"
 
 
-Lane::Lane(MCP4822* dac, bool dac_channel, int gate_pin) {
+Lane::Lane(MCP4822* dac, bool dac_channel, int gate_pin, int led_pin) {
     _dac = dac;
     _dac_channel = dac_channel;
     _gate_pin = gate_pin;
+    _led_pin = led_pin;
 }
 
 
@@ -32,6 +33,7 @@ void Lane::play(int setpoint, unsigned long duration) {
 void Lane::start(int setpoint) {
     set(setpoint);
     digitalWrite(_gate_pin, HIGH);
+    digitalWrite(_led_pin, HIGH);
 }
 
 
@@ -47,6 +49,7 @@ void Lane::set(int setpoint) {
 
 void Lane::stop() {
     digitalWrite(_gate_pin, LOW);
+    digitalWrite(_led_pin, LOW);
 }
 
 

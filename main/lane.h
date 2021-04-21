@@ -7,7 +7,7 @@
 
 class Lane {
     public:
-        Lane(MCP4822* dac, bool dac_channel, int gate_pin);
+        Lane(MCP4822* dac, bool dac_channel, int gate_pin, int led_pin);
         void setup();
         void play(int setpoint, unsigned long duration);
         void set(int setpoint);
@@ -18,6 +18,7 @@ class Lane {
         MCP4822* _dac;
         bool _dac_channel;
         int _gate_pin;
+        int _led_pin;
 };
 
 #endif

@@ -76,3 +76,8 @@ void Pool::bend(int bend_value) {
 void Pool::set_free() {
     _active = false;
 }
+
+
+bool Pool::is_usable() {
+    return _lane_mask > 0;
+}

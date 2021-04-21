@@ -7,14 +7,14 @@ Router::Router() {
     _dac_2 = new MCP4822(PIN_SS_2);
     _dac_3 = new MCP4822(PIN_SS_3);
     _dac_4 = new MCP4822(PIN_SS_4);
-    _lane_1 = new Lane(_dac_1, true, PIN_GATE_1);
-    _lane_2 = new Lane(_dac_1, false, PIN_GATE_2);
-    _lane_3 = new Lane(_dac_2, true, PIN_GATE_3);
-    _lane_4 = new Lane(_dac_2, false, PIN_GATE_4);
-    _lane_5 = new Lane(_dac_3, true, PIN_GATE_5);
-    _lane_6 = new Lane(_dac_3, false, PIN_GATE_6);
-    _lane_7 = new Lane(_dac_4, true, PIN_GATE_7);
-    _lane_8 = new Lane(_dac_4, false, PIN_GATE_8);
+    _lane_1 = new Lane(_dac_1, true, PIN_GATE_1, PIN_LED_1);
+    _lane_2 = new Lane(_dac_1, false, PIN_GATE_2, PIN_LED_2);
+    _lane_3 = new Lane(_dac_2, true, PIN_GATE_3, PIN_LED_3);
+    _lane_4 = new Lane(_dac_2, false, PIN_GATE_4, PIN_LED_4);
+    _lane_5 = new Lane(_dac_3, true, PIN_GATE_5, PIN_LED_5);
+    _lane_6 = new Lane(_dac_3, false, PIN_GATE_6, PIN_LED_6);
+    _lane_7 = new Lane(_dac_4, true, PIN_GATE_7, PIN_LED_7);
+    _lane_8 = new Lane(_dac_4, false, PIN_GATE_8, PIN_LED_8);
 }
 
 

@@ -18,6 +18,7 @@ class Pool {
         void unload();
         void bend(int bend_value);
         void set_free();
+        bool is_usable();
         unsigned long get_era();
         Note current();
 

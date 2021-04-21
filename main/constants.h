@@ -45,4 +45,6 @@
 
 #define POOL_COUNT 8
 
+#define DEFAULT_DISPLAY_DURATION 1000
+
 #endif
