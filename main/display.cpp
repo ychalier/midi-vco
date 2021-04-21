@@ -2,12 +2,65 @@
 #include "display.h"
 #include "constants.h"
 
+#define DEMO_DELAY 50
+
 
 Display::Display() {
     _start = 0;
     _started = false;
     _duration = 0;
     _target = 0;
+}
+
+
+void Display::demo() {
+    digitalWrite(PIN_LED_1, HIGH);
+    delay(DEMO_DELAY);
+    digitalWrite(PIN_LED_1, LOW);
+    digitalWrite(PIN_LED_2, HIGH);
+    delay(DEMO_DELAY);
+    digitalWrite(PIN_LED_2, LOW);
+    digitalWrite(PIN_LED_3, HIGH);
+    delay(DEMO_DELAY);
+    digitalWrite(PIN_LED_3, LOW);
+    digitalWrite(PIN_LED_4, HIGH);
+    delay(DEMO_DELAY);
+    digitalWrite(PIN_LED_4, LOW);
+    digitalWrite(PIN_LED_5, HIGH);
+    delay(DEMO_DELAY);
+    digitalWrite(PIN_LED_5, LOW);
+    digitalWrite(PIN_LED_6, HIGH);
+    delay(DEMO_DELAY);
+    digitalWrite(PIN_LED_6, LOW);
+    digitalWrite(PIN_LED_7, HIGH);
+    delay(DEMO_DELAY);
+    digitalWrite(PIN_LED_7, LOW);
+    digitalWrite(PIN_LED_8, HIGH);
+    delay(DEMO_DELAY);
+    digitalWrite(PIN_LED_8, LOW);
+    delay(DEMO_DELAY * 4);
+    digitalWrite(PIN_LED_1, HIGH);
+    digitalWrite(PIN_LED_2, HIGH);
+    digitalWrite(PIN_LED_3, HIGH);
+    digitalWrite(PIN_LED_4, HIGH);
+    digitalWrite(PIN_LED_5, HIGH);
+    digitalWrite(PIN_LED_6, HIGH);
+    digitalWrite(PIN_LED_7, HIGH);
+    digitalWrite(PIN_LED_8, HIGH);
+    delay(DEMO_DELAY * 4);
+    reset();
+}
+
+
+void Display::reset() {
+    digitalWrite(PIN_LED_1, LOW);
+    digitalWrite(PIN_LED_2, LOW);
+    digitalWrite(PIN_LED_3, LOW);
+    digitalWrite(PIN_LED_4, LOW);
+    digitalWrite(PIN_LED_5, LOW);
+    digitalWrite(PIN_LED_6, LOW);
+    digitalWrite(PIN_LED_7, LOW);
+    digitalWrite(PIN_LED_8, LOW);
 }
 
 

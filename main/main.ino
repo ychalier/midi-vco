@@ -24,6 +24,7 @@ void setup() {
     MIDI.setHandleNoteOn(handle_note_on);
     MIDI.setHandleNoteOff(handle_note_off);
     MIDI.setHandlePitchBend(handle_pitch_bend);
+    display->demo();
 }
 
 

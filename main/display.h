@@ -13,6 +13,8 @@ class Display {
         void set();
         void update();
         int get_led_state(byte mask);
+        static void demo();
+        static void reset();
     private:
         bool _started;
         byte _target;
