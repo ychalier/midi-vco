@@ -79,6 +79,17 @@ void Allocator::note_off(Note note) {
     }
 }
 
+
+void Allocator::pitch_bend(byte channel, int bend_value) {
+    Note fake_note = { channel, 0 };
+    for (int i = 0; i < POOL_COUNT; i++) {
+        if (_pools[i]->accepts(fake_note)) {
+            _pools[i]->bend(bend_value);
+        }
+    }
+}
+
+
 void Allocator::setup() {
     _router->setup();
 }

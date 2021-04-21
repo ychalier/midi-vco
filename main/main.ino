@@ -8,25 +8,30 @@ Config* config;
 Allocator* allocator;
 
 void setup() {
-    MIDI.begin(MIDI_CHANNEL_OMNI);
-    MIDI.setHandleNoteOn(handler_note_on);
-    MIDI.setHandleNoteOff(handler_note_off);
     config = new Config();
     allocator = new Allocator(config);
     allocator->setup();
     allocator->set_masks();
+    MIDI.begin(MIDI_CHANNEL_OMNI);
+    MIDI.setHandleNoteOn(handle_note_on);
+    MIDI.setHandleNoteOff(handle_note_off);
+    MIDI.setHandlePitchBend(handle_pitch_bend);
 }
 
 void loop() {
     MIDI.read();
 }
 
-void handler_note_on(byte channel, byte pitch, byte velocity) { 
+void handle_note_on(byte channel, byte pitch, byte velocity) { 
     Note note = { channel, pitch };
     allocator->note_on(note);
 }
 
-void handler_note_off(byte channel, byte pitch, byte velocity) { 
+void handle_note_off(byte channel, byte pitch, byte velocity) { 
     Note note = { channel, pitch };
     allocator->note_off(note);
+}
+
+void handle_pitch_bend(byte channel, int bend) {
+    allocator->pitch_bend(channel, bend);
 }

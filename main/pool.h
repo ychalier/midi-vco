@@ -16,6 +16,7 @@ class Pool {
         bool free();
         void load(Note note);
         void unload();
+        void bend(int bend_value);
         unsigned long get_era();
         Note current();
 
