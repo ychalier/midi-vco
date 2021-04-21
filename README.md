@@ -23,3 +23,7 @@ Micrologiciel pour une carte Arduino faisant l'intermédiraire entre un clavier 
     1. Dans Arduino IDE, aller dans *Outils* > *Type de carte* et sélectionner si besoin *Arduino Mega or Mega 2560*
     2. Dans Arduino IDE, aller dans *Outils* > *Port* et sélectionner si besoin le port USB sur lequel la carte est connectée
 4. __Dans Arduino IDE, cliquer sur le bouton *Téléverser*__ (icone d'une fléche vers la droite) ; des informations relatives au bon déroulé de l'opération sont affichées en bas de la fenêtre. En cas d'erreur, essayer de rebrancher la carte ou de redémarrer Arduino IDE.
+
+## Documentation
+
+Pour en apprendre plus sur le fonctionnement de ce micrologiciel, rendez-vous sur le [wiki](https://github.com/ychalier/midi-vco/wiki).
