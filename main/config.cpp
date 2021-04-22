@@ -2,73 +2,86 @@
 #include "config.h"
 #include "constants.h"
 
-
-Config::Config() {
+Config::Config()
+{
     _polyphony_mode = MODE_MONOPHONIC;
-    _priority_mode = PRIORITY_LAST_OLDEST;
-    _midi_channel_mode = CHANNEL_FILTER_OFF;
+    _priority_mode = PRIORITY_REPLACE_FIRST;
+    _channel_filter = CHANNEL_FILTER_OFF;
 }
 
-
-byte Config::get_priority_mode() {
-    return _priority_mode;
-}
-
-
-byte Config::get_polyphony_mode() {
-    return _polyphony_mode;
-}
-
-
-byte Config::get_midi_channel_mode() {
-    return _midi_channel_mode;
-}
-
-
-void Config::setup() {
+void Config::setup()
+{
     pinMode(PIN_SELECT_PRIORITY, INPUT);
     pinMode(PIN_SELECT_CHANNEL, INPUT);
 }
 
-
-byte categorize_polyphony_mode(int input_value) {
-    if (input_value < 256) {
+byte Config::categorize_polyphony_mode(int input_value)
+{
+    if (input_value < 256)
+    {
         return MODE_MONOPHONIC;
-    } else if (input_value < 512) {
+    }
+    else if (input_value < 512)
+    {
         return MODE_DUOPHONIC;
-    } else if (input_value < 768) {
+    }
+    else if (input_value < 768)
+    {
         return MODE_QUADROPHONIC;
-    } else {
+    }
+    else
+    {
         return MODE_OCTOPHONIC;
     }
 }
 
-
-byte categorize_priority_mode(int input_value) {
-    if (input_value == HIGH) {
-        return PRIORITY_LAST_OLDEST;
-    } else {
-        return PRIORITY_LAST_YOUNGEST;
+byte Config::categorize_priority_mode(int input_value)
+{
+    if (input_value == HIGH)
+    {
+        return PRIORITY_REPLACE_LAST;
+    }
+    else
+    {
+        return PRIORITY_REPLACE_FIRST;
     }
 }
 
-
-byte categorize_midi_channel_mode(int input_value) {
-    if (input_value == HIGH) {
+byte Config::categorize_channel_filter(int input_value)
+{
+    if (input_value == HIGH)
+    {
         return CHANNEL_FILTER_ON;
-    } else {
+    }
+    else
+    {
         return CHANNEL_FILTER_OFF;
     }
 }
 
-
-bool Config::read() {
+bool Config::read()
+{
     byte priority_mode = categorize_priority_mode(digitalRead(PIN_SELECT_PRIORITY));
-    byte midi_channel_mode = categorize_midi_channel_mode(digitalRead(PIN_SELECT_CHANNEL));
+    byte channel_filter = categorize_channel_filter(digitalRead(PIN_SELECT_CHANNEL));
     byte polyphony_mode = categorize_polyphony_mode(analogRead(PIN_SELECT_MODE));
-    bool changed = _priority_mode != priority_mode || _polyphony_mode != polyphony_mode || _midi_channel_mode != midi_channel_mode;
+    bool changed = _priority_mode != priority_mode || _polyphony_mode != polyphony_mode || _channel_filter != channel_filter;
     _priority_mode = priority_mode;
     _polyphony_mode = polyphony_mode;
-    _midi_channel_mode = midi_channel_mode;
+    _channel_filter = channel_filter;
     return changed;
+}
+
+byte Config::get_polyphony_mode()
+{
+    return _polyphony_mode;
+}
+
+byte Config::get_priority_mode()
+{
+    return _priority_mode;
+}
+
+byte Config::get_channel_filter()
+{
+    return _channel_filter;
 }

@@ -1,23 +1,30 @@
+/**
+ * MIDI-VCO
+ * Arduino firmware interfacing between a MIDI keyboard and a set of VCOs.
+ * 
+ * @author Yohan Chalier
+ * @version 0.1.0 2021-04-22
+ */
+
 #include <MIDI.h>
 #include "config.h"
 #include "allocator.h"
 #include "note.h"
 #include "display.h"
 
-
 MIDI_CREATE_DEFAULT_INSTANCE();
-Config* config;
-Allocator* allocator;
-Display* display;
+Config *config;
+Allocator *allocator;
+Display *display;
 
-
-void setup() {
+void setup()
+{
     display = new Display();
     display->setup();
     config = new Config();
     config->setup();
     config->read();
-    allocator = new Allocator(config);
+    allocator = new Allocator(config, display);
     allocator->setup();
     allocator->set_masks();
     MIDI.begin(MIDI_CHANNEL_OMNI);
@@ -27,30 +34,52 @@ void setup() {
     display->demo();
 }
 
-
-void loop() {
+void loop()
+{
     MIDI.read();
     bool changed = config->read();
-    if (changed) {
+    if (changed)
+    {
         allocator->set_masks();
-        allocator->start_display(display);
+        allocator->display_state();
     }
     display->update();
 }
 
-
-void handle_note_on(byte channel, byte pitch, byte velocity) { 
-    Note note = { channel, pitch };
+/**
+ * Handler for the MIDI note-on message.
+ *
+ * @param channel MIDI channel associated with the note.
+ * @param pitch Note pitch in semitons.
+ * @param velocity Velocity associated with the note, ignored here.
+ */
+void handle_note_on(byte channel, byte pitch, byte velocity)
+{
+    Note note = {channel, pitch};
     allocator->note_on(note);
 }
 
-
-void handle_note_off(byte channel, byte pitch, byte velocity) { 
-    Note note = { channel, pitch };
+/**
+ * Handler for the MIDI note-off message.
+ *
+ * @param channel MIDI channel associated with the note.
+ * @param pitch Note pitch in semitons.
+ * @param velocity Velocity associated with the note, ignored here.
+ */
+void handle_note_off(byte channel, byte pitch, byte velocity)
+{
+    Note note = {channel, pitch};
     allocator->note_off(note);
 }
 
-
-void handle_pitch_bend(byte channel, int bend) {
+/**
+ * Handler for the MIDI pitch-bend message.
+ *
+ * @param channel MIDI channel to bend the pitch of.
+ * @param bend Signed 14-bit encoding of the current position of the pitch-bend
+ *     control.
+ */
+void handle_pitch_bend(byte channel, int bend)
+{
     allocator->pitch_bend(channel, bend);
 }

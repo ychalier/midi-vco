@@ -1,6 +1,7 @@
 #ifndef constants_h
 #define constants_h
 
+// PINs wiring
 
 #define PIN_SELECT_MODE A0
 #define PIN_SELECT_PRIORITY 42
@@ -29,25 +30,29 @@
 #define PIN_GATE_7 25
 #define PIN_GATE_8 23
 
-#define DAC_VMAX 4.096
-#define AMP_GAIN 1.8408203125
-#define MIDI_MIN_PITCH 20
-#define PITCH_BEND_RANGE 2.0
+// Enumerations
 
 #define MODE_MONOPHONIC 0
 #define MODE_DUOPHONIC 1
 #define MODE_QUADROPHONIC 2
 #define MODE_OCTOPHONIC 3
 
-#define PRIORITY_FIRST 0
-#define PRIORITY_LAST_OLDEST 1
-#define PRIORITY_LAST_YOUNGEST 2
+#define PRIORITY_KEEP_FIRST 0
+#define PRIORITY_REPLACE_FIRST 1
+#define PRIORITY_REPLACE_LAST 2
 
 #define CHANNEL_FILTER_OFF 0
 #define CHANNEL_FILTER_ON 1
 
-#define POOL_COUNT 8
+// General constants
 
-#define DEFAULT_DISPLAY_DURATION 1000
+#define DAC_VMAX 4.096        // Volts
+#define AMP_GAIN 1.8408203125 // 7.54V / 4.096V
+#define MIDI_MIN_PITCH 20     // Semitons
+#define PITCH_BEND_RANGE 2.0  // Semitons
+
+#define DEFAULT_DISPLAY_DURATION 1000 // Milliseconds
+
+#define LANE_COUNT 8
 
 #endif
