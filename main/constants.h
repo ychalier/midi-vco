@@ -3,7 +3,7 @@
 
 // PINs wiring
 
-#define PIN_SELECT_MODE A0
+#define PIN_SELECT_MODE A15
 #define PIN_SELECT_PRIORITY 42
 #define PIN_SELECT_CHANNEL 40
 
