@@ -2,6 +2,7 @@
 #define pool_h
 
 #include "Arduino.h"
+#include <MIDI.h>
 #include "constants.h"
 #include "router.h"
 #include "note.h"

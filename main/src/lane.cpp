@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "lane.h"
+#include "../include/lane.h"
 
 Lane::Lane(Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int led_id)
 {

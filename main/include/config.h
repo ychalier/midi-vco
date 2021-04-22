@@ -2,6 +2,7 @@
 #define config_h
 
 #include "Arduino.h"
+#include "constants.h"
 
 /**
  * Main wrapper for the user interface.

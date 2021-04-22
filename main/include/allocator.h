@@ -2,6 +2,7 @@
 #define allocator_h
 
 #include "Arduino.h"
+#include "constants.h"
 #include "config.h"
 #include "note.h"
 #include "pool.h"

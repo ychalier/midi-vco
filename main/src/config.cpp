@@ -1,6 +1,5 @@
 #include "Arduino.h"
-#include "config.h"
-#include "constants.h"
+#include "../include/config.h"
 
 Config::Config()
 {

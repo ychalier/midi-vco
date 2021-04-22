@@ -1,6 +1,5 @@
 #include "Arduino.h"
-#include "allocator.h"
-#include "constants.h"
+#include "../include/allocator.h"
 
 Allocator::Allocator(Config *config, Display *display)
 {

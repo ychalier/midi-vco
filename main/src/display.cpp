@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "display.h"
+#include "../include/display.h"
 
 #define DEMO_DELAY 50
 

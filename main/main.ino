@@ -7,10 +7,10 @@
  */
 
 #include <MIDI.h>
-#include "config.h"
-#include "allocator.h"
-#include "note.h"
-#include "display.h"
+#include "include/config.h"
+#include "include/allocator.h"
+#include "include/note.h"
+#include "include/display.h"
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 Config *config;

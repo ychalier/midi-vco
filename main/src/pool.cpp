@@ -1,7 +1,5 @@
 #include "Arduino.h"
-#include "pool.h"
-#include "lane.h"
-#include <MIDI.h>
+#include "../include/pool.h"
 
 unsigned int channel_to_mask(byte channel)
 {
