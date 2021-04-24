@@ -20,8 +20,9 @@ public:
      * 
      * @param config The config to pass to the allocator.
      * @param display A pointer to the LED display wrapper.
+     * @param router A pointer to the router handling the output lanes.
      */
-    Allocator(Config *config, Display *display);
+    Allocator(Config *config, Display *display, Router *router);
 
     /**
      * Initialize hardware connections. Must be called once in the main program

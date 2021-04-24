@@ -8,6 +8,9 @@ Lane::Lane(Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int l
     _dac_channel = dac_channel;
     _gate_pin = gate_pin;
     _led_id = led_id;
+    _current_setpoint = 0;
+    _last_set_time = 0;
+    _glide = {false, 0, 0, 0, 0};
 }
 
 void Lane::setup()
@@ -28,6 +31,8 @@ void Lane::setup()
 
 void Lane::set(int setpoint)
 {
+    _current_setpoint = setpoint;
+    _last_set_time = millis();
     if (_dac_channel)
     {
         _dac->setVoltageA(setpoint);
@@ -41,14 +46,28 @@ void Lane::set(int setpoint)
 
 void Lane::play(int setpoint, unsigned long duration)
 {
-    start(setpoint);
+    start(setpoint, 0);
     delay(duration);
     stop();
 }
 
-void Lane::start(int setpoint)
+void Lane::start(int setpoint, unsigned long glide_duration)
 {
-    set(setpoint);
+    if (glide_duration == 0 ||
+        (millis() - _last_set_time) > GLIDE_TIME_TRIGGER ||
+        abs(_current_setpoint - setpoint) > GLIDE_PITCH_TRIGGER)
+    {
+        set(setpoint);
+    }
+    else
+    {
+        _glide.active = true;
+        _glide.setpoint_start = _current_setpoint;
+        _glide.setpoint_end = setpoint;
+        _glide.duration = glide_duration;
+        _glide.time_start = millis();
+        update();
+    }
     digitalWrite(_gate_pin, HIGH);
     _display->set_led_state(_led_id, HIGH);
 }
@@ -57,6 +76,24 @@ void Lane::stop()
 {
     digitalWrite(_gate_pin, LOW);
     _display->set_led_state(_led_id, LOW);
+}
+
+void Lane::update()
+{
+    if (_glide.active)
+    {
+        float progress = (float)(millis() - _glide.time_start) / (float)_glide.duration;
+        if (progress > 1)
+        {
+            progress = 1;
+        }
+        float setpoint = (1 - progress) * _glide.setpoint_start + progress * _glide.setpoint_end;
+        set((int)setpoint);
+        if (progress >= 1)
+        {
+            _glide.active = false;
+        }
+    }
 }
 
 int Lane::pitch_to_voltage(byte pitch, int bend)

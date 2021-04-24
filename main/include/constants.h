@@ -55,4 +55,8 @@
 
 #define LANE_COUNT 8
 
+#define GLIDE_DEFAULT_DURATION 500 // Milliseconds
+#define GLIDE_TIME_TRIGGER 100     // Milliseconds
+#define GLIDE_PITCH_TRIGGER 250    // DAC setpoint unit (mV), 250 = 3 semitons
+
 #endif

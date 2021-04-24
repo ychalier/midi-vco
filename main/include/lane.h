@@ -5,6 +5,7 @@
 #include <MCP48xx.h>
 #include "constants.h"
 #include "display.h"
+#include "note.h"
 
 /**
  * Manage one output VCO (CV and GATE signals).
@@ -50,13 +51,21 @@ public:
      * method to start playing a note without blocking the main loop.
      * 
      * @param setpoint DAC input value.
+     * @param glide_duration Duration in milliseconds of the glide from the
+     *     last setpoint to this new setpoint. Ignored if 0.
      */
-    void start(int setpoint);
+    void start(int setpoint, unsigned long glide_duration);
 
     /**
      * Set the GATE to LOW.
      */
     void stop();
+
+    /**
+     * Check if a glide is active and update it if necessary. This function
+     * should be called repeateadly from the main loop.
+     */
+    void update();
 
     /**
      * Compute the DAC input value from a note.
@@ -75,6 +84,15 @@ private:
     bool _dac_channel;
     int _gate_pin;
     int _led_id;
+
+    /// Last setpoint (including pitch bends).
+    int _current_setpoint;
+
+    /// Timestamp of the moment the last setpoint was set.
+    unsigned long _last_set_time;
+
+    /// Wrapper for the glide information.
+    Glide _glide;
 };
 
 #endif

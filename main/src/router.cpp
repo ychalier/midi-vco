@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "../include/router.h"
 
-Router::Router(Display* display)
+Router::Router(Display *display)
 {
     _dac_1 = new MCP4822(PIN_SS_1);
     _dac_2 = new MCP4822(PIN_SS_2);
@@ -31,6 +31,18 @@ void Router::setup()
     _lane_6->setup();
     _lane_7->setup();
     _lane_8->setup();
+}
+
+void Router::update()
+{
+    _lane_1->update();
+    _lane_2->update();
+    _lane_3->update();
+    _lane_4->update();
+    _lane_5->update();
+    _lane_6->update();
+    _lane_7->update();
+    _lane_8->update();
 }
 
 Lane *Router::select(int lane_id)

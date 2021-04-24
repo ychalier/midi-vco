@@ -27,6 +27,11 @@ public:
     void setup();
 
     /**
+     * Update all the lanes (for the glide effect).
+     */
+    void update();
+
+    /**
      * Getter for the lanes.
      * 
      * @param lane_id The lane to select. Indices start at 0.

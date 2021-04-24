@@ -71,7 +71,9 @@ void Pool::load(Note note)
     {
         if ((_lane_mask & (1 << lane_id)) > 0)
         {
-            _router->select(lane_id)->start(Lane::pitch_to_voltage(note.pitch, 0));
+            _router->select(lane_id)->start(
+                Lane::pitch_to_voltage(note.pitch, 0),
+                GLIDE_DEFAULT_DURATION);
         }
     }
 }
@@ -94,7 +96,8 @@ void Pool::bend(int bend_value)
     {
         if ((_lane_mask & (1 << lane_id)) > 0)
         {
-            _router->select(lane_id)->set(Lane::pitch_to_voltage(_current_note.pitch, bend_value));
+            _router->select(lane_id)->set(
+                Lane::pitch_to_voltage(_current_note.pitch, bend_value));
         }
     }
 }
