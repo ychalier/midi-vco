@@ -1,5 +1,5 @@
-#ifndef note_h
-#define note_h
+#ifndef structs_h
+#define structs_h
 
 #include "Arduino.h"
 

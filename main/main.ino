@@ -9,7 +9,7 @@
 #include <MIDI.h>
 #include "include/config.h"
 #include "include/allocator.h"
-#include "include/note.h"
+#include "include/structs.h"
 #include "include/display.h"
 #include "include/router.h"
 

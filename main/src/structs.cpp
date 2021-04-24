@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "../include/note.h"
+#include "../include/structs.h"
 
 bool operator==(const Note &l_note, const Note &r_note)
 {

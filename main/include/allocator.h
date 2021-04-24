@@ -4,7 +4,7 @@
 #include "Arduino.h"
 #include "constants.h"
 #include "config.h"
-#include "note.h"
+#include "structs.h"
 #include "pool.h"
 #include "router.h"
 #include "display.h"

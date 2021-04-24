@@ -5,7 +5,7 @@
 #include <MIDI.h>
 #include "constants.h"
 #include "router.h"
-#include "note.h"
+#include "structs.h"
 
 /**
  * Abstract representation of an lane allocation unit.

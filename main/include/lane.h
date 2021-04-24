@@ -5,7 +5,7 @@
 #include <MCP48xx.h>
 #include "constants.h"
 #include "display.h"
-#include "note.h"
+#include "structs.h"
 
 /**
  * Manage one output VCO (CV and GATE signals).
