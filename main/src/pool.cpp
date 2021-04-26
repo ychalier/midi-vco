@@ -22,7 +22,7 @@ Pool::Pool(Router *router)
     _router = router;
     _lane_mask = 0;
     _channel_mask = 0;
-    _current_note = {1, 0};
+    _buffer = new Buffer();
     _era = 0;
     _active = false;
 }
@@ -62,23 +62,37 @@ bool Pool::accepts_note(Note note)
     return is_enabled() && accepts_channel(note.channel);
 }
 
-void Pool::load(Note note)
+void Pool::load_buffer(int bend, bool set_only)
 {
-    _active = true;
-    _era = millis();
-    _current_note = note;
+    Note note = _buffer->get();
     for (byte lane_id = 0; lane_id < 8; lane_id++)
     {
         if ((_lane_mask & (1 << lane_id)) > 0)
         {
-            _router->select(lane_id)->start(Lane::pitch_to_voltage(note.pitch, 0));
+            if (set_only)
+            {
+                _router->select(lane_id)->set(Lane::pitch_to_voltage(note.pitch, bend));
+            }
+            else
+            {
+                _router->select(lane_id)->start(Lane::pitch_to_voltage(note.pitch, bend));
+            }
         }
     }
 }
 
-void Pool::unload()
+void Pool::load(Note note)
+{
+    _active = true;
+    _era = millis();
+    _buffer->push(note);
+    load_buffer(0, false);
+}
+
+void Pool::stop()
 {
     _active = false;
+    _buffer->reset();
     for (byte lane_id = 0; lane_id < 8; lane_id++)
     {
         if ((_lane_mask & (1 << lane_id)) > 0)
@@ -88,23 +102,32 @@ void Pool::unload()
     }
 }
 
+bool Pool::unload(Note note)
+{
+    if (_active && _buffer->pop(note))
+    {
+        if (_buffer->empty())
+        {
+            stop();
+        }
+        else
+        {
+            load_buffer(0, true);
+        }
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void Pool::bend(int bend_value)
 {
-    for (byte lane_id = 0; lane_id < 8; lane_id++)
-    {
-        if ((_lane_mask & (1 << lane_id)) > 0)
-        {
-            _router->select(lane_id)->set(Lane::pitch_to_voltage(_current_note.pitch, bend_value));
-        }
-    }
+    load_buffer(bend_value, true);
 }
 
 unsigned long Pool::get_era()
 {
     return _era;
-}
-
-Note Pool::get_current_note()
-{
-    return _current_note;
 }
