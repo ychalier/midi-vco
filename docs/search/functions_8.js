@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['operator_3d_3d_180',['operator==',['../note_8h.html#ab4bf0d3b509b2ce0e2ed47152bfdf701',1,'operator==(const Note &amp;l_note, const Note &amp;r_note):&#160;note.cpp'],['../note_8cpp.html#ab4bf0d3b509b2ce0e2ed47152bfdf701',1,'operator==(const Note &amp;l_note, const Note &amp;r_note):&#160;note.cpp']]]
+  ['note_5foff_212',['note_off',['../class_allocator.html#a503686789d548982a45389b201385c8a',1,'Allocator']]],
+  ['note_5fon_213',['note_on',['../class_allocator.html#ac488e12b005e2ac5ffd222ea69825a34',1,'Allocator']]]
 ];

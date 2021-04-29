@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -71,26 +71,27 @@ $(function() {
 <p>This is the complete list of members for <a class="el" href="class_pool.html">Pool</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">_active</a></td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_pool.html#a0c12319c180682726de0f0c45df70d17">_channel_mask</a></td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_pool.html#a2f1a3f26e5c285202c860e8253f69b96">_current_note</a></td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">_buffer</a></td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_pool.html#a0c12319c180682726de0f0c45df70d17">_channel_mask</a></td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">_era</a></td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">_lane_mask</a></td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">_router</a></td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_pool.html#af1b3b5b9f7ac012125f917e67d51df8b">accepts_channel</a>(byte channel)</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_pool.html#aebb195c3de79da2fc38b2598e4e46860">accepts_note</a>(Note note)</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_pool.html#a966575094e29fd6ad4004f7610273ed1">bend</a>(int bend_value)</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_pool.html#a741e5cab5b04b316545b005a3e7bdade">get_current_note</a>()</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_pool.html#af23bc62de2e464c2045c9d3436d66c50">get_era</a>()</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_pool.html#aea355f50869629b54135c86843762c70">is_enabled</a>()</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_pool.html#a703287c34419cae6dc60ec8089a05e53">is_free</a>()</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_pool.html#a1b54262c292f6e1171a432bb013479d7">load</a>(Note note)</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_pool.html#af23bc62de2e464c2045c9d3436d66c50">get_era</a>()</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_pool.html#aea355f50869629b54135c86843762c70">is_enabled</a>()</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_pool.html#a703287c34419cae6dc60ec8089a05e53">is_free</a>()</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_pool.html#a1b54262c292f6e1171a432bb013479d7">load</a>(Note note)</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_pool.html#a79bb3db5a6043a18074c2996a078de3d">load_buffer</a>(int bend, bool set_only)</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_pool.html#ad204880feb8c71e73348485fc09de612">Pool</a>(Router *router)</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_pool.html#a7a2eae2dab624dd13c196a20b68f976c">set_masks</a>(byte lane_mask, unsigned int channel_mask)</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_pool.html#a9b6ed99ddf6a71d0a960b0d9749080c6">unload</a>()</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_pool.html#a55ccbf59553e90c49e32c437e6e8f6b5">stop</a>()</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_pool.html#a71587a75fb716a41cbfc8ed0a0621776">unload</a>(Note note)</td><td class="entry"><a class="el" href="class_pool.html">Pool</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 26 2021 13:34:21 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Apr 29 2021 18:50:25 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -76,17 +76,17 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// PINs wiring</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="constants_8h.html#ab8c5840709e0139a30907dd6cd91587e">    6</a></span>&#160;<span class="preprocessor">#define PIN_SELECT_MODE A15</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="constants_8h.html#ab8c5840709e0139a30907dd6cd91587e">    6</a></span>&#160;<span class="preprocessor">#define PIN_SELECT_MODE A8</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="constants_8h.html#a3d13a81e56c4afd82b484faa7f520314">    7</a></span>&#160;<span class="preprocessor">#define PIN_SELECT_PRIORITY 42</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="constants_8h.html#a0a3ee7544eef48f5b758d4adb44ade09">    8</a></span>&#160;<span class="preprocessor">#define PIN_SELECT_CHANNEL 40</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="constants_8h.html#af1ab79f4742613cc2f7f472d9d6c6570">   10</a></span>&#160;<span class="preprocessor">#define PIN_LED_1 22</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="constants_8h.html#a0856e6b89a9e5cb8a8bbbf6ba9f7dccc">   11</a></span>&#160;<span class="preprocessor">#define PIN_LED_2 24</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="constants_8h.html#afac55df431f2832acd5b0afa6f56cbc1">   12</a></span>&#160;<span class="preprocessor">#define PIN_LED_3 26</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="constants_8h.html#af1ab79f4742613cc2f7f472d9d6c6570">   10</a></span>&#160;<span class="preprocessor">#define PIN_LED_1 34</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="constants_8h.html#a0856e6b89a9e5cb8a8bbbf6ba9f7dccc">   11</a></span>&#160;<span class="preprocessor">#define PIN_LED_2 32</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="constants_8h.html#afac55df431f2832acd5b0afa6f56cbc1">   12</a></span>&#160;<span class="preprocessor">#define PIN_LED_3 30</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="constants_8h.html#a1fffd93d20b6fe777713bd58125e3e0b">   13</a></span>&#160;<span class="preprocessor">#define PIN_LED_4 28</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="constants_8h.html#a6581c9faeb95d91f151a7fda5ff9d963">   14</a></span>&#160;<span class="preprocessor">#define PIN_LED_5 30</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="constants_8h.html#a897044b754ba688fa23ced24e2455458">   15</a></span>&#160;<span class="preprocessor">#define PIN_LED_6 32</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="constants_8h.html#ad374e1f0585eb6df88024972c2c7dee4">   16</a></span>&#160;<span class="preprocessor">#define PIN_LED_7 34</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="constants_8h.html#a6581c9faeb95d91f151a7fda5ff9d963">   14</a></span>&#160;<span class="preprocessor">#define PIN_LED_5 26</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="constants_8h.html#a897044b754ba688fa23ced24e2455458">   15</a></span>&#160;<span class="preprocessor">#define PIN_LED_6 24</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="constants_8h.html#ad374e1f0585eb6df88024972c2c7dee4">   16</a></span>&#160;<span class="preprocessor">#define PIN_LED_7 22</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="constants_8h.html#a6ea466ac288223772f03b58400456708">   17</a></span>&#160;<span class="preprocessor">#define PIN_LED_8 36</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="constants_8h.html#ad88e57eaf842b2e59763ddd26e570f54">   19</a></span>&#160;<span class="preprocessor">#define PIN_SS_1 47</span></div>
@@ -128,11 +128,20 @@ $(function() {
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
 <div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="constants_8h.html#a73afc0e3de7253b20d26d43395608527">   56</a></span>&#160;<span class="preprocessor">#define LANE_COUNT 8</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">   58</a></span>&#160;<span class="preprocessor">#define BUFFER_SIZE 8</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="constants_8h.html#a0a5b192d808c69b3053518a942267a28">   60</a></span>&#160;<span class="preprocessor">#define GLIDE_DEFAULT_DURATION 500.0</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="constants_8h.html#a1f77315051f93442622dd041fd9d11d1">   61</a></span>&#160;<span class="preprocessor">#define GLIDE_MIN_DURATION 50.0     </span><span class="comment">// Milliseconds</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="constants_8h.html#a2537743e4142182107397f34d7c59439">   62</a></span>&#160;<span class="preprocessor">#define GLIDE_MAX_DURATION 500.0    </span><span class="comment">// Milliseconds</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="constants_8h.html#a0678fbe7e33d0045ba2217a5f5b536f9">   63</a></span>&#160;<span class="preprocessor">#define GLIDE_MAX_DURATION_GAP 60.0 </span><span class="comment">// Semitones</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="constants_8h.html#aa2f5e45e5ec877f8d95e0806a5595895">   64</a></span>&#160;<span class="preprocessor">#define GLIDE_TIME_TRIGGER 99999    </span><span class="comment">// Milliseconds</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="constants_8h.html#a93692e8ea5e17339b882a6946334dc01">   65</a></span>&#160;<span class="preprocessor">#define GLIDE_PITCH_TRIGGER 99999   </span><span class="comment">// DAC setpoint unit (mV), 250 = 3 semitons</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 26 2021 13:34:21 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Apr 29 2021 18:50:25 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

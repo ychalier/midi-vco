@@ -48,7 +48,7 @@ public:
      * @param note The note to remove from the buffer.
      * @return True if the buffer did contained the note and it was
      *     successfully removed.
-     */ 
+     */
     bool pop(Note note);
 
     /**

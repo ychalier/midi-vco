@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -69,6 +69,9 @@ $(function() {
 <li>_active
 : <a class="el" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">Pool</a>
 </li>
+<li>_buffer
+: <a class="el" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">Pool</a>
+</li>
 <li>_channel_filter
 : <a class="el" href="class_config.html#a7c7afd39f99f5589ebd1dca8c3390299">Config</a>
 </li>
@@ -78,8 +81,11 @@ $(function() {
 <li>_config
 : <a class="el" href="class_allocator.html#a725cbc92da006250a9ab26c7f14e9fc4">Allocator</a>
 </li>
-<li>_current_note
-: <a class="el" href="class_pool.html#a2f1a3f26e5c285202c860e8253f69b96">Pool</a>
+<li>_current_setpoint
+: <a class="el" href="class_lane.html#a8c23d1bb27ed968313490a9f35a03ee8">Lane</a>
+</li>
+<li>_cursor
+: <a class="el" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">Buffer</a>
 </li>
 <li>_dac
 : <a class="el" href="class_lane.html#ac452fb9146a34283e269d27c265f1ea6">Lane</a>
@@ -112,6 +118,9 @@ $(function() {
 <li>_gate_pin
 : <a class="el" href="class_lane.html#a33c6f1c70f89021cab3cab920ad0dcd3">Lane</a>
 </li>
+<li>_glide
+: <a class="el" href="class_lane.html#a7dd46dec4706046ad8efe5edbcfce239">Lane</a>
+</li>
 <li>_lane_1
 : <a class="el" href="class_router.html#a810ed00928f13e92edeee3775a89ae40">Router</a>
 </li>
@@ -139,6 +148,9 @@ $(function() {
 <li>_lane_mask
 : <a class="el" href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">Pool</a>
 </li>
+<li>_last_set_time
+: <a class="el" href="class_lane.html#ab9ae75d19d5175c0bfd069d41d7f102a">Lane</a>
+</li>
 <li>_led_id
 : <a class="el" href="class_lane.html#a4dbb3a06cba805b6f8c239fe874b12e9">Lane</a>
 </li>
@@ -147,6 +159,9 @@ $(function() {
 </li>
 <li>_locked
 : <a class="el" href="class_display.html#a3dfd0bc0c4aceedd0ea402ccca036184">Display</a>
+</li>
+<li>_notes
+: <a class="el" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">Buffer</a>
 </li>
 <li>_pattern
 : <a class="el" href="class_display.html#a093653bae1ad39afe596c303e279ff09">Display</a>
@@ -177,8 +192,11 @@ $(function() {
 <li>accepts_note()
 : <a class="el" href="class_pool.html#aebb195c3de79da2fc38b2598e4e46860">Pool</a>
 </li>
+<li>active
+: <a class="el" href="struct_glide.html#aaadf2f2cef9548c4d6d4f05cf0b80b74">Glide</a>
+</li>
 <li>Allocator()
-: <a class="el" href="class_allocator.html#a3b806d3c731255a0ef994cf8ee715fdc">Allocator</a>
+: <a class="el" href="class_allocator.html#a95ae2a7dfb2b3026f29be4685b45f7da">Allocator</a>
 </li>
 </ul>
 
@@ -186,6 +204,9 @@ $(function() {
 <h3><a id="index_b"></a>- b -</h3><ul>
 <li>bend()
 : <a class="el" href="class_pool.html#a966575094e29fd6ad4004f7610273ed1">Pool</a>
+</li>
+<li>Buffer()
+: <a class="el" href="class_buffer.html#ae7ef2cd201190fde551dcb902627112b">Buffer</a>
 </li>
 </ul>
 
@@ -219,15 +240,25 @@ $(function() {
 <li>display_state()
 : <a class="el" href="class_allocator.html#a05495536e18d1814ef24b406a67b92bd">Allocator</a>
 </li>
+<li>duration
+: <a class="el" href="struct_glide.html#ad7ab601dfccc73120a2661e214b3c208">Glide</a>
+</li>
+</ul>
+
+
+<h3><a id="index_e"></a>- e -</h3><ul>
+<li>empty()
+: <a class="el" href="class_buffer.html#a4261c1a06920df9c964e4e1ef03353eb">Buffer</a>
+</li>
 </ul>
 
 
 <h3><a id="index_g"></a>- g -</h3><ul>
+<li>get()
+: <a class="el" href="class_buffer.html#ade5c243c7b78e28f889f7d52f37df481">Buffer</a>
+</li>
 <li>get_channel_filter()
 : <a class="el" href="class_config.html#a6bba320c0aca0977bc76ce70f2aef047">Config</a>
-</li>
-<li>get_current_note()
-: <a class="el" href="class_pool.html#a741e5cab5b04b316545b005a3e7bdade">Pool</a>
 </li>
 <li>get_era()
 : <a class="el" href="class_pool.html#af23bc62de2e464c2045c9d3436d66c50">Pool</a>
@@ -261,6 +292,9 @@ $(function() {
 <li>load()
 : <a class="el" href="class_pool.html#a1b54262c292f6e1171a432bb013479d7">Pool</a>
 </li>
+<li>load_buffer()
+: <a class="el" href="class_pool.html#a79bb3db5a6043a18074c2996a078de3d">Pool</a>
+</li>
 </ul>
 
 
@@ -290,12 +324,21 @@ $(function() {
 <li>Pool()
 : <a class="el" href="class_pool.html#ad204880feb8c71e73348485fc09de612">Pool</a>
 </li>
+<li>pop()
+: <a class="el" href="class_buffer.html#a650109ed0ac2e1513a37fcc46a595829">Buffer</a>
+</li>
+<li>push()
+: <a class="el" href="class_buffer.html#acec71205058fb10fc57c94c8bdcf7dc5">Buffer</a>
+</li>
 </ul>
 
 
 <h3><a id="index_r"></a>- r -</h3><ul>
 <li>read()
 : <a class="el" href="class_config.html#a04a241a25d71ee97d1b99b89229d2c82">Config</a>
+</li>
+<li>reset()
+: <a class="el" href="class_buffer.html#a52170368aefdfbbdcd4a4f79fbf66678">Buffer</a>
 </li>
 <li>reset_leds()
 : <a class="el" href="class_display.html#a029e484ca4bdf9d3794c8ab36375307e">Display</a>
@@ -323,6 +366,12 @@ $(function() {
 <li>set_pattern()
 : <a class="el" href="class_display.html#a28dfd39c608fb69f39823ab6d0fccc3b">Display</a>
 </li>
+<li>setpoint_end
+: <a class="el" href="struct_glide.html#af207d1b7de45bb44342ea13ff3276404">Glide</a>
+</li>
+<li>setpoint_start
+: <a class="el" href="struct_glide.html#a3c2466b72cc856df7612b5da25717687">Glide</a>
+</li>
 <li>setup()
 : <a class="el" href="class_allocator.html#abd222486ac63d3a9b4e7cabb91569617">Allocator</a>
 , <a class="el" href="class_config.html#add9dfc573e6408dd4c1fd1e5c6293ba0">Config</a>
@@ -330,28 +379,41 @@ $(function() {
 , <a class="el" href="class_lane.html#acdb78fd93cd0f8e17c775b4d410f63f4">Lane</a>
 , <a class="el" href="class_router.html#ad42d4039bd4a012c34c7da685148a8b5">Router</a>
 </li>
+<li>shift()
+: <a class="el" href="class_buffer.html#a1dd0d7cc03c72d098a929326c8e15119">Buffer</a>
+</li>
 <li>start()
 : <a class="el" href="class_display.html#a8a6957eb3da9e75b5892160aa8a13b40">Display</a>
-, <a class="el" href="class_lane.html#ab49f94d71f3a290e8086ed6ad4f25461">Lane</a>
+, <a class="el" href="class_lane.html#aab566acdccee6c623a550db90be774a0">Lane</a>
 </li>
 <li>stop()
 : <a class="el" href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">Lane</a>
+, <a class="el" href="class_pool.html#a55ccbf59553e90c49e32c437e6e8f6b5">Pool</a>
+</li>
+</ul>
+
+
+<h3><a id="index_t"></a>- t -</h3><ul>
+<li>time_start
+: <a class="el" href="struct_glide.html#a13fda5f5f416e9c4f05d9bfe82a3c8d9">Glide</a>
 </li>
 </ul>
 
 
 <h3><a id="index_u"></a>- u -</h3><ul>
 <li>unload()
-: <a class="el" href="class_pool.html#a9b6ed99ddf6a71d0a960b0d9749080c6">Pool</a>
+: <a class="el" href="class_pool.html#a71587a75fb716a41cbfc8ed0a0621776">Pool</a>
 </li>
 <li>update()
 : <a class="el" href="class_display.html#ad2740b779d61e461c4dcaaf34f1fcd8f">Display</a>
+, <a class="el" href="class_lane.html#a12c974886f517581abc607f58775d303">Lane</a>
+, <a class="el" href="class_router.html#aa1b7b08c47135938efc721249f36a6a1">Router</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 26 2021 13:34:21 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Apr 29 2021 18:50:25 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

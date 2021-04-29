@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -91,19 +91,19 @@ $(function() {
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">if</span> (input_value &lt; 256)</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="constants_8h.html#a2a33587f0528d88828ffca16d9623130">MODE_MONOPHONIC</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="constants_8h.html#a9c52b96cf8a40e99ced21bb65d9cf91a">MODE_OCTOPHONIC</a>;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_value &lt; 512)</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="constants_8h.html#a45bff5fc91e80789fafb31cc3f95ef5f">MODE_DUOPHONIC</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="constants_8h.html#acd74d69a69f038b2f32b3ac39418e800">MODE_QUADROPHONIC</a>;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_value &lt; 768)</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="constants_8h.html#acd74d69a69f038b2f32b3ac39418e800">MODE_QUADROPHONIC</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="constants_8h.html#a45bff5fc91e80789fafb31cc3f95ef5f">MODE_DUOPHONIC</a>;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="constants_8h.html#a9c52b96cf8a40e99ced21bb65d9cf91a">MODE_OCTOPHONIC</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="constants_8h.html#a2a33587f0528d88828ffca16d9623130">MODE_MONOPHONIC</a>;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
@@ -134,37 +134,38 @@ $(function() {
 <div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_config.html#a04a241a25d71ee97d1b99b89229d2c82">   61</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="class_config.html#a04a241a25d71ee97d1b99b89229d2c82">Config::read</a>()</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">byte</span> priority_mode = <a class="code" href="class_config.html#ad30e37b290fcd1b14a64d5c677fea523">categorize_priority_mode</a>(digitalRead(<a class="code" href="constants_8h.html#a3d13a81e56c4afd82b484faa7f520314">PIN_SELECT_PRIORITY</a>));</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">byte</span> channel_filter = <a class="code" href="class_config.html#a7e3faef6c01ca6346bad96e2886b0ebd">categorize_channel_filter</a>(digitalRead(<a class="code" href="constants_8h.html#a0a3ee7544eef48f5b758d4adb44ade09">PIN_SELECT_CHANNEL</a>));</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">byte</span> polyphony_mode = <a class="code" href="class_config.html#a917bbeb21176cbb7f66e09e10dcaa326">categorize_polyphony_mode</a>(analogRead(<a class="code" href="constants_8h.html#ab8c5840709e0139a30907dd6cd91587e">PIN_SELECT_MODE</a>));</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">bool</span> changed = <a class="code" href="class_config.html#ac43b8211f6a7980a690a423d5dc7dc58">_priority_mode</a> != priority_mode || <a class="code" href="class_config.html#a854182219145c9e592fba7be0f7bcd2b">_polyphony_mode</a> != polyphony_mode || <a class="code" href="class_config.html#a7c7afd39f99f5589ebd1dca8c3390299">_channel_filter</a> != channel_filter;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="class_config.html#ac43b8211f6a7980a690a423d5dc7dc58">_priority_mode</a> = priority_mode;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="class_config.html#a854182219145c9e592fba7be0f7bcd2b">_polyphony_mode</a> = polyphony_mode;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="class_config.html#a7c7afd39f99f5589ebd1dca8c3390299">_channel_filter</a> = channel_filter;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> changed;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="class_config.html#a0829ddc00aa82818f6f8381f8ba0286e">   73</a></span>&#160;<span class="keywordtype">byte</span> <a class="code" href="class_config.html#a0829ddc00aa82818f6f8381f8ba0286e">Config::get_polyphony_mode</a>()</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_config.html#a854182219145c9e592fba7be0f7bcd2b">_polyphony_mode</a>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="class_config.html#ab433148c636ab05f4f00f39c7bfcc8eb">   78</a></span>&#160;<span class="keywordtype">byte</span> <a class="code" href="class_config.html#ab433148c636ab05f4f00f39c7bfcc8eb">Config::get_priority_mode</a>()</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_config.html#ac43b8211f6a7980a690a423d5dc7dc58">_priority_mode</a>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="class_config.html#a6bba320c0aca0977bc76ce70f2aef047">   83</a></span>&#160;<span class="keywordtype">byte</span> <a class="code" href="class_config.html#a6bba320c0aca0977bc76ce70f2aef047">Config::get_channel_filter</a>()</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;{</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_config.html#a7c7afd39f99f5589ebd1dca8c3390299">_channel_filter</a>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">byte</span> channel_filter = <a class="code" href="constants_8h.html#a1e18500136b261441c6883c64ef86707">CHANNEL_FILTER_OFF</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// byte channel_filter = categorize_channel_filter(digitalRead(PIN_SELECT_CHANNEL));</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">byte</span> polyphony_mode = <a class="code" href="class_config.html#a917bbeb21176cbb7f66e09e10dcaa326">categorize_polyphony_mode</a>(analogRead(<a class="code" href="constants_8h.html#ab8c5840709e0139a30907dd6cd91587e">PIN_SELECT_MODE</a>));</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">bool</span> changed = <a class="code" href="class_config.html#ac43b8211f6a7980a690a423d5dc7dc58">_priority_mode</a> != priority_mode || <a class="code" href="class_config.html#a854182219145c9e592fba7be0f7bcd2b">_polyphony_mode</a> != polyphony_mode || <a class="code" href="class_config.html#a7c7afd39f99f5589ebd1dca8c3390299">_channel_filter</a> != channel_filter;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="class_config.html#ac43b8211f6a7980a690a423d5dc7dc58">_priority_mode</a> = priority_mode;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="class_config.html#a854182219145c9e592fba7be0f7bcd2b">_polyphony_mode</a> = polyphony_mode;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="class_config.html#a7c7afd39f99f5589ebd1dca8c3390299">_channel_filter</a> = channel_filter;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> changed;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="class_config.html#a0829ddc00aa82818f6f8381f8ba0286e">   74</a></span>&#160;<span class="keywordtype">byte</span> <a class="code" href="class_config.html#a0829ddc00aa82818f6f8381f8ba0286e">Config::get_polyphony_mode</a>()</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_config.html#a854182219145c9e592fba7be0f7bcd2b">_polyphony_mode</a>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="class_config.html#ab433148c636ab05f4f00f39c7bfcc8eb">   79</a></span>&#160;<span class="keywordtype">byte</span> <a class="code" href="class_config.html#ab433148c636ab05f4f00f39c7bfcc8eb">Config::get_priority_mode</a>()</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_config.html#ac43b8211f6a7980a690a423d5dc7dc58">_priority_mode</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="class_config.html#a6bba320c0aca0977bc76ce70f2aef047">   84</a></span>&#160;<span class="keywordtype">byte</span> <a class="code" href="class_config.html#a6bba320c0aca0977bc76ce70f2aef047">Config::get_channel_filter</a>()</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_config.html#a7c7afd39f99f5589ebd1dca8c3390299">_channel_filter</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
 <div class="ttc" id="aclass_config_html_a04a241a25d71ee97d1b99b89229d2c82"><div class="ttname"><a href="class_config.html#a04a241a25d71ee97d1b99b89229d2c82">Config::read</a></div><div class="ttdeci">bool read()</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00061">config.cpp:61</a></div></div>
-<div class="ttc" id="aclass_config_html_a0829ddc00aa82818f6f8381f8ba0286e"><div class="ttname"><a href="class_config.html#a0829ddc00aa82818f6f8381f8ba0286e">Config::get_polyphony_mode</a></div><div class="ttdeci">byte get_polyphony_mode()</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00073">config.cpp:73</a></div></div>
-<div class="ttc" id="aclass_config_html_a6bba320c0aca0977bc76ce70f2aef047"><div class="ttname"><a href="class_config.html#a6bba320c0aca0977bc76ce70f2aef047">Config::get_channel_filter</a></div><div class="ttdeci">byte get_channel_filter()</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00083">config.cpp:83</a></div></div>
+<div class="ttc" id="aclass_config_html_a0829ddc00aa82818f6f8381f8ba0286e"><div class="ttname"><a href="class_config.html#a0829ddc00aa82818f6f8381f8ba0286e">Config::get_polyphony_mode</a></div><div class="ttdeci">byte get_polyphony_mode()</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00074">config.cpp:74</a></div></div>
+<div class="ttc" id="aclass_config_html_a6bba320c0aca0977bc76ce70f2aef047"><div class="ttname"><a href="class_config.html#a6bba320c0aca0977bc76ce70f2aef047">Config::get_channel_filter</a></div><div class="ttdeci">byte get_channel_filter()</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00084">config.cpp:84</a></div></div>
 <div class="ttc" id="aclass_config_html_a7c7afd39f99f5589ebd1dca8c3390299"><div class="ttname"><a href="class_config.html#a7c7afd39f99f5589ebd1dca8c3390299">Config::_channel_filter</a></div><div class="ttdeci">byte _channel_filter</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00071">config.h:71</a></div></div>
 <div class="ttc" id="aclass_config_html_a7e3faef6c01ca6346bad96e2886b0ebd"><div class="ttname"><a href="class_config.html#a7e3faef6c01ca6346bad96e2886b0ebd">Config::categorize_channel_filter</a></div><div class="ttdeci">static byte categorize_channel_filter(int input_value)</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00049">config.cpp:49</a></div></div>
 <div class="ttc" id="aclass_config_html_a854182219145c9e592fba7be0f7bcd2b"><div class="ttname"><a href="class_config.html#a854182219145c9e592fba7be0f7bcd2b">Config::_polyphony_mode</a></div><div class="ttdeci">byte _polyphony_mode</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00069">config.h:69</a></div></div>
 <div class="ttc" id="aclass_config_html_a917bbeb21176cbb7f66e09e10dcaa326"><div class="ttname"><a href="class_config.html#a917bbeb21176cbb7f66e09e10dcaa326">Config::categorize_polyphony_mode</a></div><div class="ttdeci">static byte categorize_polyphony_mode(int input_value)</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00017">config.cpp:17</a></div></div>
-<div class="ttc" id="aclass_config_html_ab433148c636ab05f4f00f39c7bfcc8eb"><div class="ttname"><a href="class_config.html#ab433148c636ab05f4f00f39c7bfcc8eb">Config::get_priority_mode</a></div><div class="ttdeci">byte get_priority_mode()</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00078">config.cpp:78</a></div></div>
+<div class="ttc" id="aclass_config_html_ab433148c636ab05f4f00f39c7bfcc8eb"><div class="ttname"><a href="class_config.html#ab433148c636ab05f4f00f39c7bfcc8eb">Config::get_priority_mode</a></div><div class="ttdeci">byte get_priority_mode()</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00079">config.cpp:79</a></div></div>
 <div class="ttc" id="aclass_config_html_abd0c571c116924871e30444b192b792a"><div class="ttname"><a href="class_config.html#abd0c571c116924871e30444b192b792a">Config::Config</a></div><div class="ttdeci">Config()</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00004">config.cpp:4</a></div></div>
 <div class="ttc" id="aclass_config_html_ac43b8211f6a7980a690a423d5dc7dc58"><div class="ttname"><a href="class_config.html#ac43b8211f6a7980a690a423d5dc7dc58">Config::_priority_mode</a></div><div class="ttdeci">byte _priority_mode</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00070">config.h:70</a></div></div>
 <div class="ttc" id="aclass_config_html_ad30e37b290fcd1b14a64d5c677fea523"><div class="ttname"><a href="class_config.html#ad30e37b290fcd1b14a64d5c677fea523">Config::categorize_priority_mode</a></div><div class="ttdeci">static byte categorize_priority_mode(int input_value)</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00037">config.cpp:37</a></div></div>
@@ -183,7 +184,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 26 2021 13:34:21 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Apr 29 2021 18:50:25 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

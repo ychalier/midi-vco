@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['midi_5fmin_5fpitch_241',['MIDI_MIN_PITCH',['../constants_8h.html#a5a4813366397b194aa7fd51b50c01b19',1,'constants.h']]],
-  ['mode_5fduophonic_242',['MODE_DUOPHONIC',['../constants_8h.html#a45bff5fc91e80789fafb31cc3f95ef5f',1,'constants.h']]],
-  ['mode_5fmonophonic_243',['MODE_MONOPHONIC',['../constants_8h.html#a2a33587f0528d88828ffca16d9623130',1,'constants.h']]],
-  ['mode_5foctophonic_244',['MODE_OCTOPHONIC',['../constants_8h.html#a9c52b96cf8a40e99ced21bb65d9cf91a',1,'constants.h']]],
-  ['mode_5fquadrophonic_245',['MODE_QUADROPHONIC',['../constants_8h.html#acd74d69a69f038b2f32b3ac39418e800',1,'constants.h']]]
+  ['glide_5fdefault_5fduration_290',['GLIDE_DEFAULT_DURATION',['../constants_8h.html#a0a5b192d808c69b3053518a942267a28',1,'constants.h']]],
+  ['glide_5fmax_5fduration_291',['GLIDE_MAX_DURATION',['../constants_8h.html#a2537743e4142182107397f34d7c59439',1,'constants.h']]],
+  ['glide_5fmax_5fduration_5fgap_292',['GLIDE_MAX_DURATION_GAP',['../constants_8h.html#a0678fbe7e33d0045ba2217a5f5b536f9',1,'constants.h']]],
+  ['glide_5fmin_5fduration_293',['GLIDE_MIN_DURATION',['../constants_8h.html#a1f77315051f93442622dd041fd9d11d1',1,'constants.h']]],
+  ['glide_5fpitch_5ftrigger_294',['GLIDE_PITCH_TRIGGER',['../constants_8h.html#a93692e8ea5e17339b882a6946334dc01',1,'constants.h']]],
+  ['glide_5ftime_5ftrigger_295',['GLIDE_TIME_TRIGGER',['../constants_8h.html#aa2f5e45e5ec877f8d95e0806a5595895',1,'constants.h']]]
 ];

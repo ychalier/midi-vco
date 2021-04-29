@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -78,53 +78,68 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;MCP48xx.h&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="constants_8h.html">constants.h</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="display_8h.html">display.h</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_lane.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_lane.html">Lane</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_lane.html#afe99e0252f2c0605ab984e39a5679b92">Lane</a>(<a class="code" href="class_display.html">Display</a> *display, MCP4822 *dac, <span class="keywordtype">bool</span> dac_channel, <span class="keywordtype">int</span> gate_pin, <span class="keywordtype">int</span> led_id);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lane.html#acdb78fd93cd0f8e17c775b4d410f63f4">setup</a>();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lane.html#aafa90d0e5e6f5311ddba99ce2bddde6a">set</a>(<span class="keywordtype">int</span> setpoint);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lane.html#ac3dc9b1a55f37ae67b96701c387feb47">play</a>(<span class="keywordtype">int</span> setpoint, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> duration);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lane.html#ab49f94d71f3a290e8086ed6ad4f25461">start</a>(<span class="keywordtype">int</span> setpoint);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">stop</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">pitch_to_voltage</a>(<span class="keywordtype">byte</span> pitch, <span class="keywordtype">int</span> bend);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="class_lane.html#aeac5c59778a823413d6dadccd0471129">   73</a></span>&#160;    <a class="code" href="class_display.html">Display</a> *<a class="code" href="class_lane.html#aeac5c59778a823413d6dadccd0471129">_display</a>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="class_lane.html#ac452fb9146a34283e269d27c265f1ea6">   74</a></span>&#160;    MCP4822 *<a class="code" href="class_lane.html#ac452fb9146a34283e269d27c265f1ea6">_dac</a>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="class_lane.html#abdc41a879107d2b56157e901d74c4aef">   75</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_lane.html#abdc41a879107d2b56157e901d74c4aef">_dac_channel</a>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_lane.html#a33c6f1c70f89021cab3cab920ad0dcd3">   76</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_lane.html#a33c6f1c70f89021cab3cab920ad0dcd3">_gate_pin</a>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="class_lane.html#a4dbb3a06cba805b6f8c239fe874b12e9">   77</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_lane.html#a4dbb3a06cba805b6f8c239fe874b12e9">_led_id</a>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;};</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="structs_8h.html">structs.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_lane.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_lane.html">Lane</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_lane.html#afe99e0252f2c0605ab984e39a5679b92">Lane</a>(<a class="code" href="class_display.html">Display</a> *display, MCP4822 *dac, <span class="keywordtype">bool</span> dac_channel, <span class="keywordtype">int</span> gate_pin, <span class="keywordtype">int</span> led_id);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lane.html#acdb78fd93cd0f8e17c775b4d410f63f4">setup</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lane.html#aafa90d0e5e6f5311ddba99ce2bddde6a">set</a>(<span class="keywordtype">int</span> setpoint);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lane.html#ac3dc9b1a55f37ae67b96701c387feb47">play</a>(<span class="keywordtype">int</span> setpoint, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> duration);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lane.html#aab566acdccee6c623a550db90be774a0">start</a>(<span class="keywordtype">int</span> setpoint, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> glide_duration);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">stop</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lane.html#a12c974886f517581abc607f58775d303">update</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">pitch_to_voltage</a>(<span class="keywordtype">byte</span> pitch, <span class="keywordtype">int</span> bend);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="class_lane.html#aeac5c59778a823413d6dadccd0471129">   82</a></span>&#160;    <a class="code" href="class_display.html">Display</a> *<a class="code" href="class_lane.html#aeac5c59778a823413d6dadccd0471129">_display</a>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="class_lane.html#ac452fb9146a34283e269d27c265f1ea6">   83</a></span>&#160;    MCP4822 *<a class="code" href="class_lane.html#ac452fb9146a34283e269d27c265f1ea6">_dac</a>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="class_lane.html#abdc41a879107d2b56157e901d74c4aef">   84</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_lane.html#abdc41a879107d2b56157e901d74c4aef">_dac_channel</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="class_lane.html#a33c6f1c70f89021cab3cab920ad0dcd3">   85</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_lane.html#a33c6f1c70f89021cab3cab920ad0dcd3">_gate_pin</a>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="class_lane.html#a4dbb3a06cba805b6f8c239fe874b12e9">   86</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_lane.html#a4dbb3a06cba805b6f8c239fe874b12e9">_led_id</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="class_lane.html#a8c23d1bb27ed968313490a9f35a03ee8">   89</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_lane.html#a8c23d1bb27ed968313490a9f35a03ee8">_current_setpoint</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="class_lane.html#ab9ae75d19d5175c0bfd069d41d7f102a">   92</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="class_lane.html#ab9ae75d19d5175c0bfd069d41d7f102a">_last_set_time</a>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="class_lane.html#a7dd46dec4706046ad8efe5edbcfce239">   95</a></span>&#160;    <a class="code" href="struct_glide.html">Glide</a> <a class="code" href="class_lane.html#a7dd46dec4706046ad8efe5edbcfce239">_glide</a>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclass_display_html"><div class="ttname"><a href="class_display.html">Display</a></div><div class="ttdef"><b>Definition:</b> <a href="display_8h_source.html#l00013">display.h:14</a></div></div>
-<div class="ttc" id="aclass_lane_html"><div class="ttname"><a href="class_lane.html">Lane</a></div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00012">lane.h:13</a></div></div>
-<div class="ttc" id="aclass_lane_html_a1e467c4df8085b9067c05ffd4e58120a"><div class="ttname"><a href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">Lane::pitch_to_voltage</a></div><div class="ttdeci">static int pitch_to_voltage(byte pitch, int bend)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00062">lane.cpp:62</a></div></div>
-<div class="ttc" id="aclass_lane_html_a33c6f1c70f89021cab3cab920ad0dcd3"><div class="ttname"><a href="class_lane.html#a33c6f1c70f89021cab3cab920ad0dcd3">Lane::_gate_pin</a></div><div class="ttdeci">int _gate_pin</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00076">lane.h:76</a></div></div>
-<div class="ttc" id="aclass_lane_html_a4dbb3a06cba805b6f8c239fe874b12e9"><div class="ttname"><a href="class_lane.html#a4dbb3a06cba805b6f8c239fe874b12e9">Lane::_led_id</a></div><div class="ttdeci">int _led_id</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00077">lane.h:77</a></div></div>
-<div class="ttc" id="aclass_lane_html_aafa90d0e5e6f5311ddba99ce2bddde6a"><div class="ttname"><a href="class_lane.html#aafa90d0e5e6f5311ddba99ce2bddde6a">Lane::set</a></div><div class="ttdeci">void set(int setpoint)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00029">lane.cpp:29</a></div></div>
-<div class="ttc" id="aclass_lane_html_ab49f94d71f3a290e8086ed6ad4f25461"><div class="ttname"><a href="class_lane.html#ab49f94d71f3a290e8086ed6ad4f25461">Lane::start</a></div><div class="ttdeci">void start(int setpoint)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00049">lane.cpp:49</a></div></div>
-<div class="ttc" id="aclass_lane_html_abdc41a879107d2b56157e901d74c4aef"><div class="ttname"><a href="class_lane.html#abdc41a879107d2b56157e901d74c4aef">Lane::_dac_channel</a></div><div class="ttdeci">bool _dac_channel</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00075">lane.h:75</a></div></div>
-<div class="ttc" id="aclass_lane_html_ac3dc9b1a55f37ae67b96701c387feb47"><div class="ttname"><a href="class_lane.html#ac3dc9b1a55f37ae67b96701c387feb47">Lane::play</a></div><div class="ttdeci">void play(int setpoint, unsigned long duration)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00042">lane.cpp:42</a></div></div>
-<div class="ttc" id="aclass_lane_html_ac452fb9146a34283e269d27c265f1ea6"><div class="ttname"><a href="class_lane.html#ac452fb9146a34283e269d27c265f1ea6">Lane::_dac</a></div><div class="ttdeci">MCP4822 * _dac</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00074">lane.h:74</a></div></div>
-<div class="ttc" id="aclass_lane_html_acdb78fd93cd0f8e17c775b4d410f63f4"><div class="ttname"><a href="class_lane.html#acdb78fd93cd0f8e17c775b4d410f63f4">Lane::setup</a></div><div class="ttdeci">void setup()</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00013">lane.cpp:13</a></div></div>
-<div class="ttc" id="aclass_lane_html_ade5504da830139b0588bb21a6fd7c52a"><div class="ttname"><a href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">Lane::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00056">lane.cpp:56</a></div></div>
-<div class="ttc" id="aclass_lane_html_aeac5c59778a823413d6dadccd0471129"><div class="ttname"><a href="class_lane.html#aeac5c59778a823413d6dadccd0471129">Lane::_display</a></div><div class="ttdeci">Display * _display</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00073">lane.h:73</a></div></div>
+<div class="ttc" id="aclass_lane_html"><div class="ttname"><a href="class_lane.html">Lane</a></div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00013">lane.h:14</a></div></div>
+<div class="ttc" id="aclass_lane_html_a12c974886f517581abc607f58775d303"><div class="ttname"><a href="class_lane.html#a12c974886f517581abc607f58775d303">Lane::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00081">lane.cpp:81</a></div></div>
+<div class="ttc" id="aclass_lane_html_a1e467c4df8085b9067c05ffd4e58120a"><div class="ttname"><a href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">Lane::pitch_to_voltage</a></div><div class="ttdeci">static int pitch_to_voltage(byte pitch, int bend)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00106">lane.cpp:106</a></div></div>
+<div class="ttc" id="aclass_lane_html_a33c6f1c70f89021cab3cab920ad0dcd3"><div class="ttname"><a href="class_lane.html#a33c6f1c70f89021cab3cab920ad0dcd3">Lane::_gate_pin</a></div><div class="ttdeci">int _gate_pin</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00085">lane.h:85</a></div></div>
+<div class="ttc" id="aclass_lane_html_a4dbb3a06cba805b6f8c239fe874b12e9"><div class="ttname"><a href="class_lane.html#a4dbb3a06cba805b6f8c239fe874b12e9">Lane::_led_id</a></div><div class="ttdeci">int _led_id</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00086">lane.h:86</a></div></div>
+<div class="ttc" id="aclass_lane_html_a7dd46dec4706046ad8efe5edbcfce239"><div class="ttname"><a href="class_lane.html#a7dd46dec4706046ad8efe5edbcfce239">Lane::_glide</a></div><div class="ttdeci">Glide _glide</div><div class="ttdoc">Wrapper for the glide information.</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00095">lane.h:95</a></div></div>
+<div class="ttc" id="aclass_lane_html_a8c23d1bb27ed968313490a9f35a03ee8"><div class="ttname"><a href="class_lane.html#a8c23d1bb27ed968313490a9f35a03ee8">Lane::_current_setpoint</a></div><div class="ttdeci">int _current_setpoint</div><div class="ttdoc">Last setpoint (including pitch bends).</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00089">lane.h:89</a></div></div>
+<div class="ttc" id="aclass_lane_html_aab566acdccee6c623a550db90be774a0"><div class="ttname"><a href="class_lane.html#aab566acdccee6c623a550db90be774a0">Lane::start</a></div><div class="ttdeci">void start(int setpoint, unsigned long glide_duration)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00054">lane.cpp:54</a></div></div>
+<div class="ttc" id="aclass_lane_html_aafa90d0e5e6f5311ddba99ce2bddde6a"><div class="ttname"><a href="class_lane.html#aafa90d0e5e6f5311ddba99ce2bddde6a">Lane::set</a></div><div class="ttdeci">void set(int setpoint)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00032">lane.cpp:32</a></div></div>
+<div class="ttc" id="aclass_lane_html_ab9ae75d19d5175c0bfd069d41d7f102a"><div class="ttname"><a href="class_lane.html#ab9ae75d19d5175c0bfd069d41d7f102a">Lane::_last_set_time</a></div><div class="ttdeci">unsigned long _last_set_time</div><div class="ttdoc">Timestamp of the moment the last setpoint was set.</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00092">lane.h:92</a></div></div>
+<div class="ttc" id="aclass_lane_html_abdc41a879107d2b56157e901d74c4aef"><div class="ttname"><a href="class_lane.html#abdc41a879107d2b56157e901d74c4aef">Lane::_dac_channel</a></div><div class="ttdeci">bool _dac_channel</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00084">lane.h:84</a></div></div>
+<div class="ttc" id="aclass_lane_html_ac3dc9b1a55f37ae67b96701c387feb47"><div class="ttname"><a href="class_lane.html#ac3dc9b1a55f37ae67b96701c387feb47">Lane::play</a></div><div class="ttdeci">void play(int setpoint, unsigned long duration)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00047">lane.cpp:47</a></div></div>
+<div class="ttc" id="aclass_lane_html_ac452fb9146a34283e269d27c265f1ea6"><div class="ttname"><a href="class_lane.html#ac452fb9146a34283e269d27c265f1ea6">Lane::_dac</a></div><div class="ttdeci">MCP4822 * _dac</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00083">lane.h:83</a></div></div>
+<div class="ttc" id="aclass_lane_html_acdb78fd93cd0f8e17c775b4d410f63f4"><div class="ttname"><a href="class_lane.html#acdb78fd93cd0f8e17c775b4d410f63f4">Lane::setup</a></div><div class="ttdeci">void setup()</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00016">lane.cpp:16</a></div></div>
+<div class="ttc" id="aclass_lane_html_ade5504da830139b0588bb21a6fd7c52a"><div class="ttname"><a href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">Lane::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00075">lane.cpp:75</a></div></div>
+<div class="ttc" id="aclass_lane_html_aeac5c59778a823413d6dadccd0471129"><div class="ttname"><a href="class_lane.html#aeac5c59778a823413d6dadccd0471129">Lane::_display</a></div><div class="ttdeci">Display * _display</div><div class="ttdef"><b>Definition:</b> <a href="lane_8h_source.html#l00082">lane.h:82</a></div></div>
 <div class="ttc" id="aclass_lane_html_afe99e0252f2c0605ab984e39a5679b92"><div class="ttname"><a href="class_lane.html#afe99e0252f2c0605ab984e39a5679b92">Lane::Lane</a></div><div class="ttdeci">Lane(Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int led_id)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00004">lane.cpp:4</a></div></div>
 <div class="ttc" id="aconstants_8h_html"><div class="ttname"><a href="constants_8h.html">constants.h</a></div></div>
 <div class="ttc" id="adisplay_8h_html"><div class="ttname"><a href="display_8h.html">display.h</a></div></div>
+<div class="ttc" id="astruct_glide_html"><div class="ttname"><a href="struct_glide.html">Glide</a></div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00026">structs.h:27</a></div></div>
+<div class="ttc" id="astructs_8h_html"><div class="ttname"><a href="structs_8h.html">structs.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 26 2021 13:34:21 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Apr 29 2021 18:50:25 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

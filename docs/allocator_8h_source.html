@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -77,7 +77,7 @@ $(function() {
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;Arduino.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="constants_8h.html">constants.h</a>&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="config_8h.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="note_8h.html">note.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="structs_8h.html">structs.h</a>&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="pool_8h.html">pool.h</a>&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="router_8h.html">router.h</a>&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="display_8h.html">display.h</a>&quot;</span></div>
@@ -85,59 +85,59 @@ $(function() {
 <div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_allocator.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_allocator.html">Allocator</a></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_allocator.html#a3b806d3c731255a0ef994cf8ee715fdc">Allocator</a>(<a class="code" href="class_config.html">Config</a> *config, <a class="code" href="class_display.html">Display</a> *display);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#abd222486ac63d3a9b4e7cabb91569617">setup</a>();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#aa0fc5e188c61f8b1f2dfa4e33694538f">set_masks</a>();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#a05495536e18d1814ef24b406a67b92bd">display_state</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#ac488e12b005e2ac5ffd222ea69825a34">note_on</a>(<a class="code" href="struct_note.html">Note</a> note);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#a503686789d548982a45389b201385c8a">note_off</a>(<a class="code" href="struct_note.html">Note</a> note);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#a43ecbe4ea6290cad954bfce0273a27ff">pitch_bend</a>(<span class="keywordtype">byte</span> channel, <span class="keywordtype">int</span> bend);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="class_allocator.html#a725cbc92da006250a9ab26c7f14e9fc4">   75</a></span>&#160;    <a class="code" href="class_config.html">Config</a> *<a class="code" href="class_allocator.html#a725cbc92da006250a9ab26c7f14e9fc4">_config</a>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="class_allocator.html#a3cb5175dcc8454651c3892b56e43bd47">   78</a></span>&#160;    <a class="code" href="class_display.html">Display</a> *<a class="code" href="class_allocator.html#a3cb5175dcc8454651c3892b56e43bd47">_display</a>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="class_allocator.html#ae41a618541abf323cde7244f014339bf">   81</a></span>&#160;    <a class="code" href="class_router.html">Router</a> *<a class="code" href="class_allocator.html#ae41a618541abf323cde7244f014339bf">_router</a>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="class_allocator.html#aad52b8980e2b6f5c4f1b340219a5cc30">   85</a></span>&#160;    <a class="code" href="class_pool.html">Pool</a> *<a class="code" href="class_allocator.html#aad52b8980e2b6f5c4f1b340219a5cc30">_pools</a>[<a class="code" href="constants_8h.html#a73afc0e3de7253b20d26d43395608527">LANE_COUNT</a>];</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;};</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_allocator.html#a95ae2a7dfb2b3026f29be4685b45f7da">Allocator</a>(<a class="code" href="class_config.html">Config</a> *config, <a class="code" href="class_display.html">Display</a> *display, <a class="code" href="class_router.html">Router</a> *router);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#abd222486ac63d3a9b4e7cabb91569617">setup</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#aa0fc5e188c61f8b1f2dfa4e33694538f">set_masks</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#a05495536e18d1814ef24b406a67b92bd">display_state</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#ac488e12b005e2ac5ffd222ea69825a34">note_on</a>(<a class="code" href="struct_note.html">Note</a> note);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#a503686789d548982a45389b201385c8a">note_off</a>(<a class="code" href="struct_note.html">Note</a> note);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_allocator.html#a43ecbe4ea6290cad954bfce0273a27ff">pitch_bend</a>(<span class="keywordtype">byte</span> channel, <span class="keywordtype">int</span> bend);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_allocator.html#a725cbc92da006250a9ab26c7f14e9fc4">   76</a></span>&#160;    <a class="code" href="class_config.html">Config</a> *<a class="code" href="class_allocator.html#a725cbc92da006250a9ab26c7f14e9fc4">_config</a>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="class_allocator.html#a3cb5175dcc8454651c3892b56e43bd47">   79</a></span>&#160;    <a class="code" href="class_display.html">Display</a> *<a class="code" href="class_allocator.html#a3cb5175dcc8454651c3892b56e43bd47">_display</a>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="class_allocator.html#ae41a618541abf323cde7244f014339bf">   82</a></span>&#160;    <a class="code" href="class_router.html">Router</a> *<a class="code" href="class_allocator.html#ae41a618541abf323cde7244f014339bf">_router</a>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="class_allocator.html#aad52b8980e2b6f5c4f1b340219a5cc30">   86</a></span>&#160;    <a class="code" href="class_pool.html">Pool</a> *<a class="code" href="class_allocator.html#aad52b8980e2b6f5c4f1b340219a5cc30">_pools</a>[<a class="code" href="constants_8h.html#a73afc0e3de7253b20d26d43395608527">LANE_COUNT</a>];</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;};</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclass_allocator_html"><div class="ttname"><a href="class_allocator.html">Allocator</a></div><div class="ttdef"><b>Definition:</b> <a href="allocator_8h_source.html#l00015">allocator.h:16</a></div></div>
 <div class="ttc" id="aclass_allocator_html_a05495536e18d1814ef24b406a67b92bd"><div class="ttname"><a href="class_allocator.html#a05495536e18d1814ef24b406a67b92bd">Allocator::display_state</a></div><div class="ttdeci">void display_state()</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8cpp_source.html#l00091">allocator.cpp:91</a></div></div>
-<div class="ttc" id="aclass_allocator_html_a3b806d3c731255a0ef994cf8ee715fdc"><div class="ttname"><a href="class_allocator.html#a3b806d3c731255a0ef994cf8ee715fdc">Allocator::Allocator</a></div><div class="ttdeci">Allocator(Config *config, Display *display)</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8cpp_source.html#l00004">allocator.cpp:4</a></div></div>
-<div class="ttc" id="aclass_allocator_html_a3cb5175dcc8454651c3892b56e43bd47"><div class="ttname"><a href="class_allocator.html#a3cb5175dcc8454651c3892b56e43bd47">Allocator::_display</a></div><div class="ttdeci">Display * _display</div><div class="ttdoc">A reference to the global LED display.</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8h_source.html#l00078">allocator.h:78</a></div></div>
-<div class="ttc" id="aclass_allocator_html_a43ecbe4ea6290cad954bfce0273a27ff"><div class="ttname"><a href="class_allocator.html#a43ecbe4ea6290cad954bfce0273a27ff">Allocator::pitch_bend</a></div><div class="ttdeci">void pitch_bend(byte channel, int bend)</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8cpp_source.html#l00170">allocator.cpp:170</a></div></div>
+<div class="ttc" id="aclass_allocator_html_a3cb5175dcc8454651c3892b56e43bd47"><div class="ttname"><a href="class_allocator.html#a3cb5175dcc8454651c3892b56e43bd47">Allocator::_display</a></div><div class="ttdeci">Display * _display</div><div class="ttdoc">A reference to the global LED display.</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8h_source.html#l00079">allocator.h:79</a></div></div>
+<div class="ttc" id="aclass_allocator_html_a43ecbe4ea6290cad954bfce0273a27ff"><div class="ttname"><a href="class_allocator.html#a43ecbe4ea6290cad954bfce0273a27ff">Allocator::pitch_bend</a></div><div class="ttdeci">void pitch_bend(byte channel, int bend)</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8cpp_source.html#l00169">allocator.cpp:169</a></div></div>
 <div class="ttc" id="aclass_allocator_html_a503686789d548982a45389b201385c8a"><div class="ttname"><a href="class_allocator.html#a503686789d548982a45389b201385c8a">Allocator::note_off</a></div><div class="ttdeci">void note_off(Note note)</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8cpp_source.html#l00158">allocator.cpp:158</a></div></div>
-<div class="ttc" id="aclass_allocator_html_a725cbc92da006250a9ab26c7f14e9fc4"><div class="ttname"><a href="class_allocator.html#a725cbc92da006250a9ab26c7f14e9fc4">Allocator::_config</a></div><div class="ttdeci">Config * _config</div><div class="ttdoc">A reference to the global user config.</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8h_source.html#l00075">allocator.h:75</a></div></div>
+<div class="ttc" id="aclass_allocator_html_a725cbc92da006250a9ab26c7f14e9fc4"><div class="ttname"><a href="class_allocator.html#a725cbc92da006250a9ab26c7f14e9fc4">Allocator::_config</a></div><div class="ttdeci">Config * _config</div><div class="ttdoc">A reference to the global user config.</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8h_source.html#l00076">allocator.h:76</a></div></div>
+<div class="ttc" id="aclass_allocator_html_a95ae2a7dfb2b3026f29be4685b45f7da"><div class="ttname"><a href="class_allocator.html#a95ae2a7dfb2b3026f29be4685b45f7da">Allocator::Allocator</a></div><div class="ttdeci">Allocator(Config *config, Display *display, Router *router)</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8cpp_source.html#l00004">allocator.cpp:4</a></div></div>
 <div class="ttc" id="aclass_allocator_html_aa0fc5e188c61f8b1f2dfa4e33694538f"><div class="ttname"><a href="class_allocator.html#aa0fc5e188c61f8b1f2dfa4e33694538f">Allocator::set_masks</a></div><div class="ttdeci">void set_masks()</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8cpp_source.html#l00020">allocator.cpp:20</a></div></div>
-<div class="ttc" id="aclass_allocator_html_aad52b8980e2b6f5c4f1b340219a5cc30"><div class="ttname"><a href="class_allocator.html#aad52b8980e2b6f5c4f1b340219a5cc30">Allocator::_pools</a></div><div class="ttdeci">Pool * _pools[LANE_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8h_source.html#l00085">allocator.h:85</a></div></div>
+<div class="ttc" id="aclass_allocator_html_aad52b8980e2b6f5c4f1b340219a5cc30"><div class="ttname"><a href="class_allocator.html#aad52b8980e2b6f5c4f1b340219a5cc30">Allocator::_pools</a></div><div class="ttdeci">Pool * _pools[LANE_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8h_source.html#l00086">allocator.h:86</a></div></div>
 <div class="ttc" id="aclass_allocator_html_abd222486ac63d3a9b4e7cabb91569617"><div class="ttname"><a href="class_allocator.html#abd222486ac63d3a9b4e7cabb91569617">Allocator::setup</a></div><div class="ttdeci">void setup()</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8cpp_source.html#l00015">allocator.cpp:15</a></div></div>
 <div class="ttc" id="aclass_allocator_html_ac488e12b005e2ac5ffd222ea69825a34"><div class="ttname"><a href="class_allocator.html#ac488e12b005e2ac5ffd222ea69825a34">Allocator::note_on</a></div><div class="ttdeci">void note_on(Note note)</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8cpp_source.html#l00104">allocator.cpp:104</a></div></div>
-<div class="ttc" id="aclass_allocator_html_ae41a618541abf323cde7244f014339bf"><div class="ttname"><a href="class_allocator.html#ae41a618541abf323cde7244f014339bf">Allocator::_router</a></div><div class="ttdeci">Router * _router</div><div class="ttdoc">One router for controlling the output lanes.</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8h_source.html#l00081">allocator.h:81</a></div></div>
+<div class="ttc" id="aclass_allocator_html_ae41a618541abf323cde7244f014339bf"><div class="ttname"><a href="class_allocator.html#ae41a618541abf323cde7244f014339bf">Allocator::_router</a></div><div class="ttdeci">Router * _router</div><div class="ttdoc">One router for controlling the output lanes.</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8h_source.html#l00082">allocator.h:82</a></div></div>
 <div class="ttc" id="aclass_config_html"><div class="ttname"><a href="class_config.html">Config</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00010">config.h:11</a></div></div>
 <div class="ttc" id="aclass_display_html"><div class="ttname"><a href="class_display.html">Display</a></div><div class="ttdef"><b>Definition:</b> <a href="display_8h_source.html#l00013">display.h:14</a></div></div>
-<div class="ttc" id="aclass_pool_html"><div class="ttname"><a href="class_pool.html">Pool</a></div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00015">pool.h:16</a></div></div>
+<div class="ttc" id="aclass_pool_html"><div class="ttname"><a href="class_pool.html">Pool</a></div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00016">pool.h:17</a></div></div>
 <div class="ttc" id="aclass_router_html"><div class="ttname"><a href="class_router.html">Router</a></div><div class="ttdef"><b>Definition:</b> <a href="router_8h_source.html#l00013">router.h:14</a></div></div>
 <div class="ttc" id="aconfig_8h_html"><div class="ttname"><a href="config_8h.html">config.h</a></div></div>
 <div class="ttc" id="aconstants_8h_html"><div class="ttname"><a href="constants_8h.html">constants.h</a></div></div>
 <div class="ttc" id="aconstants_8h_html_a73afc0e3de7253b20d26d43395608527"><div class="ttname"><a href="constants_8h.html#a73afc0e3de7253b20d26d43395608527">LANE_COUNT</a></div><div class="ttdeci">#define LANE_COUNT</div><div class="ttdef"><b>Definition:</b> <a href="constants_8h_source.html#l00056">constants.h:56</a></div></div>
 <div class="ttc" id="adisplay_8h_html"><div class="ttname"><a href="display_8h.html">display.h</a></div></div>
-<div class="ttc" id="anote_8h_html"><div class="ttname"><a href="note_8h.html">note.h</a></div></div>
 <div class="ttc" id="apool_8h_html"><div class="ttname"><a href="pool_8h.html">pool.h</a></div></div>
 <div class="ttc" id="arouter_8h_html"><div class="ttname"><a href="router_8h.html">router.h</a></div></div>
-<div class="ttc" id="astruct_note_html"><div class="ttname"><a href="struct_note.html">Note</a></div><div class="ttdef"><b>Definition:</b> <a href="note_8h_source.html#l00009">note.h:10</a></div></div>
+<div class="ttc" id="astruct_note_html"><div class="ttname"><a href="struct_note.html">Note</a></div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00009">structs.h:10</a></div></div>
+<div class="ttc" id="astructs_8h_html"><div class="ttname"><a href="structs_8h.html">structs.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 26 2021 13:34:21 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Apr 29 2021 18:50:25 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

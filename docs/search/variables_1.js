@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['channel_231',['channel',['../struct_note.html#ac29a6e8a6ed84948366cadd932394074',1,'Note']]]
+  ['active_274',['active',['../struct_glide.html#aaadf2f2cef9548c4d6d4f05cf0b80b74',1,'Glide']]]
 ];

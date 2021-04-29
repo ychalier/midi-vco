@@ -82,11 +82,14 @@ void Lane::update()
 {
     if (_glide.active)
     {
-        float duration = 50.0 + (float)abs(_glide.setpoint_end - _glide.setpoint_start) * 3.0 / 250.0 / 60.0 * 450.0;
-        if (duration > 500) {
+        float duration = GLIDE_MIN_DURATION +
+            (float)abs(_glide.setpoint_end - _glide.setpoint_start) *
+            3.0 / 250.0 / GLIDE_MAX_DURATION_GAP * (GLIDE_MAX_DURATION - GLIDE_MIN_DURATION);
+        if (duration > 500)
+        {
             duration = 500;
         }
-        float progress = (float)(millis() - _glide.time_start) / duration;  // (float)_glide.duration;
+        float progress = (float)(millis() - _glide.time_start) / duration;
         if (progress > 1)
         {
             progress = 1;

@@ -3,7 +3,7 @@
  * Arduino firmware interfacing between a MIDI keyboard and a set of VCOs.
  * 
  * @author Yohan Chalier
- * @version 0.1.0 2021-04-22
+ * @version 0.2.0 2021-04-29
  */
 
 #include <MIDI.h>
@@ -60,9 +60,12 @@ void loop()
 void handle_note_on(byte channel, byte pitch, byte velocity)
 {
     Note note = {channel, pitch};
-    if (velocity == 0) {
+    if (velocity == 0)
+    {
         allocator->note_off(note);
-    } else {
+    }
+    else
+    {
         allocator->note_on(note);
     }
 }

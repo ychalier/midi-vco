@@ -55,12 +55,13 @@
 
 #define LANE_COUNT 8
 
-
 #define BUFFER_SIZE 8
 
-#define GLIDE_DEFAULT_DURATION 100 // Milliseconds
-#define GLIDE_TIME_TRIGGER 99999     // Milliseconds
-#define GLIDE_PITCH_TRIGGER 99999    // DAC setpoint unit (mV), 250 = 3 semitons
-
+#define GLIDE_DEFAULT_DURATION 500.0
+#define GLIDE_MIN_DURATION 50.0     // Milliseconds
+#define GLIDE_MAX_DURATION 500.0    // Milliseconds
+#define GLIDE_MAX_DURATION_GAP 60.0 // Semitones
+#define GLIDE_TIME_TRIGGER 99999    // Milliseconds
+#define GLIDE_PITCH_TRIGGER 99999   // DAC setpoint unit (mV), 250 = 3 semitons
 
 #endif

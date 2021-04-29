@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['note_78',['Note',['../struct_note.html',1,'Note'],['../note_8h.html#a820e8754f76d4d189d5347d302964a1d',1,'Note():&#160;note.h']]],
-  ['note_2ecpp_79',['note.cpp',['../note_8cpp.html',1,'']]],
-  ['note_2eh_80',['note.h',['../note_8h.html',1,'']]],
-  ['note_5foff_81',['note_off',['../class_allocator.html#a503686789d548982a45389b201385c8a',1,'Allocator']]],
-  ['note_5fon_82',['note_on',['../class_allocator.html#ac488e12b005e2ac5ffd222ea69825a34',1,'Allocator']]]
+  ['main_2eino_92',['main.ino',['../main_8ino.html',1,'']]],
+  ['midi_5fmin_5fpitch_93',['MIDI_MIN_PITCH',['../constants_8h.html#a5a4813366397b194aa7fd51b50c01b19',1,'constants.h']]],
+  ['mode_5fduophonic_94',['MODE_DUOPHONIC',['../constants_8h.html#a45bff5fc91e80789fafb31cc3f95ef5f',1,'constants.h']]],
+  ['mode_5fmonophonic_95',['MODE_MONOPHONIC',['../constants_8h.html#a2a33587f0528d88828ffca16d9623130',1,'constants.h']]],
+  ['mode_5foctophonic_96',['MODE_OCTOPHONIC',['../constants_8h.html#a9c52b96cf8a40e99ced21bb65d9cf91a',1,'constants.h']]],
+  ['mode_5fquadrophonic_97',['MODE_QUADROPHONIC',['../constants_8h.html#acd74d69a69f038b2f32b3ac39418e800',1,'constants.h']]]
 ];

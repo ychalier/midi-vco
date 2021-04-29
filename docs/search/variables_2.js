@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pitch_232',['pitch',['../struct_note.html#a33af0cf423b895fa60d6a0d8e9cdfd7b',1,'Note']]]
+  ['channel_275',['channel',['../struct_note.html#ac29a6e8a6ed84948366cadd932394074',1,'Note']]]
 ];

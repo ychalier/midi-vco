@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -90,14 +90,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aebb195c3de79da2fc38b2598e4e46860"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b54262c292f6e1171a432bb013479d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#a1b54262c292f6e1171a432bb013479d7">load</a> (<a class="el" href="struct_note.html">Note</a> note)</td></tr>
 <tr class="separator:a1b54262c292f6e1171a432bb013479d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b6ed99ddf6a71d0a960b0d9749080c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#a9b6ed99ddf6a71d0a960b0d9749080c6">unload</a> ()</td></tr>
-<tr class="separator:a9b6ed99ddf6a71d0a960b0d9749080c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71587a75fb716a41cbfc8ed0a0621776"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#a71587a75fb716a41cbfc8ed0a0621776">unload</a> (<a class="el" href="struct_note.html">Note</a> note)</td></tr>
+<tr class="separator:a71587a75fb716a41cbfc8ed0a0621776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79bb3db5a6043a18074c2996a078de3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#a79bb3db5a6043a18074c2996a078de3d">load_buffer</a> (int <a class="el" href="class_pool.html#a966575094e29fd6ad4004f7610273ed1">bend</a>, bool set_only)</td></tr>
+<tr class="separator:a79bb3db5a6043a18074c2996a078de3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55ccbf59553e90c49e32c437e6e8f6b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#a55ccbf59553e90c49e32c437e6e8f6b5">stop</a> ()</td></tr>
+<tr class="separator:a55ccbf59553e90c49e32c437e6e8f6b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a966575094e29fd6ad4004f7610273ed1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#a966575094e29fd6ad4004f7610273ed1">bend</a> (int bend_value)</td></tr>
 <tr class="separator:a966575094e29fd6ad4004f7610273ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af23bc62de2e464c2045c9d3436d66c50"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#af23bc62de2e464c2045c9d3436d66c50">get_era</a> ()</td></tr>
 <tr class="separator:af23bc62de2e464c2045c9d3436d66c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a741e5cab5b04b316545b005a3e7bdade"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_note.html">Note</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#a741e5cab5b04b316545b005a3e7bdade">get_current_note</a> ()</td></tr>
-<tr class="separator:a741e5cab5b04b316545b005a3e7bdade"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -109,9 +111,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a0c12319c180682726de0f0c45df70d17"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#a0c12319c180682726de0f0c45df70d17">_channel_mask</a></td></tr>
 <tr class="memdesc:a0c12319c180682726de0f0c45df70d17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask for the MIDI channels whitelisted in the pool.  <a href="class_pool.html#a0c12319c180682726de0f0c45df70d17">More...</a><br /></td></tr>
 <tr class="separator:a0c12319c180682726de0f0c45df70d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f1a3f26e5c285202c860e8253f69b96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_note.html">Note</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#a2f1a3f26e5c285202c860e8253f69b96">_current_note</a></td></tr>
-<tr class="memdesc:a2f1a3f26e5c285202c860e8253f69b96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last active note.  <a href="class_pool.html#a2f1a3f26e5c285202c860e8253f69b96">More...</a><br /></td></tr>
-<tr class="separator:a2f1a3f26e5c285202c860e8253f69b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4026ff2c9204a6b758df42d3620013f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">_buffer</a></td></tr>
+<tr class="memdesc:ad4026ff2c9204a6b758df42d3620013f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_note.html">Note</a> buffer.  <a href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">More...</a><br /></td></tr>
+<tr class="separator:ad4026ff2c9204a6b758df42d3620013f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3680a12338b33f8a446d3ec6e9c31ba"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">_era</a></td></tr>
 <tr class="memdesc:ac3680a12338b33f8a446d3ec6e9c31ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestamp of last note activation.  <a href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">More...</a><br /></td></tr>
 <tr class="separator:ac3680a12338b33f8a446d3ec6e9c31ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,7 +125,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>Abstract representation of an lane allocation unit.</p>
 <dl class="section see"><dt>See also</dt><dd>[Politique d'allocation des voies](<a href="https://github.com/ychalier/midi-vco/wiki/Politique-d'allocation-des-voies">https://github.com/ychalier/midi-vco/wiki/Politique-d'allocation-des-voies</a>) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00015">15</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00016">16</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad204880feb8c71e73348485fc09de612"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad204880feb8c71e73348485fc09de612">&#9670;&nbsp;</a></span>Pool()</h2>
@@ -153,16 +155,17 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">_router</a> = router;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">_lane_mask</a> = 0;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_pool.html#a0c12319c180682726de0f0c45df70d17">_channel_mask</a> = 0;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_pool.html#a2f1a3f26e5c285202c860e8253f69b96">_current_note</a> = {1, 0};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">_buffer</a> = <span class="keyword">new</span> <a class="code" href="class_buffer.html">Buffer</a>();</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">_era</a> = 0;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">_active</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
-<div class="ttc" id="aclass_pool_html_a0c12319c180682726de0f0c45df70d17"><div class="ttname"><a href="class_pool.html#a0c12319c180682726de0f0c45df70d17">Pool::_channel_mask</a></div><div class="ttdeci">unsigned int _channel_mask</div><div class="ttdoc">Mask for the MIDI channels whitelisted in the pool.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00104">pool.h:104</a></div></div>
-<div class="ttc" id="aclass_pool_html_a216f871252d089c2c098ed45508ebb3d"><div class="ttname"><a href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">Pool::_active</a></div><div class="ttdeci">bool _active</div><div class="ttdoc">Wether a note is currently loaded in the pool.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00113">pool.h:113</a></div></div>
-<div class="ttc" id="aclass_pool_html_a2f1a3f26e5c285202c860e8253f69b96"><div class="ttname"><a href="class_pool.html#a2f1a3f26e5c285202c860e8253f69b96">Pool::_current_note</a></div><div class="ttdeci">Note _current_note</div><div class="ttdoc">Last active note.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00107">pool.h:107</a></div></div>
-<div class="ttc" id="aclass_pool_html_a3e65544f1f31243433b5d6f8735ac81a"><div class="ttname"><a href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">Pool::_lane_mask</a></div><div class="ttdeci">byte _lane_mask</div><div class="ttdoc">Mask for the lanes included in the pool.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00101">pool.h:101</a></div></div>
-<div class="ttc" id="aclass_pool_html_ac3680a12338b33f8a446d3ec6e9c31ba"><div class="ttname"><a href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">Pool::_era</a></div><div class="ttdeci">unsigned long _era</div><div class="ttdoc">Timestamp of last note activation.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00110">pool.h:110</a></div></div>
-<div class="ttc" id="aclass_pool_html_ae588dfc760e666b868a4184154e453f1"><div class="ttname"><a href="class_pool.html#ae588dfc760e666b868a4184154e453f1">Pool::_router</a></div><div class="ttdeci">Router * _router</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00098">pool.h:98</a></div></div>
+<div class="ttc" id="aclass_buffer_html"><div class="ttname"><a href="class_buffer.html">Buffer</a></div><div class="ttdef"><b>Definition:</b> <a href="buffer_8h_source.html#l00014">buffer.h:15</a></div></div>
+<div class="ttc" id="aclass_pool_html_a0c12319c180682726de0f0c45df70d17"><div class="ttname"><a href="class_pool.html#a0c12319c180682726de0f0c45df70d17">Pool::_channel_mask</a></div><div class="ttdeci">unsigned int _channel_mask</div><div class="ttdoc">Mask for the MIDI channels whitelisted in the pool.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00119">pool.h:119</a></div></div>
+<div class="ttc" id="aclass_pool_html_a216f871252d089c2c098ed45508ebb3d"><div class="ttname"><a href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">Pool::_active</a></div><div class="ttdeci">bool _active</div><div class="ttdoc">Wether a note is currently loaded in the pool.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00128">pool.h:128</a></div></div>
+<div class="ttc" id="aclass_pool_html_a3e65544f1f31243433b5d6f8735ac81a"><div class="ttname"><a href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">Pool::_lane_mask</a></div><div class="ttdeci">byte _lane_mask</div><div class="ttdoc">Mask for the lanes included in the pool.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00116">pool.h:116</a></div></div>
+<div class="ttc" id="aclass_pool_html_ac3680a12338b33f8a446d3ec6e9c31ba"><div class="ttname"><a href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">Pool::_era</a></div><div class="ttdeci">unsigned long _era</div><div class="ttdoc">Timestamp of last note activation.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00125">pool.h:125</a></div></div>
+<div class="ttc" id="aclass_pool_html_ad4026ff2c9204a6b758df42d3620013f"><div class="ttname"><a href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">Pool::_buffer</a></div><div class="ttdeci">Buffer * _buffer</div><div class="ttdoc">Note buffer.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00122">pool.h:122</a></div></div>
+<div class="ttc" id="aclass_pool_html_ae588dfc760e666b868a4184154e453f1"><div class="ttname"><a href="class_pool.html#ae588dfc760e666b868a4184154e453f1">Pool::_router</a></div><div class="ttdeci">Router * _router</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00113">pool.h:113</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -237,7 +240,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
 <div class="ttc" id="aclass_pool_html_aea355f50869629b54135c86843762c70"><div class="ttname"><a href="class_pool.html#aea355f50869629b54135c86843762c70">Pool::is_enabled</a></div><div class="ttdeci">bool is_enabled()</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00036">pool.cpp:36</a></div></div>
 <div class="ttc" id="aclass_pool_html_af1b3b5b9f7ac012125f917e67d51df8b"><div class="ttname"><a href="class_pool.html#af1b3b5b9f7ac012125f917e67d51df8b">Pool::accepts_channel</a></div><div class="ttdeci">bool accepts_channel(byte channel)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00046">pool.cpp:46</a></div></div>
-<div class="ttc" id="astruct_note_html_ac29a6e8a6ed84948366cadd932394074"><div class="ttname"><a href="struct_note.html#ac29a6e8a6ed84948366cadd932394074">Note::channel</a></div><div class="ttdeci">byte channel</div><div class="ttdoc">MIDI channel (from 1 to 16)</div><div class="ttdef"><b>Definition:</b> <a href="note_8h_source.html#l00012">note.h:12</a></div></div>
+<div class="ttc" id="astruct_note_html_ac29a6e8a6ed84948366cadd932394074"><div class="ttname"><a href="struct_note.html#ac29a6e8a6ed84948366cadd932394074">Note::channel</a></div><div class="ttdeci">byte channel</div><div class="ttdoc">MIDI channel (from 1 to 16)</div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00012">structs.h:12</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -264,43 +267,11 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="pool_8cpp_source.html#l00091">91</a> of file <a class="el" href="pool_8cpp_source.html">pool.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">byte</span> lane_id = 0; lane_id &lt; 8; lane_id++)</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">if</span> ((<a class="code" href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">_lane_mask</a> &amp; (1 &lt;&lt; lane_id)) &gt; 0)</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        {</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <a class="code" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">_router</a>-&gt;<a class="code" href="class_router.html#af4641f2500f092754121c21360d592bd">select</a>(lane_id)-&gt;<a class="code" href="class_lane.html#aafa90d0e5e6f5311ddba99ce2bddde6a">set</a>(<a class="code" href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">Lane::pitch_to_voltage</a>(<a class="code" href="class_pool.html#a2f1a3f26e5c285202c860e8253f69b96">_current_note</a>.<a class="code" href="struct_note.html#a33af0cf423b895fa60d6a0d8e9cdfd7b">pitch</a>, bend_value));</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
-<div class="ttc" id="aclass_lane_html_a1e467c4df8085b9067c05ffd4e58120a"><div class="ttname"><a href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">Lane::pitch_to_voltage</a></div><div class="ttdeci">static int pitch_to_voltage(byte pitch, int bend)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00062">lane.cpp:62</a></div></div>
-<div class="ttc" id="aclass_lane_html_aafa90d0e5e6f5311ddba99ce2bddde6a"><div class="ttname"><a href="class_lane.html#aafa90d0e5e6f5311ddba99ce2bddde6a">Lane::set</a></div><div class="ttdeci">void set(int setpoint)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00029">lane.cpp:29</a></div></div>
-<div class="ttc" id="aclass_router_html_af4641f2500f092754121c21360d592bd"><div class="ttname"><a href="class_router.html#af4641f2500f092754121c21360d592bd">Router::select</a></div><div class="ttdeci">Lane * select(int lane_id)</div><div class="ttdef"><b>Definition:</b> <a href="router_8cpp_source.html#l00036">router.cpp:36</a></div></div>
-<div class="ttc" id="astruct_note_html_a33af0cf423b895fa60d6a0d8e9cdfd7b"><div class="ttname"><a href="struct_note.html#a33af0cf423b895fa60d6a0d8e9cdfd7b">Note::pitch</a></div><div class="ttdeci">byte pitch</div><div class="ttdoc">Note pitch in semitons.</div><div class="ttdef"><b>Definition:</b> <a href="note_8h_source.html#l00015">note.h:15</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a741e5cab5b04b316545b005a3e7bdade"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a741e5cab5b04b316545b005a3e7bdade">&#9670;&nbsp;</a></span>get_current_note()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_note.html">Note</a> Pool::get_current_note </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Getter for the _current_note attribute. </p>
-
-<p class="definition">Definition at line <a class="el" href="pool_8cpp_source.html#l00107">107</a> of file <a class="el" href="pool_8cpp_source.html">pool.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_pool.html#a2f1a3f26e5c285202c860e8253f69b96">_current_note</a>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="pool_8cpp_source.html#l00125">125</a> of file <a class="el" href="pool_8cpp_source.html">pool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;{</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <a class="code" href="class_pool.html#a79bb3db5a6043a18074c2996a078de3d">load_buffer</a>(bend_value, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
+<div class="ttc" id="aclass_pool_html_a79bb3db5a6043a18074c2996a078de3d"><div class="ttname"><a href="class_pool.html#a79bb3db5a6043a18074c2996a078de3d">Pool::load_buffer</a></div><div class="ttdeci">void load_buffer(int bend, bool set_only)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00065">pool.cpp:65</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -320,10 +291,10 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Getter for the _era attribute. </p>
 
-<p class="definition">Definition at line <a class="el" href="pool_8cpp_source.html#l00102">102</a> of file <a class="el" href="pool_8cpp_source.html">pool.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">_era</a>;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="pool_8cpp_source.html#l00130">130</a> of file <a class="el" href="pool_8cpp_source.html">pool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;{</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">_era</a>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -398,20 +369,78 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="pool_8cpp_source.html#l00084">84</a> of file <a class="el" href="pool_8cpp_source.html">pool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">_active</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">_era</a> = millis();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">_buffer</a>-&gt;<a class="code" href="class_buffer.html#acec71205058fb10fc57c94c8bdcf7dc5">push</a>(note);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="class_pool.html#a79bb3db5a6043a18074c2996a078de3d">load_buffer</a>(0, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+<div class="ttc" id="aclass_buffer_html_acec71205058fb10fc57c94c8bdcf7dc5"><div class="ttname"><a href="class_buffer.html#acec71205058fb10fc57c94c8bdcf7dc5">Buffer::push</a></div><div class="ttdeci">void push(Note note)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8cpp_source.html#l00030">buffer.cpp:30</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a79bb3db5a6043a18074c2996a078de3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79bb3db5a6043a18074c2996a078de3d">&#9670;&nbsp;</a></span>load_buffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Pool::load_buffer </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bend</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>set_only</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Load the current note in the buffer on the lanes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bend</td><td>The pitch bend value to associate with the note. </td></tr>
+    <tr><td class="paramname">set_only</td><td>If true, the note is set one the lanes. If false, the note is started on the lanes, which impacts the GATE signal and the display. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="pool_8cpp_source.html#l00065">65</a> of file <a class="el" href="pool_8cpp_source.html">pool.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">_active</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">_era</a> = millis();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="class_pool.html#a2f1a3f26e5c285202c860e8253f69b96">_current_note</a> = note;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">byte</span> lane_id = 0; lane_id &lt; 8; lane_id++)</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">if</span> ((<a class="code" href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">_lane_mask</a> &amp; (1 &lt;&lt; lane_id)) &gt; 0)</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <a class="code" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">_router</a>-&gt;<a class="code" href="class_router.html#af4641f2500f092754121c21360d592bd">select</a>(lane_id)-&gt;<a class="code" href="class_lane.html#ab49f94d71f3a290e8086ed6ad4f25461">start</a>(<a class="code" href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">Lane::pitch_to_voltage</a>(note.<a class="code" href="struct_note.html#a33af0cf423b895fa60d6a0d8e9cdfd7b">pitch</a>, 0));</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
-<div class="ttc" id="aclass_lane_html_ab49f94d71f3a290e8086ed6ad4f25461"><div class="ttname"><a href="class_lane.html#ab49f94d71f3a290e8086ed6ad4f25461">Lane::start</a></div><div class="ttdeci">void start(int setpoint)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00049">lane.cpp:49</a></div></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="struct_note.html">Note</a> note = <a class="code" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">_buffer</a>-&gt;<a class="code" href="class_buffer.html#ade5c243c7b78e28f889f7d52f37df481">get</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">byte</span> lane_id = 0; lane_id &lt; 8; lane_id++)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">if</span> ((<a class="code" href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">_lane_mask</a> &amp; (1 &lt;&lt; lane_id)) &gt; 0)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">if</span> (set_only)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <a class="code" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">_router</a>-&gt;<a class="code" href="class_router.html#af4641f2500f092754121c21360d592bd">select</a>(lane_id)-&gt;<a class="code" href="class_lane.html#aafa90d0e5e6f5311ddba99ce2bddde6a">set</a>(<a class="code" href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">Lane::pitch_to_voltage</a>(note.<a class="code" href="struct_note.html#a33af0cf423b895fa60d6a0d8e9cdfd7b">pitch</a>, <a class="code" href="class_pool.html#a966575094e29fd6ad4004f7610273ed1">bend</a>));</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <a class="code" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">_router</a>-&gt;<a class="code" href="class_router.html#af4641f2500f092754121c21360d592bd">select</a>(lane_id)-&gt;<a class="code" href="class_lane.html#aab566acdccee6c623a550db90be774a0">start</a>(<a class="code" href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">Lane::pitch_to_voltage</a>(note.<a class="code" href="struct_note.html#a33af0cf423b895fa60d6a0d8e9cdfd7b">pitch</a>, 0), <a class="code" href="constants_8h.html#a0a5b192d808c69b3053518a942267a28">GLIDE_DEFAULT_DURATION</a>);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<div class="ttc" id="aclass_buffer_html_ade5c243c7b78e28f889f7d52f37df481"><div class="ttname"><a href="class_buffer.html#ade5c243c7b78e28f889f7d52f37df481">Buffer::get</a></div><div class="ttdeci">Note get()</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8cpp_source.html#l00018">buffer.cpp:18</a></div></div>
+<div class="ttc" id="aclass_lane_html_a1e467c4df8085b9067c05ffd4e58120a"><div class="ttname"><a href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">Lane::pitch_to_voltage</a></div><div class="ttdeci">static int pitch_to_voltage(byte pitch, int bend)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00106">lane.cpp:106</a></div></div>
+<div class="ttc" id="aclass_lane_html_aab566acdccee6c623a550db90be774a0"><div class="ttname"><a href="class_lane.html#aab566acdccee6c623a550db90be774a0">Lane::start</a></div><div class="ttdeci">void start(int setpoint, unsigned long glide_duration)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00054">lane.cpp:54</a></div></div>
+<div class="ttc" id="aclass_lane_html_aafa90d0e5e6f5311ddba99ce2bddde6a"><div class="ttname"><a href="class_lane.html#aafa90d0e5e6f5311ddba99ce2bddde6a">Lane::set</a></div><div class="ttdeci">void set(int setpoint)</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00032">lane.cpp:32</a></div></div>
+<div class="ttc" id="aclass_pool_html_a966575094e29fd6ad4004f7610273ed1"><div class="ttname"><a href="class_pool.html#a966575094e29fd6ad4004f7610273ed1">Pool::bend</a></div><div class="ttdeci">void bend(int bend_value)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00125">pool.cpp:125</a></div></div>
+<div class="ttc" id="aclass_router_html_af4641f2500f092754121c21360d592bd"><div class="ttname"><a href="class_router.html#af4641f2500f092754121c21360d592bd">Router::select</a></div><div class="ttdeci">Lane * select(int lane_id)</div><div class="ttdef"><b>Definition:</b> <a href="router_8cpp_source.html#l00048">router.cpp:48</a></div></div>
+<div class="ttc" id="aconstants_8h_html_a0a5b192d808c69b3053518a942267a28"><div class="ttname"><a href="constants_8h.html#a0a5b192d808c69b3053518a942267a28">GLIDE_DEFAULT_DURATION</a></div><div class="ttdeci">#define GLIDE_DEFAULT_DURATION</div><div class="ttdef"><b>Definition:</b> <a href="constants_8h_source.html#l00060">constants.h:60</a></div></div>
+<div class="ttc" id="astruct_note_html"><div class="ttname"><a href="struct_note.html">Note</a></div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00009">structs.h:10</a></div></div>
+<div class="ttc" id="astruct_note_html_a33af0cf423b895fa60d6a0d8e9cdfd7b"><div class="ttname"><a href="struct_note.html#a33af0cf423b895fa60d6a0d8e9cdfd7b">Note::pitch</a></div><div class="ttdeci">byte pitch</div><div class="ttdoc">Note pitch in semitons.</div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00015">structs.h:15</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -457,34 +486,85 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a9b6ed99ddf6a71d0a960b0d9749080c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b6ed99ddf6a71d0a960b0d9749080c6">&#9670;&nbsp;</a></span>unload()</h2>
+<a id="a55ccbf59553e90c49e32c437e6e8f6b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55ccbf59553e90c49e32c437e6e8f6b5">&#9670;&nbsp;</a></span>stop()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Pool::unload </td>
+          <td class="memname">void Pool::stop </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Stop the included lanes and free the pool. </p>
+<p>Stop all the lanes and reset the buffer. </p>
 
-<p class="definition">Definition at line <a class="el" href="pool_8cpp_source.html#l00079">79</a> of file <a class="el" href="pool_8cpp_source.html">pool.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">_active</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">byte</span> lane_id = 0; lane_id &lt; 8; lane_id++)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">if</span> ((<a class="code" href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">_lane_mask</a> &amp; (1 &lt;&lt; lane_id)) &gt; 0)</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <a class="code" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">_router</a>-&gt;<a class="code" href="class_router.html#af4641f2500f092754121c21360d592bd">select</a>(lane_id)-&gt;<a class="code" href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">stop</a>();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
-<div class="ttc" id="aclass_lane_html_ade5504da830139b0588bb21a6fd7c52a"><div class="ttname"><a href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">Lane::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00056">lane.cpp:56</a></div></div>
+<p class="definition">Definition at line <a class="el" href="pool_8cpp_source.html#l00092">92</a> of file <a class="el" href="pool_8cpp_source.html">pool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">_active</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">_buffer</a>-&gt;<a class="code" href="class_buffer.html#a52170368aefdfbbdcd4a4f79fbf66678">reset</a>();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">byte</span> lane_id = 0; lane_id &lt; 8; lane_id++)</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">if</span> ((<a class="code" href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">_lane_mask</a> &amp; (1 &lt;&lt; lane_id)) &gt; 0)</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <a class="code" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">_router</a>-&gt;<a class="code" href="class_router.html#af4641f2500f092754121c21360d592bd">select</a>(lane_id)-&gt;<a class="code" href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">stop</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
+<div class="ttc" id="aclass_buffer_html_a52170368aefdfbbdcd4a4f79fbf66678"><div class="ttname"><a href="class_buffer.html#a52170368aefdfbbdcd4a4f79fbf66678">Buffer::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8cpp_source.html#l00065">buffer.cpp:65</a></div></div>
+<div class="ttc" id="aclass_lane_html_ade5504da830139b0588bb21a6fd7c52a"><div class="ttname"><a href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">Lane::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition:</b> <a href="lane_8cpp_source.html#l00075">lane.cpp:75</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a71587a75fb716a41cbfc8ed0a0621776"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71587a75fb716a41cbfc8ed0a0621776">&#9670;&nbsp;</a></span>unload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pool::unload </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_note.html">Note</a>&#160;</td>
+          <td class="paramname"><em>note</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Attempt to unload a note, if it is in the buffer. In that case, stop the included lanes and free the pool.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">note</td><td>The note to unload. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the note was in the buffer and stopped. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="pool_8cpp_source.html#l00105">105</a> of file <a class="el" href="pool_8cpp_source.html">pool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;{</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">_active</a> &amp;&amp; <a class="code" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">_buffer</a>-&gt;<a class="code" href="class_buffer.html#a650109ed0ac2e1513a37fcc46a595829">pop</a>(note))</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">_buffer</a>-&gt;<a class="code" href="class_buffer.html#a4261c1a06920df9c964e4e1ef03353eb">empty</a>())</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <a class="code" href="class_pool.html#a55ccbf59553e90c49e32c437e6e8f6b5">stop</a>();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <a class="code" href="class_pool.html#a79bb3db5a6043a18074c2996a078de3d">load_buffer</a>(0, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div>
+<div class="ttc" id="aclass_buffer_html_a4261c1a06920df9c964e4e1ef03353eb"><div class="ttname"><a href="class_buffer.html#a4261c1a06920df9c964e4e1ef03353eb">Buffer::empty</a></div><div class="ttdeci">bool empty()</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8cpp_source.html#l00013">buffer.cpp:13</a></div></div>
+<div class="ttc" id="aclass_buffer_html_a650109ed0ac2e1513a37fcc46a595829"><div class="ttname"><a href="class_buffer.html#a650109ed0ac2e1513a37fcc46a595829">Buffer::pop</a></div><div class="ttdeci">bool pop(Note note)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8cpp_source.html#l00041">buffer.cpp:41</a></div></div>
+<div class="ttc" id="aclass_pool_html_a55ccbf59553e90c49e32c437e6e8f6b5"><div class="ttname"><a href="class_pool.html#a55ccbf59553e90c49e32c437e6e8f6b5">Pool::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00092">pool.cpp:92</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -511,7 +591,33 @@ Private Attributes</h2></td></tr>
 
 <p>Wether a note is currently loaded in the pool. </p>
 
-<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00113">113</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00128">128</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
+
+</div>
+</div>
+<a id="ad4026ff2c9204a6b758df42d3620013f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4026ff2c9204a6b758df42d3620013f">&#9670;&nbsp;</a></span>_buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_buffer.html">Buffer</a>* Pool::_buffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="struct_note.html">Note</a> buffer. </p>
+
+<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00122">122</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
 
 </div>
 </div>
@@ -537,33 +643,7 @@ Private Attributes</h2></td></tr>
 
 <p>Mask for the MIDI channels whitelisted in the pool. </p>
 
-<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00104">104</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
-
-</div>
-</div>
-<a id="a2f1a3f26e5c285202c860e8253f69b96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f1a3f26e5c285202c860e8253f69b96">&#9670;&nbsp;</a></span>_current_note</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_note.html">Note</a> Pool::_current_note</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Last active note. </p>
-
-<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00107">107</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00119">119</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
 
 </div>
 </div>
@@ -589,7 +669,7 @@ Private Attributes</h2></td></tr>
 
 <p>Timestamp of last note activation. </p>
 
-<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00110">110</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00125">125</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
 
 </div>
 </div>
@@ -615,7 +695,7 @@ Private Attributes</h2></td></tr>
 
 <p>Mask for the lanes included in the pool. </p>
 
-<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00101">101</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00116">116</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
 
 </div>
 </div>
@@ -639,7 +719,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00098">98</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pool_8h_source.html#l00113">113</a> of file <a class="el" href="pool_8h_source.html">pool.h</a>.</p>
 
 </div>
 </div>
@@ -650,7 +730,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 26 2021 13:34:21 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Apr 29 2021 18:50:25 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

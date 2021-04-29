@@ -33,10 +33,8 @@ void Allocator::set_masks()
             _pools[0]->set_masks(0b11111111, 0xFFFF);
             break;
         case MODE_DUOPHONIC:
-            // _pools[0]->set_masks(0b00001111, 0xFFFF);
-            // _pools[1]->set_masks(0b11110000, 0xFFFF);
-            _pools[0]->set_masks(0b00000001, 0xFFFF);
-            _pools[1]->set_masks(0b00000010, 0xFFFF);
+            _pools[0]->set_masks(0b00001111, 0xFFFF);
+            _pools[1]->set_masks(0b11110000, 0xFFFF);
             break;
         case MODE_QUADROPHONIC:
             _pools[0]->set_masks(0b00000011, 0xFFFF);

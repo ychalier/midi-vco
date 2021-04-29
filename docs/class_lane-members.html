@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -70,22 +70,26 @@ $(function() {
 
 <p>This is the complete list of members for <a class="el" href="class_lane.html">Lane</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#ac452fb9146a34283e269d27c265f1ea6">_dac</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_lane.html#abdc41a879107d2b56157e901d74c4aef">_dac_channel</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#aeac5c59778a823413d6dadccd0471129">_display</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_lane.html#a33c6f1c70f89021cab3cab920ad0dcd3">_gate_pin</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#a4dbb3a06cba805b6f8c239fe874b12e9">_led_id</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_lane.html#afe99e0252f2c0605ab984e39a5679b92">Lane</a>(Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int led_id)</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">pitch_to_voltage</a>(byte pitch, int bend)</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_lane.html#ac3dc9b1a55f37ae67b96701c387feb47">play</a>(int setpoint, unsigned long duration)</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#aafa90d0e5e6f5311ddba99ce2bddde6a">set</a>(int setpoint)</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_lane.html#acdb78fd93cd0f8e17c775b4d410f63f4">setup</a>()</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#ab49f94d71f3a290e8086ed6ad4f25461">start</a>(int setpoint)</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">stop</a>()</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#a8c23d1bb27ed968313490a9f35a03ee8">_current_setpoint</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_lane.html#ac452fb9146a34283e269d27c265f1ea6">_dac</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#abdc41a879107d2b56157e901d74c4aef">_dac_channel</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_lane.html#aeac5c59778a823413d6dadccd0471129">_display</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#a33c6f1c70f89021cab3cab920ad0dcd3">_gate_pin</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_lane.html#a7dd46dec4706046ad8efe5edbcfce239">_glide</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#ab9ae75d19d5175c0bfd069d41d7f102a">_last_set_time</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_lane.html#a4dbb3a06cba805b6f8c239fe874b12e9">_led_id</a></td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#afe99e0252f2c0605ab984e39a5679b92">Lane</a>(Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int led_id)</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">pitch_to_voltage</a>(byte pitch, int bend)</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#ac3dc9b1a55f37ae67b96701c387feb47">play</a>(int setpoint, unsigned long duration)</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_lane.html#aafa90d0e5e6f5311ddba99ce2bddde6a">set</a>(int setpoint)</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#acdb78fd93cd0f8e17c775b4d410f63f4">setup</a>()</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_lane.html#aab566acdccee6c623a550db90be774a0">start</a>(int setpoint, unsigned long glide_duration)</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">stop</a>()</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_lane.html#a12c974886f517581abc607f58775d303">update</a>()</td><td class="entry"><a class="el" href="class_lane.html">Lane</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 26 2021 13:34:21 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Apr 29 2021 18:50:25 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

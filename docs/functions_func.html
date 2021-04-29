@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -73,7 +73,7 @@ $(function() {
 : <a class="el" href="class_pool.html#aebb195c3de79da2fc38b2598e4e46860">Pool</a>
 </li>
 <li>Allocator()
-: <a class="el" href="class_allocator.html#a3b806d3c731255a0ef994cf8ee715fdc">Allocator</a>
+: <a class="el" href="class_allocator.html#a95ae2a7dfb2b3026f29be4685b45f7da">Allocator</a>
 </li>
 </ul>
 
@@ -81,6 +81,9 @@ $(function() {
 <h3><a id="index_b"></a>- b -</h3><ul>
 <li>bend()
 : <a class="el" href="class_pool.html#a966575094e29fd6ad4004f7610273ed1">Pool</a>
+</li>
+<li>Buffer()
+: <a class="el" href="class_buffer.html#ae7ef2cd201190fde551dcb902627112b">Buffer</a>
 </li>
 </ul>
 
@@ -114,12 +117,19 @@ $(function() {
 </ul>
 
 
+<h3><a id="index_e"></a>- e -</h3><ul>
+<li>empty()
+: <a class="el" href="class_buffer.html#a4261c1a06920df9c964e4e1ef03353eb">Buffer</a>
+</li>
+</ul>
+
+
 <h3><a id="index_g"></a>- g -</h3><ul>
+<li>get()
+: <a class="el" href="class_buffer.html#ade5c243c7b78e28f889f7d52f37df481">Buffer</a>
+</li>
 <li>get_channel_filter()
 : <a class="el" href="class_config.html#a6bba320c0aca0977bc76ce70f2aef047">Config</a>
-</li>
-<li>get_current_note()
-: <a class="el" href="class_pool.html#a741e5cab5b04b316545b005a3e7bdade">Pool</a>
 </li>
 <li>get_era()
 : <a class="el" href="class_pool.html#af23bc62de2e464c2045c9d3436d66c50">Pool</a>
@@ -153,6 +163,9 @@ $(function() {
 <li>load()
 : <a class="el" href="class_pool.html#a1b54262c292f6e1171a432bb013479d7">Pool</a>
 </li>
+<li>load_buffer()
+: <a class="el" href="class_pool.html#a79bb3db5a6043a18074c2996a078de3d">Pool</a>
+</li>
 </ul>
 
 
@@ -179,12 +192,21 @@ $(function() {
 <li>Pool()
 : <a class="el" href="class_pool.html#ad204880feb8c71e73348485fc09de612">Pool</a>
 </li>
+<li>pop()
+: <a class="el" href="class_buffer.html#a650109ed0ac2e1513a37fcc46a595829">Buffer</a>
+</li>
+<li>push()
+: <a class="el" href="class_buffer.html#acec71205058fb10fc57c94c8bdcf7dc5">Buffer</a>
+</li>
 </ul>
 
 
 <h3><a id="index_r"></a>- r -</h3><ul>
 <li>read()
 : <a class="el" href="class_config.html#a04a241a25d71ee97d1b99b89229d2c82">Config</a>
+</li>
+<li>reset()
+: <a class="el" href="class_buffer.html#a52170368aefdfbbdcd4a4f79fbf66678">Buffer</a>
 </li>
 <li>reset_leds()
 : <a class="el" href="class_display.html#a029e484ca4bdf9d3794c8ab36375307e">Display</a>
@@ -219,28 +241,34 @@ $(function() {
 , <a class="el" href="class_lane.html#acdb78fd93cd0f8e17c775b4d410f63f4">Lane</a>
 , <a class="el" href="class_router.html#ad42d4039bd4a012c34c7da685148a8b5">Router</a>
 </li>
+<li>shift()
+: <a class="el" href="class_buffer.html#a1dd0d7cc03c72d098a929326c8e15119">Buffer</a>
+</li>
 <li>start()
 : <a class="el" href="class_display.html#a8a6957eb3da9e75b5892160aa8a13b40">Display</a>
-, <a class="el" href="class_lane.html#ab49f94d71f3a290e8086ed6ad4f25461">Lane</a>
+, <a class="el" href="class_lane.html#aab566acdccee6c623a550db90be774a0">Lane</a>
 </li>
 <li>stop()
 : <a class="el" href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">Lane</a>
+, <a class="el" href="class_pool.html#a55ccbf59553e90c49e32c437e6e8f6b5">Pool</a>
 </li>
 </ul>
 
 
 <h3><a id="index_u"></a>- u -</h3><ul>
 <li>unload()
-: <a class="el" href="class_pool.html#a9b6ed99ddf6a71d0a960b0d9749080c6">Pool</a>
+: <a class="el" href="class_pool.html#a71587a75fb716a41cbfc8ed0a0621776">Pool</a>
 </li>
 <li>update()
 : <a class="el" href="class_display.html#ad2740b779d61e461c4dcaaf34f1fcd8f">Display</a>
+, <a class="el" href="class_lane.html#a12c974886f517581abc607f58775d303">Lane</a>
+, <a class="el" href="class_router.html#aa1b7b08c47135938efc721249f36a6a1">Router</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 26 2021 13:34:21 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Apr 29 2021 18:50:25 for MIDI-VCO by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
