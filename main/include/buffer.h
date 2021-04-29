@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 #include "constants.h"
-#include "note.h"
+#include "structs.h"
 
 /**
  * Note buffer. Allows for remembering previously triggered notes that were

@@ -1,11 +1,11 @@
 #include "Arduino.h"
 #include "../include/allocator.h"
 
-Allocator::Allocator(Config *config, Display *display)
+Allocator::Allocator(Config *config, Display *display, Router *router)
 {
     _config = config;
     _display = display;
-    _router = new Router(display);
+    _router = router;
     for (int i = 0; i < LANE_COUNT; i++)
     {
         _pools[i] = new Pool(_router);
@@ -14,7 +14,7 @@ Allocator::Allocator(Config *config, Display *display)
 
 void Allocator::setup()
 {
-    _router->setup();
+    set_masks();
 }
 
 void Allocator::set_masks()

@@ -9,13 +9,15 @@
 #include <MIDI.h>
 #include "include/config.h"
 #include "include/allocator.h"
-#include "include/note.h"
+#include "include/structs.h"
 #include "include/display.h"
+#include "include/router.h"
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 Config *config;
 Allocator *allocator;
 Display *display;
+Router *router;
 
 void setup()
 {
@@ -24,8 +26,9 @@ void setup()
     config = new Config();
     config->setup();
     config->read();
-    allocator = new Allocator(config, display);
-    allocator->setup();
+    router = new Router(display);
+    router->setup();
+    allocator = new Allocator(config, display, router);
     allocator->set_masks();
     MIDI.begin(MIDI_CHANNEL_OMNI);
     MIDI.setHandleNoteOn(handle_note_on);
@@ -44,6 +47,7 @@ void loop()
         allocator->display_state();
     }
     display->update();
+    router->update();
 }
 
 /**

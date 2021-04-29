@@ -75,7 +75,7 @@ void Pool::load_buffer(int bend, bool set_only)
             }
             else
             {
-                _router->select(lane_id)->start(Lane::pitch_to_voltage(note.pitch, bend));
+                _router->select(lane_id)->start(Lane::pitch_to_voltage(note.pitch, 0), GLIDE_DEFAULT_DURATION);
             }
         }
     }
