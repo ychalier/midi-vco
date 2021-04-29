@@ -55,4 +55,6 @@
 
 #define LANE_COUNT 8
 
+#define BUFFER_SIZE 2
+
 #endif

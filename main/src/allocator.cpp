@@ -21,7 +21,7 @@ void Allocator::set_masks()
 {
     for (int i = 0; i < LANE_COUNT; i++)
     {
-        _pools[i]->unload();
+        _pools[i]->stop();
         _pools[i]->set_masks(0, 0);
     }
     switch (_config->get_channel_filter())
@@ -159,9 +159,8 @@ void Allocator::note_off(Note note)
 {
     for (int i = 0; i < LANE_COUNT; i++)
     {
-        if (!_pools[i]->is_free() && _pools[i]->get_current_note() == note)
+        if (_pools[i]->unload(note))
         {
-            _pools[i]->unload();
             break;
         }
     }

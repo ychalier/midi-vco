@@ -6,6 +6,7 @@
 #include "constants.h"
 #include "router.h"
 #include "note.h"
+#include "buffer.h"
 
 /**
  * Abstract representation of an lane allocation unit.
@@ -73,9 +74,28 @@ public:
     void load(Note note);
 
     /**
-     * Stop the included lanes and free the pool.
+     * Attempt to unload a note, if it is in the buffer. In that case, stop the
+     * included lanes and free the pool.
+     * 
+     * @param note The note to unload.
+     * @return True if the note was in the buffer and stopped.
      */
-    void unload();
+    bool unload(Note note);
+
+    /**
+     * Load the current note in the buffer on the lanes.
+     * 
+     * @param bend The pitch bend value to associate with the note.
+     * @param set_only If true, the note is set one the lanes. If false, the
+     *     note is started on the lanes, which impacts the GATE signal and the
+     *     display.
+     */
+    void load_buffer(int bend, bool set_only);
+
+    /**
+     * Stop all the lanes and reset the buffer.
+     */
+    void stop();
 
     /**
      * Propagate the *pitch-bend* message to the lanes.
@@ -89,11 +109,6 @@ public:
      */
     unsigned long get_era();
 
-    /**
-     * Getter for the _current_note attribute.
-     */
-    Note get_current_note();
-
 private:
     Router *_router;
 
@@ -103,8 +118,8 @@ private:
     /// Mask for the MIDI channels whitelisted in the pool.
     unsigned int _channel_mask;
 
-    /// Last active note.
-    Note _current_note;
+    /// Note buffer.
+    Buffer *_buffer;
 
     /// Timestamp of last note activation.
     unsigned long _era;
