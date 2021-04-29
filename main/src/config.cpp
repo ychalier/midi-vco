@@ -18,19 +18,19 @@ byte Config::categorize_polyphony_mode(int input_value)
 {
     if (input_value < 256)
     {
-        return MODE_MONOPHONIC;
+        return MODE_OCTOPHONIC;
     }
     else if (input_value < 512)
     {
-        return MODE_DUOPHONIC;
+        return MODE_QUADROPHONIC;
     }
     else if (input_value < 768)
     {
-        return MODE_QUADROPHONIC;
+        return MODE_DUOPHONIC;
     }
     else
     {
-        return MODE_OCTOPHONIC;
+        return MODE_MONOPHONIC;
     }
 }
 
