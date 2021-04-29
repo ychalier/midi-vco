@@ -3,17 +3,17 @@
 
 // PINs wiring
 
-#define PIN_SELECT_MODE A15
+#define PIN_SELECT_MODE A8
 #define PIN_SELECT_PRIORITY 42
 #define PIN_SELECT_CHANNEL 40
 
-#define PIN_LED_1 22
-#define PIN_LED_2 24
-#define PIN_LED_3 26
+#define PIN_LED_1 34
+#define PIN_LED_2 32
+#define PIN_LED_3 30
 #define PIN_LED_4 28
-#define PIN_LED_5 30
-#define PIN_LED_6 32
-#define PIN_LED_7 34
+#define PIN_LED_5 26
+#define PIN_LED_6 24
+#define PIN_LED_7 22
 #define PIN_LED_8 36
 
 #define PIN_SS_1 47

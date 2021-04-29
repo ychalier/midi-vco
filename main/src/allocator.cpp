@@ -95,7 +95,7 @@ void Allocator::display_state()
     {
         if (_pools[i]->is_enabled())
         {
-            pattern = pattern || (1 << i);
+            pattern = pattern + (1 << i);
         }
     }
     _display->start(pattern, DEFAULT_DISPLAY_DURATION);

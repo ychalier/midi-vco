@@ -56,7 +56,11 @@ void loop()
 void handle_note_on(byte channel, byte pitch, byte velocity)
 {
     Note note = {channel, pitch};
-    allocator->note_on(note);
+    if (velocity == 0) {
+        allocator->note_off(note);
+    } else {
+        allocator->note_on(note);
+    }
 }
 
 /**

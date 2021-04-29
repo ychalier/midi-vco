@@ -61,7 +61,8 @@ byte Config::categorize_channel_filter(int input_value)
 bool Config::read()
 {
     byte priority_mode = categorize_priority_mode(digitalRead(PIN_SELECT_PRIORITY));
-    byte channel_filter = categorize_channel_filter(digitalRead(PIN_SELECT_CHANNEL));
+    byte channel_filter = CHANNEL_FILTER_OFF;
+    // byte channel_filter = categorize_channel_filter(digitalRead(PIN_SELECT_CHANNEL));
     byte polyphony_mode = categorize_polyphony_mode(analogRead(PIN_SELECT_MODE));
     bool changed = _priority_mode != priority_mode || _polyphony_mode != polyphony_mode || _channel_filter != channel_filter;
     _priority_mode = priority_mode;
