@@ -121,7 +121,7 @@ void Allocator::note_on(Note note)
         {
         case PRIORITY_KEEP_FIRST:
             break;
-        case PRIORITY_REPLACE_FIRST:
+        case PRIORITY_REPLACE_OLDEST:
             optimal_era = 0;
             for (int i = 0; i < LANE_COUNT; i++)
             {
@@ -134,7 +134,7 @@ void Allocator::note_on(Note note)
                 }
             }
             break;
-        case PRIORITY_REPLACE_LAST:
+        case PRIORITY_REPLACE_NEWEST:
             optimal_era = 0;
             for (int i = 0; i < LANE_COUNT; i++)
             {

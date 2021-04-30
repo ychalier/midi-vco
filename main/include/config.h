@@ -65,10 +65,22 @@ public:
      */
     byte get_channel_filter();
 
+    /**
+     * Getter for the _glide_flags attribute.
+     */
+    byte get_glide_flags();
+
+    /**
+     * Getter for the _glide_intensity attribute.
+     */
+    float get_glide_intensity();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
     byte _channel_filter;
+    byte _glide_flags;
+    float _glide_intensity;
 };
 
 #endif

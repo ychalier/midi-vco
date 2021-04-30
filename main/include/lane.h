@@ -5,6 +5,7 @@
 #include <MCP48xx.h>
 #include "constants.h"
 #include "display.h"
+#include "config.h"
 #include "structs.h"
 
 /**
@@ -16,13 +17,14 @@ public:
     /**
      * Constructor.
      * 
+     * @param config A pointer to the global configuration.
      * @param display A pointer to the LED display.
      * @param dac A pointer to the DAC controlling the CV signal of that lane.
      * @param dac_channel If true, use DAC channel A; otherwise use channel B.
      * @param gate_pin PIN controlling the GATE signal.
      * @param led_id Id of the LED to control in the display, mapped to GATE.
      */
-    Lane(Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int led_id);
+    Lane(Config *config, Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int led_id);
 
     /**
      * Initialize hardware connections. Must be called once in the main program
@@ -51,10 +53,8 @@ public:
      * method to start playing a note without blocking the main loop.
      * 
      * @param setpoint DAC input value.
-     * @param glide_duration Duration in milliseconds of the glide from the
-     *     last setpoint to this new setpoint. Ignored if 0.
      */
-    void start(int setpoint, unsigned long glide_duration);
+    void start(int setpoint);
 
     /**
      * Set the GATE to LOW.
@@ -78,12 +78,18 @@ public:
      */
     static int pitch_to_voltage(byte pitch, int bend);
 
+    static byte setpoint_to_pitch(int setpoint);
+
 private:
+    Config *_config;
     Display *_display;
     MCP4822 *_dac;
     bool _dac_channel;
     int _gate_pin;
     int _led_id;
+
+    /// True if the lane is currently active.
+    bool _active;
 
     /// Last setpoint (including pitch bends).
     int _current_setpoint;

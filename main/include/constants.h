@@ -38,8 +38,8 @@
 #define MODE_OCTOPHONIC 3
 
 #define PRIORITY_KEEP_FIRST 0
-#define PRIORITY_REPLACE_FIRST 1
-#define PRIORITY_REPLACE_LAST 2
+#define PRIORITY_REPLACE_OLDEST 1
+#define PRIORITY_REPLACE_NEWEST 2
 
 #define CHANNEL_FILTER_OFF 0
 #define CHANNEL_FILTER_ON 1
@@ -57,11 +57,11 @@
 
 #define BUFFER_SIZE 8
 
-#define GLIDE_DEFAULT_DURATION 500.0
-#define GLIDE_MIN_DURATION 50.0     // Milliseconds
-#define GLIDE_MAX_DURATION 500.0    // Milliseconds
-#define GLIDE_MAX_DURATION_GAP 60.0 // Semitones
-#define GLIDE_TIME_TRIGGER 99999    // Milliseconds
-#define GLIDE_PITCH_TRIGGER 99999   // DAC setpoint unit (mV), 250 = 3 semitons
+#define GLIDE_FLAG_PROPORTIONAL 1
+#define GLIDE_FLAG_CHROMATIC 2
+#define GLIDE_FLAG_LEGATO 4
+#define GLIDE_MAX_RATE 1000  // Milliseconds per semitones
+#define GLIDE_MAX_TIME 10000 // Milliseconds
+#define GLIDE_INTENSITY_POWER 3
 
 #endif

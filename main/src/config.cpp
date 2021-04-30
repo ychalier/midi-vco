@@ -4,8 +4,10 @@
 Config::Config()
 {
     _polyphony_mode = MODE_MONOPHONIC;
-    _priority_mode = PRIORITY_REPLACE_FIRST;
+    _priority_mode = PRIORITY_REPLACE_OLDEST;
     _channel_filter = CHANNEL_FILTER_OFF;
+    _glide_flags = 0;
+    _glide_intensity = 0;
 }
 
 void Config::setup()
@@ -38,11 +40,11 @@ byte Config::categorize_priority_mode(int input_value)
 {
     if (input_value == HIGH)
     {
-        return PRIORITY_REPLACE_LAST;
+        return PRIORITY_REPLACE_NEWEST;
     }
     else
     {
-        return PRIORITY_REPLACE_FIRST;
+        return PRIORITY_REPLACE_OLDEST;
     }
 }
 
@@ -84,4 +86,14 @@ byte Config::get_priority_mode()
 byte Config::get_channel_filter()
 {
     return _channel_filter;
+}
+
+float Config::get_glide_flags()
+{
+    return _glide_flags;
+}
+
+float Config::get_glide_intensity()
+{
+    return _glide_intensity;
 }

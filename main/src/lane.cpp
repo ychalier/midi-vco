@@ -1,8 +1,9 @@
 #include "Arduino.h"
 #include "../include/lane.h"
 
-Lane::Lane(Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int led_id)
+Lane::Lane(Config *config, Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int led_id)
 {
+    _config = config;
     _display = display;
     _dac = dac;
     _dac_channel = dac_channel;
@@ -11,6 +12,7 @@ Lane::Lane(Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int l
     _current_setpoint = 0;
     _last_set_time = 0;
     _glide = {false, 0, 0, 0, 0};
+    _active = false;
 }
 
 void Lane::setup()
@@ -51,11 +53,12 @@ void Lane::play(int setpoint, unsigned long duration)
     stop();
 }
 
-void Lane::start(int setpoint, unsigned long glide_duration)
+void Lane::start(int setpoint)
 {
-    if (glide_duration == 0 ||
-        (millis() - _last_set_time) > GLIDE_TIME_TRIGGER ||
-        abs(_current_setpoint - setpoint) > GLIDE_PITCH_TRIGGER)
+    float glide_intensity = _config->get_glide_intensity();
+    byte glide_flags = _config->get_glide_flags();
+    if (glide_intensity == 0 ||
+        (!_active && (GLIDE_FLAG_LEGATO & glide_flags)))
     {
         set(setpoint);
     }
@@ -64,37 +67,44 @@ void Lane::start(int setpoint, unsigned long glide_duration)
         _glide.active = true;
         _glide.setpoint_start = _current_setpoint;
         _glide.setpoint_end = setpoint;
-        _glide.duration = glide_duration;
         _glide.time_start = millis();
+        if (GLIDE_FLAG_PROPORTIONAL & glide_flags)
+        {
+            float gap = setpoint_to_pitch(fabs(_current_setpoint - setpoint)) - MIDI_MIN_PITCH;
+            _glide.duration = pow(glide_intensity, GLIDE_INTENSITY_POWER) * GLIDE_MAX_RATE * gap;
+        }
+        else
+        {
+            _glide.duration = pow(glide_intensity, GLIDE_INTENSITY_POWER) * GLIDE_MAX_TIME;
+        }
         update();
     }
     digitalWrite(_gate_pin, HIGH);
     _display->set_led_state(_led_id, HIGH);
+    _active = true;
 }
 
 void Lane::stop()
 {
     digitalWrite(_gate_pin, LOW);
     _display->set_led_state(_led_id, LOW);
+    _active = false;
 }
 
 void Lane::update()
 {
     if (_glide.active)
     {
-        float duration = GLIDE_MIN_DURATION +
-            (float)abs(_glide.setpoint_end - _glide.setpoint_start) *
-            3.0 / 250.0 / GLIDE_MAX_DURATION_GAP * (GLIDE_MAX_DURATION - GLIDE_MIN_DURATION);
-        if (duration > 500)
-        {
-            duration = 500;
-        }
         float progress = (float)(millis() - _glide.time_start) / duration;
         if (progress > 1)
         {
             progress = 1;
         }
         float setpoint = (1 - progress) * _glide.setpoint_start + progress * _glide.setpoint_end;
+        if (GLIDE_FLAG_CHROMATIC & _config->get_glide_flags() && progress < 1)
+        {
+            setpoint = pitch_to_voltage(setpoint_to_pitch(setpoint), 0);
+        }
         set((int)setpoint);
         if (progress >= 1)
         {
@@ -116,4 +126,10 @@ int Lane::pitch_to_voltage(byte pitch, int bend)
         voltage = DAC_VMAX;
     }
     return (int)(1000 * voltage);
+}
+
+byte Lane::setpoint_to_pitch(int setpoint)
+{
+    float voltage = (float)setpoint / 1000.0;
+    return (byte)(voltage * AMP_GAIN * 12.0) + MIDI_MIN_PITCH;
 }
