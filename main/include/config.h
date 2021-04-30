@@ -75,12 +75,20 @@ public:
      */
     float get_glide_intensity();
 
+    /**
+     * Getter for the _pitch_bend_range function.
+     */
+    float get_pitch_bend_range();
+
+    void handle_midi_control(byte channel, byte number, byte value);
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
     byte _channel_filter;
     byte _glide_flags;
     float _glide_intensity;
+    float _pitch_bend_range;
 };
 
 #endif

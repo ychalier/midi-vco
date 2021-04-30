@@ -94,3 +94,8 @@ void handle_pitch_bend(byte channel, int bend)
 {
     allocator->pitch_bend(channel, bend);
 }
+
+void handle_control_change(byte channel, byte number, byte value)
+{
+    config->handle_midi_control(channel, number, value);
+}

@@ -8,6 +8,7 @@ Config::Config()
     _channel_filter = CHANNEL_FILTER_OFF;
     _glide_flags = 0;
     _glide_intensity = 0;
+    _pitch_bend_range = PITCH_BEND_RANGE;
 }
 
 void Config::setup()
@@ -96,4 +97,54 @@ float Config::get_glide_flags()
 float Config::get_glide_intensity()
 {
     return _glide_intensity;
+}
+
+float Config::get_pitch_bend_range()
+{
+    return _pitch_bend_range;
+}
+
+void Config::handle_midi_control(byte channel, byte number, byte value)
+{
+    switch (number)
+    {
+    case MIDI_CONTROL_GLIDE_INTENSITY:
+        _glide_intensity = (float)value / 127.0;
+        break;
+    case MIDI_CONTROL_GLIDE_PROPORTIONAL:
+        if (value < 64)
+        {
+            _glide_flags = _glide_flags - (_glide_flags & GLIDE_FLAG_PROPORTIONAL);
+        }
+        else
+        {
+            _glide_flags = _glide_flags | GLIDE_FLAG_PROPORTIONAL;
+        }
+        break;
+    case MIDI_CONTROL_GLIDE_CHROMATIC:
+        if (value < 64)
+        {
+            _glide_flags = _glide_flags - (_glide_flags & GLIDE_FLAG_CHROMATIC);
+        }
+        else
+        {
+            _glide_flags = _glide_flags | GLIDE_FLAG_CHROMATIC;
+        }
+        break;
+    case MIDI_CONTROL_GLIDE_LEGATO:
+        if (value < 64)
+        {
+            _glide_flags = _glide_flags - (_glide_flags & GLIDE_FLAG_LEGATO);
+        }
+        else
+        {
+            _glide_flags = _glide_flags | GLIDE_FLAG_LEGATO;
+        }
+        break;
+    case MIDI_CONTROL_PITCH_BEND_RANGE:
+        _pitch_bend_range = (float)value / 127.0 * 12.0;
+        break;
+    default:
+        break;
+    }
 }
