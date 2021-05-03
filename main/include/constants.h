@@ -33,9 +33,8 @@
 // MIDI Controls
 
 #define MIDI_CONTROL_GLIDE_INTENSITY 73    // S1
-#define MIDI_CONTROL_GLIDE_PROPORTIONAL 80 // B1
-#define MIDI_CONTROL_GLIDE_CHROMATIC 81    // B2
-#define MIDI_CONTROL_GLIDE_LEGATO 82       // B3
+#define MIDI_CONTROL_GLIDE_CHROMATIC 80    // B1
+#define MIDI_CONTROL_GLIDE_LEGATO 81       // B2
 
 #define MIDI_CONTROL_PITCH_BEND_RANGE 75 // S2
 
@@ -69,8 +68,8 @@
 #define GLIDE_FLAG_PROPORTIONAL 1
 #define GLIDE_FLAG_CHROMATIC 2
 #define GLIDE_FLAG_LEGATO 4
-#define GLIDE_MAX_RATE 1000  // Milliseconds per semitones
-#define GLIDE_MAX_TIME 10000 // Milliseconds
-#define GLIDE_INTENSITY_POWER 3
+#define GLIDE_MAX_RATE 50  // Milliseconds per semitones
+#define GLIDE_MAX_TIME 500 // Milliseconds
+#define GLIDE_INTENSITY_POWER 2
 
 #endif

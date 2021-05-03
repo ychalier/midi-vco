@@ -61,9 +61,8 @@ void Lane::play(int setpoint, unsigned long duration)
 void Lane::start(int setpoint)
 {
     float glide_intensity = _config->get_glide_intensity();
-    byte glide_flags = _config->get_glide_flags();
     if (glide_intensity == 0 ||
-        (!_active && (GLIDE_FLAG_LEGATO & glide_flags)))
+        (!_active && (GLIDE_FLAG_LEGATO & _config->get_glide_flags())))
     {
         set(setpoint);
     }
@@ -73,7 +72,7 @@ void Lane::start(int setpoint)
         _glide.setpoint_start = _current_setpoint;
         _glide.setpoint_end = setpoint;
         _glide.time_start = millis();
-        if (GLIDE_FLAG_PROPORTIONAL & glide_flags)
+        if (_config->is_glide_proportional())
         {
             float gap = setpoint_to_pitch(fabs(_current_setpoint - setpoint)) - MIDI_MIN_PITCH;
             _glide.duration = pow(glide_intensity, GLIDE_INTENSITY_POWER) * GLIDE_MAX_RATE * gap;
@@ -149,10 +148,12 @@ byte Lane::setpoint_to_pitch(int setpoint)
     return (byte)(voltage * AMP_GAIN * 12.0) + MIDI_MIN_PITCH;
 }
 
-bool Lane::is_active() {
+bool Lane::is_active()
+{
     return _active;
 }
 
-void Lane::set_mate(Lane *mate) {
+void Lane::set_mate(Lane *mate)
+{
     _mate = mate;
 }

@@ -82,12 +82,15 @@ public:
 
     void handle_midi_control(byte channel, byte number, byte value);
 
+    bool is_glide_proportional();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
     byte _channel_filter;
     byte _glide_flags;
     float _glide_intensity;
+    bool _glide_proportional;
     float _pitch_bend_range;
 };
 

@@ -9,6 +9,7 @@ Config::Config()
     _glide_flags = 0;
     _glide_intensity = 0;
     _pitch_bend_range = PITCH_BEND_RANGE;
+    _glide_proportional = false;
 }
 
 void Config::setup()
@@ -109,18 +110,17 @@ void Config::handle_midi_control(byte channel, byte number, byte value)
     switch (number)
     {
     case MIDI_CONTROL_GLIDE_INTENSITY:
-        _glide_intensity = (float)value / 127.0;
-        break;
-    case MIDI_CONTROL_GLIDE_PROPORTIONAL:
         if (value < 64)
         {
-            _glide_flags = _glide_flags - (_glide_flags & GLIDE_FLAG_PROPORTIONAL);
+            _glide_intensity = 1.0 - ((float)value / 63.0);
+            _glide_proportional = false;
         }
         else
         {
-            _glide_flags = _glide_flags | GLIDE_FLAG_PROPORTIONAL;
+            _glide_intensity = (float)(value - 64) / 63.0;
+            _glide_proportional = true;
         }
-        break;
+        break;    
     case MIDI_CONTROL_GLIDE_CHROMATIC:
         if (value < 64)
         {
@@ -147,4 +147,9 @@ void Config::handle_midi_control(byte channel, byte number, byte value)
     default:
         break;
     }
+}
+
+bool Config::is_glide_proportional()
+{
+    return _glide_proportional;
 }
