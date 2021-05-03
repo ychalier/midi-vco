@@ -142,7 +142,7 @@ void Config::handle_midi_control(byte channel, byte number, byte value)
         }
         break;
     case MIDI_CONTROL_PITCH_BEND_RANGE:
-        _pitch_bend_range = (float)value / 127.0 * 12.0;
+        _pitch_bend_range = round((float)value / 127.0 * 12.0 * 4.0) / 4.0;
         break;
     default:
         break;
