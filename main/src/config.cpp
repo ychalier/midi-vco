@@ -89,7 +89,7 @@ byte Config::get_channel_filter()
     return _channel_filter;
 }
 
-float Config::get_glide_flags()
+byte Config::get_glide_flags()
 {
     return _glide_flags;
 }

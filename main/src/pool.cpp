@@ -71,11 +71,11 @@ void Pool::load_buffer(int bend, bool set_only)
         {
             if (set_only)
             {
-                _router->select(lane_id)->set(Lane::pitch_to_voltage(note.pitch, bend));
+                _router->select(lane_id)->set_pitch(note.pitch, bend);
             }
             else
             {
-                _router->select(lane_id)->start(Lane::pitch_to_voltage(note.pitch, 0));
+                _router->select(lane_id)->start_pitch(note.pitch, 0);
             }
         }
     }

@@ -56,6 +56,10 @@ public:
      */
     void start(int setpoint);
 
+    void set_pitch(byte pitch, int bend);
+
+    void start_pitch(byte pitch, int bend);
+
     /**
      * Set the GATE to LOW.
      */
@@ -76,9 +80,13 @@ public:
      * @param bend Signed 14-bit encoding of the pitch bend.
      * @return DAC input value corresponding to that note.
      */
-    static int pitch_to_voltage(byte pitch, int bend);
+    static int pitch_to_voltage(Config *config, byte pitch, int bend);
 
     static byte setpoint_to_pitch(int setpoint);
+
+    bool is_active();
+
+    void set_mate(Lane *mate);
 
 private:
     Config *_config;
@@ -99,6 +107,8 @@ private:
 
     /// Wrapper for the glide information.
     Glide _glide;
+
+    Lane *_mate;
 };
 
 #endif

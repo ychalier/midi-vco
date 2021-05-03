@@ -1,20 +1,28 @@
 #include "Arduino.h"
 #include "../include/router.h"
 
-Router::Router(Display *display)
+Router::Router(Config *config, Display *display)
 {
     _dac_1 = new MCP4822(PIN_SS_1);
     _dac_2 = new MCP4822(PIN_SS_2);
     _dac_3 = new MCP4822(PIN_SS_3);
     _dac_4 = new MCP4822(PIN_SS_4);
-    _lane_1 = new Lane(display, _dac_1, true, PIN_GATE_1, 0);
-    _lane_2 = new Lane(display, _dac_1, false, PIN_GATE_2, 1);
-    _lane_3 = new Lane(display, _dac_2, true, PIN_GATE_3, 2);
-    _lane_4 = new Lane(display, _dac_2, false, PIN_GATE_4, 3);
-    _lane_5 = new Lane(display, _dac_3, true, PIN_GATE_5, 4);
-    _lane_6 = new Lane(display, _dac_3, false, PIN_GATE_6, 5);
-    _lane_7 = new Lane(display, _dac_4, true, PIN_GATE_7, 6);
-    _lane_8 = new Lane(display, _dac_4, false, PIN_GATE_8, 7);
+    _lane_1 = new Lane(config, display, _dac_1, true, PIN_GATE_1, 0);
+    _lane_2 = new Lane(config, display, _dac_1, false, PIN_GATE_2, 1);
+    _lane_3 = new Lane(config, display, _dac_2, true, PIN_GATE_3, 2);
+    _lane_4 = new Lane(config, display, _dac_2, false, PIN_GATE_4, 3);
+    _lane_5 = new Lane(config, display, _dac_3, true, PIN_GATE_5, 4);
+    _lane_6 = new Lane(config, display, _dac_3, false, PIN_GATE_6, 5);
+    _lane_7 = new Lane(config, display, _dac_4, true, PIN_GATE_7, 6);
+    _lane_8 = new Lane(config, display, _dac_4, false, PIN_GATE_8, 7);
+    _lane_1->set_mate(_lane_2);
+    _lane_2->set_mate(_lane_1);
+    _lane_3->set_mate(_lane_4);
+    _lane_4->set_mate(_lane_3);
+    _lane_5->set_mate(_lane_6);
+    _lane_6->set_mate(_lane_5);
+    _lane_7->set_mate(_lane_8);
+    _lane_8->set_mate(_lane_7);
 }
 
 void Router::setup()

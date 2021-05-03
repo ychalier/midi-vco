@@ -18,7 +18,7 @@ public:
      * 
      * @param display A pointer to the LED display wrapper.
      */
-    Router(Display *display);
+    Router(Config *config, Display *display);
 
     /**
      * Initialize hardware connections. Must be called once in the main program

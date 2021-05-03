@@ -26,7 +26,7 @@ void setup()
     config = new Config();
     config->setup();
     config->read();
-    router = new Router(display);
+    router = new Router(config, display);
     router->setup();
     allocator = new Allocator(config, display, router);
     allocator->set_masks();

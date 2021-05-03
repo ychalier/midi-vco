@@ -13,6 +13,7 @@ Lane::Lane(Config *config, Display *display, MCP4822 *dac, bool dac_channel, int
     _last_set_time = 0;
     _glide = {false, 0, 0, 0, 0};
     _active = false;
+    _mate = nullptr;
 }
 
 void Lane::setup()
@@ -44,11 +45,15 @@ void Lane::set(int setpoint)
         _dac->setVoltageB(setpoint);
     }
     _dac->updateDAC();
+    if (_mate && !_mate->is_active())
+    {
+        _mate->set(setpoint);
+    }
 }
 
 void Lane::play(int setpoint, unsigned long duration)
 {
-    start(setpoint, 0);
+    start(setpoint);
     delay(duration);
     stop();
 }
@@ -84,6 +89,16 @@ void Lane::start(int setpoint)
     _active = true;
 }
 
+void Lane::set_pitch(byte pitch, int bend)
+{
+    set(pitch_to_voltage(_config, pitch, bend));
+}
+
+void Lane::start_pitch(byte pitch, int bend)
+{
+    start(pitch_to_voltage(_config, pitch, bend));
+}
+
 void Lane::stop()
 {
     digitalWrite(_gate_pin, LOW);
@@ -95,7 +110,7 @@ void Lane::update()
 {
     if (_glide.active)
     {
-        float progress = (float)(millis() - _glide.time_start) / duration;
+        float progress = (float)(millis() - _glide.time_start) / _glide.duration;
         if (progress > 1)
         {
             progress = 1;
@@ -103,7 +118,7 @@ void Lane::update()
         float setpoint = (1 - progress) * _glide.setpoint_start + progress * _glide.setpoint_end;
         if (GLIDE_FLAG_CHROMATIC & _config->get_glide_flags() && progress < 1)
         {
-            setpoint = pitch_to_voltage(setpoint_to_pitch(setpoint), 0);
+            setpoint = pitch_to_voltage(_config, setpoint_to_pitch(setpoint), 0);
         }
         set((int)setpoint);
         if (progress >= 1)
@@ -113,9 +128,9 @@ void Lane::update()
     }
 }
 
-int Lane::pitch_to_voltage(byte pitch, int bend)
+int Lane::pitch_to_voltage(Config *config, byte pitch, int bend)
 {
-    float bent_pitch = (float)pitch + (float)bend * _config->get_pitch_bend_range() / 8192.0;
+    float bent_pitch = (float)pitch + (float)bend * config->get_pitch_bend_range() / 8192.0;
     float voltage = (bent_pitch - MIDI_MIN_PITCH) / 12.0 / AMP_GAIN;
     if (voltage < 0)
     {
@@ -132,4 +147,12 @@ byte Lane::setpoint_to_pitch(int setpoint)
 {
     float voltage = (float)setpoint / 1000.0;
     return (byte)(voltage * AMP_GAIN * 12.0) + MIDI_MIN_PITCH;
+}
+
+bool Lane::is_active() {
+    return _active;
+}
+
+void Lane::set_mate(Lane *mate) {
+    _mate = mate;
 }
