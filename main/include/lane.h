@@ -37,7 +37,7 @@ public:
      * 
      * @param setpoint DAC input value.
      */
-    void set(int setpoint);
+    void set(int setpoint, bool update_mate);
 
     /**
      * Play a note for a given duration. Warning: this methods blocks the whole

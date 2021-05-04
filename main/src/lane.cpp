@@ -32,7 +32,7 @@ void Lane::setup()
     digitalWrite(_gate_pin, LOW);
 }
 
-void Lane::set(int setpoint)
+void Lane::set(int setpoint, bool update_mate)
 {
     _current_setpoint = setpoint;
     _last_set_time = millis();
@@ -45,9 +45,9 @@ void Lane::set(int setpoint)
         _dac->setVoltageB(setpoint);
     }
     _dac->updateDAC();
-    if (_mate && !_mate->is_active())
+    if (update_mate && _mate && !_mate->is_active())
     {
-        _mate->set(setpoint);
+        _mate->set(setpoint, false);
     }
 }
 
@@ -64,7 +64,7 @@ void Lane::start(int setpoint)
     if (glide_intensity == 0 ||
         (!_active && (GLIDE_FLAG_LEGATO & _config->get_glide_flags())))
     {
-        set(setpoint);
+        set(setpoint, true);
     }
     else
     {
@@ -90,7 +90,7 @@ void Lane::start(int setpoint)
 
 void Lane::set_pitch(byte pitch, int bend)
 {
-    set(pitch_to_voltage(_config, pitch, bend));
+    set(pitch_to_voltage(_config, pitch, bend), true);
 }
 
 void Lane::start_pitch(byte pitch, int bend)
@@ -119,7 +119,7 @@ void Lane::update()
         {
             setpoint = pitch_to_voltage(_config, setpoint_to_pitch(setpoint), 0);
         }
-        set((int)setpoint);
+        set((int)setpoint, true);
         if (progress >= 1)
         {
             _glide.active = false;
