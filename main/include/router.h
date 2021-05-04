@@ -2,10 +2,10 @@
 #define router_h
 
 #include "Arduino.h"
-#include <MCP48xx.h>
 #include "constants.h"
 #include "lane.h"
 #include "display.h"
+#include "coupler.h"
 
 /**
  * Holder for the different lanes.
@@ -40,10 +40,10 @@ public:
     Lane *select(int lane_id);
 
 private:
-    MCP4822 *_dac_1;
-    MCP4822 *_dac_2;
-    MCP4822 *_dac_3;
-    MCP4822 *_dac_4;
+    Coupler *_coupler_1;
+    Coupler *_coupler_2;
+    Coupler *_coupler_3;
+    Coupler *_coupler_4;
     Lane *_lane_1;
     Lane *_lane_2;
     Lane *_lane_3;

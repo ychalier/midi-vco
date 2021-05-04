@@ -7,6 +7,7 @@
 #include "display.h"
 #include "config.h"
 #include "structs.h"
+#include "coupler.h"
 
 /**
  * Manage one output VCO (CV and GATE signals).
@@ -24,7 +25,7 @@ public:
      * @param gate_pin PIN controlling the GATE signal.
      * @param led_id Id of the LED to control in the display, mapped to GATE.
      */
-    Lane(Config *config, Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int led_id);
+    Lane(Config *config, Display *display, Coupler *dac, bool channel, int led_id);
 
     /**
      * Initialize hardware connections. Must be called once in the main program
@@ -84,16 +85,11 @@ public:
 
     static byte setpoint_to_pitch(int setpoint);
 
-    bool is_active();
-
-    void set_mate(Lane *mate);
-
 private:
     Config *_config;
     Display *_display;
-    MCP4822 *_dac;
-    bool _dac_channel;
-    int _gate_pin;
+    Coupler *_coupler;
+    bool _channel;
     int _led_id;
 
     /// True if the lane is currently active.
@@ -102,13 +98,9 @@ private:
     /// Last setpoint (including pitch bends).
     int _current_setpoint;
 
-    /// Timestamp of the moment the last setpoint was set.
-    unsigned long _last_set_time;
-
     /// Wrapper for the glide information.
     Glide _glide;
 
-    Lane *_mate;
 };
 
 #endif

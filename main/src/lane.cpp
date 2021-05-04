@@ -1,54 +1,27 @@
 #include "Arduino.h"
 #include "../include/lane.h"
 
-Lane::Lane(Config *config, Display *display, MCP4822 *dac, bool dac_channel, int gate_pin, int led_id)
+Lane::Lane(Config *config, Display *display, Coupler *coupler, bool channel, int led_id)
 {
     _config = config;
     _display = display;
-    _dac = dac;
-    _dac_channel = dac_channel;
-    _gate_pin = gate_pin;
+    _coupler = coupler;
+    _channel = channel;
     _led_id = led_id;
     _current_setpoint = 0;
-    _last_set_time = 0;
     _glide = {false, 0, 0, 0, 0};
     _active = false;
-    _mate = nullptr;
 }
 
 void Lane::setup()
 {
-    if (_dac_channel)
-    {
-        _dac->turnOnChannelA();
-        _dac->setGainA(MCP4822::High);
-    }
-    else
-    {
-        _dac->turnOnChannelB();
-        _dac->setGainB(MCP4822::High);
-    }
-    pinMode(_gate_pin, OUTPUT);
-    digitalWrite(_gate_pin, LOW);
+    
 }
 
 void Lane::set(int setpoint, bool update_mate)
 {
     _current_setpoint = setpoint;
-    _last_set_time = millis();
-    if (_dac_channel)
-    {
-        _dac->setVoltageA(setpoint);
-    }
-    else
-    {
-        _dac->setVoltageB(setpoint);
-    }
-    _dac->updateDAC();
-    if (update_mate && _mate && !_mate->is_active())
-    {
-        _mate->set(setpoint, false);
-    }
+    _coupler->set(_channel, setpoint);
 }
 
 void Lane::play(int setpoint, unsigned long duration)
@@ -83,7 +56,7 @@ void Lane::start(int setpoint)
         }
         update();
     }
-    digitalWrite(_gate_pin, HIGH);
+    _coupler->activate(_channel);
     _display->set_led_state(_led_id, HIGH);
     _active = true;
 }
@@ -100,7 +73,7 @@ void Lane::start_pitch(byte pitch, int bend)
 
 void Lane::stop()
 {
-    digitalWrite(_gate_pin, LOW);
+    _coupler->deactivate(_channel);
     _display->set_led_state(_led_id, LOW);
     _active = false;
 }
@@ -146,14 +119,4 @@ byte Lane::setpoint_to_pitch(int setpoint)
 {
     float voltage = (float)setpoint / 1000.0;
     return (byte)(voltage * AMP_GAIN * 12.0) + MIDI_MIN_PITCH;
-}
-
-bool Lane::is_active()
-{
-    return _active;
-}
-
-void Lane::set_mate(Lane *mate)
-{
-    _mate = mate;
 }

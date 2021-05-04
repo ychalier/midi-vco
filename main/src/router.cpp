@@ -3,34 +3,26 @@
 
 Router::Router(Config *config, Display *display)
 {
-    _dac_1 = new MCP4822(PIN_SS_1);
-    _dac_2 = new MCP4822(PIN_SS_2);
-    _dac_3 = new MCP4822(PIN_SS_3);
-    _dac_4 = new MCP4822(PIN_SS_4);
-    _lane_1 = new Lane(config, display, _dac_1, true, PIN_GATE_1, 0);
-    _lane_2 = new Lane(config, display, _dac_1, false, PIN_GATE_2, 1);
-    _lane_3 = new Lane(config, display, _dac_2, true, PIN_GATE_3, 2);
-    _lane_4 = new Lane(config, display, _dac_2, false, PIN_GATE_4, 3);
-    _lane_5 = new Lane(config, display, _dac_3, true, PIN_GATE_5, 4);
-    _lane_6 = new Lane(config, display, _dac_3, false, PIN_GATE_6, 5);
-    _lane_7 = new Lane(config, display, _dac_4, true, PIN_GATE_7, 6);
-    _lane_8 = new Lane(config, display, _dac_4, false, PIN_GATE_8, 7);
-    _lane_1->set_mate(_lane_2);
-    _lane_2->set_mate(_lane_1);
-    _lane_3->set_mate(_lane_4);
-    _lane_4->set_mate(_lane_3);
-    _lane_5->set_mate(_lane_6);
-    _lane_6->set_mate(_lane_5);
-    _lane_7->set_mate(_lane_8);
-    _lane_8->set_mate(_lane_7);
+    _coupler_1 = new Coupler(PIN_SS_1, PIN_GATE_1);
+    _coupler_2 = new Coupler(PIN_SS_2, PIN_GATE_3);
+    _coupler_3 = new Coupler(PIN_SS_3, PIN_GATE_5);
+    _coupler_4 = new Coupler(PIN_SS_4, PIN_GATE_7);
+    _lane_1 = new Lane(config, display, _coupler_1, COUPLER_A, 0);
+    _lane_2 = new Lane(config, display, _coupler_1, COUPLER_B, 1);
+    _lane_3 = new Lane(config, display, _coupler_2, COUPLER_A, 2);
+    _lane_4 = new Lane(config, display, _coupler_2, COUPLER_B, 3);
+    _lane_5 = new Lane(config, display, _coupler_3, COUPLER_A, 4);
+    _lane_6 = new Lane(config, display, _coupler_3, COUPLER_B, 5);
+    _lane_7 = new Lane(config, display, _coupler_4, COUPLER_A, 6);
+    _lane_8 = new Lane(config, display, _coupler_4, COUPLER_B, 7);
 }
 
 void Router::setup()
 {
-    _dac_1->init();
-    _dac_2->init();
-    _dac_3->init();
-    _dac_4->init();
+    _coupler_1->setup();
+    _coupler_2->setup();
+    _coupler_3->setup();
+    _coupler_4->setup();
     _lane_1->setup();
     _lane_2->setup();
     _lane_3->setup();
