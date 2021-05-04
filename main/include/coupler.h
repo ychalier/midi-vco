@@ -25,7 +25,7 @@ class Coupler
         int _setpoint_b;
         int _cv_a;
         int _cv_b;
-        int _gate;
+        bool _gate;
         int _gate_pin;
 };
 
