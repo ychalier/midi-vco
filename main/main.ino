@@ -3,7 +3,7 @@
  * Arduino firmware interfacing between a MIDI keyboard and a set of VCOs.
  * 
  * @author Yohan Chalier
- * @version 0.2.0 2021-04-29
+ * @version 0.3.0 2021-05-08
  */
 
 #include <MIDI.h>
@@ -12,12 +12,16 @@
 #include "include/structs.h"
 #include "include/display.h"
 #include "include/router.h"
+#include "include/sequencer.h"
+#include "include/midi_interface.h"
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 Config *config;
 Allocator *allocator;
 Display *display;
 Router *router;
+Sequencer *sequencer;
+MidiInterface *midif;
 
 void setup()
 {
@@ -30,22 +34,19 @@ void setup()
     router->setup();
     allocator = new Allocator(config, display, router);
     allocator->set_masks();
+    sequencer = new Sequencer(config, allocator);
     MIDI.begin(MIDI_CHANNEL_OMNI);
     MIDI.setHandleNoteOn(handle_note_on);
     MIDI.setHandleNoteOff(handle_note_off);
     MIDI.setHandlePitchBend(handle_pitch_bend);
+    midif = new MidiInterface(config, allocator, sequencer);
     display->demo();
 }
 
 void loop()
 {
     MIDI.read();
-    bool changed = config->read();
-    if (changed)
-    {
-        allocator->set_masks();
-        allocator->display_state();
-    }
+    midif->update();
     display->update();
     router->update();
 }
@@ -59,15 +60,7 @@ void loop()
  */
 void handle_note_on(byte channel, byte pitch, byte velocity)
 {
-    Note note = {channel, pitch};
-    if (velocity == 0)
-    {
-        allocator->note_off(note);
-    }
-    else
-    {
-        allocator->note_on(note);
-    }
+    midif->handle_note_on(channel, pitch, velocity);
 }
 
 /**
@@ -79,8 +72,7 @@ void handle_note_on(byte channel, byte pitch, byte velocity)
  */
 void handle_note_off(byte channel, byte pitch, byte velocity)
 {
-    Note note = {channel, pitch};
-    allocator->note_off(note);
+    midif->handle_note_off(channel, pitch, velocity);
 }
 
 /**
@@ -92,10 +84,10 @@ void handle_note_off(byte channel, byte pitch, byte velocity)
  */
 void handle_pitch_bend(byte channel, int bend)
 {
-    allocator->pitch_bend(channel, bend);
+    midif->handle_pitch_bend(channel, bend);
 }
 
 void handle_control_change(byte channel, byte number, byte value)
 {
-    config->handle_midi_control(channel, number, value);
+    midif->handle_control_change(channel, number, value);
 }

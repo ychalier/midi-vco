@@ -10,6 +10,9 @@ Config::Config()
     _glide_intensity = 0;
     _pitch_bend_range = PITCH_BEND_RANGE;
     _glide_proportional = false;
+    _active_source = SOURCE_DIRECT;
+    _sequencer_record = false;
+    _sequencer_time_factor = 1;
 }
 
 void Config::setup()
@@ -120,7 +123,7 @@ void Config::handle_midi_control(byte channel, byte number, byte value)
             _glide_intensity = (float)(value - 64) / 63.0;
             _glide_proportional = true;
         }
-        break;    
+        break;
     case MIDI_CONTROL_GLIDE_CHROMATIC:
         if (value < 64)
         {
@@ -144,6 +147,29 @@ void Config::handle_midi_control(byte channel, byte number, byte value)
     case MIDI_CONTROL_PITCH_BEND_RANGE:
         _pitch_bend_range = round((float)value / 127.0 * 12.0 * 4.0) / 4.0;
         break;
+    case MIDI_CONTROL_SOURCE:
+        if (value < 64)
+        {
+            _active_source = SOURCE_DIRECT;
+        }
+        else
+        {
+            _active_source = SOURCE_SEQUENCER;
+        }
+        break;
+    case MIDI_CONTROL_SEQUENCER_RECORD:
+        _sequencer_record = value >= 64;
+        break;
+    case MIDI_CONTROL_TIME:
+        if (value < 64)
+        {
+            _sequencer_time_factor = 1.0 / (1.0 + 3.0 * (1.0 - (float)value / 63.0));
+        }
+        else
+        {
+            _sequencer_time_factor = 1.0 + 3.0 * (float)(value - 64) / 63.0;
+        }
+        break;
     default:
         break;
     }
@@ -152,4 +178,19 @@ void Config::handle_midi_control(byte channel, byte number, byte value)
 bool Config::is_glide_proportional()
 {
     return _glide_proportional;
+}
+
+byte Config::get_active_source()
+{
+    return _active_source;
+}
+
+bool Config::should_sequencer_record()
+{
+    return _sequencer_record;
+}
+
+float Config::get_sequencer_time_factor()
+{
+    return _sequencer_time_factor;
 }

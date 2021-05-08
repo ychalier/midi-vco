@@ -84,6 +84,12 @@ public:
 
     bool is_glide_proportional();
 
+    byte get_active_source();
+
+    bool should_sequencer_record();
+
+    float get_sequencer_time_factor();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -92,6 +98,9 @@ private:
     float _glide_intensity;
     bool _glide_proportional;
     float _pitch_bend_range;
+    byte _active_source;
+    bool _sequencer_record;
+    float _sequencer_time_factor;
 };
 
 #endif

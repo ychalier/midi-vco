@@ -41,4 +41,11 @@ typedef struct Glide
     unsigned long duration;
 } Glide;
 
+typedef struct MidiEvent
+{
+    unsigned long timestamp;
+    bool type;
+    Note note;
+} MidiEvent;
+
 #endif

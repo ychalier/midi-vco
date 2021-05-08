@@ -32,11 +32,13 @@
 
 // MIDI Controls
 
-#define MIDI_CONTROL_GLIDE_INTENSITY 73    // S1
-#define MIDI_CONTROL_GLIDE_CHROMATIC 80    // B1
-#define MIDI_CONTROL_GLIDE_LEGATO 81       // B2
-
+#define MIDI_CONTROL_GLIDE_INTENSITY 73  // S1
+#define MIDI_CONTROL_GLIDE_CHROMATIC 80  // B1
+#define MIDI_CONTROL_GLIDE_LEGATO 81     // B2
 #define MIDI_CONTROL_PITCH_BEND_RANGE 75 // S2
+#define MIDI_CONTROL_SEQUENCER_RECORD 82 // B3
+#define MIDI_CONTROL_SOURCE 74           // R1
+#define MIDI_CONTROL_TIME 71             // R2
 
 // Enumerations
 
@@ -71,5 +73,11 @@
 #define GLIDE_MAX_RATE 50  // Milliseconds per semitones
 #define GLIDE_MAX_TIME 500 // Milliseconds
 #define GLIDE_INTENSITY_POWER 2
+
+#define SEQUENCER_MEMORY_SIZE 128
+
+#define SOURCE_DIRECT 0
+#define SOURCE_SEQUENCER 1
+#define SOURCE_ARPEGGIATOR 2
 
 #endif
