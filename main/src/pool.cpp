@@ -164,3 +164,8 @@ void Pool::unlock()
         }
     }
 }
+
+bool Pool::buffer_contains(Note note)
+{
+    return _active && _buffer->contains(note);
+}

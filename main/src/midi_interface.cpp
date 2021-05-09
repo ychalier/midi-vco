@@ -106,3 +106,13 @@ void MidiInterface::handle_control_change(byte channel, byte number, byte value)
         break;
     }
 }
+
+void MidiInterface::handle_after_touch_poly(byte channel, byte note, byte pressure)
+{
+    _allocator->after_touch_poly({channel, note}, pressure);
+}
+
+void MidiInterface::handle_after_touch_channel(byte channel, byte pressure)
+{
+    _allocator->after_touch_channel(channel, pressure);
+}

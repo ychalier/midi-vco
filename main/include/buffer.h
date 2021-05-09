@@ -69,6 +69,8 @@ public:
 
     Note get_at_index(int index);
 
+    bool contains(Note note);
+
 private:
     /// Memory for the notes.
     Note _notes[BUFFER_SIZE];

@@ -71,6 +71,10 @@ public:
      */
     void pitch_bend(byte channel, int bend);
 
+    void after_touch_poly(Note note, byte pressure);
+
+    void after_touch_channel(byte channel, byte pressure);
+
     void reset();
 
     void hold_on();

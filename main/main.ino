@@ -94,3 +94,13 @@ void handle_control_change(byte channel, byte number, byte value)
 {
     midif->handle_control_change(channel, number, value);
 }
+
+void handle_after_touch_poly(byte channel, byte pitch, byte pressure)
+{
+    midif->handle_after_touch_poly(channel, pitch, pressure);
+}
+
+void handle_after_touch_channel(byte channel, byte pressure)
+{
+    midif->handle_after_touch_channel(channel, pressure);
+}

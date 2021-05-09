@@ -115,6 +115,8 @@ public:
 
     void unlock();
 
+    bool buffer_contains(Note note);
+
 private:
     Router *_router;
 

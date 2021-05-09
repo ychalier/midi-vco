@@ -203,3 +203,26 @@ void Allocator::hold_off()
         _pools[i]->unlock();
     }
 }
+
+void Allocator::after_touch_poly(Note note, byte pressure)
+{
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        if (_pools[i]->buffer_contains(note))
+        {
+            _pools[i]->bend(AFTERTOUCH_COEFF * pressure);
+            break;
+        }
+    }
+}
+
+void Allocator::after_touch_channel(byte channel, byte pressure)
+{
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        if (_pools[i]->accepts_channel(channel))
+        {
+            _pools[i]->bend(AFTERTOUCH_COEFF * pressure);
+        }
+    }
+}

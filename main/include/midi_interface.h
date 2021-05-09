@@ -17,6 +17,8 @@ public:
     void handle_note_off(byte channel, byte pitch, byte velocity);
     void handle_pitch_bend(byte channel, int bend);
     void handle_control_change(byte channel, byte number, byte value);
+    void handle_after_touch_poly(byte channel, byte note, byte pressure);
+    void handle_after_touch_channel(byte channel, byte pressure);
 
 private:
     Config *_config;

@@ -80,3 +80,17 @@ Note Buffer::get_at_index(int index)
     }
     return {0, 0};
 }
+
+bool Buffer::contains(Note note)
+{
+    bool found = false;
+    for (int i = 0; i <= _cursor; i++)
+    {
+        if (_notes[i] == note)
+        {
+            found = true;
+            break;
+        }
+    }
+    return found;
+}
