@@ -66,3 +66,17 @@ void Buffer::reset()
 {
     _cursor = -1;
 }
+
+int Buffer::get_size()
+{
+    return _cursor + 1;
+}
+
+Note Buffer::get_at_index(int index)
+{
+    if (index >= 0 && index <= _cursor)
+    {
+        return _notes[index];
+    }
+    return {0, 0};
+}

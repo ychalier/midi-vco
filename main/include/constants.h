@@ -39,6 +39,7 @@
 #define MIDI_CONTROL_SEQUENCER_RECORD 82 // B3
 #define MIDI_CONTROL_SOURCE 74           // R1
 #define MIDI_CONTROL_TIME 71             // R2
+#define MIDI_CONTROL_ARPEGGIATOR_MODE 65 // R3
 
 // Enumerations
 
@@ -54,10 +55,23 @@
 #define CHANNEL_FILTER_OFF 0
 #define CHANNEL_FILTER_ON 1
 
-// Config changes
+#define SOURCE_DIRECT 0
+#define SOURCE_SEQUENCER 1
+#define SOURCE_ARPEGGIATOR 2
+
+#define ARPEGGIATOR_MODE_UP 0
+#define ARPEGGIATOR_MODE_DOWN 1
+#define ARPEGGIATOR_MODE_UP_DOWN 2
+#define ARPEGGIATOR_MODE_RANDOM 3
+
+// Flags
 
 #define CONFIG_CHANGE_SOURCE 1
 #define CONFIG_CHANGE_SEQUENCER_RECORD 2
+
+#define GLIDE_FLAG_PROPORTIONAL 1
+#define GLIDE_FLAG_CHROMATIC 2
+#define GLIDE_FLAG_LEGATO 4
 
 // General constants
 
@@ -72,17 +86,10 @@
 
 #define BUFFER_SIZE 8
 
-#define GLIDE_FLAG_PROPORTIONAL 1
-#define GLIDE_FLAG_CHROMATIC 2
-#define GLIDE_FLAG_LEGATO 4
 #define GLIDE_MAX_RATE 50  // Milliseconds per semitones
 #define GLIDE_MAX_TIME 500 // Milliseconds
 #define GLIDE_INTENSITY_POWER 2
 
-#define SEQUENCER_MEMORY_SIZE 128
-
-#define SOURCE_DIRECT 0
-#define SOURCE_SEQUENCER 1
-#define SOURCE_ARPEGGIATOR 2
+#define SEQUENCER_MEMORY_SIZE 64
 
 #endif

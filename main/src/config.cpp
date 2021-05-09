@@ -13,6 +13,7 @@ Config::Config()
     _active_source = SOURCE_DIRECT;
     _sequencer_record = false;
     _sequencer_time_factor = 1;
+    _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
 }
 
 void Config::setup()
@@ -180,6 +181,25 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
         {
             _sequencer_time_factor = 1.0 + 3.0 * (float)(value - 64) / 63.0;
         }
+        _arpeggiator_period = 30000.0 / (float)(value + 1); // milliseconds per beat
+        break;
+    case MIDI_CONTROL_ARPEGGIATOR_MODE:
+        if (value < 32)
+        {
+            _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
+        }
+        else if (value < 64)
+        {
+            _arpeggiator_mode = ARPEGGIATOR_MODE_DOWN;
+        }
+        else if (value < 96)
+        {
+            _arpeggiator_mode = ARPEGGIATOR_MODE_UP_DOWN;
+        }
+        else
+        {
+            _arpeggiator_mode = ARPEGGIATOR_MODE_RANDOM;
+        }
         break;
     default:
         break;
@@ -205,4 +225,14 @@ bool Config::should_sequencer_record()
 float Config::get_sequencer_time_factor()
 {
     return _sequencer_time_factor;
+}
+
+byte Config::get_arpeggiator_mode()
+{
+    return _arpeggiator_mode;
+}
+
+unsigned long Config::get_arpeggiator_period()
+{
+    return _arpeggiator_period;
 }

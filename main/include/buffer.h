@@ -65,6 +65,10 @@ public:
      */
     void reset();
 
+    int get_size();
+
+    Note get_at_index(int index);
+
 private:
     /// Memory for the notes.
     Note _notes[BUFFER_SIZE];

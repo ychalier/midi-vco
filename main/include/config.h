@@ -90,6 +90,10 @@ public:
 
     float get_sequencer_time_factor();
 
+    byte get_arpeggiator_mode();
+
+    unsigned long get_arpeggiator_period();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -101,6 +105,8 @@ private:
     byte _active_source;
     bool _sequencer_record;
     float _sequencer_time_factor;
+    byte _arpeggiator_mode;
+    unsigned long _arpeggiator_period;
 };
 
 #endif
