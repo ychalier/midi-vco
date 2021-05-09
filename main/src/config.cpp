@@ -173,14 +173,7 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
         }
         break;
     case MIDI_CONTROL_TIME:
-        if (value < 64)
-        {
-            _sequencer_time_factor = 1.0 / (1.0 + 3.0 * (1.0 - (float)value / 63.0));
-        }
-        else
-        {
-            _sequencer_time_factor = 1.0 + 3.0 * (float)(value - 64) / 63.0;
-        }
+        _sequencer_time_factor = pow(SEQUENCER_TIME_SCALE_RANGE, 2.0 * (float)(value) / 127.0 - 1.0);
         _arpeggiator_period = 30000.0 / (float)(value + 1); // milliseconds per beat
         break;
     case MIDI_CONTROL_ARPEGGIATOR_MODE:
