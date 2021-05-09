@@ -54,6 +54,11 @@
 #define CHANNEL_FILTER_OFF 0
 #define CHANNEL_FILTER_ON 1
 
+// Config changes
+
+#define CONFIG_CHANGE_SOURCE 1
+#define CONFIG_CHANGE_SEQUENCER_RECORD 2
+
 // General constants
 
 #define DAC_VMAX 4.096        // Volts

@@ -71,6 +71,8 @@ public:
      */
     void pitch_bend(byte channel, int bend);
 
+    void reset();
+
 private:
     /// A reference to the global user config.
     Config *_config;

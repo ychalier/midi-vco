@@ -13,6 +13,7 @@
 #include "include/display.h"
 #include "include/router.h"
 #include "include/sequencer.h"
+#include "include/arpeggiator.h"
 #include "include/midi_interface.h"
 
 MIDI_CREATE_DEFAULT_INSTANCE();
@@ -21,6 +22,7 @@ Allocator *allocator;
 Display *display;
 Router *router;
 Sequencer *sequencer;
+Arpeggiator *arpeggiator;
 MidiInterface *midif;
 
 void setup()
@@ -35,11 +37,12 @@ void setup()
     allocator = new Allocator(config, display, router);
     allocator->set_masks();
     sequencer = new Sequencer(config, allocator);
+    arpeggiator = new Arpeggiator(config, allocator);
     MIDI.begin(MIDI_CHANNEL_OMNI);
     MIDI.setHandleNoteOn(handle_note_on);
     MIDI.setHandleNoteOff(handle_note_off);
     MIDI.setHandlePitchBend(handle_pitch_bend);
-    midif = new MidiInterface(config, allocator, sequencer);
+    midif = new MidiInterface(config, allocator, sequencer, arpeggiator);
     display->demo();
 }
 

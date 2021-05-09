@@ -17,11 +17,19 @@ void Allocator::setup()
     set_masks();
 }
 
-void Allocator::set_masks()
+void Allocator::reset()
 {
     for (int i = 0; i < LANE_COUNT; i++)
     {
         _pools[i]->stop();
+    }
+}
+
+void Allocator::set_masks()
+{
+    reset();
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
         _pools[i]->set_masks(0, 0);
     }
     switch (_config->get_channel_filter())

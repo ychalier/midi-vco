@@ -80,7 +80,7 @@ public:
      */
     float get_pitch_bend_range();
 
-    void handle_midi_control(byte channel, byte number, byte value);
+    int handle_midi_control(byte channel, byte number, byte value);
 
     bool is_glide_proportional();
 

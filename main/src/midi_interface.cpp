@@ -1,11 +1,12 @@
 #include "Arduino.h"
 #include "../include/midi_interface.h"
 
-MidiInterface::MidiInterface(Config *config, Allocator *allocator, Sequencer *sequencer)
+MidiInterface::MidiInterface(Config *config, Allocator *allocator, Sequencer *sequencer, Arpeggiator *arpeggiator)
 {
     _config = config;
     _allocator = allocator;
     _sequencer = sequencer;
+    _arpeggiator = arpeggiator;
 }
 
 void MidiInterface::update()
@@ -16,9 +17,14 @@ void MidiInterface::update()
         _allocator->set_masks();
         _allocator->display_state();
     }
-    if (_config->get_active_source() == SOURCE_SEQUENCER)
+    switch (_config->get_active_source())
     {
-        _sequencer->update_playback();
+    case SOURCE_SEQUENCER:
+        _sequencer->update();
+        break;
+    case SOURCE_ARPEGGIATOR:
+        _arpeggiator->update();
+        break;
     }
 }
 
@@ -31,16 +37,36 @@ void MidiInterface::handle_note_on(byte channel, byte pitch, byte velocity)
     else
     {
         Note note = {channel, pitch};
-        _allocator->note_on(note);
-        _sequencer->record_note_on(note);
+        switch (_config->get_active_source())
+        {
+        case SOURCE_DIRECT:
+            _allocator->note_on(note);
+            break;
+        case SOURCE_SEQUENCER:
+            _sequencer->note_on(note);
+            break;
+        case SOURCE_ARPEGGIATOR:
+            _arpeggiator->note_on(note);
+            break;
+        }
     }
 }
 
 void MidiInterface::handle_note_off(byte channel, byte pitch, byte velocity)
 {
     Note note = {channel, pitch};
-    _allocator->note_off(note);
-    _sequencer->record_note_off(note);
+    switch (_config->get_active_source())
+    {
+    case SOURCE_DIRECT:
+        _allocator->note_off(note);
+        break;
+    case SOURCE_SEQUENCER:
+        _sequencer->note_off(note);
+        break;
+    case SOURCE_ARPEGGIATOR:
+        _arpeggiator->note_off(note);
+        break;
+    }
 }
 
 void MidiInterface::handle_pitch_bend(byte channel, int bend)
@@ -50,27 +76,23 @@ void MidiInterface::handle_pitch_bend(byte channel, int bend)
 
 void MidiInterface::handle_control_change(byte channel, byte number, byte value)
 {
-    _config->handle_midi_control(channel, number, value);
-    if (_sequencer->is_recording() != _config->should_sequencer_record())
+    int changed = _config->handle_midi_control(channel, number, value);
+    if (changed & CONFIG_CHANGE_SEQUENCER_RECORD)
     {
-        if (_config->should_sequencer_record())
-        {
-            _sequencer->start_recording();
-        }
-        else
-        {
-            _sequencer->stop_recording();
-        }
+        _sequencer->update_state(_config->should_sequencer_record());
     }
-    if (_sequencer->is_playing() != (_config->get_active_source() == SOURCE_SEQUENCER))
+    if (changed & CONFIG_CHANGE_SOURCE)
     {
-        if (_sequencer->is_playing())
+        _allocator->reset();
+        switch (_config->get_active_source())
         {
-            _sequencer->stop_playback();
-        }
-        else
-        {
-            _sequencer->start_playback();
+        case SOURCE_DIRECT:
+            break;
+        case SOURCE_SEQUENCER:
+            _sequencer->update_state(false);
+            break;
+        case SOURCE_ARPEGGIATOR:
+            break;
         }
     }
 }

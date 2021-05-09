@@ -108,8 +108,9 @@ float Config::get_pitch_bend_range()
     return _pitch_bend_range;
 }
 
-void Config::handle_midi_control(byte channel, byte number, byte value)
+int Config::handle_midi_control(byte channel, byte number, byte value)
 {
+    int changed = 0;
     switch (number)
     {
     case MIDI_CONTROL_GLIDE_INTENSITY:
@@ -148,6 +149,7 @@ void Config::handle_midi_control(byte channel, byte number, byte value)
         _pitch_bend_range = round((float)value / 127.0 * 12.0 * 4.0) / 4.0;
         break;
     case MIDI_CONTROL_SOURCE:
+        byte old_source = _active_source;
         if (value < 64)
         {
             _active_source = SOURCE_DIRECT;
@@ -156,9 +158,18 @@ void Config::handle_midi_control(byte channel, byte number, byte value)
         {
             _active_source = SOURCE_SEQUENCER;
         }
+        if (old_source != _active_source)
+        {
+            changed = changed + CONFIG_CHANGE_SOURCE;
+        }
         break;
     case MIDI_CONTROL_SEQUENCER_RECORD:
+        bool old_sequencer_record = _sequencer_record;
         _sequencer_record = value >= 64;
+        if (old_sequencer_record != _sequencer_record)
+        {
+            changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
+        }
         break;
     case MIDI_CONTROL_TIME:
         if (value < 64)
@@ -173,6 +184,7 @@ void Config::handle_midi_control(byte channel, byte number, byte value)
     default:
         break;
     }
+    return changed;
 }
 
 bool Config::is_glide_proportional()

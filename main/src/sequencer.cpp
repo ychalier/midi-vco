@@ -7,7 +7,6 @@ Sequencer::Sequencer(Config *config, Allocator *allocator)
     _allocator = allocator;
     _size = 0;
     _recording = false;
-    _playing = true;
     _record_timestamp = 0;
     _playback_timestamp = 0;
     _playback_index = 0;
@@ -22,7 +21,7 @@ void Sequencer::record_event(MidiEvent event)
     }
 }
 
-void Sequencer::record_note_on(Note note)
+void Sequencer::note_on(Note note)
 {
     if (_recording)
     {
@@ -33,48 +32,35 @@ void Sequencer::record_note_on(Note note)
         }
         record_event({now - _record_timestamp, true, note});
     }
+    _allocator->note_on(note);
 }
 
-void Sequencer::record_note_off(Note note)
+void Sequencer::note_off(Note note)
 {
     if (_recording)
     {
         record_event({millis(), false, note});
     }
+    _allocator->note_off(note);
 }
 
-void Sequencer::start_recording()
+void Sequencer::update_state(bool recording)
 {
-    if (!_recording)
+    _recording = recording;
+    if (_recording)
     {
         _size = 0;
-        _recording = true;
     }
-}
-
-void Sequencer::stop_recording()
-{
-    _recording = false;
-}
-
-void Sequencer::start_playback()
-{
-    if (!_playing)
+    else
     {
         _playback_timestamp = millis();
         _playback_index = 0;
-        _playing = true;
     }
 }
 
-void Sequencer::stop_playback()
+void Sequencer::update()
 {
-    _playing = false;
-}
-
-void Sequencer::update_playback()
-{
-    if (_playing && _playback_index < _size)
+    if (!_recording && _playback_index < _size)
     {
         unsigned long elapsed = _config->get_sequencer_time_factor() * (millis() - _playback_timestamp);
         int i = _playback_index;
@@ -97,14 +83,4 @@ void Sequencer::update_playback()
             }
         }
     }
-}
-
-bool Sequencer::is_recording()
-{
-    return _recording;
-}
-
-bool Sequencer::is_playing()
-{
-    return _playing;
 }
