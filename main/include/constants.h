@@ -40,6 +40,7 @@
 #define MIDI_CONTROL_SOURCE 74           // R1
 #define MIDI_CONTROL_TIME 71             // R2
 #define MIDI_CONTROL_ARPEGGIATOR_MODE 65 // R3
+#define MIDI_CONTROL_HOLD 83             // B4
 
 // Enumerations
 
@@ -68,6 +69,7 @@
 
 #define CONFIG_CHANGE_SOURCE 1
 #define CONFIG_CHANGE_SEQUENCER_RECORD 2
+#define CONFIG_CHANGE_HOLD 4
 
 #define GLIDE_FLAG_PROPORTIONAL 1
 #define GLIDE_FLAG_CHROMATIC 2

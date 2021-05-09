@@ -14,6 +14,7 @@ Config::Config()
     _sequencer_record = false;
     _sequencer_time_factor = 1;
     _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
+    _hold = false;
 }
 
 void Config::setup()
@@ -194,6 +195,14 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
             _arpeggiator_mode = ARPEGGIATOR_MODE_RANDOM;
         }
         break;
+    case MIDI_CONTROL_HOLD:
+        bool old_hold = _hold;
+        _hold = value >= 64;
+        if (old_hold != _hold)
+        {
+            changed = changed + CONFIG_CHANGE_HOLD;
+        }
+        break;
     default:
         break;
     }
@@ -228,4 +237,9 @@ byte Config::get_arpeggiator_mode()
 unsigned long Config::get_arpeggiator_period()
 {
     return _arpeggiator_period;
+}
+
+bool Config::get_hold()
+{
+    return _hold;
 }

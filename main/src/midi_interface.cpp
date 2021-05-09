@@ -76,13 +76,12 @@ void MidiInterface::handle_pitch_bend(byte channel, int bend)
 
 void MidiInterface::handle_control_change(byte channel, byte number, byte value)
 {
-    int changed = _config->handle_midi_control(channel, number, value);
-    if (changed & CONFIG_CHANGE_SEQUENCER_RECORD)
+    switch (_config->handle_midi_control(channel, number, value))
     {
+    case CONFIG_CHANGE_SEQUENCER_RECORD:
         _sequencer->update_state(_config->should_sequencer_record());
-    }
-    if (changed & CONFIG_CHANGE_SOURCE)
-    {
+        break;
+    case CONFIG_CHANGE_SOURCE:
         _allocator->reset();
         switch (_config->get_active_source())
         {
@@ -94,5 +93,16 @@ void MidiInterface::handle_control_change(byte channel, byte number, byte value)
         case SOURCE_ARPEGGIATOR:
             break;
         }
+        break;
+    case CONFIG_CHANGE_HOLD:
+        if (_config->get_hold())
+        {
+            _allocator->hold_on();
+        }
+        else
+        {
+            _allocator->hold_off();
+        }
+        break;
     }
 }

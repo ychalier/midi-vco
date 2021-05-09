@@ -48,6 +48,8 @@ public:
      */
     bool is_free();
 
+    bool is_active();
+
     /**
      * Check if a given channel is whitelisted in the pool.
      * 
@@ -109,6 +111,10 @@ public:
      */
     unsigned long get_era();
 
+    void lock();
+
+    void unlock();
+
 private:
     Router *_router;
 
@@ -126,6 +132,8 @@ private:
 
     /// Wether a note is currently loaded in the pool.
     bool _active;
+
+    bool _locked;
 };
 
 #endif

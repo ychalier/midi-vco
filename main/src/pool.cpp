@@ -25,6 +25,7 @@ Pool::Pool(Router *router)
     _buffer = new Buffer();
     _era = 0;
     _active = false;
+    _locked = false;
 }
 
 void Pool::set_masks(byte lane_mask, unsigned int channel_mask)
@@ -35,12 +36,17 @@ void Pool::set_masks(byte lane_mask, unsigned int channel_mask)
 
 bool Pool::is_enabled()
 {
-    return _lane_mask > 0;
+    return _lane_mask > 0 && !_locked;
 }
 
 bool Pool::is_free()
 {
     return !_active;
+}
+
+bool Pool::is_active()
+{
+    return _active;
 }
 
 bool Pool::accepts_channel(byte channel)
@@ -83,10 +89,13 @@ void Pool::load_buffer(int bend, bool set_only)
 
 void Pool::load(Note note)
 {
-    _active = true;
-    _era = millis();
-    _buffer->push(note);
-    load_buffer(0, false);
+    if (!_locked)
+    {
+        _active = true;
+        _era = millis();
+        _buffer->push(note);
+        load_buffer(0, false);
+    }
 }
 
 void Pool::stop()
@@ -106,13 +115,16 @@ bool Pool::unload(Note note)
 {
     if (_active && _buffer->pop(note))
     {
-        if (_buffer->empty())
+        if (!_locked)
         {
-            stop();
-        }
-        else
-        {
-            load_buffer(0, true);
+            if (_buffer->empty())
+            {
+                stop();
+            }
+            else
+            {
+                load_buffer(0, true);
+            }
         }
         return true;
     }
@@ -130,4 +142,25 @@ void Pool::bend(int bend_value)
 unsigned long Pool::get_era()
 {
     return _era;
+}
+
+void Pool::lock()
+{
+    _locked = true;
+}
+
+void Pool::unlock()
+{
+    if (_locked)
+    {
+        _locked = false;
+        if (_buffer->empty())
+        {
+            stop();
+        }
+        else
+        {
+            load_buffer(0, false);
+        }
+    }
 }

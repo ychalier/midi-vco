@@ -94,6 +94,8 @@ public:
 
     unsigned long get_arpeggiator_period();
 
+    bool get_hold();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -107,6 +109,7 @@ private:
     float _sequencer_time_factor;
     byte _arpeggiator_mode;
     unsigned long _arpeggiator_period;
+    bool _hold;
 };
 
 #endif

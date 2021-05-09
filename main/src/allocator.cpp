@@ -184,3 +184,22 @@ void Allocator::pitch_bend(byte channel, int bend_value)
         }
     }
 }
+
+void Allocator::hold_on()
+{
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        if (_pools[i]->is_active())
+        {
+            _pools[i]->lock();
+        }
+    }
+}
+
+void Allocator::hold_off()
+{
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        _pools[i]->unlock();
+    }
+}

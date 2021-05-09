@@ -73,6 +73,10 @@ public:
 
     void reset();
 
+    void hold_on();
+
+    void hold_off();
+
 private:
     /// A reference to the global user config.
     Config *_config;
