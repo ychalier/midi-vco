@@ -153,9 +153,13 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
         break;
     case MIDI_CONTROL_SOURCE:
         byte old_source = _active_source;
-        if (value < 64)
+        if (value < 42)
         {
             _active_source = SOURCE_DIRECT;
+        }
+        else if (value < 84)
+        {
+            _active_source = SOURCE_ARPEGGIATOR;
         }
         else
         {
