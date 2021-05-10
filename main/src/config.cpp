@@ -15,6 +15,7 @@ Config::Config()
     _sequencer_time_factor = 1;
     _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
     _hold = false;
+    _voltage_offset = 0;
 }
 
 void Config::setup()
@@ -203,6 +204,9 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
             changed = changed + CONFIG_CHANGE_HOLD;
         }
         break;
+    case MIDI_CONTROL_VOLTAGE_OFFSET:
+        _voltage_offset = (float)value / 127.0;
+        break;
     default:
         break;
     }
@@ -242,4 +246,9 @@ unsigned long Config::get_arpeggiator_period()
 bool Config::get_hold()
 {
     return _hold;
+}
+
+float Config::get_voltage_offset()
+{
+    return _voltage_offset;
 }

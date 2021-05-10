@@ -41,6 +41,7 @@
 #define MIDI_CONTROL_TIME 71             // R2
 #define MIDI_CONTROL_ARPEGGIATOR_MODE 65 // R3
 #define MIDI_CONTROL_HOLD 83             // B4
+#define MIDI_CONTROL_VOLTAGE_OFFSET 2    // R4
 
 // Enumerations
 

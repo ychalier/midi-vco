@@ -96,6 +96,8 @@ public:
 
     bool get_hold();
 
+    float get_voltage_offset();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -110,6 +112,7 @@ private:
     byte _arpeggiator_mode;
     unsigned long _arpeggiator_period;
     bool _hold;
+    float _voltage_offset;
 };
 
 #endif

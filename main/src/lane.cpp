@@ -103,7 +103,7 @@ void Lane::update()
 int Lane::pitch_to_voltage(Config *config, byte pitch, int bend)
 {
     float bent_pitch = (float)pitch + (float)bend * config->get_pitch_bend_range() / 8192.0;
-    float voltage = (bent_pitch - MIDI_MIN_PITCH) / 12.0 / AMP_GAIN;
+    float voltage = (bent_pitch - MIDI_MIN_PITCH) / 12.0 / AMP_GAIN + config->get_voltage_offset();
     if (voltage < 0)
     {
         voltage = 0;
