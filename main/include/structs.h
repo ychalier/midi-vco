@@ -41,6 +41,10 @@ typedef struct Glide
     unsigned long duration;
 } Glide;
 
+/**
+ * Data representation of a sequencer event, either a note-on or a note-off
+ * message.
+ */
 typedef struct MidiEvent
 {
     unsigned long timestamp;

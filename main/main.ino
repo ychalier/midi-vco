@@ -55,11 +55,7 @@ void loop()
 }
 
 /**
- * Handler for the MIDI note-on message.
- *
- * @param channel MIDI channel associated with the note.
- * @param pitch Note pitch in semitons.
- * @param velocity Velocity associated with the note, ignored here.
+ * @see MidiInterface.handle_note_on
  */
 void handle_note_on(byte channel, byte pitch, byte velocity)
 {
@@ -67,11 +63,7 @@ void handle_note_on(byte channel, byte pitch, byte velocity)
 }
 
 /**
- * Handler for the MIDI note-off message.
- *
- * @param channel MIDI channel associated with the note.
- * @param pitch Note pitch in semitons.
- * @param velocity Velocity associated with the note, ignored here.
+ * @see MidiInterface.handle_note_off
  */
 void handle_note_off(byte channel, byte pitch, byte velocity)
 {
@@ -79,27 +71,32 @@ void handle_note_off(byte channel, byte pitch, byte velocity)
 }
 
 /**
- * Handler for the MIDI pitch-bend message.
- *
- * @param channel MIDI channel to bend the pitch of.
- * @param bend Signed 14-bit encoding of the current position of the pitch-bend
- *     control.
+ * @see MidiInterface.handle_pitch_bend
  */
 void handle_pitch_bend(byte channel, int bend)
 {
     midif->handle_pitch_bend(channel, bend);
 }
 
+/**
+ * @see MidiInterface.handle_control_change
+ */
 void handle_control_change(byte channel, byte number, byte value)
 {
     midif->handle_control_change(channel, number, value);
 }
 
+/**
+ * @see MidiInterface.handle_after_touch_poly
+ */
 void handle_after_touch_poly(byte channel, byte pitch, byte pressure)
 {
     midif->handle_after_touch_poly(channel, pitch, pressure);
 }
 
+/**
+ * @see MidiInterface.handle_after_touch_channel
+ */
 void handle_after_touch_channel(byte channel, byte pressure)
 {
     midif->handle_after_touch_channel(channel, pressure);

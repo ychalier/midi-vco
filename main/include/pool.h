@@ -48,6 +48,9 @@ public:
      */
     bool is_free();
 
+    /**
+     * Getter for the _active attribute.
+     */
     bool is_active();
 
     /**
@@ -111,10 +114,24 @@ public:
      */
     unsigned long get_era();
 
+    /**
+     * Lock the pool. Incoming note-on messages will be ignored. Incoming
+     * note-off messages will remove notes from the internal buffer, but that
+     * will not affect the lanes until the pool gets unlocked.
+     */
     void lock();
 
+    /**
+     * Unlock the pool. Update the lanes with if necessary.
+     */
     void unlock();
 
+    /**
+     * Check whether the pool's buffer contains a note.
+     * 
+     * @param note The note to find.
+     * @return `true` if the internal buffer contains that note.
+     */
     bool buffer_contains(Note note);
 
 private:
@@ -132,9 +149,10 @@ private:
     /// Timestamp of last note activation.
     unsigned long _era;
 
-    /// Wether a note is currently loaded in the pool.
+    /// Whether a note is currently loaded in the pool.
     bool _active;
 
+    /// Whether the pool is locked.
     bool _locked;
 };
 
