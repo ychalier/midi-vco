@@ -65,10 +65,29 @@ public:
      */
     void reset();
 
+    /**
+     * Get the size of the buffer.
+     * 
+     * @return The number of notes in the buffer.
+     */
     int get_size();
 
+    /**
+     * Accessor for the stored notes. Caution: if the index is incorrect
+     * (negative or out of bounds, no error is thrown and a dummy note is
+     * returned instead).
+     * 
+     * @param index 0-based index of the note to access.
+     * @return The accessed note.
+     */
     Note get_at_index(int index);
 
+    /**
+     * Check if the buffer contains a given note.
+     * 
+     * @param note The note to check the presence of.
+     * @return `true` if the buffer contains the note.
+     */
     bool contains(Note note);
 
 private:

@@ -76,26 +76,59 @@ public:
     float get_glide_intensity();
 
     /**
-     * Getter for the _pitch_bend_range function.
+     * Getter for the _pitch_bend_range attribute.
      */
     float get_pitch_bend_range();
 
+    /**
+     * Callback to handle MIDI controls.
+     * 
+     * @param channel The MIDI channel concerned with the change.
+     * @param number The control identifier.
+     * @param value The current control value, a 7-bit integer.
+     * @return A bit-encoding of which inner parameter changed, defined by
+     *   constants named `CONFIG_CHANGE_*`
+     */
     int handle_midi_control(byte channel, byte number, byte value);
 
+    /**
+     * Getter for the _glide_proportional attribute.
+     */
     bool is_glide_proportional();
 
+    /**
+     * Getter for the _active_source attribute.
+     */
     byte get_active_source();
 
+    /**
+     * Getter for the _sequencer_record attribute.
+     */
     bool should_sequencer_record();
 
+    /**
+     * Getter for the _sequencer_time_factor attribute.
+     */
     float get_sequencer_time_factor();
 
+    /**
+     * Getter for the _arpeggiator_mode attribute.
+     */
     byte get_arpeggiator_mode();
 
+    /**
+     * Getter for the _arpeggiator_period attribute.
+     */
     unsigned long get_arpeggiator_period();
 
+    /**
+     * Getter for the _hold attribute.
+     */
     bool get_hold();
 
+    /**
+     * Getter for the _voltage_offset attribute.
+     */
     float get_voltage_offset();
 
 private:

@@ -47,7 +47,7 @@ public:
      * pool if there's one available right now or if a priority rule says to
      * make room for it.
      * 
-     * @see [Politique d'allocation des voies](https://github.com/ychalier/midi-vco/wiki/Politique-d'allocation-des-voies)
+     * @see https://github.com/ychalier/midi-vco/wiki/Politique-d'allocation-des-voies
      * 
      * @param note The note associated with the *note-on* message.
      */
@@ -71,14 +71,37 @@ public:
      */
     void pitch_bend(byte channel, int bend);
 
+    /**
+     * Handler for the polyphonic *after-touch* MIDI message. Behaves similarly
+     * to the pitch bend.
+     * 
+     * @param note The note concerned with the message.
+     * @param pressure 7-bit encoding of the amount of pressure on that note.
+     */
     void after_touch_poly(Note note, byte pressure);
 
+    /**
+     * Handler for the channel *after-touch* MIDI message. Same as
+     * `after_touch_poly` but for a whole MIDI channel.
+     * 
+     * @param channel MIDI channel ID
+     * @param pressure 7-bit encoding of the amount of pressure.
+     */
     void after_touch_channel(byte channel, byte pressure);
 
+    /**
+     * Force reset for all the pools, their buffers, and the lanes.
+     */
     void reset();
 
+    /**
+     * Lock all active pools in their current state.
+     */
     void hold_on();
 
+    /**
+     * Unlock all locked pools.
+     */
     void hold_off();
 
 private:

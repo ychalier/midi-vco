@@ -15,10 +15,9 @@ Lane::Lane(Config *config, Display *display, Coupler *coupler, bool channel, int
 
 void Lane::setup()
 {
-    
 }
 
-void Lane::set(int setpoint, bool update_mate)
+void Lane::set(int setpoint)
 {
     _current_setpoint = setpoint;
     _coupler->set(_channel, setpoint);
@@ -37,7 +36,7 @@ void Lane::start(int setpoint)
     if (glide_intensity == 0 ||
         (!_active && (GLIDE_FLAG_LEGATO & _config->get_glide_flags())))
     {
-        set(setpoint, true);
+        set(setpoint);
     }
     else
     {
@@ -63,7 +62,7 @@ void Lane::start(int setpoint)
 
 void Lane::set_pitch(byte pitch, int bend)
 {
-    set(pitch_to_voltage(_config, pitch, bend), true);
+    set(pitch_to_voltage(_config, pitch, bend));
 }
 
 void Lane::start_pitch(byte pitch, int bend)
@@ -92,7 +91,7 @@ void Lane::update()
         {
             setpoint = pitch_to_voltage(_config, setpoint_to_pitch(setpoint), 0);
         }
-        set((int)setpoint, true);
+        set((int)setpoint);
         if (progress >= 1)
         {
             _glide.active = false;
