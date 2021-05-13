@@ -1,5 +1,27 @@
 var searchData=
 [
-  ['is_5fenabled_84',['is_enabled',['../class_pool.html#aea355f50869629b54135c86843762c70',1,'Pool']]],
-  ['is_5ffree_85',['is_free',['../class_pool.html#a703287c34419cae6dc60ec8089a05e53',1,'Pool']]]
+  ['get_124',['get',['../class_buffer.html#ade5c243c7b78e28f889f7d52f37df481',1,'Buffer']]],
+  ['get_5factive_5fsource_125',['get_active_source',['../class_config.html#a1efdd32298aee97e44a9c9a50033742f',1,'Config']]],
+  ['get_5farpeggiator_5fmode_126',['get_arpeggiator_mode',['../class_config.html#a6b4b4dfc0ccbaabc80d9bab6011eaf26',1,'Config']]],
+  ['get_5farpeggiator_5fperiod_127',['get_arpeggiator_period',['../class_config.html#a533574f57e8f35b3dbfa851170f04b11',1,'Config']]],
+  ['get_5fat_5findex_128',['get_at_index',['../class_buffer.html#acd71ac784527e820976fcb8640ac798c',1,'Buffer']]],
+  ['get_5fchannel_5ffilter_129',['get_channel_filter',['../class_config.html#a6bba320c0aca0977bc76ce70f2aef047',1,'Config']]],
+  ['get_5fera_130',['get_era',['../class_pool.html#af23bc62de2e464c2045c9d3436d66c50',1,'Pool']]],
+  ['get_5fglide_5fflags_131',['get_glide_flags',['../class_config.html#a76a8f85d90b01fb1b13f06a23f44fc14',1,'Config']]],
+  ['get_5fglide_5fintensity_132',['get_glide_intensity',['../class_config.html#a9ed37600613a013cd0e0bea13e82c5a2',1,'Config']]],
+  ['get_5fhold_133',['get_hold',['../class_config.html#a36cea646b62ad7a6ce12b39756787c4f',1,'Config']]],
+  ['get_5fled_5fstate_134',['get_led_state',['../class_display.html#a00fd7d2935aee942403cf7d1fca6b819',1,'Display']]],
+  ['get_5fpitch_5fbend_5frange_135',['get_pitch_bend_range',['../class_config.html#a4dc62c1320996e0e75da8945648c8e65',1,'Config']]],
+  ['get_5fpolyphony_5fmode_136',['get_polyphony_mode',['../class_config.html#a0829ddc00aa82818f6f8381f8ba0286e',1,'Config']]],
+  ['get_5fpriority_5fmode_137',['get_priority_mode',['../class_config.html#ab433148c636ab05f4f00f39c7bfcc8eb',1,'Config']]],
+  ['get_5fsequencer_5ftime_5ffactor_138',['get_sequencer_time_factor',['../class_config.html#af8a4736f43cc594a2f93a16abe9a9c06',1,'Config']]],
+  ['get_5fsize_139',['get_size',['../class_buffer.html#aeb2720e9ab213820fddec500f755dfba',1,'Buffer']]],
+  ['get_5fvoltage_5foffset_140',['get_voltage_offset',['../class_config.html#a4b0b5a0ccc5bad1927ff25df18c5fbaf',1,'Config']]],
+  ['glide_141',['Glide',['../struct_glide.html',1,'Glide'],['../structs_8h.html#ac0c17949ae6e85b4c86252784894ca8a',1,'Glide():&#160;structs.h']]],
+  ['glide_5fflag_5fchromatic_142',['GLIDE_FLAG_CHROMATIC',['../constants_8h.html#a410ada84f2b0066c5fe34945aa868fce',1,'constants.h']]],
+  ['glide_5fflag_5flegato_143',['GLIDE_FLAG_LEGATO',['../constants_8h.html#a24ab05484dfd17e083bba5953643f141',1,'constants.h']]],
+  ['glide_5fflag_5fproportional_144',['GLIDE_FLAG_PROPORTIONAL',['../constants_8h.html#adf1ef12bc0ec70bf8920b91b6f82f621',1,'constants.h']]],
+  ['glide_5fintensity_5fpower_145',['GLIDE_INTENSITY_POWER',['../constants_8h.html#ac59aa431989be4dc3e14268c6ddd2c34',1,'constants.h']]],
+  ['glide_5fmax_5frate_146',['GLIDE_MAX_RATE',['../constants_8h.html#a27492bc42f2240dc6f6e69299dc77ab6',1,'constants.h']]],
+  ['glide_5fmax_5ftime_147',['GLIDE_MAX_TIME',['../constants_8h.html#a1faa35ceed46ed1ac9643132663300fc',1,'constants.h']]]
 ];

@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['glide_5fdefault_5fduration_290',['GLIDE_DEFAULT_DURATION',['../constants_8h.html#a0a5b192d808c69b3053518a942267a28',1,'constants.h']]],
-  ['glide_5fmax_5fduration_291',['GLIDE_MAX_DURATION',['../constants_8h.html#a2537743e4142182107397f34d7c59439',1,'constants.h']]],
-  ['glide_5fmax_5fduration_5fgap_292',['GLIDE_MAX_DURATION_GAP',['../constants_8h.html#a0678fbe7e33d0045ba2217a5f5b536f9',1,'constants.h']]],
-  ['glide_5fmin_5fduration_293',['GLIDE_MIN_DURATION',['../constants_8h.html#a1f77315051f93442622dd041fd9d11d1',1,'constants.h']]],
-  ['glide_5fpitch_5ftrigger_294',['GLIDE_PITCH_TRIGGER',['../constants_8h.html#a93692e8ea5e17339b882a6946334dc01',1,'constants.h']]],
-  ['glide_5ftime_5ftrigger_295',['GLIDE_TIME_TRIGGER',['../constants_8h.html#aa2f5e45e5ec877f8d95e0806a5595895',1,'constants.h']]]
+  ['glide_5fflag_5fchromatic_495',['GLIDE_FLAG_CHROMATIC',['../constants_8h.html#a410ada84f2b0066c5fe34945aa868fce',1,'constants.h']]],
+  ['glide_5fflag_5flegato_496',['GLIDE_FLAG_LEGATO',['../constants_8h.html#a24ab05484dfd17e083bba5953643f141',1,'constants.h']]],
+  ['glide_5fflag_5fproportional_497',['GLIDE_FLAG_PROPORTIONAL',['../constants_8h.html#adf1ef12bc0ec70bf8920b91b6f82f621',1,'constants.h']]],
+  ['glide_5fintensity_5fpower_498',['GLIDE_INTENSITY_POWER',['../constants_8h.html#ac59aa431989be4dc3e14268c6ddd2c34',1,'constants.h']]],
+  ['glide_5fmax_5frate_499',['GLIDE_MAX_RATE',['../constants_8h.html#a27492bc42f2240dc6f6e69299dc77ab6',1,'constants.h']]],
+  ['glide_5fmax_5ftime_500',['GLIDE_MAX_TIME',['../constants_8h.html#a1faa35ceed46ed1ac9643132663300fc',1,'constants.h']]]
 ];

@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['main_2eino_92',['main.ino',['../main_8ino.html',1,'']]],
-  ['midi_5fmin_5fpitch_93',['MIDI_MIN_PITCH',['../constants_8h.html#a5a4813366397b194aa7fd51b50c01b19',1,'constants.h']]],
-  ['mode_5fduophonic_94',['MODE_DUOPHONIC',['../constants_8h.html#a45bff5fc91e80789fafb31cc3f95ef5f',1,'constants.h']]],
-  ['mode_5fmonophonic_95',['MODE_MONOPHONIC',['../constants_8h.html#a2a33587f0528d88828ffca16d9623130',1,'constants.h']]],
-  ['mode_5foctophonic_96',['MODE_OCTOPHONIC',['../constants_8h.html#a9c52b96cf8a40e99ced21bb65d9cf91a',1,'constants.h']]],
-  ['mode_5fquadrophonic_97',['MODE_QUADROPHONIC',['../constants_8h.html#acd74d69a69f038b2f32b3ac39418e800',1,'constants.h']]]
+  ['is_5factive_157',['is_active',['../class_pool.html#ad6c71a83d60a1c69fad7f4ebcd02d633',1,'Pool']]],
+  ['is_5fenabled_158',['is_enabled',['../class_pool.html#aea355f50869629b54135c86843762c70',1,'Pool']]],
+  ['is_5ffree_159',['is_free',['../class_pool.html#a703287c34419cae6dc60ec8089a05e53',1,'Pool']]],
+  ['is_5fglide_5fproportional_160',['is_glide_proportional',['../class_config.html#a26eaa14ccd344ecf577f05e72554d80c',1,'Config']]]
 ];

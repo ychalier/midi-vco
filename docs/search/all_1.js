@@ -1,10 +1,21 @@
 var searchData=
 [
-  ['accepts_5fchannel_38',['accepts_channel',['../class_pool.html#af1b3b5b9f7ac012125f917e67d51df8b',1,'Pool']]],
-  ['accepts_5fnote_39',['accepts_note',['../class_pool.html#aebb195c3de79da2fc38b2598e4e46860',1,'Pool']]],
-  ['active_40',['active',['../struct_glide.html#aaadf2f2cef9548c4d6d4f05cf0b80b74',1,'Glide']]],
-  ['allocator_41',['Allocator',['../class_allocator.html',1,'Allocator'],['../class_allocator.html#a95ae2a7dfb2b3026f29be4685b45f7da',1,'Allocator::Allocator()']]],
-  ['allocator_2ecpp_42',['allocator.cpp',['../allocator_8cpp.html',1,'']]],
-  ['allocator_2eh_43',['allocator.h',['../allocator_8h.html',1,'']]],
-  ['amp_5fgain_44',['AMP_GAIN',['../constants_8h.html#a41cdbe8b9863be840443009aaf0f0790',1,'constants.h']]]
+  ['accepts_5fchannel_68',['accepts_channel',['../class_pool.html#af1b3b5b9f7ac012125f917e67d51df8b',1,'Pool']]],
+  ['accepts_5fnote_69',['accepts_note',['../class_pool.html#aebb195c3de79da2fc38b2598e4e46860',1,'Pool']]],
+  ['activate_70',['activate',['../class_coupler.html#a5b31285724d1196967ee14891695f685',1,'Coupler']]],
+  ['active_71',['active',['../struct_glide.html#aaadf2f2cef9548c4d6d4f05cf0b80b74',1,'Glide']]],
+  ['after_5ftouch_5fchannel_72',['after_touch_channel',['../class_allocator.html#a4a63b8a5c903ff9507ea21834b43de0d',1,'Allocator']]],
+  ['after_5ftouch_5fpoly_73',['after_touch_poly',['../class_allocator.html#ab9ab34c5887b042fe33989b14ca471d4',1,'Allocator']]],
+  ['aftertouch_5fcoeff_74',['AFTERTOUCH_COEFF',['../constants_8h.html#aa24b1acea33ca0280c517238ffc0789e',1,'constants.h']]],
+  ['allocator_75',['Allocator',['../class_allocator.html',1,'Allocator'],['../class_allocator.html#a95ae2a7dfb2b3026f29be4685b45f7da',1,'Allocator::Allocator()']]],
+  ['allocator_2ecpp_76',['allocator.cpp',['../allocator_8cpp.html',1,'']]],
+  ['allocator_2eh_77',['allocator.h',['../allocator_8h.html',1,'']]],
+  ['amp_5fgain_78',['AMP_GAIN',['../constants_8h.html#a41cdbe8b9863be840443009aaf0f0790',1,'constants.h']]],
+  ['arpeggiator_79',['Arpeggiator',['../class_arpeggiator.html',1,'Arpeggiator'],['../class_arpeggiator.html#afab7aaa8203c42b18377f3e7e64ba1cc',1,'Arpeggiator::Arpeggiator()']]],
+  ['arpeggiator_2ecpp_80',['arpeggiator.cpp',['../arpeggiator_8cpp.html',1,'']]],
+  ['arpeggiator_2eh_81',['arpeggiator.h',['../arpeggiator_8h.html',1,'']]],
+  ['arpeggiator_5fmode_5fdown_82',['ARPEGGIATOR_MODE_DOWN',['../constants_8h.html#a233d049fec804a550657dd369d17db44',1,'constants.h']]],
+  ['arpeggiator_5fmode_5frandom_83',['ARPEGGIATOR_MODE_RANDOM',['../constants_8h.html#afb1e6484adeecbe007ef17b482feaedf',1,'constants.h']]],
+  ['arpeggiator_5fmode_5fup_84',['ARPEGGIATOR_MODE_UP',['../constants_8h.html#a0f9df23574ec4885c2330e45d56fc99b',1,'constants.h']]],
+  ['arpeggiator_5fmode_5fup_5fdown_85',['ARPEGGIATOR_MODE_UP_DOWN',['../constants_8h.html#a0e482e3bca547b23d3bcd8a97ba1d944',1,'constants.h']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['time_5fstart_280',['time_start',['../struct_glide.html#a13fda5f5f416e9c4f05d9bfe82a3c8d9',1,'Glide']]]
+  ['setpoint_5fend_470',['setpoint_end',['../struct_glide.html#af207d1b7de45bb44342ea13ff3276404',1,'Glide']]],
+  ['setpoint_5fstart_471',['setpoint_start',['../struct_glide.html#a3c2466b72cc856df7612b5da25717687',1,'Glide']]]
 ];

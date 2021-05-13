@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pool_167',['Pool',['../class_pool.html',1,'']]]
+  ['note_277',['Note',['../struct_note.html',1,'']]]
 ];
