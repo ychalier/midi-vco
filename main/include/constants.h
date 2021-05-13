@@ -79,7 +79,7 @@
 // General constants
 
 #define DAC_VMAX 4.096        // Volts
-#define AMP_GAIN 1.8408203125 // 7.54V / 4.096V
+#define AMP_GAIN 1.9531       // 7.54V / 4.096V
 #define MIDI_MIN_PITCH 20     // Semitons
 #define PITCH_BEND_RANGE 2.0  // Semitons
 
@@ -96,6 +96,6 @@
 #define SEQUENCER_MEMORY_SIZE 64
 #define SEQUENCER_TIME_SCALE_RANGE 4
 
-#define AFTERTOUCH_COEFF 2
+#define AFTERTOUCH_COEFF 8
 
 #endif

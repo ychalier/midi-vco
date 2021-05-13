@@ -39,7 +39,12 @@ void Sequencer::note_off(Note note)
 {
     if (_recording)
     {
-        record_event({millis(), false, note});
+        unsigned long now = millis();
+        if (_size == 0)
+        {
+            _record_timestamp = now;
+        }
+        record_event({now - _record_timestamp, false, note});
     }
     _allocator->note_off(note);
 }
@@ -47,6 +52,7 @@ void Sequencer::note_off(Note note)
 void Sequencer::update_state(bool recording)
 {
     _recording = recording;
+    _allocator->reset();
     if (_recording)
     {
         _size = 0;
@@ -63,21 +69,20 @@ void Sequencer::update()
     if (!_recording && _playback_index < _size)
     {
         unsigned long elapsed = _config->get_sequencer_time_factor() * (millis() - _playback_timestamp);
-        int i = _playback_index;
-        while (_memory[i].timestamp <= elapsed)
+        while (_memory[_playback_index].timestamp <= elapsed)
         {
-            if (_memory[i].type)
+            if (_memory[_playback_index].type)
             {
-                _allocator->note_on(_memory[i].note);
+                _allocator->note_on(_memory[_playback_index].note);
             }
             else
             {
-                _allocator->note_off(_memory[i].note);
+                _allocator->note_off(_memory[_playback_index].note);
             }
-            i++;
-            if (i >= _size)
+            _playback_index++;
+            if (_playback_index >= _size)
             {
-                i = 0;
+                _playback_index = 0;
                 _playback_timestamp = millis();
                 elapsed = 0;
             }

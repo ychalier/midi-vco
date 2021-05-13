@@ -23,7 +23,7 @@ Note Buffer::get()
     }
     else
     {
-        return {0, 0};
+        return _notes[0];
     }
 }
 

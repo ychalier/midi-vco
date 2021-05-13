@@ -19,6 +19,10 @@ void Arpeggiator::note_on(Note note)
 void Arpeggiator::note_off(Note note)
 {
     _buffer->pop(note);
+    if (_buffer->empty())
+    {
+        _allocator->reset();
+    }
 }
 
 void Arpeggiator::reset()
@@ -76,12 +80,13 @@ void Arpeggiator::update()
     if (_buffer->get_size() > 0)
     {
         unsigned long now = millis();
-        if (now - _timestamp >= _config->get_arpeggiator_period())
+        if ((now - _timestamp) >= _config->get_arpeggiator_period())
         {
             _timestamp = now;
             switch (_config->get_arpeggiator_mode())
             {
             case ARPEGGIATOR_MODE_UP:
+                _direction = true;
                 if (find_next_note(note_next, note_min, note_max))
                 {
                     play(note_next);
@@ -92,6 +97,7 @@ void Arpeggiator::update()
                 }
                 break;
             case ARPEGGIATOR_MODE_DOWN:
+                _direction = false;
                 if (find_next_note(note_next, note_min, note_max))
                 {
                     play(note_next);

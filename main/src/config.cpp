@@ -14,6 +14,7 @@ Config::Config()
     _sequencer_record = false;
     _sequencer_time_factor = 1;
     _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
+    _arpeggiator_period = 500;
     _hold = false;
     _voltage_offset = 0;
 }
@@ -114,10 +115,9 @@ float Config::get_pitch_bend_range()
 int Config::handle_midi_control(byte channel, byte number, byte value)
 {
     int changed = 0;
-    switch (number)
+    if (number == MIDI_CONTROL_GLIDE_INTENSITY)
     {
-    case MIDI_CONTROL_GLIDE_INTENSITY:
-        if (value < 64)
+       if (value < 64)
         {
             _glide_intensity = 1.0 - ((float)value / 63.0);
             _glide_proportional = false;
@@ -126,9 +126,10 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
         {
             _glide_intensity = (float)(value - 64) / 63.0;
             _glide_proportional = true;
-        }
-        break;
-    case MIDI_CONTROL_GLIDE_CHROMATIC:
+        } 
+    }
+    else if (number == MIDI_CONTROL_GLIDE_CHROMATIC)
+    {
         if (value < 64)
         {
             _glide_flags = _glide_flags - (_glide_flags & GLIDE_FLAG_CHROMATIC);
@@ -137,8 +138,9 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
         {
             _glide_flags = _glide_flags | GLIDE_FLAG_CHROMATIC;
         }
-        break;
-    case MIDI_CONTROL_GLIDE_LEGATO:
+    }
+    else if (number == MIDI_CONTROL_GLIDE_LEGATO)
+    {
         if (value < 64)
         {
             _glide_flags = _glide_flags - (_glide_flags & GLIDE_FLAG_LEGATO);
@@ -147,11 +149,13 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
         {
             _glide_flags = _glide_flags | GLIDE_FLAG_LEGATO;
         }
-        break;
-    case MIDI_CONTROL_PITCH_BEND_RANGE:
+    }
+    else if (number == MIDI_CONTROL_PITCH_BEND_RANGE)
+    {
         _pitch_bend_range = round((float)value / 127.0 * 12.0 * 4.0) / 4.0;
-        break;
-    case MIDI_CONTROL_SOURCE:
+    }
+    else if (number == MIDI_CONTROL_SOURCE)
+    {
         byte old_source = _active_source;
         if (value < 42)
         {
@@ -169,20 +173,23 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
         {
             changed = changed + CONFIG_CHANGE_SOURCE;
         }
-        break;
-    case MIDI_CONTROL_SEQUENCER_RECORD:
+    }
+    else if (number == MIDI_CONTROL_SEQUENCER_RECORD)
+    {
         bool old_sequencer_record = _sequencer_record;
         _sequencer_record = value >= 64;
         if (old_sequencer_record != _sequencer_record)
         {
             changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
         }
-        break;
-    case MIDI_CONTROL_TIME:
+    }
+    else if (number == MIDI_CONTROL_TIME)
+    {
         _sequencer_time_factor = pow(SEQUENCER_TIME_SCALE_RANGE, 2.0 * (float)(value) / 127.0 - 1.0);
-        _arpeggiator_period = 30000.0 / (float)(value + 1); // milliseconds per beat
-        break;
-    case MIDI_CONTROL_ARPEGGIATOR_MODE:
+        _arpeggiator_period = 10000.0 / (float)(value + 1); // milliseconds per beat
+    }
+    else if (number == MIDI_CONTROL_ARPEGGIATOR_MODE)
+    {
         if (value < 32)
         {
             _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
@@ -199,20 +206,19 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
         {
             _arpeggiator_mode = ARPEGGIATOR_MODE_RANDOM;
         }
-        break;
-    case MIDI_CONTROL_HOLD:
+    }
+    else if (number == MIDI_CONTROL_HOLD)
+    {
         bool old_hold = _hold;
         _hold = value >= 64;
         if (old_hold != _hold)
         {
             changed = changed + CONFIG_CHANGE_HOLD;
         }
-        break;
-    case MIDI_CONTROL_VOLTAGE_OFFSET:
+    }
+    else if (number == MIDI_CONTROL_VOLTAGE_OFFSET)
+    {
         _voltage_offset = (float)value / 127.0;
-        break;
-    default:
-        break;
     }
     return changed;
 }

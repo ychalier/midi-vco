@@ -83,6 +83,7 @@ void MidiInterface::handle_control_change(byte channel, byte number, byte value)
         break;
     case CONFIG_CHANGE_SOURCE:
         _allocator->reset();
+        _arpeggiator->reset();
         switch (_config->get_active_source())
         {
         case SOURCE_DIRECT:

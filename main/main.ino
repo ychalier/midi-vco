@@ -3,7 +3,7 @@
  * Arduino firmware interfacing between a MIDI keyboard and a set of VCOs.
  * 
  * @author Yohan Chalier
- * @version 0.3.0 2021-05-08
+ * @version 0.3.1 2021-05-13
  */
 
 #include <MIDI.h>
@@ -42,6 +42,9 @@ void setup()
     MIDI.setHandleNoteOn(handle_note_on);
     MIDI.setHandleNoteOff(handle_note_off);
     MIDI.setHandlePitchBend(handle_pitch_bend);
+    MIDI.setHandleControlChange(handle_control_change);
+    MIDI.setHandleAfterTouchChannel(handle_after_touch_channel);
+    MIDI.setHandleAfterTouchPoly(handle_after_touch_poly);
     midif = new MidiInterface(config, allocator, sequencer, arpeggiator);
     display->demo();
 }

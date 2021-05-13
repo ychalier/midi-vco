@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.0</span>
+   &#160;<span id="projectnumber">0.3.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('main_8ino_source.html',''); initResiza
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; * Arduino firmware interfacing between a MIDI keyboard and a set of VCOs.</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; * </div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; * @author Yohan Chalier</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; * @version 0.3.0 2021-05-08</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; * @version 0.3.1 2021-05-13</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; */</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;#include &lt;MIDI.h&gt;</div>
@@ -131,72 +131,75 @@ $(document).ready(function(){initNavTree('main_8ino_source.html',''); initResiza
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    MIDI.setHandleNoteOn(handle_note_on);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    MIDI.setHandleNoteOff(handle_note_off);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    MIDI.setHandlePitchBend(handle_pitch_bend);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    midif = new MidiInterface(config, allocator, sequencer, arpeggiator);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    display-&gt;demo();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;void loop()</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    MIDI.read();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    midif-&gt;update();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    display-&gt;update();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    router-&gt;update();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;/**</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; * @see MidiInterface.handle_note_on</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; */</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;void handle_note_on(byte channel, byte pitch, byte velocity)</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    midif-&gt;handle_note_on(channel, pitch, velocity);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;/**</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; * @see MidiInterface.handle_note_off</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; */</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;void handle_note_off(byte channel, byte pitch, byte velocity)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    midif-&gt;handle_note_off(channel, pitch, velocity);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;/**</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; * @see MidiInterface.handle_pitch_bend</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; */</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;void handle_pitch_bend(byte channel, int bend)</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    midif-&gt;handle_pitch_bend(channel, bend);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;/**</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; * @see MidiInterface.handle_control_change</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; */</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;void handle_control_change(byte channel, byte number, byte value)</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    midif-&gt;handle_control_change(channel, number, value);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;/**</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; * @see MidiInterface.handle_after_touch_poly</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; */</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;void handle_after_touch_poly(byte channel, byte pitch, byte pressure)</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    midif-&gt;handle_after_touch_poly(channel, pitch, pressure);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;/**</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; * @see MidiInterface.handle_after_touch_channel</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; */</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;void handle_after_touch_channel(byte channel, byte pressure)</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;{</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    midif-&gt;handle_after_touch_channel(channel, pressure);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    MIDI.setHandleControlChange(handle_control_change);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    MIDI.setHandleAfterTouchChannel(handle_after_touch_channel);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    MIDI.setHandleAfterTouchPoly(handle_after_touch_poly);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    midif = new MidiInterface(config, allocator, sequencer, arpeggiator);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    display-&gt;demo();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;void loop()</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    MIDI.read();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    midif-&gt;update();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    display-&gt;update();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    router-&gt;update();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;/**</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; * @see MidiInterface.handle_note_on</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; */</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;void handle_note_on(byte channel, byte pitch, byte velocity)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    midif-&gt;handle_note_on(channel, pitch, velocity);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;/**</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; * @see MidiInterface.handle_note_off</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; */</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;void handle_note_off(byte channel, byte pitch, byte velocity)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    midif-&gt;handle_note_off(channel, pitch, velocity);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;/**</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; * @see MidiInterface.handle_pitch_bend</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; */</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;void handle_pitch_bend(byte channel, int bend)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    midif-&gt;handle_pitch_bend(channel, bend);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;/**</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; * @see MidiInterface.handle_control_change</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; */</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;void handle_control_change(byte channel, byte number, byte value)</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    midif-&gt;handle_control_change(channel, number, value);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;/**</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; * @see MidiInterface.handle_after_touch_poly</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; */</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;void handle_after_touch_poly(byte channel, byte pitch, byte pressure)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    midif-&gt;handle_after_touch_poly(channel, pitch, pressure);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;/**</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; * @see MidiInterface.handle_after_touch_channel</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; */</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;void handle_after_touch_channel(byte channel, byte pressure)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;{</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    midif-&gt;handle_after_touch_channel(channel, pressure);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_5c982d53a68cdbcd421152b4020263a9.html">main</a></li><li class="navelem"><a class="el" href="main_8ino.html">main.ino</a></li>
-    <li class="footer">Generated on Thu May 13 2021 09:18:26 for MIDI-VCO by
+    <li class="footer">Generated on Thu May 13 2021 18:39:05 for MIDI-VCO by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

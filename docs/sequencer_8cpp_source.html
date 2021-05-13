@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.0</span>
+   &#160;<span id="projectnumber">0.3.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -128,58 +128,63 @@ $(document).ready(function(){initNavTree('sequencer_8cpp_source.html',''); initR
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_sequencer.html#a3c0f02c85c4e9c28eafa9c4e55dcdb8c">_recording</a>)</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="class_sequencer.html#a1909b9d0d4e2bd585e86b11641d31d01">record_event</a>({millis(), <span class="keyword">false</span>, note});</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_sequencer.html#a4ec1c0831d8edb3f504d3af1a7593a93">_allocator</a>-&gt;<a class="code" href="class_allocator.html#a503686789d548982a45389b201385c8a">note_off</a>(note);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_sequencer.html#a8b5a43af03f7ecdbcd4ebe38b07b9fc3">   47</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_sequencer.html#a8b5a43af03f7ecdbcd4ebe38b07b9fc3">Sequencer::update_state</a>(<span class="keywordtype">bool</span> recording)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_sequencer.html#a3c0f02c85c4e9c28eafa9c4e55dcdb8c">_recording</a> = recording;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_sequencer.html#a3c0f02c85c4e9c28eafa9c4e55dcdb8c">_recording</a>)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="class_sequencer.html#aa189d97b9314e0c388a98b06999d4854">_size</a> = 0;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="class_sequencer.html#a6feb0bac57c857e0c355e420ba7247d9">_playback_timestamp</a> = millis();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a> = 0;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_sequencer.html#a64786c918c7dfefd2f7b257e62277fd7">   61</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_sequencer.html#a64786c918c7dfefd2f7b257e62277fd7">Sequencer::update</a>()</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="class_sequencer.html#a3c0f02c85c4e9c28eafa9c4e55dcdb8c">_recording</a> &amp;&amp; <a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a> &lt; <a class="code" href="class_sequencer.html#aa189d97b9314e0c388a98b06999d4854">_size</a>)</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> elapsed = <a class="code" href="class_sequencer.html#a3515371e2e5a0750a69e26686115f9a9">_config</a>-&gt;<a class="code" href="class_config.html#af8a4736f43cc594a2f93a16abe9a9c06">get_sequencer_time_factor</a>() * (millis() - <a class="code" href="class_sequencer.html#a6feb0bac57c857e0c355e420ba7247d9">_playback_timestamp</a>);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">int</span> i = <a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">while</span> (<a class="code" href="class_sequencer.html#a6a2260a7a893c245655842535acfd8e9">_memory</a>[i].timestamp &lt;= elapsed)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_sequencer.html#a6a2260a7a893c245655842535acfd8e9">_memory</a>[i].type)</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <a class="code" href="class_sequencer.html#a4ec1c0831d8edb3f504d3af1a7593a93">_allocator</a>-&gt;<a class="code" href="class_allocator.html#ac488e12b005e2ac5ffd222ea69825a34">note_on</a>(<a class="code" href="class_sequencer.html#a6a2260a7a893c245655842535acfd8e9">_memory</a>[i].note);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <a class="code" href="class_sequencer.html#a4ec1c0831d8edb3f504d3af1a7593a93">_allocator</a>-&gt;<a class="code" href="class_allocator.html#a503686789d548982a45389b201385c8a">note_off</a>(<a class="code" href="class_sequencer.html#a6a2260a7a893c245655842535acfd8e9">_memory</a>[i].note);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            i++;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">if</span> (i &gt;= <a class="code" href="class_sequencer.html#aa189d97b9314e0c388a98b06999d4854">_size</a>)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> now = millis();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_sequencer.html#aa189d97b9314e0c388a98b06999d4854">_size</a> == 0)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <a class="code" href="class_sequencer.html#a9b88cb2678ac262612afc63c1636268f">_record_timestamp</a> = now;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="class_sequencer.html#a1909b9d0d4e2bd585e86b11641d31d01">record_event</a>({now - <a class="code" href="class_sequencer.html#a9b88cb2678ac262612afc63c1636268f">_record_timestamp</a>, <span class="keyword">false</span>, note});</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_sequencer.html#a4ec1c0831d8edb3f504d3af1a7593a93">_allocator</a>-&gt;<a class="code" href="class_allocator.html#a503686789d548982a45389b201385c8a">note_off</a>(note);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="class_sequencer.html#a8b5a43af03f7ecdbcd4ebe38b07b9fc3">   52</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_sequencer.html#a8b5a43af03f7ecdbcd4ebe38b07b9fc3">Sequencer::update_state</a>(<span class="keywordtype">bool</span> recording)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="class_sequencer.html#a3c0f02c85c4e9c28eafa9c4e55dcdb8c">_recording</a> = recording;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="class_sequencer.html#a4ec1c0831d8edb3f504d3af1a7593a93">_allocator</a>-&gt;<a class="code" href="class_allocator.html#ac0b00e8377f23b4775cb2c3cf6e79f25">reset</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_sequencer.html#a3c0f02c85c4e9c28eafa9c4e55dcdb8c">_recording</a>)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="class_sequencer.html#aa189d97b9314e0c388a98b06999d4854">_size</a> = 0;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="class_sequencer.html#a6feb0bac57c857e0c355e420ba7247d9">_playback_timestamp</a> = millis();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a> = 0;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_sequencer.html#a64786c918c7dfefd2f7b257e62277fd7">   67</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_sequencer.html#a64786c918c7dfefd2f7b257e62277fd7">Sequencer::update</a>()</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="class_sequencer.html#a3c0f02c85c4e9c28eafa9c4e55dcdb8c">_recording</a> &amp;&amp; <a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a> &lt; <a class="code" href="class_sequencer.html#aa189d97b9314e0c388a98b06999d4854">_size</a>)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> elapsed = <a class="code" href="class_sequencer.html#a3515371e2e5a0750a69e26686115f9a9">_config</a>-&gt;<a class="code" href="class_config.html#af8a4736f43cc594a2f93a16abe9a9c06">get_sequencer_time_factor</a>() * (millis() - <a class="code" href="class_sequencer.html#a6feb0bac57c857e0c355e420ba7247d9">_playback_timestamp</a>);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">while</span> (<a class="code" href="class_sequencer.html#a6a2260a7a893c245655842535acfd8e9">_memory</a>[<a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a>].timestamp &lt;= elapsed)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_sequencer.html#a6a2260a7a893c245655842535acfd8e9">_memory</a>[<a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a>].type)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <a class="code" href="class_sequencer.html#a4ec1c0831d8edb3f504d3af1a7593a93">_allocator</a>-&gt;<a class="code" href="class_allocator.html#ac488e12b005e2ac5ffd222ea69825a34">note_on</a>(<a class="code" href="class_sequencer.html#a6a2260a7a893c245655842535acfd8e9">_memory</a>[<a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a>].note);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                i = 0;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <a class="code" href="class_sequencer.html#a6feb0bac57c857e0c355e420ba7247d9">_playback_timestamp</a> = millis();</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                elapsed = 0;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <a class="code" href="class_sequencer.html#a4ec1c0831d8edb3f504d3af1a7593a93">_allocator</a>-&gt;<a class="code" href="class_allocator.html#a503686789d548982a45389b201385c8a">note_off</a>(<a class="code" href="class_sequencer.html#a6a2260a7a893c245655842535acfd8e9">_memory</a>[<a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a>].note);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a>++;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a> &gt;= <a class="code" href="class_sequencer.html#aa189d97b9314e0c388a98b06999d4854">_size</a>)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <a class="code" href="class_sequencer.html#abe765b02e3d1a0a88f9b6f48d496bff9">_playback_index</a> = 0;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <a class="code" href="class_sequencer.html#a6feb0bac57c857e0c355e420ba7247d9">_playback_timestamp</a> = millis();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                elapsed = 0;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astruct_midi_event_html"><div class="ttname"><a href="struct_midi_event.html">MidiEvent</a></div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00048">structs.h:48</a></div></div>
 <div class="ttc" id="aclass_sequencer_html_a1909b9d0d4e2bd585e86b11641d31d01"><div class="ttname"><a href="class_sequencer.html#a1909b9d0d4e2bd585e86b11641d31d01">Sequencer::record_event</a></div><div class="ttdeci">void record_event(MidiEvent event)</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8cpp_source.html#l00015">sequencer.cpp:15</a></div></div>
-<div class="ttc" id="aclass_sequencer_html_a8b5a43af03f7ecdbcd4ebe38b07b9fc3"><div class="ttname"><a href="class_sequencer.html#a8b5a43af03f7ecdbcd4ebe38b07b9fc3">Sequencer::update_state</a></div><div class="ttdeci">void update_state(bool recording)</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8cpp_source.html#l00047">sequencer.cpp:47</a></div></div>
+<div class="ttc" id="aclass_sequencer_html_a8b5a43af03f7ecdbcd4ebe38b07b9fc3"><div class="ttname"><a href="class_sequencer.html#a8b5a43af03f7ecdbcd4ebe38b07b9fc3">Sequencer::update_state</a></div><div class="ttdeci">void update_state(bool recording)</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8cpp_source.html#l00052">sequencer.cpp:52</a></div></div>
 <div class="ttc" id="aclass_sequencer_html_a6feb0bac57c857e0c355e420ba7247d9"><div class="ttname"><a href="class_sequencer.html#a6feb0bac57c857e0c355e420ba7247d9">Sequencer::_playback_timestamp</a></div><div class="ttdeci">unsigned long _playback_timestamp</div><div class="ttdoc">Timestamp of when the playback started.</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8h_source.html#l00068">sequencer.h:68</a></div></div>
-<div class="ttc" id="aclass_sequencer_html_a64786c918c7dfefd2f7b257e62277fd7"><div class="ttname"><a href="class_sequencer.html#a64786c918c7dfefd2f7b257e62277fd7">Sequencer::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8cpp_source.html#l00061">sequencer.cpp:61</a></div></div>
+<div class="ttc" id="aclass_sequencer_html_a64786c918c7dfefd2f7b257e62277fd7"><div class="ttname"><a href="class_sequencer.html#a64786c918c7dfefd2f7b257e62277fd7">Sequencer::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8cpp_source.html#l00067">sequencer.cpp:67</a></div></div>
 <div class="ttc" id="aclass_allocator_html"><div class="ttname"><a href="class_allocator.html">Allocator</a></div><div class="ttdef"><b>Definition:</b> <a href="allocator_8h_source.html#l00015">allocator.h:15</a></div></div>
 <div class="ttc" id="aclass_sequencer_html_aa189d97b9314e0c388a98b06999d4854"><div class="ttname"><a href="class_sequencer.html#aa189d97b9314e0c388a98b06999d4854">Sequencer::_size</a></div><div class="ttdeci">int _size</div><div class="ttdoc">Current number of events recorded.</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8h_source.html#l00059">sequencer.h:59</a></div></div>
 <div class="ttc" id="aclass_sequencer_html_a2937bd5e21ae8205c69d0d0e80dc74c9"><div class="ttname"><a href="class_sequencer.html#a2937bd5e21ae8205c69d0d0e80dc74c9">Sequencer::Sequencer</a></div><div class="ttdeci">Sequencer(Config *config, Allocator *allocator)</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8cpp_source.html#l00004">sequencer.cpp:4</a></div></div>
@@ -193,15 +198,16 @@ $(document).ready(function(){initNavTree('sequencer_8cpp_source.html',''); initR
 <div class="ttc" id="aclass_sequencer_html_a9b88cb2678ac262612afc63c1636268f"><div class="ttname"><a href="class_sequencer.html#a9b88cb2678ac262612afc63c1636268f">Sequencer::_record_timestamp</a></div><div class="ttdeci">unsigned long _record_timestamp</div><div class="ttdoc">Timestamp of when the record started.</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8h_source.html#l00065">sequencer.h:65</a></div></div>
 <div class="ttc" id="aclass_sequencer_html_a6a2260a7a893c245655842535acfd8e9"><div class="ttname"><a href="class_sequencer.html#a6a2260a7a893c245655842535acfd8e9">Sequencer::_memory</a></div><div class="ttdeci">MidiEvent _memory[SEQUENCER_MEMORY_SIZE]</div><div class="ttdoc">Events buffers.</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8h_source.html#l00062">sequencer.h:62</a></div></div>
 <div class="ttc" id="aclass_sequencer_html_a3515371e2e5a0750a69e26686115f9a9"><div class="ttname"><a href="class_sequencer.html#a3515371e2e5a0750a69e26686115f9a9">Sequencer::_config</a></div><div class="ttdeci">Config * _config</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8h_source.html#l00052">sequencer.h:52</a></div></div>
-<div class="ttc" id="aclass_config_html_af8a4736f43cc594a2f93a16abe9a9c06"><div class="ttname"><a href="class_config.html#af8a4736f43cc594a2f93a16abe9a9c06">Config::get_sequencer_time_factor</a></div><div class="ttdeci">float get_sequencer_time_factor()</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00235">config.cpp:235</a></div></div>
+<div class="ttc" id="aclass_config_html_af8a4736f43cc594a2f93a16abe9a9c06"><div class="ttname"><a href="class_config.html#af8a4736f43cc594a2f93a16abe9a9c06">Config::get_sequencer_time_factor</a></div><div class="ttdeci">float get_sequencer_time_factor()</div><div class="ttdef"><b>Definition:</b> <a href="config_8cpp_source.html#l00241">config.cpp:241</a></div></div>
 <div class="ttc" id="aconstants_8h_html_a6cf9a6948b9a51167456fdbea334434f"><div class="ttname"><a href="constants_8h.html#a6cf9a6948b9a51167456fdbea334434f">SEQUENCER_MEMORY_SIZE</a></div><div class="ttdeci">#define SEQUENCER_MEMORY_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="constants_8h_source.html#l00096">constants.h:96</a></div></div>
 <div class="ttc" id="aclass_sequencer_html_a489b3c86d6a792cf33820f81a701b515"><div class="ttname"><a href="class_sequencer.html#a489b3c86d6a792cf33820f81a701b515">Sequencer::note_on</a></div><div class="ttdeci">void note_on(Note note)</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8cpp_source.html#l00024">sequencer.cpp:24</a></div></div>
 <div class="ttc" id="aclass_sequencer_html_a4ec1c0831d8edb3f504d3af1a7593a93"><div class="ttname"><a href="class_sequencer.html#a4ec1c0831d8edb3f504d3af1a7593a93">Sequencer::_allocator</a></div><div class="ttdeci">Allocator * _allocator</div><div class="ttdef"><b>Definition:</b> <a href="sequencer_8h_source.html#l00053">sequencer.h:53</a></div></div>
+<div class="ttc" id="aclass_allocator_html_ac0b00e8377f23b4775cb2c3cf6e79f25"><div class="ttname"><a href="class_allocator.html#ac0b00e8377f23b4775cb2c3cf6e79f25">Allocator::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdef"><b>Definition:</b> <a href="allocator_8cpp_source.html#l00020">allocator.cpp:20</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_5c982d53a68cdbcd421152b4020263a9.html">main</a></li><li class="navelem"><a class="el" href="dir_2101cd0b22112584ff59816a4bc911f7.html">src</a></li><li class="navelem"><a class="el" href="sequencer_8cpp.html">sequencer.cpp</a></li>
-    <li class="footer">Generated on Thu May 13 2021 09:18:26 for MIDI-VCO by
+    <li class="footer">Generated on Thu May 13 2021 18:39:05 for MIDI-VCO by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>
