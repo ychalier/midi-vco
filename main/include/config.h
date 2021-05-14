@@ -126,6 +126,11 @@ public:
      */
     unsigned long get_time_period();
 
+    /**
+     * Getter for the _arpeggiator_sustain attribute.
+     */
+    float get_arpeggiator_sustain();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -140,6 +145,7 @@ private:
     bool _hold;
     float _voltage_offset;
     unsigned long _time_period;
+    float _arpeggiator_sustain;
 };
 
 #endif

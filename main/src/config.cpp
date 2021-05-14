@@ -16,6 +16,7 @@ Config::Config()
     _hold = false;
     _voltage_offset = 0;
     _time_period = 60000 / TIME_MIN_BPM;
+    _arpeggiator_sustain = 1;
 }
 
 void Config::setup()
@@ -218,6 +219,10 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
     {
         _voltage_offset = (float)value / 127.0;
     }
+    else if (number == MIDI_CONTROL_ARPEGGIATOR_SUSTAIN)
+    {
+        _arpeggiator_sustain = (float)value / 127.0;
+    }
     return changed;
 }
 
@@ -254,4 +259,9 @@ float Config::get_voltage_offset()
 unsigned long Config::get_time_period()
 {
     return _time_period;
+}
+
+float Config::get_arpeggiator_sustain()
+{
+    return _arpeggiator_sustain;
 }

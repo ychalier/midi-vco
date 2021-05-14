@@ -148,5 +148,9 @@ void Arpeggiator::update()
                 break;
             }
         }
+        else if ((now - _timestamp) > _config->get_arpeggiator_sustain() * _config->get_time_period())
+        {
+            _allocator->note_off(_current);
+        }
     }
 }
