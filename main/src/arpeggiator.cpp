@@ -90,7 +90,7 @@ void Arpeggiator::update()
     if (_buffer->get_size() > 0)
     {
         unsigned long now = millis();
-        if ((now - _timestamp) >= _config->get_arpeggiator_period())
+        if ((now - _timestamp) >= _config->get_time_period())
         {
             _timestamp = now;
             switch (_config->get_arpeggiator_mode())

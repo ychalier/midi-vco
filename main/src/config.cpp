@@ -12,11 +12,10 @@ Config::Config()
     _glide_proportional = false;
     _active_source = SOURCE_DIRECT;
     _sequencer_record = false;
-    _sequencer_time_factor = 1;
     _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
-    _arpeggiator_period = 500;
     _hold = false;
     _voltage_offset = 0;
+    _time_period = 60000 / TIME_MIN_BPM;
 }
 
 void Config::setup()
@@ -117,7 +116,7 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
     int changed = 0;
     if (number == MIDI_CONTROL_GLIDE_INTENSITY)
     {
-       if (value < 64)
+        if (value < 64)
         {
             _glide_intensity = 1.0 - ((float)value / 63.0);
             _glide_proportional = false;
@@ -126,7 +125,7 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
         {
             _glide_intensity = (float)(value - 64) / 63.0;
             _glide_proportional = true;
-        } 
+        }
     }
     else if (number == MIDI_CONTROL_GLIDE_CHROMATIC)
     {
@@ -185,8 +184,7 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
     }
     else if (number == MIDI_CONTROL_TIME)
     {
-        _sequencer_time_factor = pow(SEQUENCER_TIME_SCALE_RANGE, 2.0 * (float)(value) / 127.0 - 1.0);
-        _arpeggiator_period = 10000.0 / (float)(value + 1); // milliseconds per beat
+        _time_period = 60000 / (TIME_MIN_BPM + (float)(TIME_MAX_BPM - TIME_MIN_BPM) * (float)value / 127.0);
     }
     else if (number == MIDI_CONTROL_ARPEGGIATOR_MODE)
     {
@@ -238,19 +236,9 @@ bool Config::should_sequencer_record()
     return _sequencer_record;
 }
 
-float Config::get_sequencer_time_factor()
-{
-    return _sequencer_time_factor;
-}
-
 byte Config::get_arpeggiator_mode()
 {
     return _arpeggiator_mode;
-}
-
-unsigned long Config::get_arpeggiator_period()
-{
-    return _arpeggiator_period;
 }
 
 bool Config::get_hold()
@@ -261,4 +249,9 @@ bool Config::get_hold()
 float Config::get_voltage_offset()
 {
     return _voltage_offset;
+}
+
+unsigned long Config::get_time_period()
+{
+    return _time_period;
 }

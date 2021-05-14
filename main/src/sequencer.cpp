@@ -68,23 +68,27 @@ void Sequencer::update()
 {
     if (!_recording && _playback_index < _size)
     {
-        unsigned long elapsed = _config->get_sequencer_time_factor() * (millis() - _playback_timestamp);
-        while (_memory[_playback_index].timestamp <= elapsed)
+        unsigned long now = millis();
+        if ((now - _playback_timestamp) >= _config->get_time_period())
         {
-            if (_memory[_playback_index].type)
+            _playback_timestamp = now;
+            unsigned long window_start = _memory[_playback_index].timestamp;
+            while ((_memory[_playback_index].timestamp - window_start) < SEQUENCER_WINDOW_SIZE)
             {
-                _allocator->note_on(_memory[_playback_index].note);
-            }
-            else
-            {
-                _allocator->note_off(_memory[_playback_index].note);
-            }
-            _playback_index++;
-            if (_playback_index >= _size)
-            {
-                _playback_index = 0;
-                _playback_timestamp = millis();
-                elapsed = 0;
+                if (_memory[_playback_index].type)
+                {
+                    _allocator->note_on(_memory[_playback_index].note);
+                }
+                else
+                {
+                    _allocator->note_off(_memory[_playback_index].note);
+                }
+                _playback_index++;
+                if (_playback_index >= _size)
+                {
+                    _playback_index = 0;
+                    break;
+                }
             }
         }
     }

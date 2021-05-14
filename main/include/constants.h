@@ -78,10 +78,10 @@
 
 // General constants
 
-#define DAC_VMAX 4.096        // Volts
-#define AMP_GAIN 1.9531       // 7.54V / 4.096V
-#define MIDI_MIN_PITCH 20     // Semitons
-#define PITCH_BEND_RANGE 2.0  // Semitons
+#define DAC_VMAX 4.096       // Volts
+#define AMP_GAIN 1.9531      // 8V / 4.096V
+#define MIDI_MIN_PITCH 20    // Semitons
+#define PITCH_BEND_RANGE 2.0 // Semitons
 
 #define DEFAULT_DISPLAY_DURATION 1000 // Milliseconds
 
@@ -94,8 +94,11 @@
 #define GLIDE_INTENSITY_POWER 2
 
 #define SEQUENCER_MEMORY_SIZE 64
-#define SEQUENCER_TIME_SCALE_RANGE 4
+#define SEQUENCER_WINDOW_SIZE 150 // Milliseconds
 
 #define AFTERTOUCH_COEFF 8
+
+#define TIME_MIN_BPM 60
+#define TIME_MAX_BPM 600
 
 #endif

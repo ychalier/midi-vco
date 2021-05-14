@@ -107,19 +107,9 @@ public:
     bool should_sequencer_record();
 
     /**
-     * Getter for the _sequencer_time_factor attribute.
-     */
-    float get_sequencer_time_factor();
-
-    /**
      * Getter for the _arpeggiator_mode attribute.
      */
     byte get_arpeggiator_mode();
-
-    /**
-     * Getter for the _arpeggiator_period attribute.
-     */
-    unsigned long get_arpeggiator_period();
 
     /**
      * Getter for the _hold attribute.
@@ -131,6 +121,11 @@ public:
      */
     float get_voltage_offset();
 
+    /**
+     * Getter for the _time_period attribute.
+     */
+    unsigned long get_time_period();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -141,11 +136,10 @@ private:
     float _pitch_bend_range;
     byte _active_source;
     bool _sequencer_record;
-    float _sequencer_time_factor;
     byte _arpeggiator_mode;
-    unsigned long _arpeggiator_period;
     bool _hold;
     float _voltage_offset;
+    unsigned long _time_period;
 };
 
 #endif
