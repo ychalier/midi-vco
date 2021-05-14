@@ -121,6 +121,14 @@ void Arpeggiator::update()
                 if (find_next_note(note_next, note_min, note_max))
                 {
                     play(note_next);
+                    if (note_next == note_min)
+                    {
+                        _direction = true;
+                    }
+                    else if (note_next == note_max)
+                    {
+                        _direction = false;
+                    }
                 }
                 else
                 {
