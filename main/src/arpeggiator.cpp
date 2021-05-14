@@ -13,13 +13,23 @@ Arpeggiator::Arpeggiator(Config *config, Allocator *allocator)
 
 void Arpeggiator::note_on(Note note)
 {
-    _buffer->push(note);
+    if (_config->should_sequencer_record())
+    {
+        _buffer->push(note);
+    }
+    else
+    {
+        _allocator->note_on(note);
+    }
 }
 
 void Arpeggiator::note_off(Note note)
 {
-    _buffer->pop(note);
-    if (_buffer->empty())
+    if (!_buffer->pop(note))
+    {
+        _allocator->note_off(note);
+    }
+    else if (_buffer->empty())
     {
         _allocator->reset();
     }
