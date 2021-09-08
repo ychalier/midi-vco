@@ -6,11 +6,14 @@
  * @version 0.1.0 2021-09-07
  */
 
+#include <MCP41xxx.h>
 #include "arduinoFFT.h"
 
 #define MODE_SELECTOR_PIN_A A1
 #define MODE_SELECTOR_PIN_B A2
 #define WAVE_IN_PIN A0
+#define DAC_TUNE_PIN 9
+#define DAC_SCALE_PIN 10
 
 #define MODE_OFF 0
 #define MODE_TUNE 1
@@ -24,6 +27,8 @@ byte current_mode;
 double samples[SAMPLE_SIZE];
 double imag[SAMPLE_SIZE];
 const double sampling_period = round(1000000 * (1.0 / SAMPLE_FREQUENCY));
+MCP41xxx dac_tune(DAC_TUNE_PIN);
+MCP41xxx dac_scale(DAC_SCALE_PIN);
 
 void setup()
 {
@@ -34,6 +39,8 @@ void setup()
     {
         imag[i] = 0;
     }
+    dac_tune.begin();
+    dac_scale.begin();
 }
 
 void loop()
