@@ -12,6 +12,7 @@ Micrologiciel pour une carte Arduino faisant l'intermédiraire entre un clavier 
     2. Installer la bibliothèque **MCP48xx DAC Library** par **Steve Gkountouvas** (version 0.1.2)
     3. Installer la bibliothèque **MIDI Library** par **Francois Best** et **lathoub** (version 5.0.2)
     4. Installer la bibliothèque **arduinoFFT** par **Enrique Condes** (version 1.5.6)
+    5. Installer la bibliothèque **ArduMax MCP41xxx Driver** par **Max Chan** (version 1.0.6)
 3. Télécharger le contenu de ce dépôt :
     1. Installer [git](https://git-scm.com/downloads)
     2. Ouvrir l'interpréteur de commandes du système d'exploitation (le [terminal](https://ubuntu.com/tutorials/command-line-for-beginners#3-opening-a-terminal) sur Linux ou MacOS, [Powershell](https://docs.microsoft.com/fr-fr/powershell/scripting/windows-powershell/starting-windows-powershell?view=powershell-7.1) sur Windows)
