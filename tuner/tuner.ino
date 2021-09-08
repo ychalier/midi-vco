@@ -6,6 +6,8 @@
  * @version 0.1.0 2021-09-07
  */
 
+#include "arduinoFFT.h"
+
 #define MODE_SELECTOR_PIN_A A1
 #define MODE_SELECTOR_PIN_B A2
 #define WAVE_IN_PIN A0
@@ -17,8 +19,10 @@
 #define SAMPLE_SIZE 128
 #define SAMPLE_FREQUENCY 1024 // Hz
 
+arduinoFFT fft = arduinoFFT();
 byte current_mode;
-byte samples[SAMPLE_SIZE];
+double samples[SAMPLE_SIZE];
+double imag[SAMPLE_SIZE];
 const double sampling_period = round(1000000 * (1.0 / SAMPLE_FREQUENCY));
 
 void setup()
@@ -26,6 +30,10 @@ void setup()
     pinMode(MODE_SELECTOR_PIN_A, INPUT);
     pinMode(MODE_SELECTOR_PIN_B, INPUT);
     current_mode = MODE_OFF;
+    for (int i = 0; i < SAMPLE_SIZE; i++)
+    {
+        imag[i] = 0;
+    }
 }
 
 void loop()
@@ -93,4 +101,12 @@ void acquire_samples()
             // pass
         }
     }
+}
+
+float compute_frequency()
+{
+    fft.Windowing(samples, SAMPLE_SIZE, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
+    fft.Compute(samples, imag, SAMPLE_SIZE, FFT_FORWARD);
+    fft.ComplexToMagnitude(samples, imag, SAMPLE_SIZE);
+    return fft.MajorPeak(samples, SAMPLE_SIZE, SAMPLE_FREQUENCY);
 }
