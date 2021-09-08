@@ -8,12 +8,18 @@
 
 #define MODE_SELECTOR_PIN_A A1
 #define MODE_SELECTOR_PIN_B A2
+#define WAVE_IN_PIN A0
 
 #define MODE_OFF 0
 #define MODE_TUNE 1
 #define MODE_SCALE 2
 
+#define SAMPLE_SIZE 128
+#define SAMPLE_FREQUENCY 1024 // Hz
+
 byte current_mode;
+byte samples[SAMPLE_SIZE];
+const double sampling_period = round(1000000 * (1.0 / SAMPLE_FREQUENCY));
 
 void setup()
 {
@@ -73,4 +79,18 @@ void exec_mode_tune()
 void exec_mode_scale()
 {
     // TODO
+}
+
+void acquire_samples()
+{
+    unsigned long now;
+    for (int i = 0; i < SAMPLE_SIZE; i++)
+    {
+        now = micros();
+        samples[i] = analogRead(WAVE_IN_PIN);
+        while (micros() < (now + sampling_period))
+        {
+            // pass
+        }
+    }
 }
