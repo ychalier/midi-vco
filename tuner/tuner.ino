@@ -3,11 +3,10 @@
  * Arduino firmware providing an automated tuning feature for a VCO.
  * 
  * @author Yohan Chalier
- * @version 0.1.0 2021-09-07
+ * @version 0.1.0 2021-09-17
  */
 
 #include <MCP41xxx.h>
-#include "arduinoFFT.h"
 
 #define MODE_SELECTOR_PIN_A A1
 #define MODE_SELECTOR_PIN_B A2
@@ -19,13 +18,11 @@
 #define MODE_TUNE 1
 #define MODE_SCALE 2
 
-#define SAMPLE_SIZE 128
-#define SAMPLE_FREQUENCY 1024 // Hz
+#define SAMPLE_SIZE 512       // Arduino Nano has 2 Ko of RAM
+#define SAMPLE_FREQUENCY 4096 // Hz
 
-arduinoFFT fft = arduinoFFT();
 byte current_mode;
-double samples[SAMPLE_SIZE];
-double imag[SAMPLE_SIZE];
+int samples[SAMPLE_SIZE];
 const double sampling_period = round(1000000 * (1.0 / SAMPLE_FREQUENCY));
 MCP41xxx dac_tune(DAC_TUNE_PIN);
 MCP41xxx dac_scale(DAC_SCALE_PIN);
@@ -35,10 +32,6 @@ void setup()
     pinMode(MODE_SELECTOR_PIN_A, INPUT);
     pinMode(MODE_SELECTOR_PIN_B, INPUT);
     current_mode = MODE_OFF;
-    for (int i = 0; i < SAMPLE_SIZE; i++)
-    {
-        imag[i] = 0;
-    }
     dac_tune.begin();
     dac_scale.begin();
 }
@@ -110,10 +103,34 @@ void acquire_samples()
     }
 }
 
+int count_crossings_rising(int frontier)
+{
+    int crossings = 0;
+    for (int i = 0; i < SAMPLE_SIZE - 1; i++)
+    {
+        if (samples[i] <= frontier && samples[i + 1] >= frontier)
+        {
+            crossings++;
+        }
+    }
+    return crossings;
+}
+
 float compute_frequency()
 {
-    fft.Windowing(samples, SAMPLE_SIZE, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
-    fft.Compute(samples, imag, SAMPLE_SIZE, FFT_FORWARD);
-    fft.ComplexToMagnitude(samples, imag, SAMPLE_SIZE);
-    return fft.MajorPeak(samples, SAMPLE_SIZE, SAMPLE_FREQUENCY);
+    int min = 1024;
+    int max = 0;
+    for (int i = 0; i < SAMPLE_SIZE; i++)
+    {
+        if (samples[i] > max)
+        {
+            max = samples[i];
+        }
+        if (samples[i] < min)
+        {
+            min = samples[i];
+        }
+    }
+    int crossings = count_crossings_rising((max + min) / 2);
+    return (float)crossings / (float)(sampling_period * SAMPLE_SIZE);
 }
