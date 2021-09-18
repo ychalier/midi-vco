@@ -6,6 +6,7 @@
  * @version 0.1.0 2021-09-17
  */
 
+#include <math.h>
 #include <MCP41xxx.h>
 
 #define MODE_SELECTOR_PIN_A A1
@@ -31,6 +32,8 @@ typedef struct DigitalPotentiometerState
 byte current_mode;
 int samples[SAMPLE_SIZE];
 const double sampling_period = round(1000000 * (1.0 / SAMPLE_FREQUENCY));
+const float scale_pow2 = 55. / 32.;
+const float log2 = log(2);
 MCP41xxx dac_tune(DAC_TUNE_PIN);
 MCP41xxx dac_scale(DAC_SCALE_PIN);
 
@@ -146,4 +149,14 @@ float compute_frequency()
     }
     int crossings = count_crossings_rising((max + min) / 2);
     return (float)crossings / (float)(sampling_period * SAMPLE_SIZE);
+}
+
+float get_closest_a440(float frequency)
+{
+    /**
+     * Given a frequency (in Hertz), returns the frequency (in Hertz) of the
+     * closest A note, on an equal-tempered scale where A4 is 440 Hz. The
+     * frequency distance measure is based on a logarithmic scale.
+     */
+    return pow(2, round(log(frequency / scale_pow2) / log2)) * scale_pow2;
 }
