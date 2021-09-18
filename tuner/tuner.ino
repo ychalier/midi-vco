@@ -22,6 +22,8 @@
 #define SAMPLE_SIZE 512       // Arduino Nano has 2 Ko of RAM
 #define SAMPLE_FREQUENCY 4096 // Hz
 
+#define TUNING_DELAY 500 // ms
+
 typedef struct DigitalPotentiometerState
 {
     byte current_value;
@@ -109,6 +111,7 @@ void exec_mode_tune()
     }
     state_tune.current_value = (state_tune.lbound + state_tune.ubound) / 2;
     dac_tune.analogWrite(state_tune.current_value);
+    delay(TUNING_DELAY);
 }
 
 void exec_mode_scale()
