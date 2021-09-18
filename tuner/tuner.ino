@@ -97,7 +97,19 @@ byte get_current_mode()
 
 void exec_mode_tune()
 {
-    // TODO
+    acquire_samples();
+    float current_frequency = compute_frequency();
+    float target_frequency = get_closest_a440(current_frequency);
+    if (current_frequency > target_frequency)
+    {
+        state_tune.ubound = state_tune.current_value;
+    }
+    else if (current_frequency < target_frequency)
+    {
+        state_tune.lbound = state_tune.current_value;
+    }
+    state_tune.current_value = (state_tune.lbound + state_tune.ubound) / 2;
+    dac_tune.analogWrite(state_tune.current_value);
 }
 
 void exec_mode_scale()
