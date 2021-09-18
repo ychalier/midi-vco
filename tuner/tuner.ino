@@ -21,11 +21,21 @@
 #define SAMPLE_SIZE 512       // Arduino Nano has 2 Ko of RAM
 #define SAMPLE_FREQUENCY 4096 // Hz
 
+typedef struct DigitalPotentiometerState
+{
+    byte current_value;
+    byte lbound;
+    byte ubound;
+} DigitalPotentiometerState;
+
 byte current_mode;
 int samples[SAMPLE_SIZE];
 const double sampling_period = round(1000000 * (1.0 / SAMPLE_FREQUENCY));
 MCP41xxx dac_tune(DAC_TUNE_PIN);
 MCP41xxx dac_scale(DAC_SCALE_PIN);
+
+DigitalPotentiometerState state_tune{127, 0, 255};
+DigitalPotentiometerState state_scale{127, 0, 255};
 
 void setup()
 {
@@ -34,6 +44,7 @@ void setup()
     current_mode = MODE_OFF;
     dac_tune.begin();
     dac_scale.begin();
+    // TODO: read digital potentiometer current values from EEPROM
 }
 
 void loop()
