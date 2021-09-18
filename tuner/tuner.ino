@@ -61,7 +61,11 @@ void loop()
     byte new_mode = get_current_mode();
     if (new_mode != current_mode)
     {
-        // TODO: reset tuning variables here
+        state_tune.lbound = 0;
+        state_tune.ubound = 255;
+        state_scale.lbound = 0;
+        state_scale.ubound = 255;
+        scale_status = 0;
         current_mode = new_mode;
     }
     switch (current_mode)
