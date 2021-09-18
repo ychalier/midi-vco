@@ -97,8 +97,7 @@ byte get_current_mode()
 
 void exec_mode_tune()
 {
-    acquire_samples();
-    float current_frequency = compute_frequency();
+    float current_frequency = get_frequency();
     float target_frequency = get_closest_a440(current_frequency);
     if (current_frequency > target_frequency)
     {
@@ -171,4 +170,11 @@ float get_closest_a440(float frequency)
      * frequency distance measure is based on a logarithmic scale.
      */
     return pow(2, round(log(frequency / scale_pow2) / log2)) * scale_pow2;
+}
+
+float get_frequency()
+{
+    // TODO: if necessary, repeat sampling to average the result.
+    acquire_samples();
+    return compute_frequency();
 }
