@@ -38,6 +38,7 @@ const float scale_pow2 = 55. / 32.;
 const float log2 = log(2);
 MCP41xxx dac_tune(DAC_TUNE_PIN);
 MCP41xxx dac_scale(DAC_SCALE_PIN);
+float scale_status;
 
 DigitalPotentiometerState state_tune{127, 0, 255};
 DigitalPotentiometerState state_scale{127, 0, 255};
@@ -47,6 +48,7 @@ void setup()
     pinMode(MODE_SELECTOR_PIN_A, INPUT);
     pinMode(MODE_SELECTOR_PIN_B, INPUT);
     current_mode = MODE_OFF;
+    scale_status = 0;
     dac_tune.begin();
     dac_scale.begin();
     // TODO: read digital potentiometer current values from EEPROM
@@ -66,9 +68,11 @@ void loop()
     {
     case MODE_TUNE:
         exec_mode_tune();
+        delay(TUNING_DELAY);
         break;
     case MODE_SCALE:
         exec_mode_scale();
+        delay(TUNING_DELAY);
         break;
     }
 }
@@ -97,7 +101,7 @@ byte get_current_mode()
     }
 }
 
-void exec_mode_tune()
+float exec_mode_tune()
 {
     float current_frequency = get_frequency();
     float target_frequency = get_closest_a440(current_frequency);
@@ -111,12 +115,34 @@ void exec_mode_tune()
     }
     state_tune.current_value = (state_tune.lbound + state_tune.ubound) / 2;
     dac_tune.analogWrite(state_tune.current_value);
-    delay(TUNING_DELAY);
+    return target_frequency;
 }
 
 void exec_mode_scale()
 {
-    // TODO
+    if (scale_status == 0)
+    {
+        scale_status = exec_mode_tune();
+    }
+    else
+    {
+        float current_frequency = get_frequency();
+        float target_frequency = get_closest_a440(current_frequency);
+        if (target_frequency != scale_status)
+        {
+            if (current_frequency > target_frequency)
+            {
+                state_scale.ubound = state_scale.current_value;
+            }
+            else if (current_frequency < target_frequency)
+            {
+                state_scale.lbound = state_scale.current_value;
+            }
+            state_scale.current_value = (state_scale.lbound + state_scale.ubound) / 2;
+            dac_scale.analogWrite(state_scale.current_value);
+            scale_status = 0;
+        }
+    }
 }
 
 void acquire_samples()
