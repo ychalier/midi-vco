@@ -45,6 +45,8 @@ void setup()
     dac_tune.begin();
     dac_scale.begin();
     // TODO: read digital potentiometer current values from EEPROM
+    dac_tune.analogWrite(state_tune.value);
+    dac_scale.analogWrite(state_scale.value);
 }
 
 void loop()
