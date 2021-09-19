@@ -6,6 +6,11 @@
  * @version 0.1.0 2021-09-17
  */
 
+// Arduino Nano is based on the ATmega328 microcontroller.
+// The EEPROM has a size of 2 Ko.
+// @see https://docs.rs-online.com/5775/0900766b80db4deb.pdf
+#include <EEPROM.h>
+
 #include <math.h>
 #include <MCP41xxx.h>
 
@@ -24,11 +29,15 @@
 
 #define TUNING_DELAY 500 // ms
 
+#define EEPROM_ADDRESS_TUNE 0
+#define EEPROM_ADDRESS_SCALE 1
+
 typedef struct DigitalPotentiometerState
 {
     byte current_value;
     byte lbound;
     byte ubound;
+    byte eeprom_address;
 } DigitalPotentiometerState;
 
 byte current_mode;
@@ -40,8 +49,8 @@ MCP41xxx *dac_tune;
 MCP41xxx *dac_scale;
 float scale_status;
 
-DigitalPotentiometerState state_tune{127, 0, 255};
-DigitalPotentiometerState state_scale{127, 0, 255};
+DigitalPotentiometerState state_tune{127, 0, 255, EEPROM_ADDRESS_TUNE};
+DigitalPotentiometerState state_scale{127, 0, 255, EEPROM_ADDRESS_SCALE};
 
 void setup()
 {
@@ -51,11 +60,8 @@ void setup()
     pinMode(MODE_SELECTOR_PIN_B, INPUT);
     current_mode = MODE_OFF;
     scale_status = 0;
-    dac_tune->begin();
-    dac_scale->begin();
-    // TODO: read digital potentiometer current values from EEPROM
-    dac_tune->analogWrite(state_tune.current_value);
-    dac_scale->analogWrite(state_scale.current_value);
+    setup_state(state_tune, dac_tune);
+    setup_state(state_scale, dac_scale);
 }
 
 void loop()
@@ -107,6 +113,17 @@ byte get_current_mode()
     }
 }
 
+void setup_state(DigitalPotentiometerState &state, MCP41xxx *dac)
+{
+    byte saved_value = EEPROM.read(state.eeprom_address);
+    if (saved_value != 255)
+    {
+        state.current_value = saved_value;
+    }
+    dac->begin();
+    dac->analogWrite(state.current_value);
+}
+
 void adjust_potentiometer(float current, float target, DigitalPotentiometerState &state, MCP41xxx *dac)
 {
     if (current > target)
@@ -119,6 +136,7 @@ void adjust_potentiometer(float current, float target, DigitalPotentiometerState
     }
     state.current_value = (state.lbound + state.ubound) / 2;
     dac->analogWrite(state.current_value);
+    EEPROM.update(state.eeprom_address, state.current_value);
 }
 
 float exec_mode_tune()
