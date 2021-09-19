@@ -36,8 +36,8 @@ int samples[SAMPLE_SIZE];
 const double sampling_period = round(1000000 * (1.0 / SAMPLE_FREQUENCY));
 const float scale_pow2 = 55. / 32.;
 const float log2 = log(2);
-MCP41xxx dac_tune(DAC_TUNE_PIN);
-MCP41xxx dac_scale(DAC_SCALE_PIN);
+MCP41xxx *dac_tune;
+MCP41xxx *dac_scale;
 float scale_status;
 
 DigitalPotentiometerState state_tune{127, 0, 255};
@@ -45,15 +45,17 @@ DigitalPotentiometerState state_scale{127, 0, 255};
 
 void setup()
 {
+    dac_tune = new MCP41xxx(DAC_TUNE_PIN);
+    dac_scale = new MCP41xxx(DAC_SCALE_PIN);
     pinMode(MODE_SELECTOR_PIN_A, INPUT);
     pinMode(MODE_SELECTOR_PIN_B, INPUT);
     current_mode = MODE_OFF;
     scale_status = 0;
-    dac_tune.begin();
-    dac_scale.begin();
+    dac_tune->begin();
+    dac_scale->begin();
     // TODO: read digital potentiometer current values from EEPROM
-    dac_tune.analogWrite(state_tune.current_value);
-    dac_scale.analogWrite(state_scale.current_value);
+    dac_tune->analogWrite(state_tune.current_value);
+    dac_scale->analogWrite(state_scale.current_value);
 }
 
 void loop()
@@ -105,20 +107,25 @@ byte get_current_mode()
     }
 }
 
+void adjust_potentiometer(float current, float target, DigitalPotentiometerState &state, MCP41xxx *dac)
+{
+    if (current > target)
+    {
+        state.ubound = state.current_value;
+    }
+    else if (current < target)
+    {
+        state.lbound = state.current_value;
+    }
+    state.current_value = (state.lbound + state.ubound) / 2;
+    dac->analogWrite(state.current_value);
+}
+
 float exec_mode_tune()
 {
     float current_frequency = get_frequency();
     float target_frequency = get_closest_a440(current_frequency);
-    if (current_frequency > target_frequency)
-    {
-        state_tune.ubound = state_tune.current_value;
-    }
-    else if (current_frequency < target_frequency)
-    {
-        state_tune.lbound = state_tune.current_value;
-    }
-    state_tune.current_value = (state_tune.lbound + state_tune.ubound) / 2;
-    dac_tune.analogWrite(state_tune.current_value);
+    adjust_potentiometer(current_frequency, target_frequency, state_tune, dac_tune);
     return target_frequency;
 }
 
@@ -134,16 +141,7 @@ void exec_mode_scale()
         float target_frequency = get_closest_a440(current_frequency);
         if (target_frequency != scale_status)
         {
-            if (current_frequency > target_frequency)
-            {
-                state_scale.ubound = state_scale.current_value;
-            }
-            else if (current_frequency < target_frequency)
-            {
-                state_scale.lbound = state_scale.current_value;
-            }
-            state_scale.current_value = (state_scale.lbound + state_scale.ubound) / 2;
-            dac_scale.analogWrite(state_scale.current_value);
+            adjust_potentiometer(current_frequency, target_frequency, state_scale, dac_scale);
             scale_status = 0;
         }
     }
