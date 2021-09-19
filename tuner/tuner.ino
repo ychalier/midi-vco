@@ -38,6 +38,7 @@ typedef struct DigitalPotentiometerState
     byte lbound;
     byte ubound;
     byte eeprom_address;
+    MCP41xxx *dac;
 } DigitalPotentiometerState;
 
 byte current_mode;
@@ -45,23 +46,21 @@ int samples[SAMPLE_SIZE];
 const double sampling_period = round(1000000 * (1.0 / SAMPLE_FREQUENCY));
 const float scale_pow2 = 55. / 32.;
 const float log2 = log(2);
-MCP41xxx *dac_tune;
-MCP41xxx *dac_scale;
 float scale_status;
 
-DigitalPotentiometerState state_tune{127, 0, 255, EEPROM_ADDRESS_TUNE};
-DigitalPotentiometerState state_scale{127, 0, 255, EEPROM_ADDRESS_SCALE};
+DigitalPotentiometerState state_tune{127, 0, 255, EEPROM_ADDRESS_TUNE, nullptr};
+DigitalPotentiometerState state_scale{127, 0, 255, EEPROM_ADDRESS_SCALE, nullptr};
 
 void setup()
 {
-    dac_tune = new MCP41xxx(DAC_TUNE_PIN);
-    dac_scale = new MCP41xxx(DAC_SCALE_PIN);
+    state_tune.dac = new MCP41xxx(DAC_TUNE_PIN);
+    state_scale.dac = new MCP41xxx(DAC_SCALE_PIN);
     pinMode(MODE_SELECTOR_PIN_A, INPUT);
     pinMode(MODE_SELECTOR_PIN_B, INPUT);
     current_mode = MODE_OFF;
     scale_status = 0;
-    setup_state(state_tune, dac_tune);
-    setup_state(state_scale, dac_scale);
+    setup_state(state_tune);
+    setup_state(state_scale);
 }
 
 void loop()
@@ -113,18 +112,18 @@ byte get_current_mode()
     }
 }
 
-void setup_state(DigitalPotentiometerState &state, MCP41xxx *dac)
+void setup_state(DigitalPotentiometerState &state)
 {
     byte saved_value = EEPROM.read(state.eeprom_address);
     if (saved_value != 255)
     {
         state.current_value = saved_value;
     }
-    dac->begin();
-    dac->analogWrite(state.current_value);
+    state.dac->begin();
+    state.dac->analogWrite(state.current_value);
 }
 
-void update_state(float current, float target, DigitalPotentiometerState &state, MCP41xxx *dac)
+void update_state(DigitalPotentiometerState &state, float current, float target)
 {
     if (current > target)
     {
@@ -135,7 +134,7 @@ void update_state(float current, float target, DigitalPotentiometerState &state,
         state.lbound = state.current_value;
     }
     state.current_value = (state.lbound + state.ubound) / 2;
-    dac->analogWrite(state.current_value);
+    state.dac->analogWrite(state.current_value);
     EEPROM.update(state.eeprom_address, state.current_value);
 }
 
@@ -143,7 +142,7 @@ float exec_mode_tune()
 {
     float current_frequency = get_frequency();
     float target_frequency = get_closest_a440(current_frequency);
-    update_state(current_frequency, target_frequency, state_tune, dac_tune);
+    update_state(state_tune, current_frequency, target_frequency);
     return target_frequency;
 }
 
@@ -159,7 +158,7 @@ void exec_mode_scale()
         float target_frequency = get_closest_a440(current_frequency);
         if (target_frequency != scale_status)
         {
-            update_state(current_frequency, target_frequency, state_scale, dac_scale);
+            update_state(state_scale, current_frequency, target_frequency);
             scale_status = 0;
         }
     }
