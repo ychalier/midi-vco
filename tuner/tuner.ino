@@ -124,7 +124,7 @@ void setup_state(DigitalPotentiometerState &state, MCP41xxx *dac)
     dac->analogWrite(state.current_value);
 }
 
-void adjust_potentiometer(float current, float target, DigitalPotentiometerState &state, MCP41xxx *dac)
+void update_state(float current, float target, DigitalPotentiometerState &state, MCP41xxx *dac)
 {
     if (current > target)
     {
@@ -143,7 +143,7 @@ float exec_mode_tune()
 {
     float current_frequency = get_frequency();
     float target_frequency = get_closest_a440(current_frequency);
-    adjust_potentiometer(current_frequency, target_frequency, state_tune, dac_tune);
+    update_state(current_frequency, target_frequency, state_tune, dac_tune);
     return target_frequency;
 }
 
@@ -159,7 +159,7 @@ void exec_mode_scale()
         float target_frequency = get_closest_a440(current_frequency);
         if (target_frequency != scale_status)
         {
-            adjust_potentiometer(current_frequency, target_frequency, state_scale, dac_scale);
+            update_state(current_frequency, target_frequency, state_scale, dac_scale);
             scale_status = 0;
         }
     }
