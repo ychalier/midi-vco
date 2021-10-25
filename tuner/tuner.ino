@@ -9,220 +9,59 @@
 // Arduino Nano is based on the ATmega328 microcontroller.
 // The EEPROM has a size of 2 Ko.
 // @see https://docs.rs-online.com/5775/0900766b80db4deb.pdf
-#include <EEPROM.h>
+// #include <EEPROM.h>
 
-#include <math.h>
-#include <MCP41xxx.h>
+#include "constants.h"
+#include "frequency_detector.h"
+#include "digital_potentiometer.h"
 
-#define MODE_SELECTOR_PIN_A A1
-#define MODE_SELECTOR_PIN_B A2
-#define WAVE_IN_PIN A0
-#define DAC_TUNE_PIN 9
-#define DAC_SCALE_PIN 10
+#define MODE_SELECTOR_PIN A3
+#define DAC_TUNE_PIN_A 4
+#define DAC_TUNE_PIN_B 3
+#define WAVE_IN_A A4
+#define WAVE_IN_B A5
 
 #define MODE_OFF 0
 #define MODE_TUNE 1
-#define MODE_SCALE 2
 
-#define SAMPLE_SIZE 512       // Arduino Nano has 2 Ko of RAM
-#define SAMPLE_FREQUENCY 4096 // Hz
+FrequencyDetector* frequency_detector = new FrequencyDetector(614, 1000000);
+DigitalPotentiometer* dgt_pot_a = new DigitalPotentiometer(frequency_detector, WAVE_IN_A, DAC_TUNE_PIN_A);
+DigitalPotentiometer* dgt_pot_b = new DigitalPotentiometer(frequency_detector, WAVE_IN_B, DAC_TUNE_PIN_B);
 
-#define TUNING_DELAY 500 // ms
-
-#define EEPROM_ADDRESS_TUNE 0
-#define EEPROM_ADDRESS_SCALE 1
-
-typedef struct DigitalPotentiometerState
-{
-    byte current_value;
-    byte lbound;
-    byte ubound;
-    byte eeprom_address;
-    MCP41xxx *dac;
-} DigitalPotentiometerState;
-
-byte current_mode;
-int samples[SAMPLE_SIZE];
-const double sampling_period = round(1000000 * (1.0 / SAMPLE_FREQUENCY));
-const float scale_pow2 = 55. / 32.;
-const float log2 = log(2);
-float scale_status;
-
-DigitalPotentiometerState state_tune{127, 0, 255, EEPROM_ADDRESS_TUNE, nullptr};
-DigitalPotentiometerState state_scale{127, 0, 255, EEPROM_ADDRESS_SCALE, nullptr};
+byte current_mode = MODE_OFF;
 
 void setup()
 {
-    state_tune.dac = new MCP41xxx(DAC_TUNE_PIN);
-    state_scale.dac = new MCP41xxx(DAC_SCALE_PIN);
-    pinMode(MODE_SELECTOR_PIN_A, INPUT);
-    pinMode(MODE_SELECTOR_PIN_B, INPUT);
-    current_mode = MODE_OFF;
-    scale_status = 0;
-    setup_state(state_tune);
-    setup_state(state_scale);
+    pinMode(MODE_SELECTOR_PIN, INPUT);
+    pinMode(DAC_TUNE_PIN_A, INPUT);
+    pinMode(DAC_TUNE_PIN_B, INPUT);
+    dgt_pot_a->setup();
+    dgt_pot_b->setup();
+    #ifdef DEBUG
+    Serial.begin(9600);
+    #endif
 }
 
 void loop()
 {
-    byte new_mode = get_current_mode();
-    if (new_mode != current_mode)
+    if (get_current_mode() == MODE_TUNE)
     {
-        state_tune.lbound = 0;
-        state_tune.ubound = 255;
-        state_scale.lbound = 0;
-        state_scale.ubound = 255;
-        scale_status = 0;
-        current_mode = new_mode;
-    }
-    switch (current_mode)
-    {
-    case MODE_TUNE:
-        exec_mode_tune();
-        delay(TUNING_DELAY);
-        break;
-    case MODE_SCALE:
-        exec_mode_scale();
-        delay(TUNING_DELAY);
-        break;
+        #ifdef DEBUG
+        Serial.println("TUNE");
+        #endif
+        dgt_pot_a->tune();
+        dgt_pot_b->tune();
     }
 }
 
 byte get_current_mode()
 {
-    int a = digitalRead(MODE_SELECTOR_PIN_A);
-    int b = digitalRead(MODE_SELECTOR_PIN_B);
-    if (a == LOW && b == LOW)
-    {
-        return MODE_OFF;
-    }
-    else if (a == HIGH && b == LOW)
+    if (digitalRead(MODE_SELECTOR_PIN) == HIGH)
     {
         return MODE_TUNE;
     }
-    else if (a == LOW && b == HIGH)
-    {
-        return MODE_SCALE;
-    }
     else
     {
-        // In real life, this case should never occur.
-        // Yet, better safe than sorry!
         return MODE_OFF;
     }
-}
-
-void setup_state(DigitalPotentiometerState &state)
-{
-    byte saved_value = EEPROM.read(state.eeprom_address);
-    if (saved_value != 255)
-    {
-        state.current_value = saved_value;
-    }
-    state.dac->begin();
-    state.dac->analogWrite(state.current_value);
-}
-
-void update_state(DigitalPotentiometerState &state, float current, float target)
-{
-    if (current > target)
-    {
-        state.ubound = state.current_value;
-    }
-    else if (current < target)
-    {
-        state.lbound = state.current_value;
-    }
-    state.current_value = (state.lbound + state.ubound) / 2;
-    state.dac->analogWrite(state.current_value);
-    EEPROM.update(state.eeprom_address, state.current_value);
-}
-
-float exec_mode_tune()
-{
-    float current_frequency = get_frequency();
-    float target_frequency = get_closest_a440(current_frequency);
-    update_state(state_tune, current_frequency, target_frequency);
-    return target_frequency;
-}
-
-void exec_mode_scale()
-{
-    if (scale_status == 0)
-    {
-        scale_status = exec_mode_tune();
-    }
-    else
-    {
-        float current_frequency = get_frequency();
-        float target_frequency = get_closest_a440(current_frequency);
-        if (target_frequency != scale_status)
-        {
-            update_state(state_scale, current_frequency, target_frequency);
-            scale_status = 0;
-        }
-    }
-}
-
-void acquire_samples()
-{
-    unsigned long now;
-    for (int i = 0; i < SAMPLE_SIZE; i++)
-    {
-        now = micros();
-        samples[i] = analogRead(WAVE_IN_PIN);
-        while (micros() < (now + sampling_period))
-        {
-            // pass
-        }
-    }
-}
-
-int count_crossings_rising(int frontier)
-{
-    int crossings = 0;
-    for (int i = 0; i < SAMPLE_SIZE - 1; i++)
-    {
-        if (samples[i] <= frontier && samples[i + 1] >= frontier)
-        {
-            crossings++;
-        }
-    }
-    return crossings;
-}
-
-float compute_frequency()
-{
-    int min = 1024;
-    int max = 0;
-    for (int i = 0; i < SAMPLE_SIZE; i++)
-    {
-        if (samples[i] > max)
-        {
-            max = samples[i];
-        }
-        if (samples[i] < min)
-        {
-            min = samples[i];
-        }
-    }
-    int crossings = count_crossings_rising((max + min) / 2);
-    return (float)crossings / (float)(sampling_period * SAMPLE_SIZE);
-}
-
-float get_closest_a440(float frequency)
-{
-    /**
-     * Given a frequency (in Hertz), returns the frequency (in Hertz) of the
-     * closest A note, on an equal-tempered scale where A4 is 440 Hz. The
-     * frequency distance measure is based on a logarithmic scale.
-     */
-    return pow(2, round(log(frequency / scale_pow2) / log2)) * scale_pow2;
-}
-
-float get_frequency()
-{
-    // TODO: if necessary, repeat sampling to average the result.
-    acquire_samples();
-    return compute_frequency();
 }
