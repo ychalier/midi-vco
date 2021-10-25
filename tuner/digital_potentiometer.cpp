@@ -33,10 +33,11 @@ DigitalPotentiometer::tune()
 {
     float frequency = _frequency_detector->get(_wave_pin);
     float target = get_closest_a440(frequency);
-    int offset = (int)(abs(target - frequency) / 5);
-    if (offset == 0)
+    float gap = abs(target - frequency);
+    int offset = 0;
+    if (gap >= 1)
     {
-        offset = (int)abs(target - frequency);
+        offset = ceilf(.2 * gap);
     }
     if (frequency > target)
     {
