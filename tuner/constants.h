@@ -2,6 +2,6 @@
 #define constants_h
 
 // Uncomment this to activate serial prints
-#define DEBUG
+// #define DEBUG
 
 #endif

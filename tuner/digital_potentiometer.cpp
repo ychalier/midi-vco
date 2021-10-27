@@ -39,7 +39,7 @@ DigitalPotentiometer::tune()
     {
         offset = ceilf(.2 * gap);
     }
-    if (frequency > target)
+    if (frequency < target)
     {
         _current_value = _current_value - offset;
     }

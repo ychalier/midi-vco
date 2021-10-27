@@ -3,7 +3,7 @@
  * Arduino firmware providing an automated tuning feature for a VCO.
  * 
  * @author Yohan Chalier
- * @version 0.1.0 2021-09-17
+ * @version 0.2.0 2021-10-27
  */
 
 // Arduino Nano is based on the ATmega328 microcontroller.
@@ -15,11 +15,11 @@
 #include "frequency_detector.h"
 #include "digital_potentiometer.h"
 
-#define MODE_SELECTOR_PIN A3
+#define MODE_SELECTOR_PIN A1
 #define DAC_TUNE_PIN_A 4
 #define DAC_TUNE_PIN_B 3
-#define WAVE_IN_A A4
-#define WAVE_IN_B A5
+#define WAVE_IN_A A5
+#define WAVE_IN_B A4
 
 #define MODE_OFF 0
 #define MODE_TUNE 1
