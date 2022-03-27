@@ -95,7 +95,7 @@
 #define GLIDE_INTENSITY_POWER 2
 
 #define SEQUENCER_MEMORY_SIZE 64
-#define SEQUENCER_WINDOW_SIZE 150 // Milliseconds
+#define SEQUENCER_WINDOW_SIZE 20 // Milliseconds
 
 #define AFTERTOUCH_COEFF 8
 
