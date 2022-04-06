@@ -3,10 +3,10 @@
 
 Router::Router(Config *config, Display *display)
 {
-    _coupler_1 = new Coupler(PIN_SS_1, PIN_GATE_1);
-    _coupler_2 = new Coupler(PIN_SS_2, PIN_GATE_3);
-    _coupler_3 = new Coupler(PIN_SS_3, PIN_GATE_5);
-    _coupler_4 = new Coupler(PIN_SS_4, PIN_GATE_7);
+    _coupler_1 = new Coupler(PIN_SS_CV_1, PIN_GATE_1);
+    _coupler_2 = new Coupler(PIN_SS_CV_2, PIN_GATE_2);
+    _coupler_3 = new Coupler(PIN_SS_CV_3, PIN_GATE_3);
+    _coupler_4 = new Coupler(PIN_SS_CV_4, PIN_GATE_4);
     _lane_1 = new Lane(config, display, _coupler_1, COUPLER_A, 0);
     _lane_2 = new Lane(config, display, _coupler_1, COUPLER_B, 1);
     _lane_3 = new Lane(config, display, _coupler_2, COUPLER_A, 2);

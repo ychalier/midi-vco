@@ -11,11 +11,24 @@ MidiInterface::MidiInterface(Config *config, Allocator *allocator, Sequencer *se
 
 void MidiInterface::update()
 {
-    bool changed = _config->read();
-    if (changed)
+    int changed = _config->read();
+    if (changed & (CONFIG_CHANGE_POLYPHONY_MODE | CONFIG_CHANGE_PRIORITY_MODE | CONFIG_CHANGE_CHANNEL_FILTER) > 0)
     {
         _allocator->set_masks();
         _allocator->display_state();
+    }
+    if (changed & CONFIG_CHANGE_SOURCE > 0)
+    {
+        _allocator->reset();
+        _arpeggiator->reset();
+        if (_config->get_active_source() == SOURCE_SEQUENCER)
+        {
+            _sequencer->update_state(false);
+        }
+    }
+    if (changed & CONFIG_CHANGE_SEQUENCER_RECORD > 0)
+    {
+        _sequencer->update_state(_config->should_sequencer_record());
     }
     switch (_config->get_active_source())
     {
@@ -76,12 +89,13 @@ void MidiInterface::handle_pitch_bend(byte channel, int bend)
 
 void MidiInterface::handle_control_change(byte channel, byte number, byte value)
 {
-    switch (_config->handle_midi_control(channel, number, value))
+    int changed = _config->handle_midi_control(channel, number, value);
+    if (changed & CONFIG_CHANGE_SEQUENCER_RECORD > 0)
     {
-    case CONFIG_CHANGE_SEQUENCER_RECORD:
         _sequencer->update_state(_config->should_sequencer_record());
-        break;
-    case CONFIG_CHANGE_SOURCE:
+    }
+    if (changed & CONFIG_CHANGE_SOURCE)
+    {
         _allocator->reset();
         _arpeggiator->reset();
         switch (_config->get_active_source())
@@ -94,8 +108,9 @@ void MidiInterface::handle_control_change(byte channel, byte number, byte value)
         case SOURCE_ARPEGGIATOR:
             break;
         }
-        break;
-    case CONFIG_CHANGE_HOLD:
+    }
+    if (changed & CONFIG_CHANGE_HOLD)
+    {
         if (_config->get_hold())
         {
             _allocator->hold_on();
@@ -104,7 +119,6 @@ void MidiInterface::handle_control_change(byte channel, byte number, byte value)
         {
             _allocator->hold_off();
         }
-        break;
     }
 }
 

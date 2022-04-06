@@ -19,36 +19,12 @@ public:
     void setup();
 
     /**
-     * Associate a polyphony mode given an analog user input.
-     * 
-     * @param input_value Analog input, a number between 0 and 1023.
-     * @return The associated polyphony mode.
-     */
-    static byte categorize_polyphony_mode(int input_value);
-
-    /**
-     * Associate a priority mode given an digital user input.
-     * 
-     * @param input_value Digital input, either HIGH or LOW.
-     * @return The associated priority mode.
-     */
-    static byte categorize_priority_mode(int input_value);
-
-    /**
-     * Associate a channel filter given an digital user input.
-     * 
-     * @param input_value Digital input, either HIGH or LOW.
-     * @return The associated channel filter.
-     */
-    static byte categorize_channel_filter(int input_value);
-
-    /**
      * Check all connected inputs for their current value and store it in the
      * configuration.
-     * 
+     *
      * @return Whether any change in configuration occured during the reading.
      */
-    bool read();
+    int read();
 
     /**
      * Getter for the _polyphony_mode attribute.
@@ -82,7 +58,7 @@ public:
 
     /**
      * Callback to handle MIDI controls.
-     * 
+     *
      * @param channel The MIDI channel concerned with the change.
      * @param number The control identifier.
      * @param value The current control value, a 7-bit integer.
@@ -146,6 +122,17 @@ private:
     float _voltage_offset;
     unsigned long _time_period;
     float _arpeggiator_sustain;
+
+    bool _read_source();
+    bool _read_polyphony_mode();
+    void _read_pitch_bend_range();
+    void _read_glide_intensity();
+    void _read_arpeggiator_mode();
+    void _read_time();
+    bool _read_priority_mode();
+    bool _read_channel_filter();
+    bool _read_sequencer_record();
+
 };
 
 #endif

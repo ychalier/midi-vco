@@ -21,64 +21,162 @@ Config::Config()
 
 void Config::setup()
 {
-    pinMode(PIN_SELECT_PRIORITY, INPUT);
-    pinMode(PIN_SELECT_CHANNEL, INPUT);
+    pinMode(PIN_SOURCE, INPUT);
+    pinMode(PIN_POLYPHONY_MODE, INPUT);
+    pinMode(PIN_PITCH_BEND_RANGE, INPUT);
+    pinMode(PIN_GLIDE_INTENSITY, INPUT);
+    pinMode(PIN_ARPEGGIATOR_MODE, INPUT);
+    pinMode(PIN_DETUNE, INPUT);
+    pinMode(PIN_TIME, INPUT);
+    pinMode(PIN_PRIORITY_MODE, INPUT);
+    pinMode(PIN_CHANNEL_FILTER, INPUT);
+    pinMode(PIN_TUNE, INPUT);
+    pinMode(PIN_REC, INPUT);
 }
 
-byte Config::categorize_polyphony_mode(int input_value)
+bool Config::_read_source()
 {
-    if (input_value < 256)
-    {
-        return MODE_OCTOPHONIC;
+    int value = analogRead(PIN_SOURCE);
+    byte source = SOURCE_DIRECT;
+    if (value <= 341) {
+        source = SOURCE_ARPEGGIATOR;
     }
-    else if (input_value < 512)
-    {
-        return MODE_QUADROPHONIC;
+    else if (value <= 682) {
+        source = SOURCE_SEQUENCER;
     }
-    else if (input_value < 768)
-    {
-        return MODE_DUOPHONIC;
-    }
-    else
-    {
-        return MODE_MONOPHONIC;
-    }
+    bool changed = _active_source != source;
+    _active_source = source;
 }
 
-byte Config::categorize_priority_mode(int input_value)
+bool Config::_read_polyphony_mode()
 {
-    if (input_value == HIGH)
+    int value = analogRead(PIN_POLYPHONY_MODE);
+    int polyphony_mode = MODE_MONOPHONIC;
+    if (value < 256)
     {
-        return PRIORITY_REPLACE_NEWEST;
+        polyphony_mode = MODE_OCTOPHONIC;
     }
-    else
+    else if (value < 512)
     {
-        return PRIORITY_REPLACE_OLDEST;
+        polyphony_mode = MODE_QUADROPHONIC;
     }
-}
-
-byte Config::categorize_channel_filter(int input_value)
-{
-    if (input_value == HIGH)
+    else if (value < 768)
     {
-        return CHANNEL_FILTER_ON;
+        polyphony_mode = MODE_DUOPHONIC;
     }
-    else
-    {
-        return CHANNEL_FILTER_OFF;
-    }
-}
-
-bool Config::read()
-{
-    byte priority_mode = categorize_priority_mode(digitalRead(PIN_SELECT_PRIORITY));
-    byte channel_filter = CHANNEL_FILTER_OFF;
-    // byte channel_filter = categorize_channel_filter(digitalRead(PIN_SELECT_CHANNEL));
-    byte polyphony_mode = categorize_polyphony_mode(analogRead(PIN_SELECT_MODE));
-    bool changed = _priority_mode != priority_mode || _polyphony_mode != polyphony_mode || _channel_filter != channel_filter;
-    _priority_mode = priority_mode;
+    bool changed = _polyphony_mode != polyphony_mode;
     _polyphony_mode = polyphony_mode;
-    _channel_filter = channel_filter;
+    return changed;
+}
+
+void Config::_read_pitch_bend_range()
+{   
+    int value = analogRead(PIN_PITCH_BEND_RANGE);
+    _pitch_bend_range = round((float)value / 1023.0 * 12.0 * 4.0) / 4.0;
+}
+
+void Config::_read_glide_intensity()
+{
+    int value = analogRead(PIN_GLIDE_INTENSITY);
+    if (value < 512)
+    {
+        _glide_intensity = 1.0 - ((float)value / 511.0);
+        _glide_proportional = false;
+    }
+    else
+    {
+        _glide_intensity = (float)(value - 512) / 511.0;
+        _glide_proportional = true;
+    }
+}
+
+void Config::_read_arpeggiator_mode()
+{
+    int value = analogRead(PIN_ARPEGGIATOR_MODE);
+    if (value < 341)
+    {
+        _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
+    }
+    else if (value < 682)
+    {
+        _arpeggiator_mode = ARPEGGIATOR_MODE_DOWN;
+    }
+    else
+    {
+        _arpeggiator_mode = ARPEGGIATOR_MODE_UP_DOWN;
+    }
+}
+
+void Config::_read_time()
+{
+    int value = analogRead(PIN_TIME);
+    _time_period = 60000 / (TIME_MIN_BPM + (float)(TIME_MAX_BPM - TIME_MIN_BPM) * (float)value / 1023.0);
+}
+
+bool Config::_read_priority_mode()
+{
+    int value = digitalRead(PIN_PRIORITY_MODE);
+    byte priority_mode = PRIORITY_REPLACE_OLDEST;
+    if (value == HIGH)
+    {
+        priority_mode = PRIORITY_REPLACE_NEWEST;
+    }
+    bool changed = _priority_mode != priority_mode;
+    _priority_mode = priority_mode;
+    return changed;
+}
+
+bool Config::_read_channel_filter()
+{
+    _channel_filter = CHANNEL_FILTER_OFF;
+    return false;
+    // int value = digitalRead(PIN_CHANNEL_FILTER);
+    // byte channel_filter = CHANNEL_FILTER_OFF;
+    // if (value == HIGH)
+    // {
+    //     _channel_filter = CHANNEL_FILTER_ON;
+    // }
+    // bool changed = _channel_filter != channel_filter;
+    // _channel_filter = channel_filter;
+    // return changed;
+}
+
+bool Config::_read_sequencer_record()
+{
+    int value = digitalRead(PIN_REC);
+    bool sequencer_record = value >= 512;
+    bool changed = _sequencer_record != sequencer_record;
+    _sequencer_record = sequencer_record;
+    return changed;
+}
+
+int Config::read()
+{
+    int changed = 0;
+    if (_read_source())
+    {
+        changed = changed + CONFIG_CHANGE_SOURCE;
+    }
+    if (_read_polyphony_mode())
+    {
+        changed = changed + CONFIG_CHANGE_POLYPHONY_MODE;
+    }
+    if (_read_priority_mode())
+    {
+        changed = changed + CONFIG_CHANGE_PRIORITY_MODE;
+    }
+    if (_read_channel_filter())
+    {
+        changed = changed + CONFIG_CHANGE_CHANNEL_FILTER;
+    }
+    if (_read_sequencer_record())
+    {
+        changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
+    }
+    _read_pitch_bend_range();
+    _read_glide_intensity();
+    _read_arpeggiator_mode();
+    _read_time();
     return changed;
 }
 

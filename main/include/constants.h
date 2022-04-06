@@ -3,9 +3,18 @@
 
 // PINs wiring
 
-#define PIN_SELECT_MODE A8
-#define PIN_SELECT_PRIORITY 42
-#define PIN_SELECT_CHANNEL 40
+#define PIN_SOURCE A8            // Midi, Arp, Seq
+#define PIN_POLYPHONY_MODE A9    // Mono, Poly 2, Poly 4, Poly 8
+#define PIN_PITCH_BEND_RANGE A10 // Also impacts aftertouch
+#define PIN_GLIDE_INTENSITY A11
+#define PIN_ARPEGGIATOR_MODE A12 // Up, Down, Up/Down
+#define PIN_DETUNE A13           // Not implemented
+#define PIN_TIME A14             // For the sequencer & the arpeggiator
+
+#define PIN_PRIORITY_MODE 42  // Toggle replacement priority newest/oldest
+#define PIN_CHANNEL_FILTER 40 // Toggle channel filter (currently disabled)
+#define PIN_TUNE 35           // Not implemented
+#define PIN_REC 39
 
 #define PIN_LED_1 34
 #define PIN_LED_2 32
@@ -16,21 +25,19 @@
 #define PIN_LED_7 22
 #define PIN_LED_8 36
 
-#define PIN_SS_1 47
-#define PIN_SS_2 45
-#define PIN_SS_3 43
-#define PIN_SS_4 41
+#define PIN_SS_CV_1 29
+#define PIN_SS_CV_2 27
+#define PIN_SS_CV_3 25
+#define PIN_SS_CV_4 23
+#define PIN_SS_BEND 31
 
-#define PIN_GATE_1 37
-#define PIN_GATE_2 35
-#define PIN_GATE_3 33
-#define PIN_GATE_4 31
-#define PIN_GATE_5 29
-#define PIN_GATE_6 27
-#define PIN_GATE_7 25
-#define PIN_GATE_8 23
+#define PIN_GATE_1 28
+#define PIN_GATE_2 26
+#define PIN_GATE_3 24
+#define PIN_GATE_4 22
 
 // MIDI Controls
+// Note: MIDI controls will be ignored at some point
 
 #define MIDI_CONTROL_GLIDE_INTENSITY 73     // S1
 #define MIDI_CONTROL_GLIDE_CHROMATIC 80     // B1
@@ -65,13 +72,16 @@
 #define ARPEGGIATOR_MODE_UP 0
 #define ARPEGGIATOR_MODE_DOWN 1
 #define ARPEGGIATOR_MODE_UP_DOWN 2
-#define ARPEGGIATOR_MODE_RANDOM 3
+#define ARPEGGIATOR_MODE_RANDOM 3 // Ignored
 
 // Flags
 
 #define CONFIG_CHANGE_SOURCE 1
-#define CONFIG_CHANGE_SEQUENCER_RECORD 2
-#define CONFIG_CHANGE_HOLD 4
+#define CONFIG_CHANGE_POLYPHONY_MODE 2
+#define CONFIG_CHANGE_PRIORITY_MODE 4
+#define CONFIG_CHANGE_CHANNEL_FILTER 8
+#define CONFIG_CHANGE_SEQUENCER_RECORD 16
+#define CONFIG_CHANGE_HOLD 32
 
 #define GLIDE_FLAG_PROPORTIONAL 1
 #define GLIDE_FLAG_CHROMATIC 2
