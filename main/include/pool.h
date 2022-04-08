@@ -104,7 +104,7 @@ public:
     /**
      * Propagate the *pitch-bend* message to the lanes.
      * 
-     * @param bend_value The amount of bending in the *pitch-bend* message.
+     * @param bend_value The amount of bending (pitch bend & after touch)
      */
     void bend(int bend_value);
 

@@ -58,8 +58,7 @@ public:
      * 
      * @param channel MIDI channel concerned with the bending; only concerned
      *     pools (regarding their channel mask) will be affected.
-     * @param bend Signed 14-bit encoding of the current position of the
-     *     pitch-bend control.
+     * @param bend Signed 14-bit integer, sum of pitch bend and after touch
      */
     void pitch_bend(byte channel, int bend);
 
@@ -68,18 +67,18 @@ public:
      * to the pitch bend.
      * 
      * @param note The note concerned with the message.
-     * @param pressure 7-bit encoding of the amount of pressure on that note.
+     * @param bend Signed 14-bit integer, sum of pitch bend and after touch
      */
-    void after_touch_poly(Note note, byte pressure);
+    void after_touch_poly(Note note, int bend);
 
     /**
      * Handler for the channel *after-touch* MIDI message. Same as
      * `after_touch_poly` but for a whole MIDI channel.
      * 
      * @param channel MIDI channel ID
-     * @param pressure 7-bit encoding of the amount of pressure.
+     * @param bend Signed 14-bit integer, sum of pitch bend and after touch
      */
-    void after_touch_channel(byte channel, byte pressure);
+    void after_touch_channel(byte channel, int bend);
 
     /**
      * Force reset for all the pools, their buffers, and the lanes.

@@ -89,6 +89,10 @@ private:
     Allocator *_allocator;
     Sequencer *_sequencer;
     Arpeggiator *_arpeggiator;
+    int _pitch_bend_value;
+    int _after_touch_value;
+
+    int _get_total_bend_value();
 };
 
 #endif

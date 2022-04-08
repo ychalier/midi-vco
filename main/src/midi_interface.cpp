@@ -7,6 +7,8 @@ MidiInterface::MidiInterface(Config *config, Allocator *allocator, Sequencer *se
     _allocator = allocator;
     _sequencer = sequencer;
     _arpeggiator = arpeggiator;
+    _pitch_bend_value = 0;
+    _after_touch_value = 0;
 }
 
 void MidiInterface::update()
@@ -83,7 +85,8 @@ void MidiInterface::handle_note_off(byte channel, byte pitch, byte velocity)
 
 void MidiInterface::handle_pitch_bend(byte channel, int bend)
 {
-    _allocator->pitch_bend(channel, bend);
+    _pitch_bend_value = bend;
+    _allocator->pitch_bend(channel, _get_total_bend_value());
 }
 
 void MidiInterface::handle_control_change(byte channel, byte number, byte value)
@@ -123,10 +126,17 @@ void MidiInterface::handle_control_change(byte channel, byte number, byte value)
 
 void MidiInterface::handle_after_touch_poly(byte channel, byte note, byte pressure)
 {
-    _allocator->after_touch_poly({channel, note}, pressure);
+    _after_touch_value = AFTERTOUCH_COEFF * pressure;
+    _allocator->after_touch_poly({channel, note}, _get_total_bend_value());
 }
 
 void MidiInterface::handle_after_touch_channel(byte channel, byte pressure)
 {
-    _allocator->after_touch_channel(channel, pressure);
+    _after_touch_value = AFTERTOUCH_COEFF * pressure;
+    _allocator->after_touch_channel(channel, _get_total_bend_value());
+}
+
+int MidiInterface::_get_total_bend_value()
+{
+    return _pitch_bend_value + _after_touch_value;
 }
