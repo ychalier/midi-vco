@@ -104,4 +104,6 @@
 #define OUTPUT_PITCH_BEND_FACTOR 3.2766 // @see MidiInterface.handle_pitch_bend
 #define OUTPUT_AFTER_TOUCH_FACTOR 39    // @see MidiInterface.handle_after_touch_poly or MidiInterface.handle_after_touch_channel
 
+#define DETUNE_RANGE 2 // Semitons (in both directions)
+
 #endif

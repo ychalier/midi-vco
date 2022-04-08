@@ -17,6 +17,7 @@ Config::Config()
     _voltage_offset = 0;
     _time_period = 60000 / TIME_MIN_BPM;
     _arpeggiator_sustain = 1;
+    _detune = 0;
 }
 
 void Config::setup()
@@ -107,6 +108,11 @@ void Config::_read_arpeggiator_mode()
     }
 }
 
+void Config::_read_detune()
+{    
+    _detune = floor((float)(analogRead(PIN_DETUNE) * (2 * DETUNE_RANGE + 1)) / 1024.0) - DETUNE_RANGE;
+}
+
 void Config::_read_time()
 {
     int value = analogRead(PIN_TIME);
@@ -176,6 +182,7 @@ int Config::read()
     _read_pitch_bend_range();
     _read_glide_intensity();
     _read_arpeggiator_mode();
+    _read_detune();
     _read_time();
     return changed;
 }
@@ -362,4 +369,9 @@ unsigned long Config::get_time_period()
 float Config::get_arpeggiator_sustain()
 {
     return _arpeggiator_sustain;
+}
+
+int Config::get_detune()
+{
+    return _detune;
 }

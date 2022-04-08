@@ -107,6 +107,11 @@ public:
      */
     float get_arpeggiator_sustain();
 
+    /**
+     * Getter for the _detune attribute.
+     */
+    int get_detune();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -122,12 +127,14 @@ private:
     float _voltage_offset;
     unsigned long _time_period;
     float _arpeggiator_sustain;
+    int _detune;
 
     bool _read_source();
     bool _read_polyphony_mode();
     void _read_pitch_bend_range();
     void _read_glide_intensity();
     void _read_arpeggiator_mode();
+    void _read_detune();
     void _read_time();
     bool _read_priority_mode();
     bool _read_channel_filter();
