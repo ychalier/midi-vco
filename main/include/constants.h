@@ -16,15 +16,6 @@
 #define PIN_TUNE 35           // Not implemented
 #define PIN_REC 39
 
-#define PIN_LED_1 34
-#define PIN_LED_2 32
-#define PIN_LED_3 30
-#define PIN_LED_4 28
-#define PIN_LED_5 26
-#define PIN_LED_6 24
-#define PIN_LED_7 22
-#define PIN_LED_8 36
-
 #define PIN_SS_CV_1 29
 #define PIN_SS_CV_2 27
 #define PIN_SS_CV_3 25
@@ -93,8 +84,6 @@
 #define AMP_GAIN 1.9531      // 8V / 4.096V
 #define MIDI_MIN_PITCH 20    // Semitons
 #define PITCH_BEND_RANGE 2.0 // Semitons
-
-#define DEFAULT_DISPLAY_DURATION 1000 // Milliseconds
 
 #define LANE_COUNT 8
 

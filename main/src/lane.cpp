@@ -1,10 +1,9 @@
 #include "Arduino.h"
 #include "../include/lane.h"
 
-Lane::Lane(Config *config, Display *display, Coupler *coupler, bool channel, int led_id)
+Lane::Lane(Config *config, Coupler *coupler, bool channel, int led_id)
 {
     _config = config;
-    _display = display;
     _coupler = coupler;
     _channel = channel;
     _led_id = led_id;
@@ -56,7 +55,6 @@ void Lane::start(int setpoint)
         update();
     }
     _coupler->activate(_channel);
-    _display->set_led_state(_led_id, HIGH);
     _active = true;
 }
 
@@ -73,7 +71,6 @@ void Lane::start_pitch(byte pitch, int bend)
 void Lane::stop()
 {
     _coupler->deactivate(_channel);
-    _display->set_led_state(_led_id, LOW);
     _active = false;
 }
 

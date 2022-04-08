@@ -7,7 +7,6 @@
 #include "structs.h"
 #include "pool.h"
 #include "router.h"
-#include "display.h"
 
 /**
  * Main wrapper for the pools that handles callbacks from the MIDI library.
@@ -19,10 +18,9 @@ public:
      * Construct an allocator given a config.
      * 
      * @param config The config to pass to the allocator.
-     * @param display A pointer to the LED display wrapper.
      * @param router A pointer to the router handling the output lanes.
      */
-    Allocator(Config *config, Display *display, Router *router);
+    Allocator(Config *config, Router *router);
 
     /**
      * Initialize hardware connections. Must be called once in the main program
@@ -35,12 +33,6 @@ public:
      * will be stopped and reset, even if they're active.
      */
     void set_masks();
-
-    /**
-     * Display the current pools settings using the LED display. LED *i* will
-     * lit up iff. pool *i* is accepting notes.
-     */
-    void display_state();
 
     /**
      * Handler for the *note-on* MIDI message. The note will be allocated a
@@ -107,9 +99,6 @@ public:
 private:
     /// A reference to the global user config.
     Config *_config;
-
-    /// A reference to the global LED display.
-    Display *_display;
 
     /// One router for controlling the output lanes.
     Router *_router;

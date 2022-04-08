@@ -15,7 +15,6 @@ void MidiInterface::update()
     if (changed & (CONFIG_CHANGE_POLYPHONY_MODE | CONFIG_CHANGE_PRIORITY_MODE | CONFIG_CHANGE_CHANNEL_FILTER) > 0)
     {
         _allocator->set_masks();
-        _allocator->display_state();
     }
     if (changed & CONFIG_CHANGE_SOURCE > 0)
     {

@@ -10,7 +10,6 @@
 #include "include/config.h"
 #include "include/allocator.h"
 #include "include/structs.h"
-#include "include/display.h"
 #include "include/router.h"
 #include "include/sequencer.h"
 #include "include/arpeggiator.h"
@@ -19,7 +18,6 @@
 MIDI_CREATE_DEFAULT_INSTANCE();
 Config *config;
 Allocator *allocator;
-Display *display;
 Router *router;
 Sequencer *sequencer;
 Arpeggiator *arpeggiator;
@@ -27,14 +25,12 @@ MidiInterface *midif;
 
 void setup()
 {
-    display = new Display();
-    display->setup();
     config = new Config();
     config->setup();
     config->read();
-    router = new Router(config, display);
+    router = new Router(config);
     router->setup();
-    allocator = new Allocator(config, display, router);
+    allocator = new Allocator(config, router);
     allocator->set_masks();
     sequencer = new Sequencer(config, allocator);
     arpeggiator = new Arpeggiator(config, allocator);
@@ -46,14 +42,12 @@ void setup()
     MIDI.setHandleAfterTouchChannel(handle_after_touch_channel);
     MIDI.setHandleAfterTouchPoly(handle_after_touch_poly);
     midif = new MidiInterface(config, allocator, sequencer, arpeggiator);
-    display->demo();
 }
 
 void loop()
 {
     MIDI.read();
     midif->update();
-    display->update();
     router->update();
 }
 

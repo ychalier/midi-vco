@@ -4,7 +4,6 @@
 #include "Arduino.h"
 #include "constants.h"
 #include "lane.h"
-#include "display.h"
 #include "coupler.h"
 
 /**
@@ -16,9 +15,9 @@ public:
     /**
      * Constructor.
      * 
-     * @param display A pointer to the LED display wrapper.
+     * @param config A pointer to the global config.
      */
-    Router(Config *config, Display *display);
+    Router(Config *config);
 
     /**
      * Initialize hardware connections. Must be called once in the main program

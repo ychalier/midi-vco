@@ -4,7 +4,6 @@
 #include "Arduino.h"
 #include <MCP48xx.h>
 #include "constants.h"
-#include "display.h"
 #include "config.h"
 #include "structs.h"
 #include "coupler.h"
@@ -19,14 +18,13 @@ public:
      * Constructor.
      * 
      * @param config A pointer to the global configuration.
-     * @param display A pointer to the LED display.
      * @param coupler A pointer to `Coupler` controlling the CV and GATE
      *   signals.
      * @param channel If true, use `Coupler` channel A; otherwise use channel
      *   B.
      * @param led_id Id of the LED to control in the display, mapped to GATE.
      */
-    Lane::Lane(Config *config, Display *display, Coupler *coupler, bool channel, int led_id);
+    Lane::Lane(Config *config, Coupler *coupler, bool channel, int led_id);
 
     /**
      * Initialize hardware connections. Must be called once in the main program
@@ -111,7 +109,6 @@ public:
 
 private:
     Config *_config;
-    Display *_display;
     Coupler *_coupler;
     bool _channel;
     int _led_id;

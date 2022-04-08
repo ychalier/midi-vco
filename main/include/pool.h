@@ -92,8 +92,7 @@ public:
      * 
      * @param bend The pitch bend value to associate with the note.
      * @param set_only If true, the note is set one the lanes. If false, the
-     *     note is started on the lanes, which impacts the GATE signal and the
-     *     display.
+     *     note is started on the lanes, which impacts the GATE signal.
      */
     void load_buffer(int bend, bool set_only);
 

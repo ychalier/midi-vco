@@ -1,10 +1,9 @@
 #include "Arduino.h"
 #include "../include/allocator.h"
 
-Allocator::Allocator(Config *config, Display *display, Router *router)
+Allocator::Allocator(Config *config, Router *router)
 {
     _config = config;
-    _display = display;
     _router = router;
     for (int i = 0; i < LANE_COUNT; i++)
     {
@@ -94,19 +93,6 @@ void Allocator::set_masks()
         }
         break;
     }
-}
-
-void Allocator::display_state()
-{
-    byte pattern = 0;
-    for (int i = 0; i < LANE_COUNT; i++)
-    {
-        if (_pools[i]->is_enabled())
-        {
-            pattern = pattern + (1 << i);
-        }
-    }
-    _display->start(pattern, DEFAULT_DISPLAY_DURATION);
 }
 
 void Allocator::note_on(Note note)
