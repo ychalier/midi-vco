@@ -44,14 +44,26 @@ void MidiInterface::update()
     {
         _sequencer->update_state(_config->should_sequencer_record());
     }
-    switch (_config->get_active_source())
+    if (changed & CONFIG_CHANGE_TUNING > 0)
     {
-    case SOURCE_SEQUENCER:
-        _sequencer->update();
-        break;
-    case SOURCE_ARPEGGIATOR:
-        _arpeggiator->update();
-        break;
+        _allocator->reset();
+        _arpeggiator->reset();
+        if (_config->is_tuning())
+        {
+            _allocator->broadcast_pitch(69); // Should be A4 (440 Hz)
+        }
+    }
+    if (!_config->is_tuning())
+    {
+        switch (_config->get_active_source())
+        {
+        case SOURCE_SEQUENCER:
+            _sequencer->update();
+            break;
+        case SOURCE_ARPEGGIATOR:
+            _arpeggiator->update();
+            break;
+        }
     }
 }
 

@@ -18,6 +18,7 @@ Config::Config()
     _time_period = 60000 / TIME_MIN_BPM;
     _arpeggiator_sustain = 1;
     _detune = 0;
+    _tuning = false;
 }
 
 void Config::setup()
@@ -39,10 +40,12 @@ bool Config::_read_source()
 {
     int value = analogRead(PIN_SOURCE);
     byte source = SOURCE_DIRECT;
-    if (value <= 341) {
+    if (value <= 341)
+    {
         source = SOURCE_ARPEGGIATOR;
     }
-    else if (value <= 682) {
+    else if (value <= 682)
+    {
         source = SOURCE_SEQUENCER;
     }
     bool changed = _active_source != source;
@@ -71,7 +74,7 @@ bool Config::_read_polyphony_mode()
 }
 
 void Config::_read_pitch_bend_range()
-{   
+{
     int value = analogRead(PIN_PITCH_BEND_RANGE);
     _pitch_bend_range = round((float)value / 1023.0 * 12.0 * 4.0) / 4.0;
 }
@@ -109,7 +112,7 @@ void Config::_read_arpeggiator_mode()
 }
 
 void Config::_read_detune()
-{    
+{
     _detune = floor((float)(analogRead(PIN_DETUNE) * (2 * DETUNE_RANGE + 1)) / 1024.0) - DETUNE_RANGE;
 }
 
@@ -156,6 +159,15 @@ bool Config::_read_sequencer_record()
     return changed;
 }
 
+bool Config::_read_tuning()
+{
+    int value = digitalRead(PIN_TUNE);
+    bool tuning = value >= 512;
+    bool changed = _tuning != tuning;
+    _tuning = tuning;
+    return changed;
+}
+
 int Config::read()
 {
     int changed = 0;
@@ -178,6 +190,10 @@ int Config::read()
     if (_read_sequencer_record())
     {
         changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
+    }
+    if (_read_tuning())
+    {
+        changed = changed + CONFIG_CHANGE_TUNING;
     }
     _read_pitch_bend_range();
     _read_glide_intensity();
@@ -374,4 +390,9 @@ float Config::get_arpeggiator_sustain()
 int Config::get_detune()
 {
     return _detune;
+}
+
+bool Config::is_tuning()
+{
+    return _tuning;
 }

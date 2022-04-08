@@ -95,6 +95,12 @@ public:
      */
     void hold_off();
 
+    /**
+     * Artificially send an output to all lanes. This is used for the tuning
+     * process to send a A4 to all VCOs.
+     */
+    void broadcast_pitch(byte pitch);
+
 private:
     /// A reference to the global user config.
     Config *_config;

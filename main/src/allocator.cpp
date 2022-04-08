@@ -212,3 +212,13 @@ void Allocator::after_touch_channel(byte channel, int bend)
         }
     }
 }
+
+void Allocator::broadcast_pitch(byte pitch)
+{
+    Note note = {0, pitch};
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        _pools[i]->unlock();
+        _pools[i]->load(note);
+    }
+}

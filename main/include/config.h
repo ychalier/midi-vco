@@ -112,6 +112,11 @@ public:
      */
     int get_detune();
 
+    /**
+     * Getter for the _tuning attribute.
+     */
+    bool is_tuning();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -128,6 +133,7 @@ private:
     unsigned long _time_period;
     float _arpeggiator_sustain;
     int _detune;
+    bool _tuning;
 
     bool _read_source();
     bool _read_polyphony_mode();
@@ -139,6 +145,7 @@ private:
     bool _read_priority_mode();
     bool _read_channel_filter();
     bool _read_sequencer_record();
+    bool _read_tuning();
 
 };
 
