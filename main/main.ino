@@ -41,7 +41,8 @@ void setup()
     MIDI.setHandleControlChange(handle_control_change);
     MIDI.setHandleAfterTouchChannel(handle_after_touch_channel);
     MIDI.setHandleAfterTouchPoly(handle_after_touch_poly);
-    midif = new MidiInterface(config, allocator, sequencer, arpeggiator);
+    midif = new MidiInterface(config, allocator, sequencer, arpeggiator, PIN_SS_BEND);
+    midif->setup();
 }
 
 void loop()

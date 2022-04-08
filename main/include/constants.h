@@ -101,4 +101,7 @@
 #define TIME_MIN_BPM 60
 #define TIME_MAX_BPM 600
 
+#define OUTPUT_PITCH_BEND_FACTOR 3.2766 // @see MidiInterface.handle_pitch_bend
+#define OUTPUT_AFTER_TOUCH_FACTOR 39    // @see MidiInterface.handle_after_touch_poly or MidiInterface.handle_after_touch_channel
+
 #endif

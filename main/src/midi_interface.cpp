@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "../include/midi_interface.h"
 
-MidiInterface::MidiInterface(Config *config, Allocator *allocator, Sequencer *sequencer, Arpeggiator *arpeggiator)
+MidiInterface::MidiInterface(Config *config, Allocator *allocator, Sequencer *sequencer, Arpeggiator *arpeggiator, int bend_dac_pin)
 {
     _config = config;
     _allocator = allocator;
@@ -9,6 +9,19 @@ MidiInterface::MidiInterface(Config *config, Allocator *allocator, Sequencer *se
     _arpeggiator = arpeggiator;
     _pitch_bend_value = 0;
     _after_touch_value = 0;
+    _dac = new MCP4822(bend_dac_pin);
+}
+
+void MidiInterface::setup()
+{
+    _dac->init();
+    _dac->turnOnChannelA();
+    _dac->setGainA(MCP4822::High);
+    _dac->turnOnChannelB();
+    _dac->setGainB(MCP4822::High);
+    _dac->setVoltageA(2500);
+    _dac->setVoltageB(0);
+    _dac->updateDAC();
 }
 
 void MidiInterface::update()
@@ -87,6 +100,8 @@ void MidiInterface::handle_pitch_bend(byte channel, int bend)
 {
     _pitch_bend_value = bend;
     _allocator->pitch_bend(channel, _get_total_bend_value());
+    _dac->setVoltageA((int) ((float)(bend + 8192) / OUTPUT_PITCH_BEND_FACTOR));
+    _dac->updateDAC();
 }
 
 void MidiInterface::handle_control_change(byte channel, byte number, byte value)
@@ -128,12 +143,16 @@ void MidiInterface::handle_after_touch_poly(byte channel, byte note, byte pressu
 {
     _after_touch_value = AFTERTOUCH_COEFF * pressure;
     _allocator->after_touch_poly({channel, note}, _get_total_bend_value());
+    _dac->setVoltageB(pressure * OUTPUT_AFTER_TOUCH_FACTOR);
+    _dac->updateDAC();
 }
 
 void MidiInterface::handle_after_touch_channel(byte channel, byte pressure)
 {
     _after_touch_value = AFTERTOUCH_COEFF * pressure;
     _allocator->after_touch_channel(channel, _get_total_bend_value());
+    _dac->setVoltageB(pressure * OUTPUT_AFTER_TOUCH_FACTOR);
+    _dac->updateDAC();
 }
 
 int MidiInterface::_get_total_bend_value()
