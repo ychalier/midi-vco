@@ -35,7 +35,7 @@ public:
     void set_masks();
 
     /**
-     * Handler for the *note-on* MIDI message. The note will be allocated a
+     * Handler for the *note-on* MIDI message. The note will be allocated to a
      * pool if there's one available right now or if a priority rule says to
      * make room for it.
      * 
@@ -52,6 +52,31 @@ public:
      * @param note The note associated with the *note-off* message.
      */
     void note_off(Note note);
+
+    /**
+     * Handler for the *note-on* MIDI message, with an arbitrary lane mask.
+     * The note will be allocated to a pool if there's one available right
+     * now or if a priority rule says to make room for it. Only pools which
+     * indices match the pool mask are considered as valid candiates.
+     * 
+     * @see `Allocator.check_mask`
+     * 
+     * @param note The note associated with the *note-on* message.
+     * @param mask An 8-bit pool mask
+     */
+    void note_on_masked(Note note, byte mask);
+
+    /**
+     * Handler for the *note-off* MIDI message, with an arbitrary lane mask.
+     * A pool, matching the mask, and currently playing that note will stop
+     * playing it.
+     * 
+     * @see `Allocator.check_mask`
+     * 
+     * @param note The note associated with the *note-off* message.
+     * @param mask An 8-bit pool mask
+     */
+    void note_off_masked(Note note, byte mask);
 
     /**
      * Handler for the *pitch-bend* MIDI message.
@@ -100,6 +125,17 @@ public:
      * process to send a A4 to all VCOs.
      */
     void broadcast_pitch(byte pitch);
+
+    /**
+     * Checks whether a bit mask includes a value.
+     * 
+     * @param mask An 8-bit mask of the form 0bXXXXXXXX
+     * @param value A value between 0 and 7, indicating the bit index to check
+     *   the value of. Leftmost (most significant) bit is 7. Rightmost (least
+     *   significant) is 0.
+     * @return Whether mask's bit at position value is 1.
+     */
+    static bool check_mask(byte mask, int value);
 
 private:
     /// A reference to the global user config.

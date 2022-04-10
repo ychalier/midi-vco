@@ -97,10 +97,20 @@ void Allocator::set_masks()
 
 void Allocator::note_on(Note note)
 {
+    note_on_masked(note, 0b11111111);
+}
+
+void Allocator::note_off(Note note)
+{
+    note_off_masked(note, 0b11111111);
+}
+
+void Allocator::note_on_masked(Note note, byte mask)
+{
     bool accepted = false;
     for (int i = 0; i < LANE_COUNT; i++)
     {
-        if (_pools[i]->is_free() && _pools[i]->accepts_note(note))
+        if (check_mask(mask, i) && _pools[i]->is_free() && _pools[i]->accepts_note(note))
         {
             _pools[i]->load(note);
             accepted = true;
@@ -120,7 +130,8 @@ void Allocator::note_on(Note note)
             for (int i = 0; i < LANE_COUNT; i++)
             {
                 era = _pools[i]->get_era();
-                if (_pools[i]->accepts_note(note) &&
+                if (check_mask(mask, i) &&
+                    _pools[i]->accepts_note(note) &&
                     (optimal_index == -1 || optimal_era > era))
                 {
                     optimal_index = i;
@@ -133,7 +144,8 @@ void Allocator::note_on(Note note)
             for (int i = 0; i < LANE_COUNT; i++)
             {
                 era = _pools[i]->get_era();
-                if (_pools[i]->accepts_note(note) &&
+                if (check_mask(mask, i) &&
+                    _pools[i]->accepts_note(note) &&
                     (optimal_index == -1 || optimal_era < era))
                 {
                     optimal_index = i;
@@ -149,11 +161,11 @@ void Allocator::note_on(Note note)
     }
 }
 
-void Allocator::note_off(Note note)
+void Allocator::note_off_masked(Note note, byte mask)
 {
     for (int i = 0; i < LANE_COUNT; i++)
     {
-        if (_pools[i]->unload(note))
+        if (check_mask(mask, i) && _pools[i]->unload(note))
         {
             break;
         }
@@ -221,4 +233,9 @@ void Allocator::broadcast_pitch(byte pitch)
         _pools[i]->unlock();
         _pools[i]->load(note);
     }
+}
+
+static bool Allocator::check_mask(byte mask, int value)
+{
+    return (mask >> value) & 1;
 }
