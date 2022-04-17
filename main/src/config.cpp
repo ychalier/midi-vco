@@ -19,6 +19,8 @@ Config::Config()
     _arpeggiator_sustain = 1;
     _detune = 0;
     _tuning = false;
+    _sequencer_quantize = true;
+    _sequencer_steps = 16;
 }
 
 void Config::setup()
@@ -168,6 +170,75 @@ bool Config::_read_tuning()
     return changed;
 }
 
+bool Config::_read_sequencer_channel()
+{
+    // TODO
+    return false;
+}
+
+void Config::_derive_pool_mask()
+{   
+    switch (_polyphony_mode)
+    {
+        case MODE_MONOPHONIC:
+            _pool_mask = 0b11111111;
+            break;
+        case MODE_DUOPHONIC:
+            if (_sequencer_channel == 0 || _sequencer_channel == 2)
+            {
+                _pool_mask = 0b00001111;
+            }
+            else
+            {
+                _pool_mask = 0b11110000;
+            }
+            break;
+        case MODE_QUADROPHONIC:
+            switch(_sequencer_channel)
+            {
+                case 0:
+                    _pool_mask = 0b00000011;
+                    break;
+                case 1:
+                    _pool_mask = 0b00001100;
+                    break;
+                case 2:
+                    _pool_mask = 0b00110000;
+                    break;
+                case 3:
+                    _pool_mask = 0b11000000;
+                    break;
+                default:
+                    _pool_mask = 0b11111111;
+                    break;
+            }
+            break;
+        case MODE_OCTOPHONIC:
+            switch(_sequencer_channel)
+            {
+                case 0:
+                    _pool_mask = 0b00000011;
+                    break;
+                case 1:
+                    _pool_mask = 0b00111100;
+                    break;
+                case 2:
+                    _pool_mask = 0b11000000;
+                    break;
+                case 3:
+                    _pool_mask = 0b11111111;
+                    break;
+                default:
+                    _pool_mask = 0b11111111;
+                    break;
+            }
+            break;
+        default:
+            _pool_mask = 0b11111111;
+            break;
+    }
+}
+
 int Config::read()
 {
     int changed = 0;
@@ -200,6 +271,8 @@ int Config::read()
     _read_arpeggiator_mode();
     _read_detune();
     _read_time();
+    _read_sequencer_channel();
+    _derive_pool_mask();
     return changed;
 }
 
@@ -395,4 +468,34 @@ int Config::get_detune()
 bool Config::is_tuning()
 {
     return _tuning;
+}
+
+byte Config::get_pool_mask()
+{
+    return _pool_mask;
+}
+
+int Config::get_sequencer_channel()
+{
+    return _sequencer_channel;
+}
+
+bool Config::get_sequencer_quantize()
+{
+    return _sequencer_quantize;
+}
+
+int Config::get_sequencer_steps()
+{
+    return _sequencer_steps;
+}
+
+unsigned long Config::get_time_div()
+{
+    return SEQUENCER_DIVISION * _time_period;
+}
+
+int Config::get_sequencer_divisions()
+{
+    return SEQUENCER_DIVISION_INV * _sequencer_steps;
 }

@@ -117,6 +117,19 @@ public:
      */
     bool is_tuning();
 
+    byte get_pool_mask();
+
+    int get_sequencer_channel();
+
+    bool get_sequencer_quantize();
+
+    int get_sequencer_steps();
+
+    unsigned long get_time_div();
+
+    int get_sequencer_divisions();
+
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -134,6 +147,10 @@ private:
     float _arpeggiator_sustain;
     int _detune;
     bool _tuning;
+    byte _pool_mask;
+    int _sequencer_channel;
+    bool _sequencer_quantize;
+    int _sequencer_steps;
 
     bool _read_source();
     bool _read_polyphony_mode();
@@ -146,6 +163,8 @@ private:
     bool _read_channel_filter();
     bool _read_sequencer_record();
     bool _read_tuning();
+    bool _read_sequencer_channel();
+    void _derive_pool_mask();
 
 };
 

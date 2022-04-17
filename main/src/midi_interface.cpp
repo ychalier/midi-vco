@@ -35,14 +35,11 @@ void MidiInterface::update()
     {
         _allocator->reset();
         _arpeggiator->reset();
-        if (_config->get_active_source() == SOURCE_SEQUENCER)
-        {
-            _sequencer->update_state(false);
-        }
+        _sequencer->update_source_activation(_config->get_active_source() == SOURCE_SEQUENCER);
     }
     if (changed & CONFIG_CHANGE_SEQUENCER_RECORD > 0)
     {
-        _sequencer->update_state(_config->should_sequencer_record());
+        _sequencer->update_record_state(_config->should_sequencer_record());
     }
     if (changed & CONFIG_CHANGE_TUNING > 0)
     {
@@ -119,26 +116,17 @@ void MidiInterface::handle_pitch_bend(byte channel, int bend)
 void MidiInterface::handle_control_change(byte channel, byte number, byte value)
 {
     int changed = _config->handle_midi_control(channel, number, value);
-    if (changed & CONFIG_CHANGE_SEQUENCER_RECORD > 0)
-    {
-        _sequencer->update_state(_config->should_sequencer_record());
-    }
-    if (changed & CONFIG_CHANGE_SOURCE)
+    if (changed & CONFIG_CHANGE_SOURCE > 0)
     {
         _allocator->reset();
         _arpeggiator->reset();
-        switch (_config->get_active_source())
-        {
-        case SOURCE_DIRECT:
-            break;
-        case SOURCE_SEQUENCER:
-            _sequencer->update_state(false);
-            break;
-        case SOURCE_ARPEGGIATOR:
-            break;
-        }
+        _sequencer->update_source_activation(_config->get_active_source() == SOURCE_SEQUENCER);
     }
-    if (changed & CONFIG_CHANGE_HOLD)
+    if (changed & CONFIG_CHANGE_SEQUENCER_RECORD > 0)
+    {
+        _sequencer->update_record_state(_config->should_sequencer_record());
+    }
+    if (changed & CONFIG_CHANGE_HOLD > 0)
     {
         if (_config->get_hold())
         {

@@ -47,9 +47,10 @@ typedef struct Glide
  */
 typedef struct MidiEvent
 {
-    unsigned long timestamp;
+    int division;
     bool type;
     Note note;
+    byte mask;
 } MidiEvent;
 
 #endif

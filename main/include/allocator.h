@@ -110,6 +110,8 @@ public:
      */
     void reset();
 
+    void reset_masked(byte mask);
+
     /**
      * Lock all active pools in their current state.
      */

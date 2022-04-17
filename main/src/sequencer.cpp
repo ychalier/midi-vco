@@ -5,91 +5,108 @@ Sequencer::Sequencer(Config *config, Allocator *allocator)
 {
     _config = config;
     _allocator = allocator;
-    _size = 0;
     _recording = false;
-    _record_timestamp = 0;
-    _playback_timestamp = 0;
-    _playback_index = 0;
-}
-
-void Sequencer::record_event(MidiEvent event)
-{
-    if (_size < SEQUENCER_MEMORY_SIZE)
+    _loopback_timestamp = 0;
+    for (int i = 0; i < SEQUENCER_CHANNEL_COUNT; i++)
     {
-        _memory[_size] = event;
-        _size++;
+        _channels[i] = new SequencerChannel(config, allocator);
     }
 }
 
 void Sequencer::note_on(Note note)
 {
+    byte pool_mask = _config->get_pool_mask();
     if (_recording)
     {
-        unsigned long now = millis();
-        if (_size == 0)
+        if (_loopback_timestamp == 0)
         {
-            _record_timestamp = now;
+            _loopback_timestamp = millis();
         }
-        record_event({now - _record_timestamp, true, note});
+        _channels[_config->get_sequencer_channel()]->record(
+            true,
+            note,
+            pool_mask,
+            _loopback_timestamp
+        );
     }
-    _allocator->note_on(note);
+    _allocator->note_on_masked(note, pool_mask);
 }
 
 void Sequencer::note_off(Note note)
 {
+    byte pool_mask = _config->get_pool_mask();
     if (_recording)
     {
-        unsigned long now = millis();
-        if (_size == 0)
+        if (_loopback_timestamp == 0)
         {
-            _record_timestamp = now;
+            _loopback_timestamp = millis();
         }
-        record_event({now - _record_timestamp, false, note});
+        _channels[_config->get_sequencer_channel()]->record(
+            false,
+            note,
+            pool_mask,
+            _loopback_timestamp
+        );
     }
-    _allocator->note_off(note);
+    _allocator->note_off_masked(note, pool_mask);
 }
 
-void Sequencer::update_state(bool recording)
+void Sequencer::update_record_state(bool recording)
 {
     _recording = recording;
-    _allocator->reset();
     if (_recording)
     {
-        _size = 0;
+        _allocator->reset_masked(_config->get_pool_mask());
+        _channels[_config->get_sequencer_channel()]->reset_memory();
     }
     else
     {
-        _playback_timestamp = millis();
-        _playback_index = 0;
+        _channels[_config->get_sequencer_channel()]->reset_playback();
+    }
+}
+
+void Sequencer::update_source_activation(bool activated)
+{
+    if (activated)
+    {
+        _loopback_timestamp = 0;
+        _allocator->reset();
+    }
+    else
+    {
+
+    }
+}
+
+bool Sequencer::update_loopback(unsigned long now)
+{
+    unsigned long ms_per_loop = _config->get_time_period() * _config->get_sequencer_steps();
+    if (now - _loopback_timestamp > ms_per_loop)
+    {
+        _loopback_timestamp = now;
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
 void Sequencer::update()
 {
-    if (!_recording && _playback_index < _size)
+    unsigned long now = millis();
+    bool loopback = update_loopback(now);
+    int until_division = round( (double)(now - _loopback_timestamp) / (double)_config->get_time_div());
+    int sequencer_channel = _config->get_sequencer_channel();
+    for (int i = 0; i < SEQUENCER_CHANNEL_COUNT; i++)
     {
-        unsigned long now = millis();
-        if ((now - _playback_timestamp) >= _config->get_time_period())
+        if (_recording && i == sequencer_channel)
         {
-            _playback_timestamp = now;
-            unsigned long window_start = _memory[_playback_index].timestamp;
-            while ((_memory[_playback_index].timestamp - window_start) < SEQUENCER_WINDOW_SIZE)
-            {
-                if (_memory[_playback_index].type)
-                {
-                    _allocator->note_on(_memory[_playback_index].note);
-                }
-                else
-                {
-                    _allocator->note_off(_memory[_playback_index].note);
-                }
-                _playback_index++;
-                if (_playback_index >= _size)
-                {
-                    _playback_index = 0;
-                    break;
-                }
-            }
+            //Do not play sequence if it is recording
+        }
+        else
+        {
+            _channels[i]->play(until_division, loopback);
         }
     }
 }

@@ -6,6 +6,7 @@
 #include "structs.h"
 #include "allocator.h"
 #include "config.h"
+#include "sequencer_channel.h"
 
 /**
  * Implements the features of a sequencer.
@@ -37,11 +38,9 @@ public:
      */
     void note_off(Note note);
 
-    /**
-     * Switch between playing state and recording state. Switching to record
-     * mode clears the buffer.
-     */
-    void update_state(bool recording);
+    void update_record_state(bool recording);
+
+    void update_source_activation(bool activated);
 
     /**
      * Update the sequencer playback.
@@ -52,30 +51,15 @@ private:
     Config *_config;
     Allocator *_allocator;
 
+    SequencerChannel *_channels[SEQUENCER_CHANNEL_COUNT];
+
     /// Whether the sequencer is currently recording events.
     bool _recording;
 
-    /// Current number of events recorded.
-    int _size;
+    unsigned long _loopback_timestamp;
 
-    /// Events buffers.
-    MidiEvent _memory[SEQUENCER_MEMORY_SIZE];
+    bool update_loopback(unsigned long now);
 
-    /// Timestamp of when the record started.
-    unsigned long _record_timestamp;
-
-    /// Timestamp of when the playback started.
-    unsigned long _playback_timestamp;
-
-    /// Current playback buffer index. Designates the upcoming event.
-    int _playback_index;
-
-    /**
-     * Add an event to the buffer. If the buffer is full, it is ignored.
-     * 
-     * @param event Event to append to the buffer.
-     */
-    void record_event(MidiEvent event);
 };
 
 #endif

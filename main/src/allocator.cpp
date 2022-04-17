@@ -24,6 +24,17 @@ void Allocator::reset()
     }
 }
 
+void Allocator::reset_masked(byte mask)
+{
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        if (check_mask(mask, i))
+        {
+            _pools[i]->stop();
+        }
+    }
+}
+
 void Allocator::set_masks()
 {
     reset();
