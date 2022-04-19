@@ -27,21 +27,21 @@ void MidiInterface::setup()
 void MidiInterface::update()
 {
     int changed = _config->read();
-    if (changed & (CONFIG_CHANGE_POLYPHONY_MODE | CONFIG_CHANGE_PRIORITY_MODE | CONFIG_CHANGE_CHANNEL_FILTER) > 0)
+    if (changed & CONFIG_CHANGE_POLYPHONY_MODE)
     {
         _allocator->set_masks();
     }
-    if (changed & CONFIG_CHANGE_SOURCE > 0)
+    if (changed & CONFIG_CHANGE_SOURCE)
     {
         _allocator->reset();
         _arpeggiator->reset();
         _sequencer->update_source_activation(_config->get_active_source() == SOURCE_SEQUENCER);
     }
-    if (changed & CONFIG_CHANGE_SEQUENCER_RECORD > 0)
+    if (changed & CONFIG_CHANGE_SEQUENCER_RECORD)
     {
         _sequencer->update_record_state(_config->should_sequencer_record());
     }
-    if (changed & CONFIG_CHANGE_TUNING > 0)
+    if (changed & CONFIG_CHANGE_TUNING)
     {
         _allocator->reset();
         _arpeggiator->reset();
@@ -116,7 +116,11 @@ void MidiInterface::handle_pitch_bend(byte channel, int bend)
 void MidiInterface::handle_control_change(byte channel, byte number, byte value)
 {
     int changed = _config->handle_midi_control(channel, number, value);
-    if (changed & CONFIG_CHANGE_SOURCE > 0)
+    if (changed & CONFIG_CHANGE_SEQUENCER_RECORD)
+    {
+        _sequencer->update_state(_config->should_sequencer_record());
+    }
+    if (changed & CONFIG_CHANGE_SOURCE)
     {
         _allocator->reset();
         _arpeggiator->reset();

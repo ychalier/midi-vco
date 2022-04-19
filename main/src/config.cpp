@@ -42,11 +42,11 @@ bool Config::_read_source()
 {
     int value = analogRead(PIN_SOURCE);
     byte source = SOURCE_DIRECT;
-    if (value <= 341)
+    if (value > 682)
     {
         source = SOURCE_ARPEGGIATOR;
     }
-    else if (value <= 682)
+    else if (value > 341)
     {
         source = SOURCE_SEQUENCER;
     }
@@ -58,15 +58,15 @@ bool Config::_read_polyphony_mode()
 {
     int value = analogRead(PIN_POLYPHONY_MODE);
     int polyphony_mode = MODE_MONOPHONIC;
-    if (value < 256)
+    if (value >= 768)
     {
         polyphony_mode = MODE_OCTOPHONIC;
     }
-    else if (value < 512)
+    else if (value >= 512)
     {
         polyphony_mode = MODE_QUADROPHONIC;
     }
-    else if (value < 768)
+    else if (value >= 256)
     {
         polyphony_mode = MODE_DUOPHONIC;
     }
@@ -126,30 +126,14 @@ void Config::_read_time()
 
 bool Config::_read_priority_mode()
 {
-    int value = digitalRead(PIN_PRIORITY_MODE);
-    byte priority_mode = PRIORITY_REPLACE_OLDEST;
-    if (value == HIGH)
-    {
-        priority_mode = PRIORITY_REPLACE_NEWEST;
-    }
-    bool changed = _priority_mode != priority_mode;
-    _priority_mode = priority_mode;
-    return changed;
+    _priority_mode = PRIORITY_REPLACE_OLDEST;
+    return false;
 }
 
 bool Config::_read_channel_filter()
 {
     _channel_filter = CHANNEL_FILTER_OFF;
     return false;
-    // int value = digitalRead(PIN_CHANNEL_FILTER);
-    // byte channel_filter = CHANNEL_FILTER_OFF;
-    // if (value == HIGH)
-    // {
-    //     _channel_filter = CHANNEL_FILTER_ON;
-    // }
-    // bool changed = _channel_filter != channel_filter;
-    // _channel_filter = channel_filter;
-    // return changed;
 }
 
 bool Config::_read_sequencer_record()
@@ -258,10 +242,10 @@ int Config::read()
     {
         changed = changed + CONFIG_CHANGE_CHANNEL_FILTER;
     }
-    if (_read_sequencer_record())
-    {
-        changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
-    }
+    // if (_read_sequencer_record())
+    // {
+    //     changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
+    // }
     if (_read_tuning())
     {
         changed = changed + CONFIG_CHANGE_TUNING;
