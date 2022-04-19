@@ -127,6 +127,7 @@ private:
     float _pitch_bend_range;
     byte _active_source;
     bool _sequencer_record;
+    int _button_sequencer_record;
     byte _arpeggiator_mode;
     bool _hold;
     float _voltage_offset;

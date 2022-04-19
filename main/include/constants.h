@@ -28,19 +28,18 @@
 #define PIN_GATE_4 22
 
 // MIDI Controls
-// Note: MIDI controls will be ignored at some point
 
-#define MIDI_CONTROL_GLIDE_INTENSITY 73     // S1
-#define MIDI_CONTROL_GLIDE_CHROMATIC 80     // B1
-#define MIDI_CONTROL_GLIDE_LEGATO 81        // B2
-#define MIDI_CONTROL_PITCH_BEND_RANGE 75    // S2
-#define MIDI_CONTROL_SEQUENCER_RECORD 82    // B3
-#define MIDI_CONTROL_SOURCE 74              // R1
-#define MIDI_CONTROL_TIME 71                // R2
-#define MIDI_CONTROL_ARPEGGIATOR_MODE 65    // R3
-#define MIDI_CONTROL_ARPEGGIATOR_SUSTAIN 72 // S3
-#define MIDI_CONTROL_HOLD 83                // B4
-#define MIDI_CONTROL_VOLTAGE_OFFSET 2       // R4
+#define MIDI_CONTROL_GLIDE_INTENSITY 73     // S1 OFF
+#define MIDI_CONTROL_GLIDE_CHROMATIC 80     // B1 ON
+#define MIDI_CONTROL_GLIDE_LEGATO 81        // B2 ON
+#define MIDI_CONTROL_PITCH_BEND_RANGE 75    // S2 OFF
+#define MIDI_CONTROL_SEQUENCER_RECORD 82    // B3 OFF
+#define MIDI_CONTROL_SOURCE 74              // R1 OFF
+#define MIDI_CONTROL_TIME 71                // R2 OFF
+#define MIDI_CONTROL_ARPEGGIATOR_MODE 65    // R3 OFF
+#define MIDI_CONTROL_ARPEGGIATOR_SUSTAIN 72 // S3 ON
+#define MIDI_CONTROL_HOLD 83                // B4 ON
+#define MIDI_CONTROL_VOLTAGE_OFFSET 2       // R4 ON
 
 // Enumerations
 
