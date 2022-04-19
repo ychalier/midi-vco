@@ -79,6 +79,18 @@
 #define GLIDE_FLAG_CHROMATIC 2
 #define GLIDE_FLAG_LEGATO 4
 
+// Notes
+
+#define PITCH_A0 21  // 27.5 Hz
+#define PITCH_A1 33  // 55 Hz
+#define PITCH_A2 45  // 110 Hz
+#define PITCH_A3 57  // 220 Hz
+#define PITCH_A4 69  // 440 Hz
+#define PITCH_A5 81  // 880 Hz
+#define PITCH_A6 93  // 1760 Hz
+#define PITCH_A7 105 // 3520 Hz
+#define PITCH_A8 117 // 7040 Hz
+
 // General constants
 
 #define DAC_VMAX 4.096       // Volts

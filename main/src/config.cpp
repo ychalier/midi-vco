@@ -162,7 +162,7 @@ bool Config::_read_sequencer_record()
 bool Config::_read_tuning()
 {
     int value = digitalRead(PIN_TUNE);
-    bool tuning = value >= 512;
+    bool tuning = value == HIGH;
     bool changed = _tuning != tuning;
     _tuning = tuning;
     return changed;

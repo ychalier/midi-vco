@@ -50,7 +50,7 @@ void MidiInterface::update()
         _arpeggiator->reset();
         if (_config->is_tuning())
         {
-            _allocator->broadcast_pitch(69); // Should be A4 (440 Hz)
+            _allocator->broadcast_pitch(PITCH_A5);
         }
     }
     if (!_config->is_tuning())
