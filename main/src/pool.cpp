@@ -123,7 +123,7 @@ bool Pool::unload(Note note)
             }
             else
             {
-                load_buffer(0, true);
+                load_buffer(0, false);
             }
         }
         return true;
