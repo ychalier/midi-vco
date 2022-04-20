@@ -5,7 +5,6 @@ Config::Config()
 {
     _polyphony_mode = MODE_MONOPHONIC;
     _priority_mode = PRIORITY_REPLACE_OLDEST;
-    _channel_filter = CHANNEL_FILTER_OFF;
     _glide_flags = 0;
     _glide_intensity = 0;
     _pitch_bend_range = PITCH_BEND_RANGE;
@@ -32,7 +31,6 @@ void Config::setup()
     pinMode(PIN_DETUNE, INPUT);
     pinMode(PIN_TIME, INPUT);
     pinMode(PIN_PRIORITY_MODE, INPUT);
-    pinMode(PIN_CHANNEL_FILTER, INPUT);
     pinMode(PIN_TUNE, INPUT);
     pinMode(PIN_REC, INPUT);
 }
@@ -129,12 +127,6 @@ bool Config::_read_priority_mode()
     return false;
 }
 
-bool Config::_read_channel_filter()
-{
-    _channel_filter = CHANNEL_FILTER_OFF;
-    return false;
-}
-
 bool Config::_read_sequencer_record()
 {
     int value = digitalRead(PIN_REC);
@@ -172,10 +164,6 @@ int Config::read()
     // {
     //     changed = changed + CONFIG_CHANGE_PRIORITY_MODE;
     // }
-    // if (_read_channel_filter())
-    // {
-    //     changed = changed + CONFIG_CHANGE_CHANNEL_FILTER;
-    // }
     if (_read_sequencer_record())
     {
         changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
@@ -200,11 +188,6 @@ byte Config::get_polyphony_mode()
 byte Config::get_priority_mode()
 {
     return _priority_mode;
-}
-
-byte Config::get_channel_filter()
-{
-    return _channel_filter;
 }
 
 byte Config::get_glide_flags()

@@ -29,13 +29,11 @@ public:
      * 
      * @param lane_mask Lanes included in the pool. Least significant bits map
      *     to the firsts lanes.
-     * @param channel_mask Channels whitelisted in the pool. Least significant
-     *     bits map to the first channels.
      */
-    void set_masks(byte lane_mask, unsigned int channel_mask);
+    void set_mask(byte lane_mask);
 
     /**
-     * Check if the pool includes at least one lane.
+     * Check if the pool includes at least one lane and is not locked.
      * 
      * @return Whether the pool is enabled.
      */
@@ -52,24 +50,6 @@ public:
      * Getter for the _active attribute.
      */
     bool is_active();
-
-    /**
-     * Check if a given channel is whitelisted in the pool.
-     * 
-     * @param channel A MIDI channel (from 1 to 16).
-     * @return Whether the channel is whitelisted.
-     */
-    bool accepts_channel(byte channel);
-
-    /**
-     * Check if a given note could play in the pool, whether it is free or not.
-     * This checks if the pool is enabled and if the note passes the channel
-     * filter.
-     * 
-     * @param note The note to check for.
-     * @return Whether the note is accepted.
-     */
-    bool accepts_note(Note note);
 
     /**
      * Set a new active note, and play that note on the included lanes.
@@ -138,9 +118,6 @@ private:
 
     /// Mask for the lanes included in the pool.
     byte _lane_mask;
-
-    /// Mask for the MIDI channels whitelisted in the pool.
-    unsigned int _channel_mask;
 
     /// Note buffer.
     Buffer *_buffer;

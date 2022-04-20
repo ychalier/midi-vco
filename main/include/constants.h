@@ -12,8 +12,7 @@
 #define PIN_TIME A14             // For the sequencer & the arpeggiator
 
 #define PIN_PRIORITY_MODE 42  // Toggle replacement priority newest/oldest
-#define PIN_CHANNEL_FILTER 40 // Toggle channel filter (currently disabled)
-#define PIN_TUNE 35           // Not implemented
+#define PIN_TUNE 35
 #define PIN_REC 39
 
 #define PIN_SS_CV_1 29
@@ -52,9 +51,6 @@
 #define PRIORITY_REPLACE_OLDEST 1
 #define PRIORITY_REPLACE_NEWEST 2
 
-#define CHANNEL_FILTER_OFF 0
-#define CHANNEL_FILTER_ON 1
-
 #define SOURCE_DIRECT 0
 #define SOURCE_SEQUENCER 1
 #define SOURCE_ARPEGGIATOR 2
@@ -69,10 +65,9 @@
 #define CONFIG_CHANGE_SOURCE 1
 #define CONFIG_CHANGE_POLYPHONY_MODE 2
 #define CONFIG_CHANGE_PRIORITY_MODE 4
-#define CONFIG_CHANGE_CHANNEL_FILTER 8
-#define CONFIG_CHANGE_SEQUENCER_RECORD 16
-#define CONFIG_CHANGE_TUNING 32
-#define CONFIG_CHANGE_HOLD 64
+#define CONFIG_CHANGE_SEQUENCER_RECORD 8
+#define CONFIG_CHANGE_TUNING 16
+#define CONFIG_CHANGE_HOLD 32
 
 #define GLIDE_FLAG_PROPORTIONAL 1
 #define GLIDE_FLAG_CHROMATIC 2

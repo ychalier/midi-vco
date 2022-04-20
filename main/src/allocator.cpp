@@ -29,68 +29,32 @@ void Allocator::set_masks()
     reset();
     for (int i = 0; i < LANE_COUNT; i++)
     {
-        _pools[i]->set_masks(0, 0);
+        _pools[i]->set_mask(0b00000000);
     }
-    switch (_config->get_channel_filter())
+    switch (_config->get_polyphony_mode())
     {
-    case CHANNEL_FILTER_OFF:
-        switch (_config->get_polyphony_mode())
-        {
-        case MODE_MONOPHONIC:
-            _pools[0]->set_masks(0b11111111, 0xFFFF);
-            break;
-        case MODE_DUOPHONIC:
-            _pools[0]->set_masks(0b00001111, 0xFFFF);
-            _pools[1]->set_masks(0b11110000, 0xFFFF);
-            break;
-        case MODE_QUADROPHONIC:
-            _pools[0]->set_masks(0b00000011, 0xFFFF);
-            _pools[1]->set_masks(0b00001100, 0xFFFF);
-            _pools[2]->set_masks(0b00110000, 0xFFFF);
-            _pools[3]->set_masks(0b11000000, 0xFFFF);
-            break;
-        case MODE_OCTOPHONIC:
-            _pools[0]->set_masks(0b00000001, 0xFFFF);
-            _pools[1]->set_masks(0b00000010, 0xFFFF);
-            _pools[2]->set_masks(0b00000100, 0xFFFF);
-            _pools[3]->set_masks(0b00001000, 0xFFFF);
-            _pools[4]->set_masks(0b00010000, 0xFFFF);
-            _pools[5]->set_masks(0b00100000, 0xFFFF);
-            _pools[6]->set_masks(0b01000000, 0xFFFF);
-            _pools[7]->set_masks(0b10000000, 0xFFFF);
-            break;
-        }
+    case MODE_MONOPHONIC:
+        _pools[0]->set_mask(0b11111111);
         break;
-    case CHANNEL_FILTER_ON:
-        switch (_config->get_polyphony_mode())
-        {
-        case MODE_MONOPHONIC:
-            _pools[0]->set_masks(0b00000011, 0b0001);
-            _pools[1]->set_masks(0b00001100, 0b0010);
-            _pools[2]->set_masks(0b00110000, 0b0100);
-            _pools[3]->set_masks(0b11000000, 0b1000);
-            break;
-        case MODE_DUOPHONIC:
-            _pools[0]->set_masks(0b00001111, 0b0001);
-            _pools[1]->set_masks(0b11110000, 0b0010);
-            break;
-        case MODE_QUADROPHONIC:
-            _pools[0]->set_masks(0b00000011, 0b0001);
-            _pools[1]->set_masks(0b00001100, 0b0001);
-            _pools[2]->set_masks(0b00110000, 0b0010);
-            _pools[3]->set_masks(0b11000000, 0b0010);
-            break;
-        case MODE_OCTOPHONIC:
-            _pools[0]->set_masks(0b00000001, 0b0001);
-            _pools[1]->set_masks(0b00000010, 0b0001);
-            _pools[2]->set_masks(0b00000100, 0b0010);
-            _pools[3]->set_masks(0b00001000, 0b0010);
-            _pools[4]->set_masks(0b00010000, 0b0100);
-            _pools[5]->set_masks(0b00100000, 0b0100);
-            _pools[6]->set_masks(0b01000000, 0b1000);
-            _pools[7]->set_masks(0b10000000, 0b1000);
-            break;
-        }
+    case MODE_DUOPHONIC:
+        _pools[0]->set_mask(0b00001111);
+        _pools[1]->set_mask(0b11110000);
+        break;
+    case MODE_QUADROPHONIC:
+        _pools[0]->set_mask(0b00000011);
+        _pools[1]->set_mask(0b00001100);
+        _pools[2]->set_mask(0b00110000);
+        _pools[3]->set_mask(0b11000000);
+        break;
+    case MODE_OCTOPHONIC:
+        _pools[0]->set_mask(0b00000001);
+        _pools[1]->set_mask(0b00000010);
+        _pools[2]->set_mask(0b00000100);
+        _pools[3]->set_mask(0b00001000);
+        _pools[4]->set_mask(0b00010000);
+        _pools[5]->set_mask(0b00100000);
+        _pools[6]->set_mask(0b01000000);
+        _pools[7]->set_mask(0b10000000);
         break;
     }
 }
@@ -110,7 +74,7 @@ void Allocator::note_on_masked(Note note, byte mask)
     bool accepted = false;
     for (int i = 0; i < LANE_COUNT; i++)
     {
-        if (check_mask(mask, i) && _pools[i]->is_free() && _pools[i]->accepts_note(note))
+        if (check_mask(mask, i) && _pools[i]->is_free() && _pools[i]->is_enabled())
         {
             _pools[i]->load(note);
             accepted = true;
@@ -131,7 +95,7 @@ void Allocator::note_on_masked(Note note, byte mask)
             {
                 era = _pools[i]->get_era();
                 if (check_mask(mask, i) &&
-                    _pools[i]->accepts_note(note) &&
+                    _pools[i]->is_enabled() &&
                     (optimal_index == -1 || optimal_era > era))
                 {
                     optimal_index = i;
@@ -145,7 +109,7 @@ void Allocator::note_on_masked(Note note, byte mask)
             {
                 era = _pools[i]->get_era();
                 if (check_mask(mask, i) &&
-                    _pools[i]->accepts_note(note) &&
+                    _pools[i]->is_enabled() &&
                     (optimal_index == -1 || optimal_era < era))
                 {
                     optimal_index = i;
@@ -176,10 +140,7 @@ void Allocator::pitch_bend(byte channel, int bend_value)
 {
     for (int i = 0; i < LANE_COUNT; i++)
     {
-        if (_pools[i]->accepts_channel(channel))
-        {
-            _pools[i]->bend(bend_value);
-        }
+        _pools[i]->bend(bend_value);
     }
 }
 
@@ -218,10 +179,7 @@ void Allocator::after_touch_channel(byte channel, int bend)
 {
     for (int i = 0; i < LANE_COUNT; i++)
     {
-        if (_pools[i]->accepts_channel(channel))
-        {
-            _pools[i]->bend(bend);
-        }
+        _pools[i]->bend(bend);
     }
 }
 
