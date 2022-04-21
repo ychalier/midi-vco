@@ -192,3 +192,15 @@ static bool Allocator::check_mask(byte mask, int value)
 {
     return (mask >> value) & 1;
 }
+
+bool Allocator::is_active()
+{
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        if (_pools[i]->is_active())
+        {
+            return true;
+        }
+    }
+    return false;
+}

@@ -26,6 +26,8 @@
 #define PIN_GATE_3 24
 #define PIN_GATE_4 22
 
+#define PIN_LED 41
+
 // MIDI Controls
 
 #define MIDI_CONTROL_GLIDE_INTENSITY 73     // S1 OFF

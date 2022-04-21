@@ -136,6 +136,8 @@ public:
      */
     static bool check_mask(byte mask, int value);
 
+    bool is_active();
+
 private:
     /// A reference to the global user config.
     Config *_config;
