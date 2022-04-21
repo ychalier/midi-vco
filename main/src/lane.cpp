@@ -58,9 +58,9 @@ void Lane::start(int setpoint)
     _active = true;
 }
 
-void Lane::set_pitch(byte pitch, int bend)
+void Lane::set_pitch(byte pitch, int bend, bool ignore_detune)
 {
-    if (_channel)
+    if (_channel || ignore_detune)
     {
         set(pitch_to_voltage(_config, pitch, bend));
     }
@@ -70,9 +70,9 @@ void Lane::set_pitch(byte pitch, int bend)
     }
 }
 
-void Lane::start_pitch(byte pitch, int bend)
+void Lane::start_pitch(byte pitch, int bend, bool ignore_detune)
 {
-    if (_channel)
+    if (_channel || ignore_detune)
     {
         start(pitch_to_voltage(_config, pitch, bend));
     }

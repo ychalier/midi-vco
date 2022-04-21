@@ -58,6 +58,8 @@ public:
      */
     void update();
 
+    void broadcast(int setpoint, int gate);
+
 private:
     /// A DAC interface to control the CV signals.
     MCP4822 *_dac;

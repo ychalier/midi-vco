@@ -38,7 +38,10 @@ public:
      */
     Lane *select(int lane_id);
 
+    void broadcast(byte pitch, int gate);
+
 private:
+    Config *_config;
     Coupler *_coupler_1;
     Coupler *_coupler_2;
     Coupler *_coupler_3;

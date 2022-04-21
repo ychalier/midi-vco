@@ -64,7 +64,7 @@ public:
      * @param pitch 7-bit pitch encoding.
      * @param bend Signed 14-bit encoding of the pitch-bend on that value.
      */
-    void set_pitch(byte pitch, int bend);
+    void set_pitch(byte pitch, int bend, bool ignore_detune);
 
     /**
      * Start a note to be played according to its pitch.
@@ -74,7 +74,7 @@ public:
      * @param pitch 7-bit pitch encoding.
      * @param bend Signed 14-bit encoding of the pitch-bend on that value.
      */
-    void start_pitch(byte pitch, int bend);
+    void start_pitch(byte pitch, int bend, bool ignore_detune);
 
     /**
      * Set the GATE to LOW.

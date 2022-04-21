@@ -50,7 +50,7 @@ void MidiInterface::update()
         _arpeggiator->reset();
         if (_config->is_tuning())
         {
-            _allocator->broadcast_pitch(PITCH_A5);
+            _allocator->broadcast(PITCH_A5, GATE_STATE_DURING_TUNING);
         }
     }
     if (!_config->is_tuning())

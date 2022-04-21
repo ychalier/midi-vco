@@ -121,10 +121,9 @@ public:
     void hold_off();
 
     /**
-     * Artificially send an output to all lanes. This is used for the tuning
-     * process to send a A4 to all VCOs.
+     * Artificially send an output to all lanes. This is used during tuning.
      */
-    void broadcast_pitch(byte pitch);
+    void broadcast(byte pitch, int gate);
 
     /**
      * Checks whether a bit mask includes a value.
