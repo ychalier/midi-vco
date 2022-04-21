@@ -113,4 +113,6 @@
 
 #define DETUNE_RANGE 2 // Semitons (in both directions)
 
+#define GATE_STATE_DURING_TUNING LOW
+
 #endif
