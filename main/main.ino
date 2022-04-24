@@ -22,6 +22,7 @@ Router *router;
 Sequencer *sequencer;
 Arpeggiator *arpeggiator;
 MidiInterface *midif;
+bool old_led_state;
 
 void setup()
 {
@@ -43,6 +44,9 @@ void setup()
     MIDI.setHandleAfterTouchPoly(handle_after_touch_poly);
     midif = new MidiInterface(config, allocator, sequencer, arpeggiator, PIN_SS_BEND);
     midif->setup();
+    pinMode(PIN_LED, OUTPUT);
+    blink();
+    old_led_state = false;
 }
 
 void loop()
@@ -50,6 +54,38 @@ void loop()
     MIDI.read();
     midif->update();
     router->update();
+    byte active_source = config->get_active_source();
+    bool led_state = config->is_tuning()
+        || (active_source == SOURCE_SEQUENCER && config->should_sequencer_record())
+        || (active_source == SOURCE_ARPEGGIATOR && config->should_sequencer_record())
+        || (active_source == SOURCE_DIRECT && allocator->is_active());
+    if (led_state != old_led_state)
+    {
+        if (led_state)
+        {
+            digitalWrite(PIN_LED, HIGH);
+        }
+        else
+        {
+            digitalWrite(PIN_LED, LOW);
+        }
+    }
+    old_led_state = led_state;
+}
+
+void blink()
+{
+    digitalWrite(PIN_LED, HIGH);
+    delay(100);
+    digitalWrite(PIN_LED, LOW);
+    delay(100);
+    digitalWrite(PIN_LED, HIGH);
+    delay(100);
+    digitalWrite(PIN_LED, LOW);
+    delay(100);
+    digitalWrite(PIN_LED, HIGH);
+    delay(100);
+    digitalWrite(PIN_LED, LOW);
 }
 
 /**

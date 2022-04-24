@@ -5,13 +5,13 @@ Config::Config()
 {
     _polyphony_mode = MODE_MONOPHONIC;
     _priority_mode = PRIORITY_REPLACE_OLDEST;
-    _channel_filter = CHANNEL_FILTER_OFF;
     _glide_flags = 0;
     _glide_intensity = 0;
     _pitch_bend_range = PITCH_BEND_RANGE;
     _glide_proportional = false;
     _active_source = SOURCE_DIRECT;
     _sequencer_record = false;
+    _button_sequencer_record = HIGH;
     _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
     _hold = false;
     _voltage_offset = 0;
@@ -33,7 +33,6 @@ void Config::setup()
     pinMode(PIN_DETUNE, INPUT);
     pinMode(PIN_TIME, INPUT);
     pinMode(PIN_PRIORITY_MODE, INPUT);
-    pinMode(PIN_CHANNEL_FILTER, INPUT);
     pinMode(PIN_TUNE, INPUT);
     pinMode(PIN_REC, INPUT);
 }
@@ -44,11 +43,11 @@ bool Config::_read_source()
     byte source = SOURCE_DIRECT;
     if (value > 682)
     {
-        source = SOURCE_ARPEGGIATOR;
+        source = SOURCE_SEQUENCER;
     }
     else if (value > 341)
     {
-        source = SOURCE_SEQUENCER;
+        source = SOURCE_ARPEGGIATOR;
     }
     bool changed = _active_source != source;
     _active_source = source;
@@ -130,25 +129,23 @@ bool Config::_read_priority_mode()
     return false;
 }
 
-bool Config::_read_channel_filter()
-{
-    _channel_filter = CHANNEL_FILTER_OFF;
-    return false;
-}
-
 bool Config::_read_sequencer_record()
 {
     int value = digitalRead(PIN_REC);
-    bool sequencer_record = value >= 512;
-    bool changed = _sequencer_record != sequencer_record;
-    _sequencer_record = sequencer_record;
+    bool changed = false;
+    if (_button_sequencer_record == HIGH && value == LOW)
+    {
+        changed = true;
+        _sequencer_record = !_sequencer_record;
+    }
+    _button_sequencer_record = value;
     return changed;
 }
 
 bool Config::_read_tuning()
 {
     int value = digitalRead(PIN_TUNE);
-    bool tuning = value >= 512;
+    bool tuning = value == HIGH;
     bool changed = _tuning != tuning;
     _tuning = tuning;
     return changed;
@@ -234,14 +231,10 @@ int Config::read()
     {
         changed = changed + CONFIG_CHANGE_POLYPHONY_MODE;
     }
-    if (_read_priority_mode())
-    {
-        changed = changed + CONFIG_CHANGE_PRIORITY_MODE;
-    }
-    if (_read_channel_filter())
-    {
-        changed = changed + CONFIG_CHANGE_CHANNEL_FILTER;
-    }
+    // if (_read_priority_mode())
+    // {
+    //     changed = changed + CONFIG_CHANGE_PRIORITY_MODE;
+    // }
     // if (_read_sequencer_record())
     // {
     //     changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
@@ -270,11 +263,6 @@ byte Config::get_priority_mode()
     return _priority_mode;
 }
 
-byte Config::get_channel_filter()
-{
-    return _channel_filter;
-}
-
 byte Config::get_glide_flags()
 {
     return _glide_flags;
@@ -293,20 +281,20 @@ float Config::get_pitch_bend_range()
 int Config::handle_midi_control(byte channel, byte number, byte value)
 {
     int changed = 0;
-    if (number == MIDI_CONTROL_GLIDE_INTENSITY)
-    {
-        if (value < 64)
-        {
-            _glide_intensity = 1.0 - ((float)value / 63.0);
-            _glide_proportional = false;
-        }
-        else
-        {
-            _glide_intensity = (float)(value - 64) / 63.0;
-            _glide_proportional = true;
-        }
-    }
-    else if (number == MIDI_CONTROL_GLIDE_CHROMATIC)
+    // if (number == MIDI_CONTROL_GLIDE_INTENSITY)
+    // {
+    //     if (value < 64)
+    //     {
+    //         _glide_intensity = 1.0 - ((float)value / 63.0);
+    //         _glide_proportional = false;
+    //     }
+    //     else
+    //     {
+    //         _glide_intensity = (float)(value - 64) / 63.0;
+    //         _glide_proportional = true;
+    //     }
+    // }
+    if (number == MIDI_CONTROL_GLIDE_CHROMATIC)
     {
         if (value < 64)
         {
@@ -328,30 +316,30 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
             _glide_flags = _glide_flags | GLIDE_FLAG_LEGATO;
         }
     }
-    else if (number == MIDI_CONTROL_PITCH_BEND_RANGE)
-    {
-        _pitch_bend_range = round((float)value / 127.0 * 12.0 * 4.0) / 4.0;
-    }
-    else if (number == MIDI_CONTROL_SOURCE)
-    {
-        byte old_source = _active_source;
-        if (value < 42)
-        {
-            _active_source = SOURCE_DIRECT;
-        }
-        else if (value < 84)
-        {
-            _active_source = SOURCE_ARPEGGIATOR;
-        }
-        else
-        {
-            _active_source = SOURCE_SEQUENCER;
-        }
-        if (old_source != _active_source)
-        {
-            changed = changed + CONFIG_CHANGE_SOURCE;
-        }
-    }
+    // else if (number == MIDI_CONTROL_PITCH_BEND_RANGE)
+    // {
+    //     _pitch_bend_range = round((float)value / 127.0 * 12.0 * 4.0) / 4.0;
+    // }
+    // else if (number == MIDI_CONTROL_SOURCE)
+    // {
+    //     byte old_source = _active_source;
+    //     if (value < 42)
+    //     {
+    //         _active_source = SOURCE_DIRECT;
+    //     }
+    //     else if (value < 84)
+    //     {
+    //         _active_source = SOURCE_ARPEGGIATOR;
+    //     }
+    //     else
+    //     {
+    //         _active_source = SOURCE_SEQUENCER;
+    //     }
+    //     if (old_source != _active_source)
+    //     {
+    //         changed = changed + CONFIG_CHANGE_SOURCE;
+    //     }
+    // }
     else if (number == MIDI_CONTROL_SEQUENCER_RECORD)
     {
         bool old_sequencer_record = _sequencer_record;
@@ -361,29 +349,29 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
             changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
         }
     }
-    else if (number == MIDI_CONTROL_TIME)
-    {
-        _time_period = 60000 / (TIME_MIN_BPM + (float)(TIME_MAX_BPM - TIME_MIN_BPM) * (float)value / 127.0);
-    }
-    else if (number == MIDI_CONTROL_ARPEGGIATOR_MODE)
-    {
-        if (value < 32)
-        {
-            _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
-        }
-        else if (value < 64)
-        {
-            _arpeggiator_mode = ARPEGGIATOR_MODE_DOWN;
-        }
-        else if (value < 96)
-        {
-            _arpeggiator_mode = ARPEGGIATOR_MODE_UP_DOWN;
-        }
-        else
-        {
-            _arpeggiator_mode = ARPEGGIATOR_MODE_RANDOM;
-        }
-    }
+    // else if (number == MIDI_CONTROL_TIME)
+    // {
+    //     _time_period = 60000 / (TIME_MIN_BPM + (float)(TIME_MAX_BPM - TIME_MIN_BPM) * (float)value / 127.0);
+    // }
+    // else if (number == MIDI_CONTROL_ARPEGGIATOR_MODE)
+    // {
+    //     if (value < 32)
+    //     {
+    //         _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
+    //     }
+    //     else if (value < 64)
+    //     {
+    //         _arpeggiator_mode = ARPEGGIATOR_MODE_DOWN;
+    //     }
+    //     else if (value < 96)
+    //     {
+    //         _arpeggiator_mode = ARPEGGIATOR_MODE_UP_DOWN;
+    //     }
+    //     else
+    //     {
+    //         _arpeggiator_mode = ARPEGGIATOR_MODE_RANDOM;
+    //     }
+    // }
     else if (number == MIDI_CONTROL_HOLD)
     {
         bool old_hold = _hold;

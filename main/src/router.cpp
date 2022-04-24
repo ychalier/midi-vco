@@ -3,6 +3,7 @@
 
 Router::Router(Config *config)
 {
+    _config = config;
     _coupler_1 = new Coupler(PIN_SS_CV_1, PIN_GATE_1);
     _coupler_2 = new Coupler(PIN_SS_CV_2, PIN_GATE_2);
     _coupler_3 = new Coupler(PIN_SS_CV_3, PIN_GATE_3);
@@ -76,4 +77,13 @@ Lane *Router::select(int lane_id)
     default:
         break;
     }
+}
+
+void Router::broadcast(byte pitch, int gate)
+{
+    int setpoint = Lane::pitch_to_voltage(_config, pitch, 0);
+    _coupler_1->broadcast(setpoint, gate);
+    _coupler_2->broadcast(setpoint, gate);
+    _coupler_3->broadcast(setpoint, gate);
+    _coupler_4->broadcast(setpoint, gate);
 }

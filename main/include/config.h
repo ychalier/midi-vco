@@ -37,11 +37,6 @@ public:
     byte get_priority_mode();
 
     /**
-     * Getter for the _channel_filter attribute.
-     */
-    byte get_channel_filter();
-
-    /**
      * Getter for the _glide_flags attribute.
      */
     byte get_glide_flags();
@@ -133,13 +128,13 @@ public:
 private:
     byte _polyphony_mode;
     byte _priority_mode;
-    byte _channel_filter;
     byte _glide_flags;
     float _glide_intensity;
     bool _glide_proportional;
     float _pitch_bend_range;
     byte _active_source;
     bool _sequencer_record;
+    int _button_sequencer_record;
     byte _arpeggiator_mode;
     bool _hold;
     float _voltage_offset;
@@ -160,7 +155,6 @@ private:
     void _read_detune();
     void _read_time();
     bool _read_priority_mode();
-    bool _read_channel_filter();
     bool _read_sequencer_record();
     bool _read_tuning();
     bool _read_sequencer_channel();

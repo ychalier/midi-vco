@@ -107,3 +107,11 @@ void Coupler::update()
         }
     }
 }
+
+void Coupler::broadcast(int setpoint, int gate)
+{
+    digitalWrite(_gate_pin, gate);
+    _dac->setVoltageA(setpoint);
+    _dac->setVoltageB(setpoint);
+    _dac->updateDAC();
+}
