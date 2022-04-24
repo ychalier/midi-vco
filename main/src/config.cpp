@@ -41,11 +41,11 @@ bool Config::_read_source()
     byte source = SOURCE_DIRECT;
     if (value > 682)
     {
-        source = SOURCE_ARPEGGIATOR;
+        source = SOURCE_SEQUENCER;
     }
     else if (value > 341)
     {
-        source = SOURCE_SEQUENCER;
+        source = SOURCE_ARPEGGIATOR;
     }
     bool changed = _active_source != source;
     _active_source = source;
@@ -164,10 +164,10 @@ int Config::read()
     // {
     //     changed = changed + CONFIG_CHANGE_PRIORITY_MODE;
     // }
-    if (_read_sequencer_record())
-    {
-        changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
-    }
+    // if (_read_sequencer_record())
+    // {
+    //     changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
+    // }
     if (_read_tuning())
     {
         changed = changed + CONFIG_CHANGE_TUNING;
@@ -267,15 +267,15 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
     //         changed = changed + CONFIG_CHANGE_SOURCE;
     //     }
     // }
-    // else if (number == MIDI_CONTROL_SEQUENCER_RECORD)
-    // {
-    //     bool old_sequencer_record = _sequencer_record;
-    //     _sequencer_record = value >= 64;
-    //     if (old_sequencer_record != _sequencer_record)
-    //     {
-    //         changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
-    //     }
-    // }
+    else if (number == MIDI_CONTROL_SEQUENCER_RECORD)
+    {
+        bool old_sequencer_record = _sequencer_record;
+        _sequencer_record = value >= 64;
+        if (old_sequencer_record != _sequencer_record)
+        {
+            changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
+        }
+    }
     // else if (number == MIDI_CONTROL_TIME)
     // {
     //     _time_period = 60000 / (TIME_MIN_BPM + (float)(TIME_MAX_BPM - TIME_MIN_BPM) * (float)value / 127.0);
