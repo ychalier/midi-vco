@@ -20,7 +20,7 @@ Config::Config()
     _detune = 0;
     _tuning = false;
     _sequencer_quantize = true;
-    _sequencer_steps = 16;
+    _sequencer_channel = 0;
 }
 
 void Config::setup()
@@ -120,7 +120,7 @@ void Config::_read_detune()
 void Config::_read_time()
 {
     int value = analogRead(PIN_TIME);
-    _time_period = 60000 / (TIME_MIN_BPM + (float)(TIME_MAX_BPM - TIME_MIN_BPM) * (float)value / 1023.0);
+    _time_period = 60000 / (TIME_MIN_BPM + (float)(TIME_MAX_BPM - TIME_MIN_BPM) * (float)value / 1023.0);  // ms per beat
 }
 
 bool Config::_read_priority_mode()
@@ -153,8 +153,23 @@ bool Config::_read_tuning()
 
 bool Config::_read_sequencer_channel()
 {
-    // TODO
-    return false;
+    int value = analogRead(PIN_ARPEGGIATOR_MODE);
+    int sequencer_channel = 3;
+    if (value < 341)
+    {
+        sequencer_channel = 0;
+    }
+    else if (value < 682)
+    {
+        sequencer_channel = 1;
+    }
+    else
+    {
+        sequencer_channel = 2;
+    }
+    bool changed = sequencer_channel != _sequencer_channel;
+    _sequencer_channel = sequencer_channel;
+    return changed;
 }
 
 void Config::_derive_pool_mask()
@@ -162,32 +177,50 @@ void Config::_derive_pool_mask()
     switch (_polyphony_mode)
     {
         case MODE_MONOPHONIC:
-            _pool_mask = 0b11111111;
+            switch(_sequencer_channel)
+            {
+                case 0:
+                    _pool_mask = 0b00000001;
+                    break;
+                case 1:
+                    _pool_mask = 0b00000001;
+                    break;
+                case 2:
+                    _pool_mask = 0b00000001;
+                    break;
+                default:
+                    _pool_mask = 0b11111111;
+                    break;
+            }
             break;
         case MODE_DUOPHONIC:
-            if (_sequencer_channel == 0 || _sequencer_channel == 2)
+            switch(_sequencer_channel)
             {
-                _pool_mask = 0b00001111;
-            }
-            else
-            {
-                _pool_mask = 0b11110000;
+                case 0:
+                    _pool_mask = 0b00000001;
+                    break;
+                case 1:
+                    _pool_mask = 0b00000010;
+                    break;
+                case 2:
+                    _pool_mask = 0b00000011;
+                    break;
+                default:
+                    _pool_mask = 0b11111111;
+                    break;
             }
             break;
         case MODE_QUADROPHONIC:
             switch(_sequencer_channel)
             {
                 case 0:
-                    _pool_mask = 0b00000011;
+                    _pool_mask = 0b00000001;
                     break;
                 case 1:
-                    _pool_mask = 0b00001100;
+                    _pool_mask = 0b00000110;
                     break;
                 case 2:
-                    _pool_mask = 0b00110000;
-                    break;
-                case 3:
-                    _pool_mask = 0b11000000;
+                    _pool_mask = 0b00001000;
                     break;
                 default:
                     _pool_mask = 0b11111111;
@@ -205,9 +238,6 @@ void Config::_derive_pool_mask()
                     break;
                 case 2:
                     _pool_mask = 0b11000000;
-                    break;
-                case 3:
-                    _pool_mask = 0b11111111;
                     break;
                 default:
                     _pool_mask = 0b11111111;
@@ -281,19 +311,6 @@ float Config::get_pitch_bend_range()
 int Config::handle_midi_control(byte channel, byte number, byte value)
 {
     int changed = 0;
-    // if (number == MIDI_CONTROL_GLIDE_INTENSITY)
-    // {
-    //     if (value < 64)
-    //     {
-    //         _glide_intensity = 1.0 - ((float)value / 63.0);
-    //         _glide_proportional = false;
-    //     }
-    //     else
-    //     {
-    //         _glide_intensity = (float)(value - 64) / 63.0;
-    //         _glide_proportional = true;
-    //     }
-    // }
     if (number == MIDI_CONTROL_GLIDE_CHROMATIC)
     {
         if (value < 64)
@@ -316,30 +333,6 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
             _glide_flags = _glide_flags | GLIDE_FLAG_LEGATO;
         }
     }
-    // else if (number == MIDI_CONTROL_PITCH_BEND_RANGE)
-    // {
-    //     _pitch_bend_range = round((float)value / 127.0 * 12.0 * 4.0) / 4.0;
-    // }
-    // else if (number == MIDI_CONTROL_SOURCE)
-    // {
-    //     byte old_source = _active_source;
-    //     if (value < 42)
-    //     {
-    //         _active_source = SOURCE_DIRECT;
-    //     }
-    //     else if (value < 84)
-    //     {
-    //         _active_source = SOURCE_ARPEGGIATOR;
-    //     }
-    //     else
-    //     {
-    //         _active_source = SOURCE_SEQUENCER;
-    //     }
-    //     if (old_source != _active_source)
-    //     {
-    //         changed = changed + CONFIG_CHANGE_SOURCE;
-    //     }
-    // }
     else if (number == MIDI_CONTROL_SEQUENCER_RECORD)
     {
         bool old_sequencer_record = _sequencer_record;
@@ -349,29 +342,6 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
             changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
         }
     }
-    // else if (number == MIDI_CONTROL_TIME)
-    // {
-    //     _time_period = 60000 / (TIME_MIN_BPM + (float)(TIME_MAX_BPM - TIME_MIN_BPM) * (float)value / 127.0);
-    // }
-    // else if (number == MIDI_CONTROL_ARPEGGIATOR_MODE)
-    // {
-    //     if (value < 32)
-    //     {
-    //         _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
-    //     }
-    //     else if (value < 64)
-    //     {
-    //         _arpeggiator_mode = ARPEGGIATOR_MODE_DOWN;
-    //     }
-    //     else if (value < 96)
-    //     {
-    //         _arpeggiator_mode = ARPEGGIATOR_MODE_UP_DOWN;
-    //     }
-    //     else
-    //     {
-    //         _arpeggiator_mode = ARPEGGIATOR_MODE_RANDOM;
-    //     }
-    // }
     else if (number == MIDI_CONTROL_HOLD)
     {
         bool old_hold = _hold;
@@ -457,17 +427,8 @@ bool Config::get_sequencer_quantize()
     return _sequencer_quantize;
 }
 
-int Config::get_sequencer_steps()
-{
-    return _sequencer_steps;
-}
-
 unsigned long Config::get_time_div()
 {
-    return SEQUENCER_DIVISION * _time_period;
-}
-
-int Config::get_sequencer_divisions()
-{
-    return SEQUENCER_DIVISION_INV * _sequencer_steps;
+    // ms per division
+    return _time_period / SEQUENCER_DIVISIONS_PER_BEAT;
 }

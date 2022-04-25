@@ -118,12 +118,7 @@ public:
 
     bool get_sequencer_quantize();
 
-    int get_sequencer_steps();
-
     unsigned long get_time_div();
-
-    int get_sequencer_divisions();
-
 
 private:
     byte _polyphony_mode;
@@ -145,7 +140,6 @@ private:
     byte _pool_mask;
     int _sequencer_channel;
     bool _sequencer_quantize;
-    int _sequencer_steps;
 
     bool _read_source();
     bool _read_polyphony_mode();

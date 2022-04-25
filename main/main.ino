@@ -59,15 +59,18 @@ void loop()
         || (active_source == SOURCE_SEQUENCER && config->should_sequencer_record())
         || (active_source == SOURCE_ARPEGGIATOR && config->should_sequencer_record())
         || (active_source == SOURCE_DIRECT && allocator->is_active());
-    if (led_state != old_led_state)
+    if (active_source != SOURCE_SEQUENCER)
     {
-        if (led_state)
+        if (led_state != old_led_state)
         {
-            digitalWrite(PIN_LED, HIGH);
-        }
-        else
-        {
-            digitalWrite(PIN_LED, LOW);
+            if (led_state)
+            {
+                digitalWrite(PIN_LED, HIGH);
+            }
+            else
+            {
+                digitalWrite(PIN_LED, LOW);
+            }
         }
     }
     old_led_state = led_state;

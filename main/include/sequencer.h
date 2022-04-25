@@ -56,9 +56,19 @@ private:
     /// Whether the sequencer is currently recording events.
     bool _recording;
 
-    unsigned long _loopback_timestamp;
+    int _playback_division;
 
-    bool update_loopback(unsigned long now);
+    unsigned long _first_beat_timestamp;
+
+    bool _started;
+
+    int get_record_division();
+
+    int get_playback_division();
+
+    void start();
+
+    void set_led_state(int division);
 
 };
 
