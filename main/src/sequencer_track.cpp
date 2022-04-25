@@ -1,14 +1,14 @@
 #include "Arduino.h"
-#include "../include/sequencer_channel.h"
+#include "../include/sequencer_track.h"
 
-SequencerChannel::SequencerChannel(Config *config, Allocator *allocator)
+SequencerTrack::SequencerTrack(Config *config, Allocator *allocator)
 {
     _config = config;
     _allocator = allocator;
     reset();
 }
 
-void SequencerChannel::record(MidiEvent event)
+void SequencerTrack::record(MidiEvent event)
 {
     if (_memory_index[event.division] < SEQUENCER_MAX_EVENTS_PER_DIVISION)
     {
@@ -18,7 +18,7 @@ void SequencerChannel::record(MidiEvent event)
     }
 }
 
-void SequencerChannel::execute_event(int event_index)
+void SequencerTrack::execute_event(int event_index)
 {
     if (event_index < SEQUENCER_MEMORY_SIZE)
     {
@@ -33,7 +33,7 @@ void SequencerChannel::execute_event(int event_index)
     }
 }
 
-void SequencerChannel::play(int division)
+void SequencerTrack::play(int division)
 {
     for (int offset = 0; offset < _memory_index[division]; offset++)
     {
@@ -42,7 +42,7 @@ void SequencerChannel::play(int division)
     }
 }
 
-void SequencerChannel::reset()
+void SequencerTrack::reset()
 {
     for (int division = 0; division < SEQUENCER_DIVISIONS_PER_LOOP; division++)
     {

@@ -6,7 +6,7 @@
 #include "structs.h"
 #include "allocator.h"
 #include "config.h"
-#include "sequencer_channel.h"
+#include "sequencer_track.h"
 
 /**
  * Implements the features of a sequencer.
@@ -51,7 +51,7 @@ private:
     Config *_config;
     Allocator *_allocator;
 
-    SequencerChannel *_channels[SEQUENCER_CHANNEL_COUNT];
+    SequencerTrack *_channels[SEQUENCER_TRACK_COUNT];
 
     /// Whether the sequencer is currently recording events.
     bool _recording;

@@ -10,7 +10,7 @@
 /**
  * Implements the features of a sequencer channel.
  */
-class SequencerChannel
+class SequencerTrack
 {
 public:
     /**
@@ -19,7 +19,7 @@ public:
      * @param config A pointer to the global config.
      * @param allocator A pointer to the global allocator.
      */
-    SequencerChannel(Config *config, Allocator *allocator);
+    SequencerTrack(Config *config, Allocator *allocator);
 
     void record(MidiEvent event);
 

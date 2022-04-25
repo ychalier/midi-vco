@@ -9,9 +9,9 @@ Sequencer::Sequencer(Config *config, Allocator *allocator)
     _first_beat_timestamp = 0;
     _playback_division = 0;
     _started = false;
-    for (int i = 0; i < SEQUENCER_CHANNEL_COUNT; i++)
+    for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
     {
-        _channels[i] = new SequencerChannel(config, allocator);
+        _channels[i] = new SequencerTrack(config, allocator);
     }
 }
 
@@ -19,7 +19,7 @@ void Sequencer::update_source_activation(bool activated)
 {
     _started = false;
     _allocator->reset();
-    for (int i = 0; i < SEQUENCER_CHANNEL_COUNT; i++)
+    for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
     {
         _channels[i]->reset();
     }
@@ -107,7 +107,7 @@ void Sequencer::update()
     int new_playback_division = get_playback_division();
     set_led_state(new_playback_division);
     int sequencer_channel = _config->get_sequencer_channel();
-    for (int i = 0; i < SEQUENCER_CHANNEL_COUNT; i++)
+    for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
     {
         if (_recording && i == sequencer_channel)
         {
