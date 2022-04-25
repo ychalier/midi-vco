@@ -56,8 +56,8 @@ void loop()
     router->update();
     byte active_source = config->get_active_source();
     bool led_state = config->is_tuning()
-        || (active_source == SOURCE_SEQUENCER && config->should_sequencer_record())
-        || (active_source == SOURCE_ARPEGGIATOR && config->should_sequencer_record())
+        || (active_source == SOURCE_SEQUENCER && config->is_recording())
+        || (active_source == SOURCE_ARPEGGIATOR && config->is_recording())
         || (active_source == SOURCE_DIRECT && allocator->is_active());
     if (active_source != SOURCE_SEQUENCER)
     {

@@ -5,7 +5,7 @@ Allocator::Allocator(Config *config, Router *router)
 {
     _config = config;
     _router = router;
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         _pools[i] = new Pool(_router);
     }
@@ -18,7 +18,7 @@ void Allocator::setup()
 
 void Allocator::reset()
 {
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         _pools[i]->stop();
     }
@@ -26,7 +26,7 @@ void Allocator::reset()
 
 void Allocator::reset_masked(byte mask)
 {
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         if (check_mask(mask, i))
         {
@@ -38,7 +38,7 @@ void Allocator::reset_masked(byte mask)
 void Allocator::set_masks()
 {
     reset();
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         _pools[i]->set_mask(0b00000000);
     }
@@ -83,7 +83,7 @@ void Allocator::note_off(Note note)
 void Allocator::note_on_masked(Note note, byte mask)
 {
     bool accepted = false;
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         if (check_mask(mask, i) && _pools[i]->is_free() && _pools[i]->is_enabled())
         {
@@ -102,7 +102,7 @@ void Allocator::note_on_masked(Note note, byte mask)
             break;
         case PRIORITY_REPLACE_OLDEST:
             optimal_era = 0;
-            for (int i = 0; i < LANE_COUNT; i++)
+            for (int i = 0; i < POOL_COUNT; i++)
             {
                 era = _pools[i]->get_era();
                 if (check_mask(mask, i) &&
@@ -116,7 +116,7 @@ void Allocator::note_on_masked(Note note, byte mask)
             break;
         case PRIORITY_REPLACE_NEWEST:
             optimal_era = 0;
-            for (int i = 0; i < LANE_COUNT; i++)
+            for (int i = 0; i < POOL_COUNT; i++)
             {
                 era = _pools[i]->get_era();
                 if (check_mask(mask, i) &&
@@ -138,7 +138,7 @@ void Allocator::note_on_masked(Note note, byte mask)
 
 void Allocator::note_off_masked(Note note, byte mask)
 {
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         if (check_mask(mask, i) && _pools[i]->unload(note))
         {
@@ -149,7 +149,7 @@ void Allocator::note_off_masked(Note note, byte mask)
 
 void Allocator::pitch_bend(byte channel, int bend_value)
 {
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         _pools[i]->bend(bend_value);
     }
@@ -157,7 +157,7 @@ void Allocator::pitch_bend(byte channel, int bend_value)
 
 void Allocator::hold_on()
 {
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         if (_pools[i]->is_active())
         {
@@ -168,7 +168,7 @@ void Allocator::hold_on()
 
 void Allocator::hold_off()
 {
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         _pools[i]->unlock();
     }
@@ -176,7 +176,7 @@ void Allocator::hold_off()
 
 void Allocator::after_touch_poly(Note note, int bend)
 {
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         if (_pools[i]->buffer_contains(note))
         {
@@ -188,7 +188,7 @@ void Allocator::after_touch_poly(Note note, int bend)
 
 void Allocator::after_touch_channel(byte channel, int bend)
 {
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         _pools[i]->bend(bend);
     }
@@ -206,7 +206,7 @@ static bool Allocator::check_mask(byte mask, int value)
 
 bool Allocator::is_active()
 {
-    for (int i = 0; i < LANE_COUNT; i++)
+    for (int i = 0; i < POOL_COUNT; i++)
     {
         if (_pools[i]->is_active())
         {

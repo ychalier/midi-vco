@@ -11,7 +11,7 @@ Sequencer::Sequencer(Config *config, Allocator *allocator)
     _started = false;
     for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
     {
-        _channels[i] = new SequencerTrack(config, allocator);
+        _tracks[i] = new SequencerTrack(config, allocator);
     }
 }
 
@@ -21,8 +21,9 @@ void Sequencer::update_source_activation(bool activated)
     _allocator->reset();
     for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
     {
-        _channels[i]->reset();
+        _tracks[i]->reset();
     }
+    _first_beat_timestamp = millis();
 }
 
 void Sequencer::update_record_state(bool recording)
@@ -31,7 +32,7 @@ void Sequencer::update_record_state(bool recording)
     if (_recording)
     {
         _allocator->reset_masked(_config->get_pool_mask());
-        _channels[_config->get_sequencer_channel()]->reset();
+        _tracks[_config->get_active_sequencer_track()]->reset();
     }
 }
 
@@ -56,7 +57,7 @@ void Sequencer::note_on(Note note)
     if (_recording)
     {
         start();
-        _channels[_config->get_sequencer_channel()]->record(
+        _tracks[_config->get_active_sequencer_track()]->record(
             {
                 get_record_division(),
                 true,
@@ -74,7 +75,7 @@ void Sequencer::note_off(Note note)
     if (_recording)
     {
         start();
-        _channels[_config->get_sequencer_channel()]->record(
+        _tracks[_config->get_active_sequencer_track()]->record(
             {
                 get_record_division(),
                 false,
@@ -106,10 +107,10 @@ void Sequencer::update()
 {
     int new_playback_division = get_playback_division();
     set_led_state(new_playback_division);
-    int sequencer_channel = _config->get_sequencer_channel();
+    int active_sequencer_track = _config->get_active_sequencer_track();
     for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
     {
-        if (_recording && i == sequencer_channel)
+        if (_recording && i == active_sequencer_track)
         {
             //Do not play anything while recording
         }
@@ -119,18 +120,18 @@ void Sequencer::update()
             {
                 for (int division = _playback_division + 1; division <= new_playback_division; division++)
                 {
-                    _channels[i]->play(division);
+                    _tracks[i]->play(division);
                 }
             }
             else if (new_playback_division < _playback_division)
             {
                 for (int division = _playback_division + 1; division < SEQUENCER_DIVISIONS_PER_LOOP; division++)
                 {
-                    _channels[i]->play(division);
+                    _tracks[i]->play(division);
                 }
                 for (int division = 0; division <= new_playback_division; division++)
                 {
-                    _channels[i]->play(division);
+                    _tracks[i]->play(division);
                 }
             }
             

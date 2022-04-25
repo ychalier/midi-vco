@@ -73,9 +73,9 @@ public:
     byte get_active_source();
 
     /**
-     * Getter for the _sequencer_record attribute.
+     * Getter for the _record attribute.
      */
-    bool should_sequencer_record();
+    bool is_recording();
 
     /**
      * Getter for the _arpeggiator_mode attribute.
@@ -114,9 +114,7 @@ public:
 
     byte get_pool_mask();
 
-    int get_sequencer_channel();
-
-    bool get_sequencer_quantize();
+    int get_active_sequencer_track();
 
     unsigned long get_time_div();
 
@@ -128,8 +126,8 @@ private:
     bool _glide_proportional;
     float _pitch_bend_range;
     byte _active_source;
-    bool _sequencer_record;
-    int _button_sequencer_record;
+    bool _record;
+    int _button_record_state;
     byte _arpeggiator_mode;
     bool _hold;
     float _voltage_offset;
@@ -138,8 +136,7 @@ private:
     int _detune;
     bool _tuning;
     byte _pool_mask;
-    int _sequencer_channel;
-    bool _sequencer_quantize;
+    int _active_sequencer_track;
 
     bool _read_source();
     bool _read_polyphony_mode();
@@ -149,9 +146,9 @@ private:
     void _read_detune();
     void _read_time();
     bool _read_priority_mode();
-    bool _read_sequencer_record();
+    bool _read_record();
     bool _read_tuning();
-    bool _read_sequencer_channel();
+    bool _read_active_sequencer_track();
     void _derive_pool_mask();
 
 };

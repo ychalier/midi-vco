@@ -94,7 +94,7 @@
 #define MIDI_MIN_PITCH 20    // Semitons
 #define PITCH_BEND_RANGE 2.0 // Semitons
 
-#define LANE_COUNT 8
+#define POOL_COUNT 8
 
 #define BUFFER_SIZE 8
 

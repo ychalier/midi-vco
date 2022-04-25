@@ -10,8 +10,8 @@ Config::Config()
     _pitch_bend_range = PITCH_BEND_RANGE;
     _glide_proportional = false;
     _active_source = SOURCE_DIRECT;
-    _sequencer_record = false;
-    _button_sequencer_record = HIGH;
+    _record = false;
+    _button_record_state = HIGH;
     _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
     _hold = false;
     _voltage_offset = 0;
@@ -19,8 +19,7 @@ Config::Config()
     _arpeggiator_sustain = 1;
     _detune = 0;
     _tuning = false;
-    _sequencer_quantize = true;
-    _sequencer_channel = 0;
+    _active_sequencer_track = 0;
 }
 
 void Config::setup()
@@ -32,7 +31,7 @@ void Config::setup()
     pinMode(PIN_ARPEGGIATOR_MODE, INPUT);
     pinMode(PIN_DETUNE, INPUT);
     pinMode(PIN_TIME, INPUT);
-    pinMode(PIN_PRIORITY_MODE, INPUT);
+    // pinMode(PIN_PRIORITY_MODE, INPUT);
     pinMode(PIN_TUNE, INPUT);
     pinMode(PIN_REC, INPUT);
 }
@@ -129,16 +128,16 @@ bool Config::_read_priority_mode()
     return false;
 }
 
-bool Config::_read_sequencer_record()
+bool Config::_read_record()
 {
     int value = digitalRead(PIN_REC);
     bool changed = false;
-    if (_button_sequencer_record == HIGH && value == LOW)
+    if (_button_record_state == HIGH && value == LOW)
     {
         changed = true;
-        _sequencer_record = !_sequencer_record;
+        _record = !_record;
     }
-    _button_sequencer_record = value;
+    _button_record_state = value;
     return changed;
 }
 
@@ -151,24 +150,24 @@ bool Config::_read_tuning()
     return changed;
 }
 
-bool Config::_read_sequencer_channel()
+bool Config::_read_active_sequencer_track()
 {
     int value = analogRead(PIN_ARPEGGIATOR_MODE);
-    int sequencer_channel = 3;
+    int active_sequencer_track = 0;
     if (value < 341)
     {
-        sequencer_channel = 0;
+        active_sequencer_track = 0;
     }
     else if (value < 682)
     {
-        sequencer_channel = 1;
+        active_sequencer_track = 1;
     }
     else
     {
-        sequencer_channel = 2;
+        active_sequencer_track = 2;
     }
-    bool changed = sequencer_channel != _sequencer_channel;
-    _sequencer_channel = sequencer_channel;
+    bool changed = active_sequencer_track != _active_sequencer_track;
+    _active_sequencer_track = active_sequencer_track;
     return changed;
 }
 
@@ -177,7 +176,7 @@ void Config::_derive_pool_mask()
     switch (_polyphony_mode)
     {
         case MODE_MONOPHONIC:
-            switch(_sequencer_channel)
+            switch(_active_sequencer_track)
             {
                 case 0:
                     _pool_mask = 0b00000001;
@@ -194,7 +193,7 @@ void Config::_derive_pool_mask()
             }
             break;
         case MODE_DUOPHONIC:
-            switch(_sequencer_channel)
+            switch(_active_sequencer_track)
             {
                 case 0:
                     _pool_mask = 0b00000001;
@@ -211,7 +210,7 @@ void Config::_derive_pool_mask()
             }
             break;
         case MODE_QUADROPHONIC:
-            switch(_sequencer_channel)
+            switch(_active_sequencer_track)
             {
                 case 0:
                     _pool_mask = 0b00000001;
@@ -228,7 +227,7 @@ void Config::_derive_pool_mask()
             }
             break;
         case MODE_OCTOPHONIC:
-            switch(_sequencer_channel)
+            switch(_active_sequencer_track)
             {
                 case 0:
                     _pool_mask = 0b00000011;
@@ -265,7 +264,7 @@ int Config::read()
     // {
     //     changed = changed + CONFIG_CHANGE_PRIORITY_MODE;
     // }
-    // if (_read_sequencer_record())
+    // if (_read_record())
     // {
     //     changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
     // }
@@ -278,7 +277,7 @@ int Config::read()
     _read_arpeggiator_mode();
     _read_detune();
     _read_time();
-    _read_sequencer_channel();
+    _read_active_sequencer_track();
     _derive_pool_mask();
     return changed;
 }
@@ -335,9 +334,9 @@ int Config::handle_midi_control(byte channel, byte number, byte value)
     }
     else if (number == MIDI_CONTROL_SEQUENCER_RECORD)
     {
-        bool old_sequencer_record = _sequencer_record;
-        _sequencer_record = value >= 64;
-        if (old_sequencer_record != _sequencer_record)
+        bool old_sequencer_record = _record;
+        _record = value >= 64;
+        if (old_sequencer_record != _record)
         {
             changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
         }
@@ -372,9 +371,9 @@ byte Config::get_active_source()
     return _active_source;
 }
 
-bool Config::should_sequencer_record()
+bool Config::is_recording()
 {
-    return _sequencer_record;
+    return _record;
 }
 
 byte Config::get_arpeggiator_mode()
@@ -417,14 +416,9 @@ byte Config::get_pool_mask()
     return _pool_mask;
 }
 
-int Config::get_sequencer_channel()
+int Config::get_active_sequencer_track()
 {
-    return _sequencer_channel;
-}
-
-bool Config::get_sequencer_quantize()
-{
-    return _sequencer_quantize;
+    return _active_sequencer_track;
 }
 
 unsigned long Config::get_time_div()

@@ -13,7 +13,7 @@ Arpeggiator::Arpeggiator(Config *config, Allocator *allocator)
 
 void Arpeggiator::note_on(Note note)
 {
-    if (_config->should_sequencer_record())
+    if (_config->is_recording())
     {
         _buffer->push(note);
     }

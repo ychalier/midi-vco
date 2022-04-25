@@ -39,7 +39,7 @@ void MidiInterface::update()
     }
     if (changed & CONFIG_CHANGE_SEQUENCER_RECORD)
     {
-        _sequencer->update_record_state(_config->should_sequencer_record());
+        _sequencer->update_record_state(_config->is_recording());
     }
     if (changed & CONFIG_CHANGE_TUNING)
     {
@@ -118,7 +118,7 @@ void MidiInterface::handle_control_change(byte channel, byte number, byte value)
     int changed = _config->handle_midi_control(channel, number, value);
     if (changed & CONFIG_CHANGE_SEQUENCER_RECORD)
     {
-        _sequencer->update_record_state(_config->should_sequencer_record());
+        _sequencer->update_record_state(_config->is_recording());
     }
     if (changed & CONFIG_CHANGE_HOLD)
     {

@@ -149,7 +149,7 @@ private:
 
     /// Array of lane pools; the size of this array should be the same as the
     /// number of output lanes.
-    Pool *_pools[LANE_COUNT];
+    Pool *_pools[POOL_COUNT];
 };
 
 #endif

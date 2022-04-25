@@ -51,7 +51,7 @@ private:
     Config *_config;
     Allocator *_allocator;
 
-    SequencerTrack *_channels[SEQUENCER_TRACK_COUNT];
+    SequencerTrack *_tracks[SEQUENCER_TRACK_COUNT];
 
     /// Whether the sequencer is currently recording events.
     bool _recording;
