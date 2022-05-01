@@ -24,11 +24,11 @@ void SequencerTrack::execute_event(int event_index)
     {
         if (_memory[event_index].type)
         {
-            _allocator->note_on_masked(_memory[event_index].note, _memory[event_index].mask);
+            _allocator->note_on_masked(_memory[event_index].pitch, _memory[event_index].mask);
         }
         else
         {
-            _allocator->note_off_masked(_memory[event_index].note, _memory[event_index].mask);
+            _allocator->note_off_masked(_memory[event_index].pitch, _memory[event_index].mask);
         }
     }
 }

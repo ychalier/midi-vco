@@ -41,40 +41,34 @@ public:
     /**
      * Callback for the MIDI note-on message.
      *
-     * @param channel MIDI channel associated with the note.
      * @param pitch Note pitch in semitons (7-bit integer).
-     * @param velocity Velocity associated with the note.
      */
-    void handle_note_on(byte channel, byte pitch, byte velocity);
+    void handle_note_on(byte pitch);
 
     /**
      * Callback for the MIDI note-off message.
      *
-     * @param channel MIDI channel associated with the note.
      * @param pitch Note pitch in semitons (7-bit integer).
-     * @param velocity Velocity associated with the note.
      */
-    void handle_note_off(byte channel, byte pitch, byte velocity);
+    void handle_note_off(byte pitch);
 
     /**
      * Callback for the MIDI pitch-bend message. Also updates the channel A of
      * the MidiInteface DAC. The pitch bend value (in the -8192, 8191 range) is
      * mapped to 0, 5000 (corresponding to a 0V-5V ouptut range).
      *
-     * @param channel MIDI channel to bend the pitch of.
      * @param bend Signed 14-bit encoding of the current position of the
      *   pitch-bend control.
      */
-    void handle_pitch_bend(byte channel, int bend);
+    void handle_pitch_bend(int bend);
 
     /**
      * Callback to handle MIDI controls.
      *
-     * @param channel The MIDI channel concerned with the change.
      * @param number The control identifier.
      * @param value The current control value, a 7-bit integer.
      */
-    void handle_control_change(byte channel, byte number, byte value);
+    void handle_control_change(byte number, byte value);
 
     /**
      * Callback for the polyphonic MIDI after-touch message. Also updates the
@@ -85,17 +79,16 @@ public:
      * @param note Note associated with the modulation.
      * @param pressure 7-bit encoding of the amount of pressure.
      */
-    void handle_after_touch_poly(byte channel, byte note, byte pressure);
+    void handle_after_touch_poly(byte pitch, byte pressure);
 
     /**
      * Callback for the channel MIDI after-touch message. Also updates the
      * channel B of the MidiInteface DAC. The pressure value (in the 0, 127
      * range) is mapped to 0, 5000 (corresponding to a 0V-5V ouptut range).
      *
-     * @param channel Channel to modulate.
      * @param pressure 7-bit encoding of the amount of pressure.
      */
-    void handle_after_touch_channel(byte channel, byte pressure);
+    void handle_after_touch_channel(byte pressure);
 
 private:
     Config *_config;

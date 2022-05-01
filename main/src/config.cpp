@@ -50,6 +50,7 @@ bool Config::_read_source()
     }
     bool changed = _active_source != source;
     _active_source = source;
+    return changed;
 }
 
 bool Config::_read_polyphony_mode()
@@ -307,7 +308,7 @@ float Config::get_pitch_bend_range()
     return _pitch_bend_range;
 }
 
-int Config::handle_midi_control(byte channel, byte number, byte value)
+int Config::handle_midi_control(byte number, byte value)
 {
     int changed = 0;
     if (number == MIDI_CONTROL_GLIDE_CHROMATIC)

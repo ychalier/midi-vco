@@ -32,7 +32,7 @@ public:
      * Set the pool's masks according to the current configuration. All pools
      * will be stopped and reset, even if they're active.
      */
-    void set_masks();
+    void set_lane_masks();
 
     /**
      * Handler for the *note-on* MIDI message. The note will be allocated to a
@@ -41,9 +41,8 @@ public:
      * 
      * @see https://github.com/ychalier/midi-vco/wiki/Politique-d'allocation-des-voies
      * 
-     * @param note The note associated with the *note-on* message.
      */
-    void note_on(Note note);
+    void note_on(byte pitch);
 
     /**
      * Handler for the *note-off* MIDI message. A pool currently playing that
@@ -51,7 +50,7 @@ public:
      * 
      * @param note The note associated with the *note-off* message.
      */
-    void note_off(Note note);
+    void note_off(byte pitch);
 
     /**
      * Handler for the *note-on* MIDI message, with an arbitrary lane mask.
@@ -61,10 +60,9 @@ public:
      * 
      * @see `Allocator.check_mask`
      * 
-     * @param note The note associated with the *note-on* message.
      * @param mask An 8-bit pool mask
      */
-    void note_on_masked(Note note, byte mask);
+    void note_on_masked(byte pitch, byte mask);
 
     /**
      * Handler for the *note-off* MIDI message, with an arbitrary lane mask.
@@ -73,19 +71,16 @@ public:
      * 
      * @see `Allocator.check_mask`
      * 
-     * @param note The note associated with the *note-off* message.
      * @param mask An 8-bit pool mask
      */
-    void note_off_masked(Note note, byte mask);
+    void note_off_masked(byte pitch, byte mask);
 
     /**
      * Handler for the *pitch-bend* MIDI message.
      * 
-     * @param channel MIDI channel concerned with the bending; only concerned
-     *     pools (regarding their channel mask) will be affected.
      * @param bend Signed 14-bit integer, sum of pitch bend and after touch
      */
-    void pitch_bend(byte channel, int bend);
+    void pitch_bend(int bend);
 
     /**
      * Handler for the polyphonic *after-touch* MIDI message. Behaves similarly
@@ -94,16 +89,15 @@ public:
      * @param note The note concerned with the message.
      * @param bend Signed 14-bit integer, sum of pitch bend and after touch
      */
-    void after_touch_poly(Note note, int bend);
+    void after_touch_poly(byte pitch, int bend);
 
     /**
      * Handler for the channel *after-touch* MIDI message. Same as
      * `after_touch_poly` but for a whole MIDI channel.
      * 
-     * @param channel MIDI channel ID
      * @param bend Signed 14-bit integer, sum of pitch bend and after touch
      */
-    void after_touch_channel(byte channel, int bend);
+    void after_touch_channel(int bend);
 
     /**
      * Force reset for all the pools, their buffers, and the lanes.

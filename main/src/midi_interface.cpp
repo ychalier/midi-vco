@@ -29,7 +29,7 @@ void MidiInterface::update()
     int changed = _config->read();
     if (changed & CONFIG_CHANGE_POLYPHONY_MODE)
     {
-        _allocator->set_masks();
+        _allocator->set_lane_masks();
     }
     if (changed & CONFIG_CHANGE_SOURCE)
     {
@@ -64,58 +64,49 @@ void MidiInterface::update()
     }
 }
 
-void MidiInterface::handle_note_on(byte channel, byte pitch, byte velocity)
+void MidiInterface::handle_note_on(byte pitch)
 {
-    if (velocity == 0)
-    {
-        handle_note_off(channel, pitch, velocity);
-    }
-    else
-    {
-        Note note = {channel, pitch};
-        switch (_config->get_active_source())
-        {
-        case SOURCE_DIRECT:
-            _allocator->note_on(note);
-            break;
-        case SOURCE_SEQUENCER:
-            _sequencer->note_on(note);
-            break;
-        case SOURCE_ARPEGGIATOR:
-            _arpeggiator->note_on(note);
-            break;
-        }
-    }
-}
-
-void MidiInterface::handle_note_off(byte channel, byte pitch, byte velocity)
-{
-    Note note = {channel, pitch};
     switch (_config->get_active_source())
     {
     case SOURCE_DIRECT:
-        _allocator->note_off(note);
+        _allocator->note_on(pitch);
         break;
     case SOURCE_SEQUENCER:
-        _sequencer->note_off(note);
+        _sequencer->note_on(pitch);
         break;
     case SOURCE_ARPEGGIATOR:
-        _arpeggiator->note_off(note);
+        _arpeggiator->note_on(pitch);
         break;
     }
 }
 
-void MidiInterface::handle_pitch_bend(byte channel, int bend)
+void MidiInterface::handle_note_off(byte pitch)
+{
+    switch (_config->get_active_source())
+    {
+    case SOURCE_DIRECT:
+        _allocator->note_off(pitch);
+        break;
+    case SOURCE_SEQUENCER:
+        _sequencer->note_off(pitch);
+        break;
+    case SOURCE_ARPEGGIATOR:
+        _arpeggiator->note_off(pitch);
+        break;
+    }
+}
+
+void MidiInterface::handle_pitch_bend(int bend)
 {
     _pitch_bend_value = bend;
-    _allocator->pitch_bend(channel, _get_total_bend_value());
+    _allocator->pitch_bend(_get_total_bend_value());
     _dac->setVoltageA((int) ((float)(bend + 8192) / OUTPUT_PITCH_BEND_FACTOR));
     _dac->updateDAC();
 }
 
-void MidiInterface::handle_control_change(byte channel, byte number, byte value)
+void MidiInterface::handle_control_change(byte number, byte value)
 {
-    int changed = _config->handle_midi_control(channel, number, value);
+    int changed = _config->handle_midi_control(number, value);
     if (changed & CONFIG_CHANGE_SEQUENCER_RECORD)
     {
         _sequencer->update_record_state(_config->is_recording());
@@ -133,18 +124,18 @@ void MidiInterface::handle_control_change(byte channel, byte number, byte value)
     }
 }
 
-void MidiInterface::handle_after_touch_poly(byte channel, byte note, byte pressure)
+void MidiInterface::handle_after_touch_poly(byte pitch, byte pressure)
 {
     _after_touch_value = AFTERTOUCH_COEFF * pressure;
-    _allocator->after_touch_poly({channel, note}, _get_total_bend_value());
+    _allocator->after_touch_poly(pitch, _get_total_bend_value());
     _dac->setVoltageB(pressure * OUTPUT_AFTER_TOUCH_FACTOR);
     _dac->updateDAC();
 }
 
-void MidiInterface::handle_after_touch_channel(byte channel, byte pressure)
+void MidiInterface::handle_after_touch_channel(byte pressure)
 {
     _after_touch_value = AFTERTOUCH_COEFF * pressure;
-    _allocator->after_touch_channel(channel, _get_total_bend_value());
+    _allocator->after_touch_channel(_get_total_bend_value());
     _dac->setVoltageB(pressure * OUTPUT_AFTER_TOUCH_FACTOR);
     _dac->updateDAC();
 }

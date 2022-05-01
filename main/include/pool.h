@@ -30,7 +30,7 @@ public:
      * @param lane_mask Lanes included in the pool. Least significant bits map
      *     to the firsts lanes.
      */
-    void set_mask(byte lane_mask);
+    void set_lane_mask(byte lane_mask);
 
     /**
      * Check if the pool includes at least one lane and is not locked.
@@ -56,7 +56,7 @@ public:
      * 
      * @param note The note to load.
      */
-    void load(Note note);
+    void load(byte pitch);
 
     /**
      * Attempt to unload a note, if it is in the buffer. In that case, stop the
@@ -65,7 +65,7 @@ public:
      * @param note The note to unload.
      * @return True if the note was in the buffer and stopped.
      */
-    bool unload(Note note);
+    bool unload(byte pitch);
 
     /**
      * Load the current note in the buffer on the lanes.
@@ -111,7 +111,7 @@ public:
      * @param note The note to find.
      * @return `true` if the internal buffer contains that note.
      */
-    bool buffer_contains(Note note);
+    bool buffer_contains(byte pitch);
 
 private:
     Router *_router;

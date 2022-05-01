@@ -28,9 +28,8 @@ public:
      * shifted, discarding the oldest note in it. The note to push is then
      * added on top of the stack.
      * 
-     * @param note The note to insert in the buffer.
      */
-    void push(Note note);
+    void push(byte pitch);
 
     /**
      * Get the currently active note (i.e. the last note inserted in the
@@ -39,7 +38,7 @@ public:
      * 
      * @return The currently active note.
      */
-    Note get();
+    byte get();
 
     /**
      * Attempt to remove a note from the buffer. If it succeeds, the cursor is
@@ -49,7 +48,7 @@ public:
      * @return True if the buffer did contained the note and it was
      *     successfully removed.
      */
-    bool pop(Note note);
+    bool pop(byte pitch);
 
     /**
      * Shift the content of the buffer to remove empty spaces.
@@ -80,7 +79,7 @@ public:
      * @param index 0-based index of the note to access.
      * @return The accessed note.
      */
-    Note get_at_index(int index);
+    byte get_at_index(int index);
 
     /**
      * Check if the buffer contains a given note.
@@ -88,11 +87,11 @@ public:
      * @param note The note to check the presence of.
      * @return `true` if the buffer contains the note.
      */
-    bool contains(Note note);
+    bool contains(byte pitch);
 
 private:
     /// Memory for the notes.
-    Note _notes[BUFFER_SIZE];
+    byte _notes[BUFFER_SIZE];
 
     /// Index of currently active note. If none (buffer is empty), then the
     /// cursor is -1.

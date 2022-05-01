@@ -77,6 +77,7 @@ Lane *Router::select(int lane_id)
     default:
         break;
     }
+    return _lane_1;
 }
 
 void Router::broadcast(byte pitch, int gate)

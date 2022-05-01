@@ -28,7 +28,7 @@ public:
      * 
      * @param note The note that has been played.
      */
-    void note_on(Note note);
+    void note_on(byte pitch);
 
     /**
      * Callback for the *note-off* MIDI message. Stores the event in a buffer.
@@ -36,7 +36,7 @@ public:
      * 
      * @param note The note that has been released.
      */
-    void note_off(Note note);
+    void note_off(byte pitch);
 
     void update_record_state(bool recording);
 

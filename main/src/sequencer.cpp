@@ -17,13 +17,16 @@ Sequencer::Sequencer(Config *config, Allocator *allocator)
 
 void Sequencer::update_source_activation(bool activated)
 {
-    _started = false;
-    _allocator->reset();
-    for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
+    if (activated)
     {
-        _tracks[i]->reset();
-    }
-    _first_beat_timestamp = millis();
+        _started = false;
+        _allocator->reset();
+        for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
+        {
+            _tracks[i]->reset();
+        }
+        _first_beat_timestamp = millis();
+    } 
 }
 
 void Sequencer::update_record_state(bool recording)
@@ -51,7 +54,7 @@ void Sequencer::start()
     }
 }
 
-void Sequencer::note_on(Note note)
+void Sequencer::note_on(byte pitch)
 {
     byte pool_mask = _config->get_pool_mask();
     if (_recording)
@@ -61,15 +64,15 @@ void Sequencer::note_on(Note note)
             {
                 get_record_division(),
                 true,
-                note,
+                pitch,
                 pool_mask
             }
         );
     }
-    _allocator->note_on_masked(note, pool_mask);
+    _allocator->note_on_masked(pitch, pool_mask);
 }
 
-void Sequencer::note_off(Note note)
+void Sequencer::note_off(byte pitch)
 {
     byte pool_mask = _config->get_pool_mask();
     if (_recording)
@@ -79,12 +82,12 @@ void Sequencer::note_off(Note note)
             {
                 get_record_division(),
                 false,
-                note,
+                pitch,
                 pool_mask
             }
         );
     }
-    _allocator->note_off_masked(note, pool_mask);
+    _allocator->note_off_masked(pitch, pool_mask);
 }
 
 int Sequencer::get_playback_division()

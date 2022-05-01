@@ -26,7 +26,7 @@ public:
      * 
      * @param note The note that has been played.
      */
-    void note_on(Note note);
+    void note_on(byte pitch);
 
     /**
      * Callback for the *note-off* MIDI message. Remove the note from the
@@ -34,7 +34,7 @@ public:
      * 
      * @param note The note that has been released.
      */
-    void note_off(Note note);
+    void note_off(byte pitch);
 
     /**
      * Where the note playing happens. Must be called in the main program loop.
@@ -59,7 +59,7 @@ private:
 
     /// The last note that have been played. Used to dermine which note to play
     /// next according to the direction.
-    Note _current;
+    byte _current;
 
     /// When was the last note played
     unsigned long _timestamp;
@@ -80,15 +80,14 @@ private:
      * @return `true` if a valid next note was found. If not, one of the
      *   extrema should be played instead.
      */
-    bool Arpeggiator::find_next_note(Note &note_next, Note &note_min, Note &note_max);
+    bool find_next_note(byte &pitch_next, byte &pitch_min, byte &pitch_max);
 
     /**
      * Make the arpeggiator play a note. Store it as the current note, and
      * update the timestamp.
      * 
-     * @param note The note to play.
      */
-    void play(Note note);
+    void play(byte pitch);
 };
 
 #endif

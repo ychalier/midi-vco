@@ -54,13 +54,12 @@ public:
     /**
      * Callback to handle MIDI controls.
      *
-     * @param channel The MIDI channel concerned with the change.
      * @param number The control identifier.
      * @param value The current control value, a 7-bit integer.
      * @return A bit-encoding of which inner parameter changed, defined by
      *   constants named `CONFIG_CHANGE_*`
      */
-    int handle_midi_control(byte channel, byte number, byte value);
+    int handle_midi_control(byte number, byte value);
 
     /**
      * Getter for the _glide_proportional attribute.

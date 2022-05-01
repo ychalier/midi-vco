@@ -24,7 +24,7 @@ public:
      *   B.
      * @param led_id Id of the LED to control in the display, mapped to GATE.
      */
-    Lane::Lane(Config *config, Coupler *coupler, bool channel, int led_id);
+    Lane(Config *config, Coupler *coupler, bool channel, int led_id);
 
     /**
      * Initialize hardware connections. Must be called once in the main program
