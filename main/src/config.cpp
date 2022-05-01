@@ -120,7 +120,7 @@ void Config::_read_detune()
 void Config::_read_time()
 {
     int value = analogRead(PIN_TIME);
-    _time_period = 60000 / (TIME_MIN_BPM + (float)(TIME_MAX_BPM - TIME_MIN_BPM) * (float)value / 1023.0);  // ms per beat
+    _time_period = 60000 / (TIME_MIN_BPM + (float)(TIME_MAX_BPM - TIME_MIN_BPM) * (float)value / 1023.0); // ms per beat
 }
 
 bool Config::_read_priority_mode()
@@ -173,80 +173,80 @@ bool Config::_read_active_sequencer_track()
 }
 
 void Config::_derive_pool_mask()
-{   
+{
     switch (_polyphony_mode)
     {
-        case MODE_MONOPHONIC:
-            switch(_active_sequencer_track)
-            {
-                case 0:
-                    _pool_mask = 0b00000001;
-                    break;
-                case 1:
-                    _pool_mask = 0b00000001;
-                    break;
-                case 2:
-                    _pool_mask = 0b00000001;
-                    break;
-                default:
-                    _pool_mask = 0b11111111;
-                    break;
-            }
+    case MODE_MONOPHONIC:
+        switch (_active_sequencer_track)
+        {
+        case 0:
+            _pool_mask = 0b00000001;
             break;
-        case MODE_DUOPHONIC:
-            switch(_active_sequencer_track)
-            {
-                case 0:
-                    _pool_mask = 0b00000001;
-                    break;
-                case 1:
-                    _pool_mask = 0b00000010;
-                    break;
-                case 2:
-                    _pool_mask = 0b00000011;
-                    break;
-                default:
-                    _pool_mask = 0b11111111;
-                    break;
-            }
+        case 1:
+            _pool_mask = 0b00000001;
             break;
-        case MODE_QUADROPHONIC:
-            switch(_active_sequencer_track)
-            {
-                case 0:
-                    _pool_mask = 0b00000001;
-                    break;
-                case 1:
-                    _pool_mask = 0b00000110;
-                    break;
-                case 2:
-                    _pool_mask = 0b00001000;
-                    break;
-                default:
-                    _pool_mask = 0b11111111;
-                    break;
-            }
-            break;
-        case MODE_OCTOPHONIC:
-            switch(_active_sequencer_track)
-            {
-                case 0:
-                    _pool_mask = 0b00000011;
-                    break;
-                case 1:
-                    _pool_mask = 0b00111100;
-                    break;
-                case 2:
-                    _pool_mask = 0b11000000;
-                    break;
-                default:
-                    _pool_mask = 0b11111111;
-                    break;
-            }
+        case 2:
+            _pool_mask = 0b00000001;
             break;
         default:
             _pool_mask = 0b11111111;
             break;
+        }
+        break;
+    case MODE_DUOPHONIC:
+        switch (_active_sequencer_track)
+        {
+        case 0:
+            _pool_mask = 0b00000001;
+            break;
+        case 1:
+            _pool_mask = 0b00000010;
+            break;
+        case 2:
+            _pool_mask = 0b00000011;
+            break;
+        default:
+            _pool_mask = 0b11111111;
+            break;
+        }
+        break;
+    case MODE_QUADROPHONIC:
+        switch (_active_sequencer_track)
+        {
+        case 0:
+            _pool_mask = 0b00000001;
+            break;
+        case 1:
+            _pool_mask = 0b00000110;
+            break;
+        case 2:
+            _pool_mask = 0b00001000;
+            break;
+        default:
+            _pool_mask = 0b11111111;
+            break;
+        }
+        break;
+    case MODE_OCTOPHONIC:
+        switch (_active_sequencer_track)
+        {
+        case 0:
+            _pool_mask = 0b00000011;
+            break;
+        case 1:
+            _pool_mask = 0b00111100;
+            break;
+        case 2:
+            _pool_mask = 0b11000000;
+            break;
+        default:
+            _pool_mask = 0b11111111;
+            break;
+        }
+        break;
+    default:
+        _pool_mask = 0b11111111;
+        break;
     }
 }
 
@@ -267,7 +267,7 @@ int Config::read()
     // }
     // if (_read_record())
     // {
-    //     changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
+    //     changed = changed + CONFIG_CHANGE_RECORD;
     // }
     if (_read_tuning())
     {
@@ -333,13 +333,13 @@ int Config::handle_midi_control(byte number, byte value)
             _glide_flags = _glide_flags | GLIDE_FLAG_LEGATO;
         }
     }
-    else if (number == MIDI_CONTROL_SEQUENCER_RECORD)
+    else if (number == MIDI_CONTROL_RECORD)
     {
-        bool old_sequencer_record = _record;
+        bool old_record = _record;
         _record = value >= 64;
-        if (old_sequencer_record != _record)
+        if (old_record != _record)
         {
-            changed = changed + CONFIG_CHANGE_SEQUENCER_RECORD;
+            changed = changed + CONFIG_CHANGE_RECORD;
         }
     }
     else if (number == MIDI_CONTROL_HOLD)

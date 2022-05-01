@@ -19,49 +19,9 @@ void MidiInterface::setup()
     _dac->setGainA(MCP4822::High);
     _dac->turnOnChannelB();
     _dac->setGainB(MCP4822::High);
-    _dac->setVoltageA(2500);
-    _dac->setVoltageB(0);
+    _dac->setVoltageA(2048);
+    _dac->setVoltageB(2048);
     _dac->updateDAC();
-}
-
-void MidiInterface::update()
-{
-    int changed = _config->read();
-    if (changed & CONFIG_CHANGE_POLYPHONY_MODE)
-    {
-        _allocator->set_lane_masks();
-    }
-    if (changed & CONFIG_CHANGE_SOURCE)
-    {
-        _allocator->reset();
-        _arpeggiator->reset();
-        _sequencer->update_source_activation(_config->get_active_source() == SOURCE_SEQUENCER);
-    }
-    if (changed & CONFIG_CHANGE_SEQUENCER_RECORD)
-    {
-        _sequencer->update_record_state(_config->is_recording());
-    }
-    if (changed & CONFIG_CHANGE_TUNING)
-    {
-        _allocator->reset();
-        _arpeggiator->reset();
-        if (_config->is_tuning())
-        {
-            _allocator->broadcast(PITCH_A5, GATE_STATE_DURING_TUNING);
-        }
-    }
-    if (!_config->is_tuning())
-    {
-        switch (_config->get_active_source())
-        {
-        case SOURCE_SEQUENCER:
-            _sequencer->update();
-            break;
-        case SOURCE_ARPEGGIATOR:
-            _arpeggiator->update();
-            break;
-        }
-    }
 }
 
 void MidiInterface::handle_note_on(byte pitch)
@@ -100,14 +60,14 @@ void MidiInterface::handle_pitch_bend(int bend)
 {
     _pitch_bend_value = bend;
     _allocator->pitch_bend(_get_total_bend_value());
-    _dac->setVoltageA((int) ((float)(bend + 8192) / OUTPUT_PITCH_BEND_FACTOR));
+    _dac->setVoltageA((int)((float)(bend + 8192) / OUTPUT_PITCH_BEND_FACTOR));
     _dac->updateDAC();
 }
 
 void MidiInterface::handle_control_change(byte number, byte value)
 {
     int changed = _config->handle_midi_control(number, value);
-    if (changed & CONFIG_CHANGE_SEQUENCER_RECORD)
+    if (changed & CONFIG_CHANGE_RECORD)
     {
         _sequencer->update_record_state(_config->is_recording());
     }

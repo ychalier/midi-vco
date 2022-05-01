@@ -16,7 +16,7 @@ class Allocator
 public:
     /**
      * Construct an allocator given a config.
-     * 
+     *
      * @param config The config to pass to the allocator.
      * @param router A pointer to the router handling the output lanes.
      */
@@ -38,16 +38,16 @@ public:
      * Handler for the *note-on* MIDI message. The note will be allocated to a
      * pool if there's one available right now or if a priority rule says to
      * make room for it.
-     * 
+     *
      * @see https://github.com/ychalier/midi-vco/wiki/Politique-d'allocation-des-voies
-     * 
+     *
      */
     void note_on(byte pitch);
 
     /**
      * Handler for the *note-off* MIDI message. A pool currently playing that
      * note will stop playing it.
-     * 
+     *
      * @param note The note associated with the *note-off* message.
      */
     void note_off(byte pitch);
@@ -57,9 +57,9 @@ public:
      * The note will be allocated to a pool if there's one available right
      * now or if a priority rule says to make room for it. Only pools which
      * indices match the pool mask are considered as valid candiates.
-     * 
+     *
      * @see `Allocator.check_mask`
-     * 
+     *
      * @param mask An 8-bit pool mask
      */
     void note_on_masked(byte pitch, byte mask);
@@ -68,16 +68,16 @@ public:
      * Handler for the *note-off* MIDI message, with an arbitrary lane mask.
      * A pool, matching the mask, and currently playing that note will stop
      * playing it.
-     * 
+     *
      * @see `Allocator.check_mask`
-     * 
+     *
      * @param mask An 8-bit pool mask
      */
     void note_off_masked(byte pitch, byte mask);
 
     /**
      * Handler for the *pitch-bend* MIDI message.
-     * 
+     *
      * @param bend Signed 14-bit integer, sum of pitch bend and after touch
      */
     void pitch_bend(int bend);
@@ -85,7 +85,7 @@ public:
     /**
      * Handler for the polyphonic *after-touch* MIDI message. Behaves similarly
      * to the pitch bend.
-     * 
+     *
      * @param note The note concerned with the message.
      * @param bend Signed 14-bit integer, sum of pitch bend and after touch
      */
@@ -94,7 +94,7 @@ public:
     /**
      * Handler for the channel *after-touch* MIDI message. Same as
      * `after_touch_poly` but for a whole MIDI channel.
-     * 
+     *
      * @param bend Signed 14-bit integer, sum of pitch bend and after touch
      */
     void after_touch_channel(int bend);
@@ -123,7 +123,7 @@ public:
 
     /**
      * Checks whether a bit mask includes a value.
-     * 
+     *
      * @param mask An 8-bit mask of the form 0bXXXXXXXX
      * @param value A value between 0 and 7, indicating the bit index to check
      *   the value of. Leftmost (most significant) bit is 7. Rightmost (least

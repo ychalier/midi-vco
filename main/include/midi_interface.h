@@ -10,7 +10,9 @@
 #include "arpeggiator.h"
 
 /**
- * Interface between the MIDI messages and the system components.
+ * Provides handlers for the MIDI library callbacks. It currently supports
+ * note-on, note-off, pitch-bend, control-change, after-touch-poly and
+ * after-touch-channel.
  */
 class MidiInterface
 {
@@ -31,12 +33,6 @@ public:
      * setup phase.
      */
     void setup();
-
-    /**
-     * Depending on the currently active source, update the sequencer or the
-     * arpeggiator. Should be called once per main loop.
-     */
-    void update();
 
     /**
      * Callback for the MIDI note-on message.

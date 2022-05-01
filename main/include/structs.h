@@ -3,7 +3,6 @@
 
 #include "Arduino.h"
 
-
 /**
  * Simple data structure holding information for a note glide.
  */

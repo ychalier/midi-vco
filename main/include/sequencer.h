@@ -16,7 +16,7 @@ class Sequencer
 public:
     /**
      * Constructor.
-     * 
+     *
      * @param config A pointer to the global config.
      * @param allocator A pointer to the global allocator.
      */
@@ -25,7 +25,7 @@ public:
     /**
      * Callback for the *note-on* MIDI message. Stores the event in a buffer.
      * If the buffer is full, the event is ignored.
-     * 
+     *
      * @param note The note that has been played.
      */
     void note_on(byte pitch);
@@ -33,7 +33,7 @@ public:
     /**
      * Callback for the *note-off* MIDI message. Stores the event in a buffer.
      * If the buffer is full, the event is ignored.
-     * 
+     *
      * @param note The note that has been released.
      */
     void note_off(byte pitch);
@@ -69,7 +69,6 @@ private:
     void start();
 
     void set_led_state(int division);
-
 };
 
 #endif

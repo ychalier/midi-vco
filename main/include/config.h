@@ -149,7 +149,6 @@ private:
     bool _read_tuning();
     bool _read_active_sequencer_track();
     void _derive_pool_mask();
-
 };
 
 #endif

@@ -10,7 +10,7 @@
 
 /**
  * Abstract representation of an lane allocation unit.
- * 
+ *
  * @see [Politique d'allocation des voies](https://github.com/ychalier/midi-vco/wiki/Politique-d'allocation-des-voies)
  */
 class Pool
@@ -19,14 +19,14 @@ class Pool
 public:
     /**
      * Constructor.
-     * 
+     *
      * @param router Pointer to the router holding the lanes.
      */
     Pool(Router *router);
 
     /**
      * Setter for the masks.
-     * 
+     *
      * @param lane_mask Lanes included in the pool. Least significant bits map
      *     to the firsts lanes.
      */
@@ -34,14 +34,14 @@ public:
 
     /**
      * Check if the pool includes at least one lane and is not locked.
-     * 
+     *
      * @return Whether the pool is enabled.
      */
     bool is_enabled();
 
     /**
      * Check if the pool does not have an active note.
-     * 
+     *
      * @return Whether the pool is free.
      */
     bool is_free();
@@ -53,7 +53,7 @@ public:
 
     /**
      * Set a new active note, and play that note on the included lanes.
-     * 
+     *
      * @param note The note to load.
      */
     void load(byte pitch);
@@ -61,7 +61,7 @@ public:
     /**
      * Attempt to unload a note, if it is in the buffer. In that case, stop the
      * included lanes and free the pool.
-     * 
+     *
      * @param note The note to unload.
      * @return True if the note was in the buffer and stopped.
      */
@@ -69,7 +69,7 @@ public:
 
     /**
      * Load the current note in the buffer on the lanes.
-     * 
+     *
      * @param bend The pitch bend value to associate with the note.
      * @param set_only If true, the note is set one the lanes. If false, the
      *     note is started on the lanes, which impacts the GATE signal.
@@ -83,7 +83,7 @@ public:
 
     /**
      * Propagate the *pitch-bend* message to the lanes.
-     * 
+     *
      * @param bend_value The amount of bending (pitch bend & after touch)
      */
     void bend(int bend_value);
@@ -107,7 +107,7 @@ public:
 
     /**
      * Check whether the pool's buffer contains a note.
-     * 
+     *
      * @param note The note to find.
      * @return `true` if the internal buffer contains that note.
      */

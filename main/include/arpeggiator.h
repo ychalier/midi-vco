@@ -15,7 +15,7 @@ class Arpeggiator
 public:
     /**
      * Constructor
-     * 
+     *
      * @param config A pointer to the global config.
      * @param allocator A pointer to the global allocator.
      */
@@ -23,7 +23,7 @@ public:
 
     /**
      * Callback for the *note-on* MIDI message. Stores the note in a buffer.
-     * 
+     *
      * @param note The note that has been played.
      */
     void note_on(byte pitch);
@@ -31,7 +31,7 @@ public:
     /**
      * Callback for the *note-off* MIDI message. Remove the note from the
      * buffer.
-     * 
+     *
      * @param note The note that has been released.
      */
     void note_off(byte pitch);
@@ -66,7 +66,7 @@ private:
 
     /**
      * Determine which note to play next, in the buffer.
-     * 
+     *
      * @param note_next A reference for storing the next note that should be
      *   played, according to the current direction and the last played note.
      *   If none is found (e.g. if the highest note was already playing and
@@ -76,7 +76,7 @@ private:
      * @param note_min A reference for storing the note in the buffer with the
      *   highest pitch.
      * @param note_max A reference for storing the note in the buffer with the
-     *   lowest pitch. 
+     *   lowest pitch.
      * @return `true` if a valid next note was found. If not, one of the
      *   extrema should be played instead.
      */
@@ -85,7 +85,7 @@ private:
     /**
      * Make the arpeggiator play a note. Store it as the current note, and
      * update the timestamp.
-     * 
+     *
      */
     void play(byte pitch);
 };

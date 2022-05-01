@@ -26,7 +26,7 @@ void Sequencer::update_source_activation(bool activated)
             _tracks[i]->reset();
         }
         _first_beat_timestamp = millis();
-    } 
+    }
 }
 
 void Sequencer::update_record_state(bool recording)
@@ -41,7 +41,7 @@ void Sequencer::update_record_state(bool recording)
 
 int Sequencer::get_record_division()
 {
-    return round( (double)(millis() - _first_beat_timestamp) / (double)_config->get_time_div()) % SEQUENCER_DIVISIONS_PER_LOOP;
+    return round((double)(millis() - _first_beat_timestamp) / (double)_config->get_time_div()) % SEQUENCER_DIVISIONS_PER_LOOP;
 }
 
 void Sequencer::start()
@@ -61,13 +61,10 @@ void Sequencer::note_on(byte pitch)
     {
         start();
         _tracks[_config->get_active_sequencer_track()]->record(
-            {
-                get_record_division(),
-                true,
-                pitch,
-                pool_mask
-            }
-        );
+            {get_record_division(),
+             true,
+             pitch,
+             pool_mask});
     }
     _allocator->note_on_masked(pitch, pool_mask);
 }
@@ -79,20 +76,17 @@ void Sequencer::note_off(byte pitch)
     {
         start();
         _tracks[_config->get_active_sequencer_track()]->record(
-            {
-                get_record_division(),
-                false,
-                pitch,
-                pool_mask
-            }
-        );
+            {get_record_division(),
+             false,
+             pitch,
+             pool_mask});
     }
     _allocator->note_off_masked(pitch, pool_mask);
 }
 
 int Sequencer::get_playback_division()
 {
-    return (int)floor( (double)(millis() - _first_beat_timestamp) / (double)_config->get_time_div()) % SEQUENCER_DIVISIONS_PER_LOOP;
+    return (int)floor((double)(millis() - _first_beat_timestamp) / (double)_config->get_time_div()) % SEQUENCER_DIVISIONS_PER_LOOP;
 }
 
 void Sequencer::set_led_state(int division)
@@ -115,7 +109,7 @@ void Sequencer::update()
     {
         if (_recording && i == active_sequencer_track)
         {
-            //Do not play anything while recording
+            // Do not play anything while recording
         }
         else
         {
@@ -137,7 +131,6 @@ void Sequencer::update()
                     _tracks[i]->play(division);
                 }
             }
-            
         }
     }
     _playback_division = new_playback_division;

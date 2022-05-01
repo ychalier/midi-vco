@@ -14,7 +14,7 @@ class Router
 public:
     /**
      * Constructor.
-     * 
+     *
      * @param config A pointer to the global config.
      */
     Router(Config *config);
@@ -32,7 +32,7 @@ public:
 
     /**
      * Getter for the lanes.
-     * 
+     *
      * @param lane_id The lane to select. Indices start at 0.
      * @return A pointer to the selected lane.
      */

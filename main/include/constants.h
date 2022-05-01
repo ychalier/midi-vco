@@ -11,7 +11,7 @@
 #define PIN_DETUNE A13           // Not implemented
 #define PIN_TIME A14             // For the sequencer & the arpeggiator
 
-#define PIN_PRIORITY_MODE 42  // Toggle replacement priority newest/oldest
+#define PIN_PRIORITY_MODE 42 // Toggle replacement priority newest/oldest
 #define PIN_TUNE 35
 #define PIN_REC 39
 
@@ -34,7 +34,7 @@
 #define MIDI_CONTROL_GLIDE_CHROMATIC 80     // B1 ON
 #define MIDI_CONTROL_GLIDE_LEGATO 81        // B2 ON
 #define MIDI_CONTROL_PITCH_BEND_RANGE 75    // S2 OFF
-#define MIDI_CONTROL_SEQUENCER_RECORD 82    // B3 OFF
+#define MIDI_CONTROL_RECORD 82              // B3 OFF
 #define MIDI_CONTROL_SOURCE 74              // R1 OFF
 #define MIDI_CONTROL_TIME 71                // R2 OFF
 #define MIDI_CONTROL_ARPEGGIATOR_MODE 65    // R3 OFF
@@ -67,7 +67,7 @@
 #define CONFIG_CHANGE_SOURCE 1
 #define CONFIG_CHANGE_POLYPHONY_MODE 2
 #define CONFIG_CHANGE_PRIORITY_MODE 4
-#define CONFIG_CHANGE_SEQUENCER_RECORD 8
+#define CONFIG_CHANGE_RECORD 8
 #define CONFIG_CHANGE_TUNING 16
 #define CONFIG_CHANGE_HOLD 32
 

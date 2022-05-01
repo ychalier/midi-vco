@@ -1,7 +1,7 @@
 /**
  * MIDI-VCO
  * Arduino firmware interfacing between a MIDI keyboard and a set of VCOs.
- * 
+ *
  * @author Yohan Chalier
  * @version 2.0.0-a.1 2022-05-01
  */
@@ -52,28 +52,10 @@ void setup()
 void loop()
 {
     MIDI.read();
-    midif->update();
+    update_config();
+    update_source();
     router->update();
-    byte active_source = config->get_active_source();
-    bool led_state = config->is_tuning()
-        || (active_source == SOURCE_SEQUENCER && config->is_recording())
-        || (active_source == SOURCE_ARPEGGIATOR && config->is_recording())
-        || (active_source == SOURCE_DIRECT && allocator->is_active());
-    if (active_source != SOURCE_SEQUENCER)
-    {
-        if (led_state != old_led_state)
-        {
-            if (led_state)
-            {
-                digitalWrite(PIN_LED, HIGH);
-            }
-            else
-            {
-                digitalWrite(PIN_LED, LOW);
-            }
-        }
-    }
-    old_led_state = led_state;
+    update_led();
 }
 
 /**
@@ -93,6 +75,71 @@ void blink()
     digitalWrite(PIN_LED, HIGH);
     delay(100);
     digitalWrite(PIN_LED, LOW);
+}
+
+void update_config()
+{
+    int changed = config->read();
+    if (changed & CONFIG_CHANGE_POLYPHONY_MODE)
+    {
+        allocator->set_lane_masks();
+    }
+    if (changed & CONFIG_CHANGE_SOURCE)
+    {
+        allocator->reset();
+        arpeggiator->reset();
+        sequencer->update_source_activation(config->get_active_source() == SOURCE_SEQUENCER);
+    }
+    if (changed & CONFIG_CHANGE_RECORD)
+    {
+        sequencer->update_record_state(config->is_recording());
+    }
+    if (changed & CONFIG_CHANGE_TUNING)
+    {
+        allocator->reset();
+        arpeggiator->reset();
+        if (config->is_tuning())
+        {
+            allocator->broadcast(PITCH_A5, GATE_STATE_DURING_TUNING);
+        }
+    }
+}
+
+void update_source()
+{
+    if (!config->is_tuning())
+    {
+        switch (config->get_active_source())
+        {
+        case SOURCE_SEQUENCER:
+            sequencer->update();
+            break;
+        case SOURCE_ARPEGGIATOR:
+            arpeggiator->update();
+            break;
+        }
+    }
+}
+
+void update_led()
+{
+    byte active_source = config->get_active_source();
+    bool led_state = config->is_tuning() || (active_source == SOURCE_SEQUENCER && config->is_recording()) || (active_source == SOURCE_ARPEGGIATOR && config->is_recording()) || (active_source == SOURCE_DIRECT && allocator->is_active());
+    if (active_source != SOURCE_SEQUENCER)
+    {
+        if (led_state != old_led_state)
+        {
+            if (led_state)
+            {
+                digitalWrite(PIN_LED, HIGH);
+            }
+            else
+            {
+                digitalWrite(PIN_LED, LOW);
+            }
+        }
+    }
+    old_led_state = led_state;
 }
 
 /**

@@ -15,7 +15,7 @@ class SequencerTrack
 public:
     /**
      * Constructor.
-     * 
+     *
      * @param config A pointer to the global config.
      * @param allocator A pointer to the global allocator.
      */
@@ -34,7 +34,6 @@ private:
     int _memory_index[SEQUENCER_DIVISIONS_PER_LOOP];
 
     void execute_event(int event_index);
-
 };
 
 #endif
