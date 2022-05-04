@@ -22,13 +22,6 @@ void Lane::set(int setpoint)
     _coupler->set(_channel, setpoint);
 }
 
-void Lane::play(int setpoint, unsigned long duration)
-{
-    start(setpoint);
-    delay(duration);
-    stop();
-}
-
 void Lane::start(int setpoint)
 {
     float glide_intensity = _config->get_glide_intensity();

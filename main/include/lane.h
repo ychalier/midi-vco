@@ -40,15 +40,6 @@ public:
     void set(int setpoint);
 
     /**
-     * Play a note for a given duration. Warning: this methods blocks the whole
-     * program, use only for testing purposes.
-     *
-     * @param setpoint DAC input value.
-     * @param duration Note duration in milliseconds.
-     */
-    void play(int setpoint, unsigned long duration);
-
-    /**
      * Set the CV signal to a setpoint and set the GATE to HIGH. Use this
      * method to start playing a note without blocking the main loop.
      *
