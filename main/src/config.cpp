@@ -40,11 +40,15 @@ bool Config::_read_source()
 {
     int value = analogRead(PIN_SOURCE);
     byte source = SOURCE_DIRECT;
-    if (value > 682)
+    if (value >= 768)
+    {
+        //TODO: implement SOURCE_SPECIAL;
+    }
+    else if (value >= 512)
     {
         source = SOURCE_SEQUENCER;
     }
-    else if (value > 341)
+    else if (value >= 256)
     {
         source = SOURCE_ARPEGGIATOR;
     }
@@ -57,17 +61,13 @@ bool Config::_read_polyphony_mode()
 {
     int value = analogRead(PIN_POLYPHONY_MODE);
     int polyphony_mode = MODE_MONOPHONIC;
-    if (value >= 768)
+    if (value >= 682)
     {
         polyphony_mode = MODE_OCTOPHONIC;
     }
-    else if (value >= 512)
+    else if (value >= 341)
     {
         polyphony_mode = MODE_QUADROPHONIC;
-    }
-    else if (value >= 256)
-    {
-        polyphony_mode = MODE_DUOPHONIC;
     }
     bool changed = _polyphony_mode != polyphony_mode;
     _polyphony_mode = polyphony_mode;
