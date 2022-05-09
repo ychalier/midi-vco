@@ -11,8 +11,8 @@
 #define PIN_DETUNE A13           // Not implemented
 #define PIN_TIME A14             // For the sequencer & the arpeggiator
 
-#define PIN_PRIORITY_MODE 42 // Toggle replacement priority newest/oldest
 #define PIN_TUNE 35
+#define PIN_PRIORITY_MODE 37 // Toggle replacement priority newest/oldest
 #define PIN_REC 39
 
 #define PIN_SS_CV_1 29
