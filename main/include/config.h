@@ -126,7 +126,6 @@ private:
     float _pitch_bend_range;
     byte _active_source;
     bool _record;
-    int _button_record_state;
     byte _arpeggiator_mode;
     bool _hold;
     float _voltage_offset;

@@ -11,7 +11,6 @@ Config::Config()
     _glide_proportional = false;
     _active_source = SOURCE_DIRECT;
     _record = false;
-    _button_record_state = HIGH;
     _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
     _hold = false;
     _voltage_offset = 0;
@@ -132,13 +131,9 @@ bool Config::_read_priority_mode()
 bool Config::_read_record()
 {
     int value = digitalRead(PIN_REC);
-    bool changed = false;
-    if (_button_record_state == HIGH && value == LOW)
-    {
-        changed = true;
-        _record = !_record;
-    }
-    _button_record_state = value;
+    bool record = value == HIGH;
+    bool changed = _record != record;
+    _record = record;
     return changed;
 }
 
@@ -265,10 +260,10 @@ int Config::read()
     // {
     //     changed = changed + CONFIG_CHANGE_PRIORITY_MODE;
     // }
-    // if (_read_record())
-    // {
-    //     changed = changed + CONFIG_CHANGE_RECORD;
-    // }
+    if (_read_record())
+    {
+        changed = changed + CONFIG_CHANGE_RECORD;
+    }
     if (_read_tuning())
     {
         changed = changed + CONFIG_CHANGE_TUNING;
