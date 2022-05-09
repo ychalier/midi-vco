@@ -113,7 +113,8 @@ void Config::_read_arpeggiator_mode()
 
 void Config::_read_detune()
 {
-    _detune = floor((float)(analogRead(PIN_DETUNE) * (2 * DETUNE_RANGE + 1)) / 1024.0) - DETUNE_RANGE;
+    int index = map(analogRead(PIN_DETUNE), 0, 1023, 0, DETUNE_VALUE_COUNT);
+    _detune = DETUNE_VALUES[index];
 }
 
 void Config::_read_time()

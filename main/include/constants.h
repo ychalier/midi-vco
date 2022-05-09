@@ -117,7 +117,8 @@ const int SEQUENCER_MEMORY_SIZE = SEQUENCER_DIVISIONS_PER_LOOP * SEQUENCER_MAX_E
 #define OUTPUT_PITCH_BEND_FACTOR 3.2766 // @see MidiInterface.handle_pitch_bend
 #define OUTPUT_AFTER_TOUCH_FACTOR 39    // @see MidiInterface.handle_after_touch_poly or MidiInterface.handle_after_touch_channel
 
-#define DETUNE_RANGE 12 // Semitons (in both directions)
+#define DETUNE_VALUE_COUNT 15
+const int DETUNE_VALUES[DETUNE_VALUE_COUNT] = {-24, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 24};  // Semitones
 
 #define GATE_STATE_DURING_TUNING LOW
 
