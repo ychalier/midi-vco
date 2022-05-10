@@ -38,7 +38,7 @@ public:
      *
      * @return The currently active note.
      */
-    byte get();
+    byte get(bool &found);
 
     /**
      * Attempt to remove a note from the buffer. If it succeeds, the cursor is

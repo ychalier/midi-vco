@@ -33,18 +33,22 @@ bool Pool::is_active()
 
 void Pool::load_buffer(int bend, bool set_only)
 {
-    byte pitch = _buffer->get();
-    for (byte lane_id = 0; lane_id < 8; lane_id++)
+    bool found = false;
+    byte pitch = _buffer->get(found);
+    if (found)
     {
-        if ((_lane_mask & (1 << lane_id)) > 0)
+        for (byte lane_id = 0; lane_id < 8; lane_id++)
         {
-            if (set_only)
+            if ((_lane_mask & (1 << lane_id)) > 0)
             {
-                _router->select(lane_id)->set_pitch(pitch, bend, false);
-            }
-            else
-            {
-                _router->select(lane_id)->start_pitch(pitch, 0, false);
+                if (set_only)
+                {
+                    _router->select(lane_id)->set_pitch(pitch, bend, false);
+                }
+                else
+                {
+                    _router->select(lane_id)->start_pitch(pitch, 0, false);
+                }
             }
         }
     }
