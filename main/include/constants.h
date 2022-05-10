@@ -11,8 +11,8 @@
 #define PIN_DETUNE A13           // Not implemented
 #define PIN_TIME A14             // For the sequencer & the arpeggiator
 
-#define PIN_PRIORITY_MODE 42 // Toggle replacement priority newest/oldest
 #define PIN_TUNE 35
+#define PIN_PRIORITY_MODE 37 // Toggle replacement priority newest/oldest
 #define PIN_REC 39
 
 #define PIN_SS_CV_1 29
@@ -30,6 +30,7 @@
 
 // MIDI Controls
 
+#define MIDI_CONTROL_MOD 1
 #define MIDI_CONTROL_GLIDE_INTENSITY 73     // S1 OFF
 #define MIDI_CONTROL_GLIDE_CHROMATIC 80     // B1 ON
 #define MIDI_CONTROL_GLIDE_LEGATO 81        // B2 ON
@@ -117,7 +118,8 @@ const int SEQUENCER_MEMORY_SIZE = SEQUENCER_DIVISIONS_PER_LOOP * SEQUENCER_MAX_E
 #define OUTPUT_PITCH_BEND_FACTOR 3.2766 // @see MidiInterface.handle_pitch_bend
 #define OUTPUT_AFTER_TOUCH_FACTOR 39    // @see MidiInterface.handle_after_touch_poly or MidiInterface.handle_after_touch_channel
 
-#define DETUNE_RANGE 12 // Semitons (in both directions)
+#define DETUNE_VALUE_COUNT 15
+const int DETUNE_VALUES[DETUNE_VALUE_COUNT] = {-24, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 24};  // Semitones
 
 #define GATE_STATE_DURING_TUNING LOW
 

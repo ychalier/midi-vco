@@ -11,7 +11,6 @@ Config::Config()
     _glide_proportional = false;
     _active_source = SOURCE_DIRECT;
     _record = false;
-    _button_record_state = HIGH;
     _arpeggiator_mode = ARPEGGIATOR_MODE_UP;
     _hold = false;
     _voltage_offset = 0;
@@ -31,7 +30,7 @@ void Config::setup()
     pinMode(PIN_ARPEGGIATOR_MODE, INPUT);
     pinMode(PIN_DETUNE, INPUT);
     pinMode(PIN_TIME, INPUT);
-    // pinMode(PIN_PRIORITY_MODE, INPUT);
+    pinMode(PIN_PRIORITY_MODE, INPUT);
     pinMode(PIN_TUNE, INPUT);
     pinMode(PIN_REC, INPUT);
 }
@@ -114,7 +113,8 @@ void Config::_read_arpeggiator_mode()
 
 void Config::_read_detune()
 {
-    _detune = floor((float)(analogRead(PIN_DETUNE) * (2 * DETUNE_RANGE + 1)) / 1024.0) - DETUNE_RANGE;
+    int index = map(analogRead(PIN_DETUNE), 0, 1023, 0, DETUNE_VALUE_COUNT);
+    _detune = DETUNE_VALUES[index];
 }
 
 void Config::_read_time()
@@ -125,20 +125,23 @@ void Config::_read_time()
 
 bool Config::_read_priority_mode()
 {
-    _priority_mode = PRIORITY_REPLACE_OLDEST;
-    return false;
+    int value = digitalRead(PIN_PRIORITY_MODE);
+    byte priority_mode = PRIORITY_REPLACE_NEWEST;
+    if (value == HIGH)
+    {
+        priority_mode = PRIORITY_REPLACE_OLDEST;
+    }
+    bool changed = priority_mode != _priority_mode;
+    _priority_mode = priority_mode;
+    return changed;
 }
 
 bool Config::_read_record()
 {
     int value = digitalRead(PIN_REC);
-    bool changed = false;
-    if (_button_record_state == HIGH && value == LOW)
-    {
-        changed = true;
-        _record = !_record;
-    }
-    _button_record_state = value;
+    bool record = value == HIGH;
+    bool changed = _record != record;
+    _record = record;
     return changed;
 }
 
@@ -261,14 +264,14 @@ int Config::read()
     {
         changed = changed + CONFIG_CHANGE_POLYPHONY_MODE;
     }
-    // if (_read_priority_mode())
-    // {
-    //     changed = changed + CONFIG_CHANGE_PRIORITY_MODE;
-    // }
-    // if (_read_record())
-    // {
-    //     changed = changed + CONFIG_CHANGE_RECORD;
-    // }
+    if (_read_priority_mode())
+    {
+        changed = changed + CONFIG_CHANGE_PRIORITY_MODE;
+    }
+    if (_read_record())
+    {
+        changed = changed + CONFIG_CHANGE_RECORD;
+    }
     if (_read_tuning())
     {
         changed = changed + CONFIG_CHANGE_TUNING;

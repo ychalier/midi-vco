@@ -60,12 +60,15 @@ void MidiInterface::handle_pitch_bend(int bend)
 {
     _pitch_bend_value = bend;
     _allocator->pitch_bend(_get_total_bend_value());
-    _dac->setVoltageA((int)((float)(bend + 8192) / OUTPUT_PITCH_BEND_FACTOR));
-    _dac->updateDAC();
 }
 
 void MidiInterface::handle_control_change(byte number, byte value)
 {
+    if (number == MIDI_CONTROL_MOD)
+    {
+        _dac->setVoltageB(map(value, 0, 127, 0, 4096));
+        _dac->updateDAC();
+    }
     int changed = _config->handle_midi_control(number, value);
     if (changed & CONFIG_CHANGE_RECORD)
     {
@@ -88,7 +91,7 @@ void MidiInterface::handle_after_touch_poly(byte pitch, byte pressure)
 {
     _after_touch_value = AFTERTOUCH_COEFF * pressure;
     _allocator->after_touch_poly(pitch, _get_total_bend_value());
-    _dac->setVoltageB(pressure * OUTPUT_AFTER_TOUCH_FACTOR);
+    _dac->setVoltageA(map(pressure, 0, 127, 0, 4096));
     _dac->updateDAC();
 }
 
@@ -96,7 +99,7 @@ void MidiInterface::handle_after_touch_channel(byte pressure)
 {
     _after_touch_value = AFTERTOUCH_COEFF * pressure;
     _allocator->after_touch_channel(_get_total_bend_value());
-    _dac->setVoltageB(pressure * OUTPUT_AFTER_TOUCH_FACTOR);
+    _dac->setVoltageA(map(pressure, 0, 127, 0, 4096));
     _dac->updateDAC();
 }
 
