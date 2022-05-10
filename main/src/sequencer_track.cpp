@@ -5,16 +5,15 @@ SequencerTrack::SequencerTrack(Config *config, Allocator *allocator)
 {
     _config = config;
     _allocator = allocator;
-    reset();
+    _memory_index = 0;
 }
 
 void SequencerTrack::record(MidiEvent event)
 {
-    if (_memory_index[event.division] < SEQUENCER_MAX_EVENTS_PER_DIVISION)
+    if (_memory_index < SEQUENCER_MEMORY_SIZE)
     {
-        int event_index = event.division * SEQUENCER_MAX_EVENTS_PER_DIVISION + _memory_index[event.division];
-        _memory[event_index] = event;
-        _memory_index[event.division]++;
+        _memory[_memory_index] = event;
+        _memory_index++;
     }
 }
 
@@ -35,17 +34,16 @@ void SequencerTrack::execute_event(int event_index)
 
 void SequencerTrack::play(int division)
 {
-    for (int offset = 0; offset < _memory_index[division]; offset++)
+    for (int event_index = 0; event_index < _memory_index; event_index++)
     {
-        int event_index = division * SEQUENCER_MAX_EVENTS_PER_DIVISION + offset;
-        execute_event(event_index);
+        if (_memory[_memory_index].division == division)
+        {
+            execute_event(event_index);
+        }
     }
 }
 
 void SequencerTrack::reset()
 {
-    for (int division = 0; division < SEQUENCER_DIVISIONS_PER_LOOP; division++)
-    {
-        _memory_index[division] = 0;
-    }
+    _memory_index = 0;
 }

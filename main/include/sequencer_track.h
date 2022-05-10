@@ -31,7 +31,7 @@ private:
     Config *_config;
     Allocator *_allocator;
     MidiEvent _memory[SEQUENCER_MEMORY_SIZE];
-    int _memory_index[SEQUENCER_DIVISIONS_PER_LOOP];
+    int _memory_index;
 
     void execute_event(int event_index);
 };

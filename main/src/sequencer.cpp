@@ -39,11 +39,6 @@ void Sequencer::update_record_state(bool recording)
     }
 }
 
-int Sequencer::get_record_division()
-{
-    return round((double)(millis() - _first_beat_timestamp) / (double)_config->get_time_div()) % SEQUENCER_DIVISIONS_PER_LOOP;
-}
-
 void Sequencer::start()
 {
     if (!_started)
@@ -61,7 +56,7 @@ void Sequencer::note_on(byte pitch)
     {
         start();
         _tracks[_config->get_active_sequencer_track()]->record(
-            {get_record_division(),
+            {_playback_division,
              true,
              pitch,
              pool_mask});
@@ -76,7 +71,7 @@ void Sequencer::note_off(byte pitch)
     {
         start();
         _tracks[_config->get_active_sequencer_track()]->record(
-            {get_record_division(),
+            {_playback_division,
              false,
              pitch,
              pool_mask});

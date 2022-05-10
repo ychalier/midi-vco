@@ -62,8 +62,6 @@ private:
 
     bool _started;
 
-    int get_record_division();
-
     int get_playback_division();
 
     void start();
