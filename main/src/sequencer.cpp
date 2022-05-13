@@ -31,12 +31,12 @@ void Sequencer::update_source_activation(bool activated)
 
 void Sequencer::update_record_state(bool recording)
 {
-    _recording = recording;
-    if (_recording)
+    if (recording && !_recording)
     {
         _allocator->reset_masked(_config->get_pool_mask());
         _tracks[_config->get_active_sequencer_track()]->reset();
     }
+    _recording = recording;
 }
 
 void Sequencer::start()
@@ -99,14 +99,9 @@ void Sequencer::update()
 {
     int new_playback_division = get_playback_division();
     set_led_state(new_playback_division);
-    int active_sequencer_track = _config->get_active_sequencer_track();
-    for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
+    if (new_playback_division != _playback_division)
     {
-        if (_recording && i == active_sequencer_track)
-        {
-            // Do not play anything while recording
-        }
-        else
+        for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
         {
             if (new_playback_division > _playback_division)
             {
@@ -115,7 +110,7 @@ void Sequencer::update()
                     _tracks[i]->play(division);
                 }
             }
-            else if (new_playback_division < _playback_division)
+            else
             {
                 for (int division = _playback_division + 1; division < SEQUENCER_DIVISIONS_PER_LOOP; division++)
                 {
@@ -127,6 +122,6 @@ void Sequencer::update()
                 }
             }
         }
+        _playback_division = new_playback_division;
     }
-    _playback_division = new_playback_division;
 }
