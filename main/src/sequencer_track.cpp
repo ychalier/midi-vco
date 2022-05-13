@@ -36,7 +36,7 @@ void SequencerTrack::play(int division)
 {
     for (int event_index = 0; event_index < _memory_index; event_index++)
     {
-        if (_memory[_memory_index].division == division)
+        if (_memory[event_index].division == division)
         {
             execute_event(event_index);
         }
