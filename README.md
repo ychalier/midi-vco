@@ -2,6 +2,10 @@
 
 Micrologiciel pour une carte Arduino faisant l'intermédiraire entre un clavier MIDI et un ensemble d'oscillateurs commandés en tension.
 
+Voici une [vidéo de démonstration](https://www.youtube.com/watch?v=3NNNnUOankE) du synthétiseur :
+
+<a href="https://www.youtube.com/watch?v=3NNNnUOankE"><img alt="Vidéo de démonstration" width="400" src="https://i.ytimg.com/vi/3NNNnUOankE/maxresdefault.jpg" /></a>
+
 ## Installation
 
 ### Prérequis
