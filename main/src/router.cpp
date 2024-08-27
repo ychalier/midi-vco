@@ -1,20 +1,21 @@
 #include "Arduino.h"
 #include "../include/router.h"
 
-Router::Router(Config *config, Display *display)
+Router::Router(Config *config)
 {
-    _coupler_1 = new Coupler(PIN_SS_1, PIN_GATE_1);
-    _coupler_2 = new Coupler(PIN_SS_2, PIN_GATE_3);
-    _coupler_3 = new Coupler(PIN_SS_3, PIN_GATE_5);
-    _coupler_4 = new Coupler(PIN_SS_4, PIN_GATE_7);
-    _lane_1 = new Lane(config, display, _coupler_1, COUPLER_A, 0);
-    _lane_2 = new Lane(config, display, _coupler_1, COUPLER_B, 1);
-    _lane_3 = new Lane(config, display, _coupler_2, COUPLER_A, 2);
-    _lane_4 = new Lane(config, display, _coupler_2, COUPLER_B, 3);
-    _lane_5 = new Lane(config, display, _coupler_3, COUPLER_A, 4);
-    _lane_6 = new Lane(config, display, _coupler_3, COUPLER_B, 5);
-    _lane_7 = new Lane(config, display, _coupler_4, COUPLER_A, 6);
-    _lane_8 = new Lane(config, display, _coupler_4, COUPLER_B, 7);
+    _config = config;
+    _coupler_1 = new Coupler(PIN_SS_CV_1, PIN_GATE_1);
+    _coupler_2 = new Coupler(PIN_SS_CV_2, PIN_GATE_2);
+    _coupler_3 = new Coupler(PIN_SS_CV_3, PIN_GATE_3);
+    _coupler_4 = new Coupler(PIN_SS_CV_4, PIN_GATE_4);
+    _lane_1 = new Lane(config, _coupler_1, COUPLER_A, 0);
+    _lane_2 = new Lane(config, _coupler_1, COUPLER_B, 1);
+    _lane_3 = new Lane(config, _coupler_2, COUPLER_A, 2);
+    _lane_4 = new Lane(config, _coupler_2, COUPLER_B, 3);
+    _lane_5 = new Lane(config, _coupler_3, COUPLER_A, 4);
+    _lane_6 = new Lane(config, _coupler_3, COUPLER_B, 5);
+    _lane_7 = new Lane(config, _coupler_4, COUPLER_A, 6);
+    _lane_8 = new Lane(config, _coupler_4, COUPLER_B, 7);
 }
 
 void Router::setup()
@@ -76,4 +77,14 @@ Lane *Router::select(int lane_id)
     default:
         break;
     }
+    return _lane_1;
+}
+
+void Router::broadcast(byte pitch, int gate)
+{
+    int setpoint = Lane::pitch_to_voltage(_config, pitch, 0);
+    _coupler_1->broadcast(setpoint, gate);
+    _coupler_2->broadcast(setpoint, gate);
+    _coupler_3->broadcast(setpoint, gate);
+    _coupler_4->broadcast(setpoint, gate);
 }

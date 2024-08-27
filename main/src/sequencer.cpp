@@ -5,91 +5,123 @@ Sequencer::Sequencer(Config *config, Allocator *allocator)
 {
     _config = config;
     _allocator = allocator;
-    _size = 0;
     _recording = false;
-    _record_timestamp = 0;
-    _playback_timestamp = 0;
-    _playback_index = 0;
-}
-
-void Sequencer::record_event(MidiEvent event)
-{
-    if (_size < SEQUENCER_MEMORY_SIZE)
+    _first_beat_timestamp = 0;
+    _playback_division = 0;
+    _started = false;
+    for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
     {
-        _memory[_size] = event;
-        _size++;
+        _tracks[i] = new SequencerTrack(config, allocator);
     }
 }
 
-void Sequencer::note_on(Note note)
+void Sequencer::update_source_activation(bool activated)
 {
-    if (_recording)
+    if (activated)
     {
-        unsigned long now = millis();
-        if (_size == 0)
+        _started = false;
+        _allocator->reset();
+        for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
         {
-            _record_timestamp = now;
+            _tracks[i]->reset();
         }
-        record_event({now - _record_timestamp, true, note});
+        _first_beat_timestamp = millis();
     }
-    _allocator->note_on(note);
 }
 
-void Sequencer::note_off(Note note)
+void Sequencer::update_record_state(bool recording)
 {
-    if (_recording)
+    if (recording && !_recording)
     {
-        unsigned long now = millis();
-        if (_size == 0)
-        {
-            _record_timestamp = now;
-        }
-        record_event({now - _record_timestamp, false, note});
+        _allocator->reset_masked(_config->get_pool_mask());
+        _tracks[_config->get_active_sequencer_track()]->reset();
     }
-    _allocator->note_off(note);
-}
-
-void Sequencer::update_state(bool recording)
-{
     _recording = recording;
-    _allocator->reset();
+}
+
+void Sequencer::start()
+{
+    if (!_started)
+    {
+        _first_beat_timestamp = millis();
+        _started = true;
+        _playback_division = SEQUENCER_DIVISIONS_PER_LOOP - 1;
+    }
+}
+
+void Sequencer::note_on(byte pitch)
+{
+    byte pool_mask = _config->get_pool_mask();
     if (_recording)
     {
-        _size = 0;
+        start();
+        _tracks[_config->get_active_sequencer_track()]->record(
+            {_playback_division,
+             true,
+             pitch,
+             pool_mask});
     }
-    else
+    _allocator->note_on_masked(pitch, pool_mask);
+}
+
+void Sequencer::note_off(byte pitch)
+{
+    byte pool_mask = _config->get_pool_mask();
+    if (_recording)
     {
-        _playback_timestamp = millis();
-        _playback_index = 0;
+        start();
+        _tracks[_config->get_active_sequencer_track()]->record(
+            {_playback_division,
+             false,
+             pitch,
+             pool_mask});
     }
+    _allocator->note_off_masked(pitch, pool_mask);
+}
+
+int Sequencer::get_playback_division()
+{
+    return (int)floor((double)(millis() - _first_beat_timestamp) / (double)_config->get_time_div()) % SEQUENCER_DIVISIONS_PER_LOOP;
+}
+
+void Sequencer::set_led_state(int division)
+{
+    bool led_state = false;
+    if ((division % SEQUENCER_DIVISIONS_PER_BEAT) == 0)
+    {
+        int beat_number = division / SEQUENCER_DIVISIONS_PER_BEAT;
+        led_state = beat_number != (SEQUENCER_BEATS_PER_LOOP - 1);
+    }
+    digitalWrite(PIN_LED, led_state ^ _recording);
 }
 
 void Sequencer::update()
 {
-    if (!_recording && _playback_index < _size)
+    int new_playback_division = get_playback_division();
+    set_led_state(new_playback_division);
+    if (new_playback_division != _playback_division)
     {
-        unsigned long now = millis();
-        if ((now - _playback_timestamp) >= _config->get_time_period())
+        for (int i = 0; i < SEQUENCER_TRACK_COUNT; i++)
         {
-            _playback_timestamp = now;
-            unsigned long window_start = _memory[_playback_index].timestamp;
-            while ((_memory[_playback_index].timestamp - window_start) < SEQUENCER_WINDOW_SIZE)
+            if (new_playback_division > _playback_division)
             {
-                if (_memory[_playback_index].type)
+                for (int division = _playback_division + 1; division <= new_playback_division; division++)
                 {
-                    _allocator->note_on(_memory[_playback_index].note);
+                    _tracks[i]->play(division);
                 }
-                else
+            }
+            else
+            {
+                for (int division = _playback_division + 1; division < SEQUENCER_DIVISIONS_PER_LOOP; division++)
                 {
-                    _allocator->note_off(_memory[_playback_index].note);
+                    _tracks[i]->play(division);
                 }
-                _playback_index++;
-                if (_playback_index >= _size)
+                for (int division = 0; division <= new_playback_division; division++)
                 {
-                    _playback_index = 0;
-                    break;
+                    _tracks[i]->play(division);
                 }
             }
         }
+        _playback_division = new_playback_division;
     }
 }

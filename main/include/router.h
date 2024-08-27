@@ -4,7 +4,6 @@
 #include "Arduino.h"
 #include "constants.h"
 #include "lane.h"
-#include "display.h"
 #include "coupler.h"
 
 /**
@@ -15,10 +14,10 @@ class Router
 public:
     /**
      * Constructor.
-     * 
-     * @param display A pointer to the LED display wrapper.
+     *
+     * @param config A pointer to the global config.
      */
-    Router(Config *config, Display *display);
+    Router(Config *config);
 
     /**
      * Initialize hardware connections. Must be called once in the main program
@@ -33,13 +32,16 @@ public:
 
     /**
      * Getter for the lanes.
-     * 
+     *
      * @param lane_id The lane to select. Indices start at 0.
      * @return A pointer to the selected lane.
      */
     Lane *select(int lane_id);
 
+    void broadcast(byte pitch, int gate);
+
 private:
+    Config *_config;
     Coupler *_coupler_1;
     Coupler *_coupler_2;
     Coupler *_coupler_3;

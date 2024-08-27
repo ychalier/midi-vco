@@ -4,23 +4,6 @@
 #include "Arduino.h"
 
 /**
- * Simple data structure holding a MIDI note.
- */
-typedef struct Note
-{
-    /// MIDI channel (from 1 to 16)
-    byte channel;
-
-    /// Note pitch in semitons
-    byte pitch;
-} Note;
-
-/**
- * Overloading equality check to compare two notes.
- */
-bool operator==(const Note &l_note, const Note &r_note);
-
-/**
  * Simple data structure holding information for a note glide.
  */
 typedef struct Glide
@@ -47,9 +30,10 @@ typedef struct Glide
  */
 typedef struct MidiEvent
 {
-    unsigned long timestamp;
+    int division;
     bool type;
-    Note note;
+    byte pitch;
+    byte mask;
 } MidiEvent;
 
 #endif

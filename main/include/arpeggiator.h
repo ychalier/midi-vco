@@ -15,7 +15,7 @@ class Arpeggiator
 public:
     /**
      * Constructor
-     * 
+     *
      * @param config A pointer to the global config.
      * @param allocator A pointer to the global allocator.
      */
@@ -23,18 +23,18 @@ public:
 
     /**
      * Callback for the *note-on* MIDI message. Stores the note in a buffer.
-     * 
+     *
      * @param note The note that has been played.
      */
-    void note_on(Note note);
+    void note_on(byte pitch);
 
     /**
      * Callback for the *note-off* MIDI message. Remove the note from the
      * buffer.
-     * 
+     *
      * @param note The note that has been released.
      */
-    void note_off(Note note);
+    void note_off(byte pitch);
 
     /**
      * Where the note playing happens. Must be called in the main program loop.
@@ -59,14 +59,14 @@ private:
 
     /// The last note that have been played. Used to dermine which note to play
     /// next according to the direction.
-    Note _current;
+    byte _current;
 
     /// When was the last note played
     unsigned long _timestamp;
 
     /**
      * Determine which note to play next, in the buffer.
-     * 
+     *
      * @param note_next A reference for storing the next note that should be
      *   played, according to the current direction and the last played note.
      *   If none is found (e.g. if the highest note was already playing and
@@ -76,19 +76,18 @@ private:
      * @param note_min A reference for storing the note in the buffer with the
      *   highest pitch.
      * @param note_max A reference for storing the note in the buffer with the
-     *   lowest pitch. 
+     *   lowest pitch.
      * @return `true` if a valid next note was found. If not, one of the
      *   extrema should be played instead.
      */
-    bool Arpeggiator::find_next_note(Note &note_next, Note &note_min, Note &note_max);
+    bool find_next_note(byte &pitch_next, byte &pitch_min, byte &pitch_max);
 
     /**
      * Make the arpeggiator play a note. Store it as the current note, and
      * update the timestamp.
-     * 
-     * @param note The note to play.
+     *
      */
-    void play(Note note);
+    void play(byte pitch);
 };
 
 #endif

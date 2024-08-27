@@ -1,37 +1,19 @@
 #include "Arduino.h"
 #include "../include/pool.h"
 
-unsigned int channel_to_mask(byte channel)
-{
-    if (channel == MIDI_CHANNEL_OMNI)
-    {
-        return 0xFFFF;
-    }
-    else if (channel >= 1 && channel <= 16)
-    {
-        return 1 << (channel - 1);
-    }
-    else
-    {
-        return 0;
-    }
-}
-
 Pool::Pool(Router *router)
 {
     _router = router;
     _lane_mask = 0;
-    _channel_mask = 0;
     _buffer = new Buffer();
     _era = 0;
     _active = false;
     _locked = false;
 }
 
-void Pool::set_masks(byte lane_mask, unsigned int channel_mask)
+void Pool::set_lane_mask(byte lane_mask)
 {
     _lane_mask = lane_mask;
-    _channel_mask = channel_mask;
 }
 
 bool Pool::is_enabled()
@@ -49,51 +31,36 @@ bool Pool::is_active()
     return _active;
 }
 
-bool Pool::accepts_channel(byte channel)
-{
-    int mask = 0;
-    if (channel == MIDI_CHANNEL_OMNI)
-    {
-        mask = 0xFFFF;
-    }
-    else if (channel >= 1 && channel <= 16)
-    {
-        mask = 1 << (channel - 1);
-    }
-    return (_channel_mask & mask) > 0;
-}
-
-bool Pool::accepts_note(Note note)
-{
-    return is_enabled() && accepts_channel(note.channel);
-}
-
 void Pool::load_buffer(int bend, bool set_only)
 {
-    Note note = _buffer->get();
-    for (byte lane_id = 0; lane_id < 8; lane_id++)
+    bool found = false;
+    byte pitch = _buffer->get(found);
+    if (found)
     {
-        if ((_lane_mask & (1 << lane_id)) > 0)
+        for (byte lane_id = 0; lane_id < 8; lane_id++)
         {
-            if (set_only)
+            if ((_lane_mask & (1 << lane_id)) > 0)
             {
-                _router->select(lane_id)->set_pitch(note.pitch, bend);
-            }
-            else
-            {
-                _router->select(lane_id)->start_pitch(note.pitch, 0);
+                if (set_only)
+                {
+                    _router->select(lane_id)->set_pitch(pitch, bend, false);
+                }
+                else
+                {
+                    _router->select(lane_id)->start_pitch(pitch, 0, false);
+                }
             }
         }
     }
 }
 
-void Pool::load(Note note)
+void Pool::load(byte pitch)
 {
     if (!_locked)
     {
         _active = true;
         _era = millis();
-        _buffer->push(note);
+        _buffer->push(pitch);
         load_buffer(0, false);
     }
 }
@@ -111,9 +78,9 @@ void Pool::stop()
     }
 }
 
-bool Pool::unload(Note note)
+bool Pool::unload(byte pitch)
 {
-    if (_active && _buffer->pop(note))
+    if (_active && _buffer->pop(pitch))
     {
         if (!_locked)
         {
@@ -123,7 +90,7 @@ bool Pool::unload(Note note)
             }
             else
             {
-                load_buffer(0, true);
+                load_buffer(0, false);
             }
         }
         return true;
@@ -165,7 +132,7 @@ void Pool::unlock()
     }
 }
 
-bool Pool::buffer_contains(Note note)
+bool Pool::buffer_contains(byte pitch)
 {
-    return _active && _buffer->contains(note);
+    return _active && _buffer->contains(pitch);
 }

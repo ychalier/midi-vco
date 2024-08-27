@@ -18,7 +18,7 @@ public:
 
     /**
      * Check if the buffer is empty.
-     * 
+     *
      * @return True if the buffer is empty.
      */
     bool empty();
@@ -27,33 +27,32 @@ public:
      * Push a note to the buffer. If the buffer is full, its contents is
      * shifted, discarding the oldest note in it. The note to push is then
      * added on top of the stack.
-     * 
-     * @param note The note to insert in the buffer.
+     *
      */
-    void push(Note note);
+    void push(byte pitch);
 
     /**
      * Get the currently active note (i.e. the last note inserted in the
      * buffer that has not been released yet). If the buffer is empty, returns
      * a dummy note with channel 0 and pitch 0.
-     * 
+     *
      * @return The currently active note.
      */
-    Note get();
+    byte get(bool &found);
 
     /**
      * Attempt to remove a note from the buffer. If it succeeds, the cursor is
      * decremented by one.
-     * 
+     *
      * @param note The note to remove from the buffer.
      * @return True if the buffer did contained the note and it was
      *     successfully removed.
      */
-    bool pop(Note note);
+    bool pop(byte pitch);
 
     /**
      * Shift the content of the buffer to remove empty spaces.
-     * 
+     *
      * @param start The first index that should get assigned the value of its
      *     neighbor (the next index). All indices after this one and until the
      *     penultimate one gets shifted.
@@ -67,7 +66,7 @@ public:
 
     /**
      * Get the size of the buffer.
-     * 
+     *
      * @return The number of notes in the buffer.
      */
     int get_size();
@@ -76,23 +75,23 @@ public:
      * Accessor for the stored notes. Caution: if the index is incorrect
      * (negative or out of bounds, no error is thrown and a dummy note is
      * returned instead).
-     * 
+     *
      * @param index 0-based index of the note to access.
      * @return The accessed note.
      */
-    Note get_at_index(int index);
+    byte get_at_index(int index);
 
     /**
      * Check if the buffer contains a given note.
-     * 
+     *
      * @param note The note to check the presence of.
      * @return `true` if the buffer contains the note.
      */
-    bool contains(Note note);
+    bool contains(byte pitch);
 
 private:
     /// Memory for the notes.
-    Note _notes[BUFFER_SIZE];
+    byte _notes[BUFFER_SIZE];
 
     /// Index of currently active note. If none (buffer is empty), then the
     /// cursor is -1.

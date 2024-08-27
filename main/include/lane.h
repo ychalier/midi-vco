@@ -4,7 +4,6 @@
 #include "Arduino.h"
 #include <MCP48xx.h>
 #include "constants.h"
-#include "display.h"
 #include "config.h"
 #include "structs.h"
 #include "coupler.h"
@@ -17,16 +16,15 @@ class Lane
 public:
     /**
      * Constructor.
-     * 
+     *
      * @param config A pointer to the global configuration.
-     * @param display A pointer to the LED display.
      * @param coupler A pointer to `Coupler` controlling the CV and GATE
      *   signals.
      * @param channel If true, use `Coupler` channel A; otherwise use channel
      *   B.
      * @param led_id Id of the LED to control in the display, mapped to GATE.
      */
-    Lane::Lane(Config *config, Display *display, Coupler *coupler, bool channel, int led_id);
+    Lane(Config *config, Coupler *coupler, bool channel, int led_id);
 
     /**
      * Initialize hardware connections. Must be called once in the main program
@@ -36,47 +34,38 @@ public:
 
     /**
      * Set the CV signal to a setpoint.
-     * 
+     *
      * @param setpoint DAC input value.
      */
     void set(int setpoint);
 
     /**
-     * Play a note for a given duration. Warning: this methods blocks the whole
-     * program, use only for testing purposes.
-     * 
-     * @param setpoint DAC input value.
-     * @param duration Note duration in milliseconds.
-     */
-    void play(int setpoint, unsigned long duration);
-
-    /**
      * Set the CV signal to a setpoint and set the GATE to HIGH. Use this
      * method to start playing a note without blocking the main loop.
-     * 
+     *
      * @param setpoint DAC input value.
      */
     void start(int setpoint);
 
     /**
      * Set a note to be played according to its pitch.
-     * 
+     *
      * @see `Lane.set`
-     * 
+     *
      * @param pitch 7-bit pitch encoding.
      * @param bend Signed 14-bit encoding of the pitch-bend on that value.
      */
-    void set_pitch(byte pitch, int bend);
+    void set_pitch(byte pitch, int bend, bool ignore_detune);
 
     /**
      * Start a note to be played according to its pitch.
-     * 
+     *
      * @see `Lane.start`
-     * 
+     *
      * @param pitch 7-bit pitch encoding.
      * @param bend Signed 14-bit encoding of the pitch-bend on that value.
      */
-    void start_pitch(byte pitch, int bend);
+    void start_pitch(byte pitch, int bend, bool ignore_detune);
 
     /**
      * Set the GATE to LOW.
@@ -91,9 +80,9 @@ public:
 
     /**
      * Compute the DAC input value from a note.
-     * 
+     *
      * @see https://github.com/ychalier/midi-vco/wiki/Conversion-du-MIDI-en-tension
-     * 
+     *
      * @param pitch Note pitch in semitons.
      * @param bend Signed 14-bit encoding of the pitch bend.
      * @return DAC input value corresponding to that note.
@@ -102,7 +91,7 @@ public:
 
     /**
      * Reverse the pitch to voltage computation.
-     * 
+     *
      * @param setpoint The DAC setpoint to convert.
      * @return The corresponding note pitch as a 7-bit integer (rounded to the
      *   closest integer match).
@@ -111,7 +100,6 @@ public:
 
 private:
     Config *_config;
-    Display *_display;
     Coupler *_coupler;
     bool _channel;
     int _led_id;

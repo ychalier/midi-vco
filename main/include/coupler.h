@@ -16,7 +16,7 @@ class Coupler
 public:
     /**
      * Constructor.
-     * 
+     *
      * @param dac_pin SS PIN controller for the DAC corresponding to the
      *   two lanes bound to the coupler.
      * @param gate_pin PIN for the output GATE signal.
@@ -31,7 +31,7 @@ public:
 
     /**
      * Set the CV signal for one of the two lanes.
-     * 
+     *
      * @param channel Selector for which lane to update (A is `true`, B is
      *   `false`).
      * @param setpoint DAC setpoint value.
@@ -40,14 +40,14 @@ public:
 
     /**
      * Activate one of the virtual lanes.
-     * 
+     *
      * @param channel Which lane to activate (A is `true`, B is `false`).
      */
     void activate(bool channel);
 
     /**
      * Deactivate one of the virtual lanes.
-     * 
+     *
      * @param channel Which lane to deactivate (A is `true`, B is `false`).
      */
     void deactivate(bool channel);
@@ -57,6 +57,8 @@ public:
      * state.
      */
     void update();
+
+    void broadcast(int setpoint, int gate);
 
 private:
     /// A DAC interface to control the CV signals.

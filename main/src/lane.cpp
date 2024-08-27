@@ -1,10 +1,9 @@
 #include "Arduino.h"
 #include "../include/lane.h"
 
-Lane::Lane(Config *config, Display *display, Coupler *coupler, bool channel, int led_id)
+Lane::Lane(Config *config, Coupler *coupler, bool channel, int led_id)
 {
     _config = config;
-    _display = display;
     _coupler = coupler;
     _channel = channel;
     _led_id = led_id;
@@ -21,13 +20,6 @@ void Lane::set(int setpoint)
 {
     _current_setpoint = setpoint;
     _coupler->set(_channel, setpoint);
-}
-
-void Lane::play(int setpoint, unsigned long duration)
-{
-    start(setpoint);
-    delay(duration);
-    stop();
 }
 
 void Lane::start(int setpoint)
@@ -56,24 +48,36 @@ void Lane::start(int setpoint)
         update();
     }
     _coupler->activate(_channel);
-    _display->set_led_state(_led_id, HIGH);
     _active = true;
 }
 
-void Lane::set_pitch(byte pitch, int bend)
+void Lane::set_pitch(byte pitch, int bend, bool ignore_detune)
 {
-    set(pitch_to_voltage(_config, pitch, bend));
+    if (_channel || ignore_detune)
+    {
+        set(pitch_to_voltage(_config, pitch, bend));
+    }
+    else
+    {
+        set(pitch_to_voltage(_config, pitch + _config->get_detune(), bend));
+    }
 }
 
-void Lane::start_pitch(byte pitch, int bend)
+void Lane::start_pitch(byte pitch, int bend, bool ignore_detune)
 {
-    start(pitch_to_voltage(_config, pitch, bend));
+    if (_channel || ignore_detune)
+    {
+        start(pitch_to_voltage(_config, pitch, bend));
+    }
+    else
+    {
+        start(pitch_to_voltage(_config, pitch + _config->get_detune(), bend));
+    }
 }
 
 void Lane::stop()
 {
     _coupler->deactivate(_channel);
-    _display->set_led_state(_led_id, LOW);
     _active = false;
 }
 

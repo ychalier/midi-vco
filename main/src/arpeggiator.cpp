@@ -7,27 +7,27 @@ Arpeggiator::Arpeggiator(Config *config, Allocator *allocator)
     _allocator = allocator;
     _buffer = new Buffer();
     _direction = true;
-    _current = {0, 0};
+    _current = 0;
     _timestamp = 0;
 }
 
-void Arpeggiator::note_on(Note note)
+void Arpeggiator::note_on(byte pitch)
 {
-    if (_config->should_sequencer_record())
+    if (_config->is_recording())
     {
-        _buffer->push(note);
+        _buffer->push(pitch);
     }
     else
     {
-        _allocator->note_on(note);
+        _allocator->note_on(pitch);
     }
 }
 
-void Arpeggiator::note_off(Note note)
+void Arpeggiator::note_off(byte pitch)
 {
-    if (!_buffer->pop(note))
+    if (!_buffer->pop(pitch))
     {
-        _allocator->note_off(note);
+        _allocator->note_off(pitch);
     }
     else if (_buffer->empty())
     {
@@ -39,46 +39,46 @@ void Arpeggiator::reset()
 {
     _buffer->reset();
     _direction = true;
-    _current = {0, 0};
+    _current = 0;
     _timestamp = 0;
 }
 
-void Arpeggiator::play(Note note)
+void Arpeggiator::play(byte pitch)
 {
     _allocator->note_off(_current);
-    _current = note;
+    _current = pitch;
     _allocator->note_on(_current);
 }
 
-bool Arpeggiator::find_next_note(Note &note_next, Note &note_min, Note &note_max)
+bool Arpeggiator::find_next_note(byte &pitch_next, byte &pitch_min, byte &pitch_max)
 {
     bool found = false;
     if (_direction)
     {
-        note_next = {_current.channel, 128};
+        pitch_next = 128;
     }
     else
     {
-        note_next = {_current.channel, 0};
+        pitch_next = 0;
     }
-    note_min = {_current.channel, _current.pitch};
-    note_max = {_current.channel, _current.pitch};
+    pitch_min = _current;
+    pitch_max = _current;
     for (int i = 0; i < _buffer->get_size(); i++)
     {
-        Note buffer_note = _buffer->get_at_index(i);
-        if (buffer_note.pitch < note_min.pitch)
+        byte buffer_pitch = _buffer->get_at_index(i);
+        if (buffer_pitch < pitch_min)
         {
-            note_min = buffer_note;
+            pitch_min = buffer_pitch;
         }
-        if (buffer_note.pitch > note_max.pitch)
+        if (buffer_pitch > pitch_max)
         {
-            note_max = buffer_note;
+            pitch_max = buffer_pitch;
         }
-        if ((_direction && buffer_note.pitch > _current.pitch && buffer_note.pitch < note_next.pitch) ||
-            (!_direction && buffer_note.pitch < _current.pitch && buffer_note.pitch > note_next.pitch))
+        if ((_direction && buffer_pitch > _current && buffer_pitch < pitch_next) ||
+            (!_direction && buffer_pitch < _current && buffer_pitch > pitch_next))
         {
             found = true;
-            note_next = buffer_note;
+            pitch_next = buffer_pitch;
         }
     }
     return found;
@@ -86,7 +86,7 @@ bool Arpeggiator::find_next_note(Note &note_next, Note &note_min, Note &note_max
 
 void Arpeggiator::update()
 {
-    Note note_next, note_min, note_max;
+    byte pitch_next, pitch_min, pitch_max;
     if (_buffer->get_size() > 0)
     {
         unsigned long now = millis();
@@ -97,35 +97,35 @@ void Arpeggiator::update()
             {
             case ARPEGGIATOR_MODE_UP:
                 _direction = true;
-                if (find_next_note(note_next, note_min, note_max))
+                if (find_next_note(pitch_next, pitch_min, pitch_max))
                 {
-                    play(note_next);
+                    play(pitch_next);
                 }
                 else
                 {
-                    play(note_min);
+                    play(pitch_min);
                 }
                 break;
             case ARPEGGIATOR_MODE_DOWN:
                 _direction = false;
-                if (find_next_note(note_next, note_min, note_max))
+                if (find_next_note(pitch_next, pitch_min, pitch_max))
                 {
-                    play(note_next);
+                    play(pitch_next);
                 }
                 else
                 {
-                    play(note_max);
+                    play(pitch_max);
                 }
                 break;
             case ARPEGGIATOR_MODE_UP_DOWN:
-                if (find_next_note(note_next, note_min, note_max))
+                if (find_next_note(pitch_next, pitch_min, pitch_max))
                 {
-                    play(note_next);
-                    if (note_next == note_min)
+                    play(pitch_next);
+                    if (pitch_next == pitch_min)
                     {
                         _direction = true;
                     }
-                    else if (note_next == note_max)
+                    else if (pitch_next == pitch_max)
                     {
                         _direction = false;
                     }
@@ -135,11 +135,11 @@ void Arpeggiator::update()
                     _direction = !_direction;
                     if (_direction)
                     {
-                        play(note_min);
+                        play(pitch_min);
                     }
                     else
                     {
-                        play(note_max);
+                        play(pitch_max);
                     }
                 }
                 break;
