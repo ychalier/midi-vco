@@ -46,6 +46,7 @@ private:
     Coupler *_coupler_2;
     Coupler *_coupler_3;
     Coupler *_coupler_4;
+    Coupler *_coupler_5;
     Lane *_lane_1;
     Lane *_lane_2;
     Lane *_lane_3;
@@ -54,6 +55,8 @@ private:
     Lane *_lane_6;
     Lane *_lane_7;
     Lane *_lane_8;
+    Lane *_lane_9;
+    Lane *_lane_10;
 };
 
 #endif

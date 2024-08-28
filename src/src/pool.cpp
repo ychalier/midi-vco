@@ -11,7 +11,7 @@ Pool::Pool(Router *router)
     _locked = false;
 }
 
-void Pool::set_lane_mask(byte lane_mask)
+void Pool::set_lane_mask(uint16_t lane_mask)
 {
     _lane_mask = lane_mask;
 }
@@ -37,7 +37,7 @@ void Pool::load_buffer(int bend, bool set_only)
     byte pitch = _buffer->get(found);
     if (found)
     {
-        for (byte lane_id = 0; lane_id < 8; lane_id++)
+        for (byte lane_id = 0; lane_id < LANE_COUNT; lane_id++)
         {
             if ((_lane_mask & (1 << lane_id)) > 0)
             {

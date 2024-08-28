@@ -3,7 +3,7 @@
  * Arduino firmware interfacing between a MIDI keyboard and a set of VCOs.
  *
  * @author Yohan Chalier
- * @version 2.0.0-a.1 2022-05-01
+ * @version 3.0.0-dev.1 2024-08-28
  */
 
 #include <MIDI.h>

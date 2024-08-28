@@ -60,9 +60,9 @@ public:
      *
      * @see `Allocator.check_mask`
      *
-     * @param mask An 8-bit pool mask
+     * @param mask An 16-bit pool mask
      */
-    void note_on_masked(byte pitch, byte mask);
+    void note_on_masked(byte pitch, uint16_t mask);
 
     /**
      * Handler for the *note-off* MIDI message, with an arbitrary lane mask.
@@ -71,9 +71,9 @@ public:
      *
      * @see `Allocator.check_mask`
      *
-     * @param mask An 8-bit pool mask
+     * @param mask An 16-bit pool mask
      */
-    void note_off_masked(byte pitch, byte mask);
+    void note_off_masked(byte pitch, uint16_t mask);
 
     /**
      * Handler for the *pitch-bend* MIDI message.
@@ -104,7 +104,7 @@ public:
      */
     void reset();
 
-    void reset_masked(byte mask);
+    void reset_masked(uint16_t mask);
 
     /**
      * Lock all active pools in their current state.
@@ -124,13 +124,13 @@ public:
     /**
      * Checks whether a bit mask includes a value.
      *
-     * @param mask An 8-bit mask of the form 0bXXXXXXXX
+     * @param mask A 16-bit mask of the form 0bXXXXXXXXXXXXXXXX
      * @param value A value between 0 and 7, indicating the bit index to check
-     *   the value of. Leftmost (most significant) bit is 7. Rightmost (least
+     *   the value of. Leftmost (most significant) bit is 15. Rightmost (least
      *   significant) is 0.
      * @return Whether mask's bit at position value is 1.
      */
-    static bool check_mask(byte mask, int value);
+    static bool check_mask(uint16_t mask, int value);
 
     bool is_active();
 

@@ -24,7 +24,7 @@ void Allocator::reset()
     }
 }
 
-void Allocator::reset_masked(byte mask)
+void Allocator::reset_masked(uint16_t mask)
 {
     for (int i = 0; i < POOL_COUNT; i++)
     {
@@ -40,47 +40,46 @@ void Allocator::set_lane_masks()
     reset();
     for (int i = 0; i < POOL_COUNT; i++)
     {
-        _pools[i]->set_lane_mask(0b00000000);
+        _pools[i]->set_lane_mask(0b0000000000000000);
     }
     switch (_config->get_polyphony_mode())
     {
     case MODE_MONOPHONIC:
-        _pools[0]->set_lane_mask(0b11111111);
+        _pools[0]->set_lane_mask(0b0000001111111111);
         break;
-    case MODE_DUOPHONIC:
-        _pools[0]->set_lane_mask(0b00001111);
-        _pools[1]->set_lane_mask(0b11110000);
+    case MODE_POLY5:
+        _pools[0]->set_lane_mask(0b0000000000000011);
+        _pools[1]->set_lane_mask(0b0000000000001100);
+        _pools[2]->set_lane_mask(0b0000000000110000);
+        _pools[3]->set_lane_mask(0b0000000011000000);
+        _pools[4]->set_lane_mask(0b0000001100000000);
         break;
-    case MODE_QUADROPHONIC:
-        _pools[0]->set_lane_mask(0b00000011);
-        _pools[1]->set_lane_mask(0b00001100);
-        _pools[2]->set_lane_mask(0b00110000);
-        _pools[3]->set_lane_mask(0b11000000);
-        break;
-    case MODE_OCTOPHONIC:
-        _pools[0]->set_lane_mask(0b00000001);
-        _pools[1]->set_lane_mask(0b00000010);
-        _pools[2]->set_lane_mask(0b00000100);
-        _pools[3]->set_lane_mask(0b00001000);
-        _pools[4]->set_lane_mask(0b00010000);
-        _pools[5]->set_lane_mask(0b00100000);
-        _pools[6]->set_lane_mask(0b01000000);
-        _pools[7]->set_lane_mask(0b10000000);
+    case MODE_POLY10:
+        _pools[0]->set_lane_mask(0b0000000000000001);
+        _pools[1]->set_lane_mask(0b0000000000000010);
+        _pools[2]->set_lane_mask(0b0000000000000100);
+        _pools[3]->set_lane_mask(0b0000000000001000);
+        _pools[4]->set_lane_mask(0b0000000000010000);
+        _pools[5]->set_lane_mask(0b0000000000100000);
+        _pools[6]->set_lane_mask(0b0000000001000000);
+        _pools[7]->set_lane_mask(0b0000000010000000);
+        _pools[8]->set_lane_mask(0b0000000100000000);
+        _pools[9]->set_lane_mask(0b0000001000000000);
         break;
     }
 }
 
 void Allocator::note_on(byte pitch)
 {
-    note_on_masked(pitch, 0b11111111);
+    note_on_masked(pitch, 0b1111111111111111);
 }
 
 void Allocator::note_off(byte pitch)
 {
-    note_off_masked(pitch, 0b11111111);
+    note_off_masked(pitch, 0b1111111111111111);
 }
 
-void Allocator::note_on_masked(byte pitch, byte mask)
+void Allocator::note_on_masked(byte pitch, uint16_t mask)
 {
     bool accepted = false;
     for (int i = 0; i < POOL_COUNT; i++)
@@ -136,7 +135,7 @@ void Allocator::note_on_masked(byte pitch, byte mask)
     }
 }
 
-void Allocator::note_off_masked(byte pitch, byte mask)
+void Allocator::note_off_masked(byte pitch, uint16_t mask)
 {
     for (int i = 0; i < POOL_COUNT; i++)
     {
@@ -174,32 +173,12 @@ void Allocator::hold_off()
     }
 }
 
-void Allocator::after_touch_poly(byte pitch, int bend)
-{
-    for (int i = 0; i < POOL_COUNT; i++)
-    {
-        if (_pools[i]->buffer_contains(pitch))
-        {
-            _pools[i]->bend(bend);
-            break;
-        }
-    }
-}
-
-void Allocator::after_touch_channel(int bend)
-{
-    for (int i = 0; i < POOL_COUNT; i++)
-    {
-        _pools[i]->bend(bend);
-    }
-}
-
 void Allocator::broadcast(byte pitch, int gate)
 {
     _router->broadcast(pitch, gate);
 }
 
-bool Allocator::check_mask(byte mask, int value)
+bool Allocator::check_mask(uint16_t mask, int value)
 {
     return (mask >> value) & 1;
 }

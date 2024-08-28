@@ -8,14 +8,17 @@ Router::Router(Config *config)
     _coupler_2 = new Coupler(PIN_SS_CV_2, PIN_GATE_2);
     _coupler_3 = new Coupler(PIN_SS_CV_3, PIN_GATE_3);
     _coupler_4 = new Coupler(PIN_SS_CV_4, PIN_GATE_4);
-    _lane_1 = new Lane(config, _coupler_1, COUPLER_A, 0);
-    _lane_2 = new Lane(config, _coupler_1, COUPLER_B, 1);
-    _lane_3 = new Lane(config, _coupler_2, COUPLER_A, 2);
-    _lane_4 = new Lane(config, _coupler_2, COUPLER_B, 3);
-    _lane_5 = new Lane(config, _coupler_3, COUPLER_A, 4);
-    _lane_6 = new Lane(config, _coupler_3, COUPLER_B, 5);
-    _lane_7 = new Lane(config, _coupler_4, COUPLER_A, 6);
-    _lane_8 = new Lane(config, _coupler_4, COUPLER_B, 7);
+    _coupler_5 = new Coupler(PIN_SS_CV_5, PIN_GATE_5);
+    _lane_1  = new Lane(config, _coupler_1, COUPLER_A, 0);
+    _lane_2  = new Lane(config, _coupler_1, COUPLER_B, 1);
+    _lane_3  = new Lane(config, _coupler_2, COUPLER_A, 2);
+    _lane_4  = new Lane(config, _coupler_2, COUPLER_B, 3);
+    _lane_5  = new Lane(config, _coupler_3, COUPLER_A, 4);
+    _lane_6  = new Lane(config, _coupler_3, COUPLER_B, 5);
+    _lane_7  = new Lane(config, _coupler_4, COUPLER_A, 6);
+    _lane_8  = new Lane(config, _coupler_4, COUPLER_B, 7);
+    _lane_9  = new Lane(config, _coupler_5, COUPLER_A, 8);
+    _lane_10 = new Lane(config, _coupler_5, COUPLER_B, 9);
 }
 
 void Router::setup()
@@ -24,6 +27,7 @@ void Router::setup()
     _coupler_2->setup();
     _coupler_3->setup();
     _coupler_4->setup();
+    _coupler_5->setup();
     _lane_1->setup();
     _lane_2->setup();
     _lane_3->setup();
@@ -32,6 +36,8 @@ void Router::setup()
     _lane_6->setup();
     _lane_7->setup();
     _lane_8->setup();
+    _lane_9->setup();
+    _lane_10->setup();
 }
 
 void Router::update()
@@ -44,6 +50,8 @@ void Router::update()
     _lane_6->update();
     _lane_7->update();
     _lane_8->update();
+    _lane_9->update();
+    _lane_10->update();
 }
 
 Lane *Router::select(int lane_id)
@@ -74,6 +82,12 @@ Lane *Router::select(int lane_id)
     case 7:
         return _lane_8;
         break;
+    case 8:
+        return _lane_9;
+        break;
+    case 9:
+        return _lane_10;
+        break;
     default:
         break;
     }
@@ -87,4 +101,5 @@ void Router::broadcast(byte pitch, int gate)
     _coupler_2->broadcast(setpoint, gate);
     _coupler_3->broadcast(setpoint, gate);
     _coupler_4->broadcast(setpoint, gate);
+    _coupler_5->broadcast(setpoint, gate);
 }

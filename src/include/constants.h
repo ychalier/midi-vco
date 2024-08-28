@@ -3,8 +3,8 @@
 
 // PINs wiring
 
-#define PIN_POLYPHONY_MODE A9    // Mono, Poly 2, Poly 4, Poly 8
-#define PIN_PITCH_BEND_RANGE A10 // Also impacts aftertouch
+#define PIN_POLYPHONY_MODE A9    // Mono, Poly 5, Poly 10
+#define PIN_PITCH_BEND_RANGE A10
 #define PIN_GLIDE_INTENSITY A11
 #define PIN_DETUNE A13           // Not implemented
 
@@ -15,12 +15,14 @@
 #define PIN_SS_CV_2 27
 #define PIN_SS_CV_3 25
 #define PIN_SS_CV_4 23
+#define PIN_SS_CV_5 21
 #define PIN_SS_BEND 31
 
 #define PIN_GATE_1 28
 #define PIN_GATE_2 26
 #define PIN_GATE_3 24
 #define PIN_GATE_4 22
+#define PIN_GATE_5 23
 
 #define PIN_LED 41
 
@@ -39,9 +41,8 @@
 // Enumerations
 
 #define MODE_MONOPHONIC 0
-#define MODE_DUOPHONIC 1
-#define MODE_QUADROPHONIC 2
-#define MODE_OCTOPHONIC 3
+#define MODE_POLY5 1
+#define MODE_POLY10 2
 
 #define PRIORITY_KEEP_FIRST 0
 #define PRIORITY_REPLACE_OLDEST 1
@@ -51,9 +52,8 @@
 
 #define CONFIG_CHANGE_POLYPHONY_MODE 1
 #define CONFIG_CHANGE_PRIORITY_MODE 2
-#define CONFIG_CHANGE_RECORD 4
-#define CONFIG_CHANGE_TUNING 8
-#define CONFIG_CHANGE_HOLD 16
+#define CONFIG_CHANGE_TUNING 4
+#define CONFIG_CHANGE_HOLD 8
 
 #define GLIDE_FLAG_PROPORTIONAL 1
 #define GLIDE_FLAG_CHROMATIC 2
@@ -78,9 +78,10 @@
 #define MIDI_MIN_PITCH 20    // Semitons
 #define PITCH_BEND_RANGE 2.0 // Semitons
 
-#define POOL_COUNT 8
+#define POOL_COUNT 10
+#define LANE_COUNT 10
 
-#define BUFFER_SIZE 8
+#define BUFFER_SIZE 10
 
 #define GLIDE_MAX_RATE 50  // Milliseconds per semitones
 #define GLIDE_MAX_TIME 500 // Milliseconds

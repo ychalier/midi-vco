@@ -31,11 +31,11 @@ bool Config::_read_polyphony_mode()
     int polyphony_mode = MODE_MONOPHONIC;
     if (value >= 682)
     {
-        polyphony_mode = MODE_OCTOPHONIC;
+        polyphony_mode = MODE_POLY10;
     }
     else if (value >= 341)
     {
-        polyphony_mode = MODE_QUADROPHONIC;
+        polyphony_mode = MODE_POLY5;
     }
     bool changed = _polyphony_mode != polyphony_mode;
     _polyphony_mode = polyphony_mode;

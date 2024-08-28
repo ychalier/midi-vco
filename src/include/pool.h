@@ -30,7 +30,7 @@ public:
      * @param lane_mask Lanes included in the pool. Least significant bits map
      *     to the firsts lanes.
      */
-    void set_lane_mask(byte lane_mask);
+    void set_lane_mask(uint16_t lane_mask);
 
     /**
      * Check if the pool includes at least one lane and is not locked.
@@ -117,7 +117,7 @@ private:
     Router *_router;
 
     /// Mask for the lanes included in the pool.
-    byte _lane_mask;
+    uint16_t _lane_mask;
 
     /// Note buffer.
     Buffer *_buffer;
