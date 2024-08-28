@@ -67,21 +67,6 @@ public:
     bool is_glide_proportional();
 
     /**
-     * Getter for the _active_source attribute.
-     */
-    byte get_active_source();
-
-    /**
-     * Getter for the _record attribute.
-     */
-    bool is_recording();
-
-    /**
-     * Getter for the _arpeggiator_mode attribute.
-     */
-    byte get_arpeggiator_mode();
-
-    /**
      * Getter for the _hold attribute.
      */
     bool get_hold();
@@ -90,16 +75,6 @@ public:
      * Getter for the _voltage_offset attribute.
      */
     float get_voltage_offset();
-
-    /**
-     * Getter for the _time_period attribute.
-     */
-    unsigned long get_time_period();
-
-    /**
-     * Getter for the _arpeggiator_sustain attribute.
-     */
-    float get_arpeggiator_sustain();
 
     /**
      * Getter for the _detune attribute.
@@ -111,12 +86,6 @@ public:
      */
     bool is_tuning();
 
-    byte get_pool_mask();
-
-    int get_active_sequencer_track();
-
-    unsigned long get_time_div();
-
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -124,30 +93,17 @@ private:
     float _glide_intensity;
     bool _glide_proportional;
     float _pitch_bend_range;
-    byte _active_source;
-    bool _record;
-    byte _arpeggiator_mode;
     bool _hold;
     float _voltage_offset;
-    unsigned long _time_period;
-    float _arpeggiator_sustain;
     int _detune;
     bool _tuning;
-    byte _pool_mask;
-    int _active_sequencer_track;
 
-    bool _read_source();
     bool _read_polyphony_mode();
     void _read_pitch_bend_range();
     void _read_glide_intensity();
-    void _read_arpeggiator_mode();
     void _read_detune();
-    void _read_time();
     bool _read_priority_mode();
-    bool _read_record();
     bool _read_tuning();
-    bool _read_active_sequencer_track();
-    void _derive_pool_mask();
 };
 
 #endif
