@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['display_272',['Display',['../class_display.html',1,'']]]
+  ['glide_223',['Glide',['../struct_glide.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['note_468',['note',['../struct_midi_event.html#a18883b76ecbdee6bc1f004958f7187c8',1,'MidiEvent']]]
+  ['pitch_378',['pitch',['../struct_midi_event.html#a653cbf19925580394b1cfbfe8b70253d',1,'MidiEvent']]]
 ];

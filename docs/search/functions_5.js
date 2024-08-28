@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['find_5fnext_5fnote_329',['find_next_note',['../class_arpeggiator.html#adc4380bf3f930b94285ac36438b40411',1,'Arpeggiator']]]
+  ['empty_268',['empty',['../class_buffer.html#a4261c1a06920df9c964e4e1ef03353eb',1,'Buffer']]]
 ];

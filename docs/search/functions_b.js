@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['note_5foff_365',['note_off',['../class_allocator.html#a503686789d548982a45389b201385c8a',1,'Allocator::note_off()'],['../class_arpeggiator.html#a6ea02b5ba425e4290358ca9dab1ea56a',1,'Arpeggiator::note_off()'],['../class_sequencer.html#a356c779922b6993fcca2db51a52039b2',1,'Sequencer::note_off()']]],
-  ['note_5fon_366',['note_on',['../class_allocator.html#ac488e12b005e2ac5ffd222ea69825a34',1,'Allocator::note_on()'],['../class_arpeggiator.html#a26e8f2724b55410c85aae33e6c0df9ee',1,'Arpeggiator::note_on()'],['../class_sequencer.html#a489b3c86d6a792cf33820f81a701b515',1,'Sequencer::note_on()']]]
+  ['note_5foff_298',['note_off',['../class_allocator.html#a0763f8fa7283a96d833d981bf8d86a26',1,'Allocator']]],
+  ['note_5foff_5fmasked_299',['note_off_masked',['../class_allocator.html#ab3bad6e7b7ee29f6bbda02bf7c658955',1,'Allocator']]],
+  ['note_5fon_300',['note_on',['../class_allocator.html#a1d070a2acf06ed6696d196003185bcde',1,'Allocator']]],
+  ['note_5fon_5fmasked_301',['note_on_masked',['../class_allocator.html#a7a10dafb52918226a66a29172563b15b',1,'Allocator']]]
 ];

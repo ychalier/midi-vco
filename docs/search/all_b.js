@@ -1,23 +1,7 @@
 var searchData=
 [
-  ['main_2eino_168',['main.ino',['../main_8ino.html',1,'']]],
-  ['midi_5fcontrol_5farpeggiator_5fmode_169',['MIDI_CONTROL_ARPEGGIATOR_MODE',['../constants_8h.html#ac5ccb686b7e689a6f5d75b74b35edbe0',1,'constants.h']]],
-  ['midi_5fcontrol_5fglide_5fchromatic_170',['MIDI_CONTROL_GLIDE_CHROMATIC',['../constants_8h.html#a6f5f51e4392bb25ad7a635fcf6e9ae12',1,'constants.h']]],
-  ['midi_5fcontrol_5fglide_5fintensity_171',['MIDI_CONTROL_GLIDE_INTENSITY',['../constants_8h.html#a0c3ee94cecec35fa74a18e28cd5fdfde',1,'constants.h']]],
-  ['midi_5fcontrol_5fglide_5flegato_172',['MIDI_CONTROL_GLIDE_LEGATO',['../constants_8h.html#a341edd74be666aadea1c3acc0d35aadd',1,'constants.h']]],
-  ['midi_5fcontrol_5fhold_173',['MIDI_CONTROL_HOLD',['../constants_8h.html#ae73ec183f1c46df700059a7106e5a533',1,'constants.h']]],
-  ['midi_5fcontrol_5fpitch_5fbend_5frange_174',['MIDI_CONTROL_PITCH_BEND_RANGE',['../constants_8h.html#af3735eb3ac8a43e8907b1f3cdafdc7f1',1,'constants.h']]],
-  ['midi_5fcontrol_5fsequencer_5frecord_175',['MIDI_CONTROL_SEQUENCER_RECORD',['../constants_8h.html#aa0d8bb786ad2fdcd5267ff46f2548e2a',1,'constants.h']]],
-  ['midi_5fcontrol_5fsource_176',['MIDI_CONTROL_SOURCE',['../constants_8h.html#a004d9265cdc8a596713cce1bba94f4ac',1,'constants.h']]],
-  ['midi_5fcontrol_5ftime_177',['MIDI_CONTROL_TIME',['../constants_8h.html#a15581949a5b8381f0149cf58de366665',1,'constants.h']]],
-  ['midi_5fcontrol_5fvoltage_5foffset_178',['MIDI_CONTROL_VOLTAGE_OFFSET',['../constants_8h.html#aff6c4842cd4e232ad55bd056864daa71',1,'constants.h']]],
-  ['midi_5finterface_2ecpp_179',['midi_interface.cpp',['../midi__interface_8cpp.html',1,'']]],
-  ['midi_5finterface_2eh_180',['midi_interface.h',['../midi__interface_8h.html',1,'']]],
-  ['midi_5fmin_5fpitch_181',['MIDI_MIN_PITCH',['../constants_8h.html#a5a4813366397b194aa7fd51b50c01b19',1,'constants.h']]],
-  ['midievent_182',['MidiEvent',['../struct_midi_event.html',1,'MidiEvent'],['../structs_8h.html#a99fe673a85b0af40b65e5680dfeecb84',1,'MidiEvent():&#160;structs.h']]],
-  ['midiinterface_183',['MidiInterface',['../class_midi_interface.html',1,'MidiInterface'],['../class_midi_interface.html#afe4ba26dd6259058f06d01842bafedd7',1,'MidiInterface::MidiInterface()']]],
-  ['mode_5fduophonic_184',['MODE_DUOPHONIC',['../constants_8h.html#a45bff5fc91e80789fafb31cc3f95ef5f',1,'constants.h']]],
-  ['mode_5fmonophonic_185',['MODE_MONOPHONIC',['../constants_8h.html#a2a33587f0528d88828ffca16d9623130',1,'constants.h']]],
-  ['mode_5foctophonic_186',['MODE_OCTOPHONIC',['../constants_8h.html#a9c52b96cf8a40e99ced21bb65d9cf91a',1,'constants.h']]],
-  ['mode_5fquadrophonic_187',['MODE_QUADROPHONIC',['../constants_8h.html#acd74d69a69f038b2f32b3ac39418e800',1,'constants.h']]]
+  ['note_5foff_150',['note_off',['../class_allocator.html#a0763f8fa7283a96d833d981bf8d86a26',1,'Allocator']]],
+  ['note_5foff_5fmasked_151',['note_off_masked',['../class_allocator.html#ab3bad6e7b7ee29f6bbda02bf7c658955',1,'Allocator']]],
+  ['note_5fon_152',['note_on',['../class_allocator.html#a1d070a2acf06ed6696d196003185bcde',1,'Allocator']]],
+  ['note_5fon_5fmasked_153',['note_on_masked',['../class_allocator.html#a7a10dafb52918226a66a29172563b15b',1,'Allocator']]]
 ];

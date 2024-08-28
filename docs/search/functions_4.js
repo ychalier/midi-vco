@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['empty_328',['empty',['../class_buffer.html#a4261c1a06920df9c964e4e1ef03353eb',1,'Buffer']]]
+  ['deactivate_267',['deactivate',['../class_coupler.html#ac1da7bbdf99a3ee92d96423c9beb12fd',1,'Coupler']]]
 ];

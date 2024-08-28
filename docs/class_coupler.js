@@ -2,6 +2,7 @@ var class_coupler =
 [
     [ "Coupler", "class_coupler.html#af26f2529ff4c67efc8c81fb5f88a67cc", null ],
     [ "activate", "class_coupler.html#a5b31285724d1196967ee14891695f685", null ],
+    [ "broadcast", "class_coupler.html#ac17a7bea30c90db6a1d1bfd203e8e0c9", null ],
     [ "deactivate", "class_coupler.html#ac1da7bbdf99a3ee92d96423c9beb12fd", null ],
     [ "set", "class_coupler.html#a49769ab58eecddc918f6fd5fec27d7a8", null ],
     [ "setup", "class_coupler.html#a4c9da194e45e555f5efa789df1844e96", null ],

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['deactivate_324',['deactivate',['../class_coupler.html#ac1da7bbdf99a3ee92d96423c9beb12fd',1,'Coupler']]],
-  ['demo_325',['demo',['../class_display.html#ab089792e270aa44b051381917e762fdf',1,'Display']]],
-  ['display_326',['Display',['../class_display.html#ae972fffea6f7ca1d627ef48c3d841bb3',1,'Display']]],
-  ['display_5fstate_327',['display_state',['../class_allocator.html#a05495536e18d1814ef24b406a67b92bd',1,'Allocator']]]
+  ['check_5fmask_263',['check_mask',['../class_allocator.html#abcff54dc19e2ae05f0cd569a7ca116ae',1,'Allocator']]],
+  ['config_264',['Config',['../class_config.html#abd0c571c116924871e30444b192b792a',1,'Config']]],
+  ['contains_265',['contains',['../class_buffer.html#a0c05ab7e9ee0df3313f140904d4f0642',1,'Buffer']]],
+  ['coupler_266',['Coupler',['../class_coupler.html#af26f2529ff4c67efc8c81fb5f88a67cc',1,'Coupler']]]
 ];

@@ -1,12 +1,8 @@
 var searchData=
 [
-  ['handle_5fafter_5ftouch_5fchannel_148',['handle_after_touch_channel',['../class_midi_interface.html#ab0fdbb96f305636c4420e510c706f355',1,'MidiInterface']]],
-  ['handle_5fafter_5ftouch_5fpoly_149',['handle_after_touch_poly',['../class_midi_interface.html#af85f061e94a5477f07814ee719726ec6',1,'MidiInterface']]],
-  ['handle_5fcontrol_5fchange_150',['handle_control_change',['../class_midi_interface.html#a4fc9099593930f2fe02cbd7c0feecc91',1,'MidiInterface']]],
-  ['handle_5fmidi_5fcontrol_151',['handle_midi_control',['../class_config.html#aa3f98460459fe2f6bf9069560212fb1d',1,'Config']]],
-  ['handle_5fnote_5foff_152',['handle_note_off',['../class_midi_interface.html#a1ac5a0544809c406a88fd4385b361cb0',1,'MidiInterface']]],
-  ['handle_5fnote_5fon_153',['handle_note_on',['../class_midi_interface.html#a4706f1e888737d654705212a6dddd5c7',1,'MidiInterface']]],
-  ['handle_5fpitch_5fbend_154',['handle_pitch_bend',['../class_midi_interface.html#a88589e0acdc5650cef59fbebfc3533cd',1,'MidiInterface']]],
-  ['hold_5foff_155',['hold_off',['../class_allocator.html#ab1c36dcc85e01100ef49180b84ff007c',1,'Allocator']]],
-  ['hold_5fon_156',['hold_on',['../class_allocator.html#a2d694e79fc61a52a38faf9f5b8c26de9',1,'Allocator']]]
+  ['is_5factive_119',['is_active',['../class_allocator.html#a1cc2dc10c9e01c08a83c585b716cf8f9',1,'Allocator::is_active()'],['../class_pool.html#ad6c71a83d60a1c69fad7f4ebcd02d633',1,'Pool::is_active()']]],
+  ['is_5fenabled_120',['is_enabled',['../class_pool.html#aea355f50869629b54135c86843762c70',1,'Pool']]],
+  ['is_5ffree_121',['is_free',['../class_pool.html#a703287c34419cae6dc60ec8089a05e53',1,'Pool']]],
+  ['is_5fglide_5fproportional_122',['is_glide_proportional',['../class_config.html#a26eaa14ccd344ecf577f05e72554d80c',1,'Config']]],
+  ['is_5ftuning_123',['is_tuning',['../class_config.html#a83fb50ae9ef5cd7648971f0d84dfc1aa',1,'Config']]]
 ];

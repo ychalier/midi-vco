@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['accepts_5fchannel_307',['accepts_channel',['../class_pool.html#af1b3b5b9f7ac012125f917e67d51df8b',1,'Pool']]],
-  ['accepts_5fnote_308',['accepts_note',['../class_pool.html#aebb195c3de79da2fc38b2598e4e46860',1,'Pool']]],
-  ['activate_309',['activate',['../class_coupler.html#a5b31285724d1196967ee14891695f685',1,'Coupler']]],
-  ['after_5ftouch_5fchannel_310',['after_touch_channel',['../class_allocator.html#a4a63b8a5c903ff9507ea21834b43de0d',1,'Allocator']]],
-  ['after_5ftouch_5fpoly_311',['after_touch_poly',['../class_allocator.html#ab9ab34c5887b042fe33989b14ca471d4',1,'Allocator']]],
-  ['allocator_312',['Allocator',['../class_allocator.html#a95ae2a7dfb2b3026f29be4685b45f7da',1,'Allocator']]],
-  ['arpeggiator_313',['Arpeggiator',['../class_arpeggiator.html#afab7aaa8203c42b18377f3e7e64ba1cc',1,'Arpeggiator']]]
+  ['_5fread_5fdetune_249',['_read_detune',['../class_config.html#aa0e27cad523186b193a6ebfb8b206f1a',1,'Config']]],
+  ['_5fread_5fglide_5fintensity_250',['_read_glide_intensity',['../class_config.html#a7b769758c2e43d7f99f859d635eead38',1,'Config']]],
+  ['_5fread_5fpitch_5fbend_5frange_251',['_read_pitch_bend_range',['../class_config.html#a14264978e1a9205b39f125bc050a1c33',1,'Config']]],
+  ['_5fread_5fpolyphony_5fmode_252',['_read_polyphony_mode',['../class_config.html#a1789bb86a6684a196df9dfef97e26e16',1,'Config']]],
+  ['_5fread_5fpriority_5fmode_253',['_read_priority_mode',['../class_config.html#a2b2122a7a4f6f4fae4167ae348c265ad',1,'Config']]],
+  ['_5fread_5ftuning_254',['_read_tuning',['../class_config.html#a54afb307157ad1dee6540422316c2710',1,'Config']]]
 ];

@@ -1,9 +1,11 @@
 var class_router =
 [
-    [ "Router", "class_router.html#aaa8beda8c3182bacbc610d95e5332a0a", null ],
+    [ "Router", "class_router.html#a8d406465372c4f7f88ed4a2ac88c2bdd", null ],
+    [ "broadcast", "class_router.html#ab086b6247637dac64b2bf02d9c5c37e4", null ],
     [ "select", "class_router.html#af4641f2500f092754121c21360d592bd", null ],
     [ "setup", "class_router.html#ad42d4039bd4a012c34c7da685148a8b5", null ],
     [ "update", "class_router.html#aa1b7b08c47135938efc721249f36a6a1", null ],
+    [ "_config", "class_router.html#a75b39c5208399a1f5034a5cd58314de2", null ],
     [ "_coupler_1", "class_router.html#a042877995484978b28382338e42b8b6e", null ],
     [ "_coupler_2", "class_router.html#acfca7bb1df05212e4f2b96300f0cc3c0", null ],
     [ "_coupler_3", "class_router.html#a2454d12bfc6378bb6f32ef4f3cec0a1c", null ],

@@ -1,6 +1,7 @@
 var struct_midi_event =
 [
-    [ "note", "struct_midi_event.html#a18883b76ecbdee6bc1f004958f7187c8", null ],
-    [ "timestamp", "struct_midi_event.html#afdd8468de69180b7f8e96ce9836f9d5f", null ],
+    [ "division", "struct_midi_event.html#a65e5f5b321f50b5e89f17f4ef493bffd", null ],
+    [ "mask", "struct_midi_event.html#a9fef325d40882b73d2be739a4f6634bd", null ],
+    [ "pitch", "struct_midi_event.html#a653cbf19925580394b1cfbfe8b70253d", null ],
     [ "type", "struct_midi_event.html#a83b39faf75c231e5609f953e8e471f4e", null ]
 ];
