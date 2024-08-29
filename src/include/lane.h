@@ -1,5 +1,5 @@
-#ifndef lane_h
-#define lane_h
+#ifndef cv_lane_h
+#define cv_lane_h
 
 #include "Arduino.h"
 #include <MCP48xx.h>
@@ -37,7 +37,7 @@ public:
      *
      * @param setpoint DAC input value.
      */
-    void set(int setpoint);
+    void set(int cv_setpoint, int vel_setpoint);
 
     /**
      * Set the CV signal to a setpoint and set the GATE to HIGH. Use this
@@ -45,7 +45,7 @@ public:
      *
      * @param setpoint DAC input value.
      */
-    void start(int setpoint);
+    void start(int cv_setpoint, int vel_setpoint);
 
     /**
      * Set a note to be played according to its pitch.
@@ -55,7 +55,7 @@ public:
      * @param pitch 7-bit pitch encoding.
      * @param bend Signed 14-bit encoding of the pitch-bend on that value.
      */
-    void set_pitch(byte pitch, int bend, bool ignore_detune);
+    void set_note(Note note, int bend, bool ignore_detune);
 
     /**
      * Start a note to be played according to its pitch.
@@ -65,7 +65,7 @@ public:
      * @param pitch 7-bit pitch encoding.
      * @param bend Signed 14-bit encoding of the pitch-bend on that value.
      */
-    void start_pitch(byte pitch, int bend, bool ignore_detune);
+    void start_note(Note note, int bend, bool ignore_detune);
 
     /**
      * Set the GATE to LOW.
@@ -89,6 +89,8 @@ public:
      */
     static int pitch_to_voltage(Config *config, byte pitch, int bend);
 
+    static int velocity_to_voltage(Config *config, byte velocity);
+
     /**
      * Reverse the pitch to voltage computation.
      *
@@ -108,7 +110,9 @@ private:
     bool _active;
 
     /// Last setpoint (including pitch bends).
-    int _current_setpoint;
+    int _current_cv_setpoint;
+
+    int _current_vel_setpoint;
 
     /// Wrapper for the glide information.
     Glide _glide;

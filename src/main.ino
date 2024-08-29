@@ -109,20 +109,20 @@ void handle_note_on([[maybe_unused]] byte channel, byte pitch, byte velocity)
 {
     if (velocity == 0)
     {
-        midif->handle_note_off(pitch);
+        midif->handle_note_off({pitch, velocity});
     }
     else
     {
-        midif->handle_note_on(pitch);
+        midif->handle_note_on({pitch, velocity});
     }
 }
 
 /**
  * @see MidiInterface.handle_note_off
  */
-void handle_note_off([[maybe_unused]] byte channel, byte pitch, [[maybe_unused]] byte velocity)
+void handle_note_off([[maybe_unused]] byte channel, byte pitch, byte velocity)
 {
-    midif->handle_note_off(pitch);
+    midif->handle_note_off({pitch, velocity});
 }
 
 /**

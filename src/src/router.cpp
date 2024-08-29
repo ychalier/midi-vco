@@ -4,25 +4,31 @@
 Router::Router(Config *config)
 {
     _config = config;
-    _coupler_1 = new Coupler(PIN_SS_CV_1, PIN_GATE_1);
-    _coupler_2 = new Coupler(PIN_SS_CV_2, PIN_GATE_2);
-    _coupler_3 = new Coupler(PIN_SS_CV_3, PIN_GATE_3);
-    _coupler_4 = new Coupler(PIN_SS_CV_4, PIN_GATE_4);
-    _coupler_5 = new Coupler(PIN_SS_CV_5, PIN_GATE_5);
-    _lane_1  = new Lane(config, _coupler_1, COUPLER_A, 0);
-    _lane_2  = new Lane(config, _coupler_1, COUPLER_B, 1);
-    _lane_3  = new Lane(config, _coupler_2, COUPLER_A, 2);
-    _lane_4  = new Lane(config, _coupler_2, COUPLER_B, 3);
-    _lane_5  = new Lane(config, _coupler_3, COUPLER_A, 4);
-    _lane_6  = new Lane(config, _coupler_3, COUPLER_B, 5);
-    _lane_7  = new Lane(config, _coupler_4, COUPLER_A, 6);
-    _lane_8  = new Lane(config, _coupler_4, COUPLER_B, 7);
-    _lane_9  = new Lane(config, _coupler_5, COUPLER_A, 8);
-    _lane_10 = new Lane(config, _coupler_5, COUPLER_B, 9);
+    _dac_1 = new Dac(PIN_SS_VEL_1);
+    _dac_2 = new Dac(PIN_SS_VEL_2);
+    _dac_3 = new Dac(PIN_SS_VEL_3);
+    _coupler_1 = new Coupler(PIN_SS_CV_1, PIN_GATE_1, _dac_1->get(CHANNEL_A));
+    _coupler_2 = new Coupler(PIN_SS_CV_2, PIN_GATE_2, _dac_1->get(CHANNEL_B));
+    _coupler_3 = new Coupler(PIN_SS_CV_3, PIN_GATE_3, _dac_2->get(CHANNEL_A));
+    _coupler_4 = new Coupler(PIN_SS_CV_4, PIN_GATE_4, _dac_2->get(CHANNEL_B));
+    _coupler_5 = new Coupler(PIN_SS_CV_5, PIN_GATE_5, _dac_3->get(CHANNEL_A));
+    _lane_1  = new Lane(config, _coupler_1, CHANNEL_A, 0);
+    _lane_2  = new Lane(config, _coupler_1, CHANNEL_B, 1);
+    _lane_3  = new Lane(config, _coupler_2, CHANNEL_A, 2);
+    _lane_4  = new Lane(config, _coupler_2, CHANNEL_B, 3);
+    _lane_5  = new Lane(config, _coupler_3, CHANNEL_A, 4);
+    _lane_6  = new Lane(config, _coupler_3, CHANNEL_B, 5);
+    _lane_7  = new Lane(config, _coupler_4, CHANNEL_A, 6);
+    _lane_8  = new Lane(config, _coupler_4, CHANNEL_B, 7);
+    _lane_9  = new Lane(config, _coupler_5, CHANNEL_A, 8);
+    _lane_10 = new Lane(config, _coupler_5, CHANNEL_B, 9);
 }
 
 void Router::setup()
 {
+    _dac_1->setup();
+    _dac_2->setup();
+    _dac_3->setup();
     _coupler_1->setup();
     _coupler_2->setup();
     _coupler_3->setup();

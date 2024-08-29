@@ -6,7 +6,7 @@ Buffer::Buffer()
     _cursor = -1;
     for (int i = 0; i < BUFFER_SIZE; i++)
     {
-        _notes[i] = 0;
+        _notes[i] = {0, 0};
     }
 }
 
@@ -15,7 +15,7 @@ bool Buffer::empty()
     return _cursor == -1;
 }
 
-byte Buffer::get(bool &found)
+Note Buffer::get(bool &found)
 {
     if (_cursor >= 0)
     {
@@ -29,7 +29,7 @@ byte Buffer::get(bool &found)
     }
 }
 
-void Buffer::push(byte pitch)
+void Buffer::push(Note note)
 {
     _cursor++;
     if (_cursor >= BUFFER_SIZE)
@@ -37,15 +37,15 @@ void Buffer::push(byte pitch)
         shift(0);
         _cursor = BUFFER_SIZE - 1;
     }
-    _notes[_cursor] = pitch;
+    _notes[_cursor] = note;
 }
 
-bool Buffer::pop(byte pitch)
+bool Buffer::pop(Note note)
 {
     bool found = false;
     for (int i = 0; i <= _cursor; i++)
     {
-        if (_notes[i] == pitch)
+        if (_notes[i].pitch == note.pitch)
         {
             shift(i);
             _cursor--;
@@ -69,7 +69,7 @@ void Buffer::reset()
     _cursor = -1;
     for (int i = 0; i < BUFFER_SIZE; i++)
     {
-        _notes[i] = 0;
+        _notes[i] = {0, 0};
     }
 }
 
@@ -78,21 +78,21 @@ int Buffer::get_size()
     return _cursor + 1;
 }
 
-byte Buffer::get_at_index(int index)
+Note Buffer::get_at_index(int index)
 {
     if (index >= 0 && index <= _cursor)
     {
         return _notes[index];
     }
-    return 0;
+    return {0, 0};
 }
 
-bool Buffer::contains(byte pitch)
+bool Buffer::contains(Note note)
 {
     bool found = false;
     for (int i = 0; i <= _cursor; i++)
     {
-        if (_notes[i] == pitch)
+        if (_notes[i].pitch == note.pitch)
         {
             found = true;
             break;

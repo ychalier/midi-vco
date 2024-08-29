@@ -3,8 +3,11 @@
 
 #include "Arduino.h"
 #include "constants.h"
+#include "config.h"
 #include "lane.h"
 #include "coupler.h"
+#include "dac.h"
+#include <MCP48xx.h>
 
 /**
  * Holder for the different lanes.
@@ -42,6 +45,9 @@ public:
 
 private:
     Config *_config;
+    Dac *_dac_1;
+    Dac *_dac_2;
+    Dac *_dac_3;
     Coupler *_coupler_1;
     Coupler *_coupler_2;
     Coupler *_coupler_3;

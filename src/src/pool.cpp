@@ -34,7 +34,7 @@ bool Pool::is_active()
 void Pool::load_buffer(int bend, bool set_only)
 {
     bool found = false;
-    byte pitch = _buffer->get(found);
+    Note note = _buffer->get(found);
     if (found)
     {
         for (byte lane_id = 0; lane_id < LANE_COUNT; lane_id++)
@@ -43,24 +43,24 @@ void Pool::load_buffer(int bend, bool set_only)
             {
                 if (set_only)
                 {
-                    _router->select(lane_id)->set_pitch(pitch, bend, false);
+                    _router->select(lane_id)->set_note(note, bend, false);
                 }
                 else
                 {
-                    _router->select(lane_id)->start_pitch(pitch, 0, false);
+                    _router->select(lane_id)->start_note(note, 0, false);
                 }
             }
         }
     }
 }
 
-void Pool::load(byte pitch)
+void Pool::load(Note note)
 {
     if (!_locked)
     {
         _active = true;
         _era = millis();
-        _buffer->push(pitch);
+        _buffer->push(note);
         load_buffer(0, false);
     }
 }
@@ -78,9 +78,9 @@ void Pool::stop()
     }
 }
 
-bool Pool::unload(byte pitch)
+bool Pool::unload(Note note)
 {
-    if (_active && _buffer->pop(pitch))
+    if (_active && _buffer->pop(note))
     {
         if (!_locked)
         {
@@ -132,7 +132,7 @@ void Pool::unlock()
     }
 }
 
-bool Pool::buffer_contains(byte pitch)
+bool Pool::buffer_contains(Note note)
 {
-    return _active && _buffer->contains(pitch);
+    return _active && _buffer->contains(note);
 }

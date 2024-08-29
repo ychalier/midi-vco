@@ -17,6 +17,9 @@
 #define PIN_SS_CV_4 23
 #define PIN_SS_CV_5 21
 #define PIN_SS_BEND 31
+#define PIN_SS_VEL_1 0 // TBD
+#define PIN_SS_VEL_2 0 // TBD
+#define PIN_SS_VEL_3 0 // TBD
 
 #define PIN_GATE_1 28
 #define PIN_GATE_2 26
@@ -93,5 +96,8 @@
 const int DETUNE_VALUES[DETUNE_VALUE_COUNT] = {-24, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 24};  // Semitones
 
 #define GATE_STATE_DURING_TUNING LOW
+
+#define CHANNEL_A true
+#define CHANNEL_B false
 
 #endif

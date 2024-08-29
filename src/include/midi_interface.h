@@ -35,14 +35,14 @@ public:
      *
      * @param pitch Note pitch in semitons (7-bit integer).
      */
-    void handle_note_on(byte pitch);
+    void handle_note_on(Note note);
 
     /**
      * Callback for the MIDI note-off message.
      *
      * @param pitch Note pitch in semitons (7-bit integer).
      */
-    void handle_note_off(byte pitch);
+    void handle_note_off(Note note);
 
     /**
      * Callback for the MIDI pitch-bend message. Also updates the channel A of

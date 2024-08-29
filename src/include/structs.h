@@ -3,6 +3,12 @@
 
 #include "Arduino.h"
 
+typedef struct Note
+{
+    byte pitch;
+    byte velocity;
+} Note;
+
 /**
  * Simple data structure holding information for a note glide.
  */
@@ -23,17 +29,5 @@ typedef struct Glide
     /// Target duration for the glide.
     unsigned long duration;
 } Glide;
-
-/**
- * Data representation of a sequencer event, either a note-on or a note-off
- * message.
- */
-typedef struct MidiEvent
-{
-    int division;
-    bool type;
-    byte pitch;
-    byte mask;
-} MidiEvent;
 
 #endif

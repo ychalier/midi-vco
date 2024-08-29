@@ -7,7 +7,7 @@ Lane::Lane(Config *config, Coupler *coupler, bool channel, int led_id)
     _coupler = coupler;
     _channel = channel;
     _led_id = led_id;
-    _current_setpoint = 0;
+    _current_cv_setpoint = 0;
     _glide = {false, 0, 0, 0, 0};
     _active = false;
 }
@@ -16,29 +16,30 @@ void Lane::setup()
 {
 }
 
-void Lane::set(int setpoint)
+void Lane::set(int cv_setpoint, int vel_setpoint)
 {
-    _current_setpoint = setpoint;
-    _coupler->set(_channel, setpoint);
+    _current_cv_setpoint = cv_setpoint;
+    _current_vel_setpoint = vel_setpoint;
+    _coupler->set(_channel, cv_setpoint, vel_setpoint);
 }
 
-void Lane::start(int setpoint)
+void Lane::start(int cv_setpoint, int vel_setpoint)
 {
     float glide_intensity = _config->get_glide_intensity();
     if (glide_intensity == 0 ||
         (!_active && (GLIDE_FLAG_LEGATO & _config->get_glide_flags())))
     {
-        set(setpoint);
+        set(cv_setpoint, vel_setpoint);
     }
     else
     {
         _glide.active = true;
-        _glide.setpoint_start = _current_setpoint;
-        _glide.setpoint_end = setpoint;
+        _glide.setpoint_start = _current_cv_setpoint;
+        _glide.setpoint_end = cv_setpoint;
         _glide.time_start = millis();
         if (_config->is_glide_proportional())
         {
-            float gap = setpoint_to_pitch(fabs(_current_setpoint - setpoint)) - MIDI_MIN_PITCH;
+            float gap = setpoint_to_pitch(fabs(_current_cv_setpoint - cv_setpoint)) - MIDI_MIN_PITCH;
             _glide.duration = pow(glide_intensity, GLIDE_INTENSITY_POWER) * GLIDE_MAX_RATE * gap;
         }
         else
@@ -51,27 +52,27 @@ void Lane::start(int setpoint)
     _active = true;
 }
 
-void Lane::set_pitch(byte pitch, int bend, bool ignore_detune)
+void Lane::set_note(Note note, int bend, bool ignore_detune)
 {
     if (_channel || ignore_detune)
     {
-        set(pitch_to_voltage(_config, pitch, bend));
+        set(pitch_to_voltage(_config, note.pitch, bend), velocity_to_voltage(_config, note.velocity));
     }
     else
     {
-        set(pitch_to_voltage(_config, pitch + _config->get_detune(), bend));
+        set(pitch_to_voltage(_config, note.pitch + _config->get_detune(), bend), velocity_to_voltage(_config, note.velocity));
     }
 }
 
-void Lane::start_pitch(byte pitch, int bend, bool ignore_detune)
+void Lane::start_note(Note note, int bend, bool ignore_detune)
 {
     if (_channel || ignore_detune)
     {
-        start(pitch_to_voltage(_config, pitch, bend));
+        start(pitch_to_voltage(_config, note.pitch, bend), velocity_to_voltage(_config, note.velocity));
     }
     else
     {
-        start(pitch_to_voltage(_config, pitch + _config->get_detune(), bend));
+        start(pitch_to_voltage(_config, note.pitch + _config->get_detune(), bend), velocity_to_voltage(_config, note.velocity));
     }
 }
 
@@ -95,7 +96,7 @@ void Lane::update()
         {
             setpoint = pitch_to_voltage(_config, setpoint_to_pitch(setpoint), 0);
         }
-        set((int)setpoint);
+        set((int)setpoint, _current_vel_setpoint);
         if (progress >= 1)
         {
             _glide.active = false;
@@ -115,6 +116,11 @@ int Lane::pitch_to_voltage(Config *config, byte pitch, int bend)
     {
         voltage = DAC_VMAX;
     }
+    return (int)(1000 * voltage);
+}
+
+int Lane::velocity_to_voltage(Config *config, byte velocity) {
+    float voltage = DAC_VMAX * (float)velocity / 127.0;
     return (int)(1000 * voltage);
 }
 

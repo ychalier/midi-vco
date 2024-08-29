@@ -21,14 +21,14 @@ void MidiInterface::setup()
     _dac->updateDAC();
 }
 
-void MidiInterface::handle_note_on(byte pitch)
+void MidiInterface::handle_note_on(Note note)
 {
-    _allocator->note_on(pitch);
+    _allocator->note_on(note);
 }
 
-void MidiInterface::handle_note_off(byte pitch)
+void MidiInterface::handle_note_off(Note note)
 {
-    _allocator->note_off(pitch);
+    _allocator->note_off(note);
 }
 
 void MidiInterface::handle_pitch_bend(int bend)

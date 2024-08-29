@@ -56,7 +56,7 @@ public:
      *
      * @param note The note to load.
      */
-    void load(byte pitch);
+    void load(Note note);
 
     /**
      * Attempt to unload a note, if it is in the buffer. In that case, stop the
@@ -65,7 +65,7 @@ public:
      * @param note The note to unload.
      * @return True if the note was in the buffer and stopped.
      */
-    bool unload(byte pitch);
+    bool unload(Note note);
 
     /**
      * Load the current note in the buffer on the lanes.
@@ -111,7 +111,7 @@ public:
      * @param note The note to find.
      * @return `true` if the internal buffer contains that note.
      */
-    bool buffer_contains(byte pitch);
+    bool buffer_contains(Note note);
 
 private:
     Router *_router;

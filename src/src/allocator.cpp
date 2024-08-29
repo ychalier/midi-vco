@@ -69,24 +69,24 @@ void Allocator::set_lane_masks()
     }
 }
 
-void Allocator::note_on(byte pitch)
+void Allocator::note_on(Note note)
 {
-    note_on_masked(pitch, 0b1111111111111111);
+    note_on_masked(note, 0b1111111111111111);
 }
 
-void Allocator::note_off(byte pitch)
+void Allocator::note_off(Note note)
 {
-    note_off_masked(pitch, 0b1111111111111111);
+    note_off_masked(note, 0b1111111111111111);
 }
 
-void Allocator::note_on_masked(byte pitch, uint16_t mask)
+void Allocator::note_on_masked(Note note, uint16_t mask)
 {
     bool accepted = false;
     for (int i = 0; i < POOL_COUNT; i++)
     {
         if (check_mask(mask, i) && _pools[i]->is_free() && _pools[i]->is_enabled())
         {
-            _pools[i]->load(pitch);
+            _pools[i]->load(note);
             accepted = true;
             break;
         }
@@ -130,16 +130,16 @@ void Allocator::note_on_masked(byte pitch, uint16_t mask)
         }
         if (optimal_index >= 0)
         {
-            _pools[optimal_index]->load(pitch);
+            _pools[optimal_index]->load(note);
         }
     }
 }
 
-void Allocator::note_off_masked(byte pitch, uint16_t mask)
+void Allocator::note_off_masked(Note note, uint16_t mask)
 {
     for (int i = 0; i < POOL_COUNT; i++)
     {
-        if (check_mask(mask, i) && _pools[i]->unload(pitch))
+        if (check_mask(mask, i) && _pools[i]->unload(note))
         {
             break;
         }
