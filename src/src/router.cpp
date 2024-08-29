@@ -109,3 +109,7 @@ void Router::broadcast(byte pitch, int gate)
     _coupler_4->broadcast(setpoint, gate);
     _coupler_5->broadcast(setpoint, gate);
 }
+
+Channel* Router::get_spare_channel() {
+    return _dac_3->get(CHANNEL_B);
+}

@@ -43,6 +43,8 @@ public:
 
     void broadcast(byte pitch, int gate);
 
+    Channel *get_spare_channel();
+
 private:
     Config *_config;
     Dac *_dac_1;

@@ -11,13 +11,13 @@
 #include "include/allocator.h"
 #include "include/structs.h"
 #include "include/router.h"
-#include "include/midi_interface.h"
+#include "include/channel.h"
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 Config *config;
 Allocator *allocator;
 Router *router;
-MidiInterface *midif;
+Channel *mod_channel;
 bool old_led_state;
 
 void setup()
@@ -27,6 +27,8 @@ void setup()
     config->read();
     router = new Router(config);
     router->setup();
+    mod_channel = router->get_spare_channel();
+    mod_channel->set(2048);
     allocator = new Allocator(config, router);
     allocator->set_lane_masks();
     MIDI.begin(MIDI_CHANNEL_OMNI);
@@ -34,8 +36,6 @@ void setup()
     MIDI.setHandleNoteOff(handle_note_off);
     MIDI.setHandlePitchBend(handle_pitch_bend);
     MIDI.setHandleControlChange(handle_control_change);
-    midif = new MidiInterface(config, allocator, PIN_SS_BEND);
-    midif->setup();
     pinMode(PIN_LED, OUTPUT);
     blink();
     old_led_state = false;
@@ -102,41 +102,44 @@ void update_led()
     old_led_state = led_state;
 }
 
-/**
- * @see MidiInterface.handle_note_on
- */
 void handle_note_on([[maybe_unused]] byte channel, byte pitch, byte velocity)
 {
     if (velocity == 0)
     {
-        midif->handle_note_off({pitch, velocity});
+        allocator->note_off({pitch, velocity});
     }
     else
     {
-        midif->handle_note_on({pitch, velocity});
+        allocator->note_on({pitch, velocity});
     }
 }
 
-/**
- * @see MidiInterface.handle_note_off
- */
 void handle_note_off([[maybe_unused]] byte channel, byte pitch, byte velocity)
 {
-    midif->handle_note_off({pitch, velocity});
+    allocator->note_off({pitch, velocity});
 }
 
-/**
- * @see MidiInterface.handle_pitch_bend
- */
 void handle_pitch_bend([[maybe_unused]] byte channel, int bend)
 {
-    midif->handle_pitch_bend(bend);
+    allocator->pitch_bend(bend);
 }
 
-/**
- * @see MidiInterface.handle_control_change
- */
 void handle_control_change([[maybe_unused]] byte channel, byte number, byte value)
 {
-    midif->handle_control_change(number, value);
+    if (number == MIDI_CONTROL_MOD)
+    {
+        mod_channel->set(map(value, 0, 127, 0, 4096));
+    }
+    int changed = config->handle_midi_control(number, value);
+    if (changed & CONFIG_CHANGE_HOLD)
+    {
+        if (config->get_hold())
+        {
+            allocator->hold_on();
+        }
+        else
+        {
+            allocator->hold_off();
+        }
+    }
 }
