@@ -56,11 +56,11 @@ void Lane::set_note(Note note, int bend, bool ignore_detune)
 {
     if (_channel || ignore_detune)
     {
-        set(pitch_to_voltage(_config, note.pitch, bend), velocity_to_voltage(_config, note.velocity));
+        set(pitch_to_voltage(_config, note.pitch, bend), velocity_to_voltage(note.velocity));
     }
     else
     {
-        set(pitch_to_voltage(_config, note.pitch + _config->get_detune(), bend), velocity_to_voltage(_config, note.velocity));
+        set(pitch_to_voltage(_config, note.pitch + _config->get_detune(), bend), velocity_to_voltage(note.velocity));
     }
 }
 
@@ -68,11 +68,11 @@ void Lane::start_note(Note note, int bend, bool ignore_detune)
 {
     if (_channel || ignore_detune)
     {
-        start(pitch_to_voltage(_config, note.pitch, bend), velocity_to_voltage(_config, note.velocity));
+        start(pitch_to_voltage(_config, note.pitch, bend), velocity_to_voltage(note.velocity));
     }
     else
     {
-        start(pitch_to_voltage(_config, note.pitch + _config->get_detune(), bend), velocity_to_voltage(_config, note.velocity));
+        start(pitch_to_voltage(_config, note.pitch + _config->get_detune(), bend), velocity_to_voltage(note.velocity));
     }
 }
 
@@ -119,9 +119,8 @@ int Lane::pitch_to_voltage(Config *config, byte pitch, int bend)
     return (int)(1000 * voltage);
 }
 
-int Lane::velocity_to_voltage(Config *config, byte velocity) {
-    float voltage = DAC_VMAX * (float)velocity / 127.0;
-    return (int)(1000 * voltage);
+int Lane::velocity_to_voltage(byte velocity) {
+    return map(velocity, 0, 127, 0, 4096);
 }
 
 byte Lane::setpoint_to_pitch(int setpoint)

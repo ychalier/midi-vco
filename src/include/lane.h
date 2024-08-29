@@ -89,7 +89,7 @@ public:
      */
     static int pitch_to_voltage(Config *config, byte pitch, int bend);
 
-    static int velocity_to_voltage(Config *config, byte velocity);
+    static int velocity_to_voltage(byte velocity);
 
     /**
      * Reverse the pitch to voltage computation.
