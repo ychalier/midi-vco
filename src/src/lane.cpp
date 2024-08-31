@@ -25,8 +25,13 @@ void Lane::set(int cv_setpoint, int vel_setpoint)
 
 void Lane::start(int cv_setpoint, int vel_setpoint)
 {
-    float glide_intensity = _config->get_glide_intensity();
-    if (glide_intensity == 0 ||
+    bool ignore_glide = !_channel && _config->get_glide_channel_switch();
+    float glide_intensity;
+    if (!ignore_glide)
+    {
+        glide_intensity = _config->get_glide_intensity();
+    }
+    if (ignore_glide || glide_intensity == 0 ||
         (!_active && (GLIDE_FLAG_LEGATO & _config->get_glide_flags())))
     {
         set(cv_setpoint, vel_setpoint);
@@ -54,6 +59,10 @@ void Lane::start(int cv_setpoint, int vel_setpoint)
 
 void Lane::set_note(Note note, int bend, bool ignore_detune)
 {
+    if (!_channel && _config->get_bend_channel_switch())
+    {
+        bend = 0;
+    }
     if (_channel || ignore_detune)
     {
         set(pitch_to_voltage(_config, note.pitch, bend), velocity_to_voltage(note.velocity));
@@ -66,6 +75,10 @@ void Lane::set_note(Note note, int bend, bool ignore_detune)
 
 void Lane::start_note(Note note, int bend, bool ignore_detune)
 {
+    if (!_channel && _config->get_bend_channel_switch())
+    {
+        bend = 0;
+    }
     if (_channel || ignore_detune)
     {
         start(pitch_to_voltage(_config, note.pitch, bend), velocity_to_voltage(note.velocity));

@@ -10,6 +10,8 @@
 
 #define PIN_TUNE 35
 #define PIN_PRIORITY_MODE 37 // Toggle replacement priority newest/oldest
+#define PIN_BEND_CHANNEL_SWITCH 39
+#define PIN_GLIDE_CHANNEL_SWITCH 40
 
 #define PIN_SS_CV_1 29
 #define PIN_SS_CV_2 27
@@ -54,9 +56,9 @@
 // Flags
 
 #define CONFIG_CHANGE_POLYPHONY_MODE 1
-#define CONFIG_CHANGE_PRIORITY_MODE 2
-#define CONFIG_CHANGE_TUNING 4
-#define CONFIG_CHANGE_HOLD 8
+#define CONFIG_CHANGE_PRIORITY_MODE  2
+#define CONFIG_CHANGE_TUNING         4
+#define CONFIG_CHANGE_HOLD           8
 
 #define GLIDE_FLAG_PROPORTIONAL 1
 #define GLIDE_FLAG_CHROMATIC 2

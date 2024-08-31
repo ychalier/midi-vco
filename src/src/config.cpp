@@ -13,6 +13,8 @@ Config::Config()
     _voltage_offset = 0;
     _detune = 0;
     _tuning = false;
+    _bend_channel_switch = false;
+    _glide_channel_switch = false;
 }
 
 void Config::setup()
@@ -23,6 +25,8 @@ void Config::setup()
     pinMode(PIN_DETUNE, INPUT);
     pinMode(PIN_PRIORITY_MODE, INPUT);
     pinMode(PIN_TUNE, INPUT);
+    pinMode(PIN_BEND_CHANNEL_SWITCH, INPUT);
+    pinMode(PIN_GLIDE_CHANNEL_SWITCH, INPUT);
 }
 
 bool Config::_read_polyphony_mode()
@@ -91,6 +95,18 @@ bool Config::_read_tuning()
     return changed;
 }
 
+void Config::_read_bend_channel_switch()
+{
+    int value = digitalRead(PIN_BEND_CHANNEL_SWITCH);
+    _bend_channel_switch = value == HIGH;
+}
+
+void Config::_read_glide_channel_switch()
+{
+    int value = digitalRead(PIN_GLIDE_CHANNEL_SWITCH);
+    _glide_channel_switch = value == HIGH;
+}
+
 int Config::read()
 {
     int changed = 0;
@@ -106,6 +122,8 @@ int Config::read()
     {
         changed = changed + CONFIG_CHANGE_TUNING;
     }
+    _read_bend_channel_switch();
+    _read_glide_channel_switch();
     _read_pitch_bend_range();
     _read_glide_intensity();
     _read_detune();
@@ -201,4 +219,14 @@ int Config::get_detune()
 bool Config::is_tuning()
 {
     return _tuning;
+}
+
+bool Config::get_bend_channel_switch()
+{
+    return _bend_channel_switch;
+}
+
+bool Config::get_glide_channel_switch()
+{
+    return _glide_channel_switch;
 }

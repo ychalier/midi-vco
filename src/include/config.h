@@ -86,6 +86,10 @@ public:
      */
     bool is_tuning();
 
+    bool get_bend_channel_switch();
+
+    bool get_glide_channel_switch();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -97,6 +101,8 @@ private:
     float _voltage_offset;
     int _detune;
     bool _tuning;
+    bool _bend_channel_switch;
+    bool _glide_channel_switch;
 
     bool _read_polyphony_mode();
     void _read_pitch_bend_range();
@@ -104,6 +110,8 @@ private:
     void _read_detune();
     bool _read_priority_mode();
     bool _read_tuning();
+    void _read_bend_channel_switch();
+    void _read_glide_channel_switch();
 };
 
 #endif
