@@ -6,7 +6,8 @@
 #define PIN_POLYPHONY_MODE A9    // Mono, Poly 5, Poly 10
 #define PIN_PITCH_BEND_RANGE A10
 #define PIN_GLIDE_INTENSITY A11
-#define PIN_DETUNE A13           // Not implemented
+#define PIN_DETUNE A13           
+#define PIN_MINIMUM_VELOCITY A7
 
 #define PIN_TUNE 35
 #define PIN_PRIORITY_MODE 37 // Toggle replacement priority newest/oldest

@@ -110,6 +110,10 @@ void handle_note_on([[maybe_unused]] byte channel, byte pitch, byte velocity)
     }
     else
     {
+        if (velocity < config->get_minimum_velocity())
+        {
+            velocity = config->get_minimum_velocity();
+        }
         allocator->note_on({pitch, velocity});
     }
 }

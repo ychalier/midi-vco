@@ -107,6 +107,11 @@ void Config::_read_glide_channel_switch()
     _glide_channel_switch = value == HIGH;
 }
 
+void Config::_read_minimum_velocity()
+{
+    _minimum_velocity = map(analogRead(PIN_MINIMUM_VELOCITY), 0, 1023, 0, 127);
+}
+
 int Config::read()
 {
     int changed = 0;
@@ -127,6 +132,7 @@ int Config::read()
     _read_pitch_bend_range();
     _read_glide_intensity();
     _read_detune();
+    _read_minimum_velocity();
     return changed;
 }
 
@@ -229,4 +235,9 @@ bool Config::get_bend_channel_switch()
 bool Config::get_glide_channel_switch()
 {
     return _glide_channel_switch;
+}
+
+byte Config::get_minimum_velocity()
+{
+    return _minimum_velocity;
 }

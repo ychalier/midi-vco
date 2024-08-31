@@ -90,6 +90,8 @@ public:
 
     bool get_glide_channel_switch();
 
+    byte get_minimum_velocity();
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -103,6 +105,7 @@ private:
     bool _tuning;
     bool _bend_channel_switch;
     bool _glide_channel_switch;
+    byte _minimum_velocity;
 
     bool _read_polyphony_mode();
     void _read_pitch_bend_range();
@@ -112,6 +115,7 @@ private:
     bool _read_tuning();
     void _read_bend_channel_switch();
     void _read_glide_channel_switch();
+    void _read_minimum_velocity();
 };
 
 #endif
