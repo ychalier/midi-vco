@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "../include/lane.h"
 
-Lane::Lane(Config *config, Coupler *coupler, bool channel)
+Lane::Lane(Config *config, Coupler *coupler, bool channel, Tuning *tuning)
 {
     _config = config;
     _coupler = coupler;
@@ -9,6 +9,7 @@ Lane::Lane(Config *config, Coupler *coupler, bool channel)
     _current_cv_setpoint = 0;
     _glide = {false, 0, 0, 0, 0};
     _active = false;
+    _tuning = tuning;
 }
 
 void Lane::setup()
@@ -64,11 +65,11 @@ void Lane::set_note(Note note, int bend, bool ignore_detune)
     }
     if (_channel || ignore_detune)
     {
-        set(pitch_to_voltage(_config, note.pitch, bend), velocity_to_voltage(note.velocity));
+        set(pitch_to_voltage(note.pitch, bend), velocity_to_voltage(note.velocity));
     }
     else
     {
-        set(pitch_to_voltage(_config, note.pitch + _config->get_detune(), bend), velocity_to_voltage(note.velocity));
+        set(pitch_to_voltage(note.pitch + _config->get_detune(), bend), velocity_to_voltage(note.velocity));
     }
 }
 
@@ -80,11 +81,11 @@ void Lane::start_note(Note note, int bend, bool ignore_detune)
     }
     if (_channel || ignore_detune)
     {
-        start(pitch_to_voltage(_config, note.pitch, bend), velocity_to_voltage(note.velocity));
+        start(pitch_to_voltage(note.pitch, bend), velocity_to_voltage(note.velocity));
     }
     else
     {
-        start(pitch_to_voltage(_config, note.pitch + _config->get_detune(), bend), velocity_to_voltage(note.velocity));
+        start(pitch_to_voltage(note.pitch + _config->get_detune(), bend), velocity_to_voltage(note.velocity));
     }
 }
 
@@ -106,7 +107,7 @@ void Lane::update()
         float setpoint = (1 - progress) * _glide.setpoint_start + progress * _glide.setpoint_end;
         if (GLIDE_FLAG_CHROMATIC & _config->get_glide_flags() && progress < 1)
         {
-            setpoint = pitch_to_voltage(_config, setpoint_to_pitch(setpoint), 0);
+            setpoint = pitch_to_voltage(setpoint_to_pitch(setpoint), 0);
         }
         set((int)setpoint, _current_vel_setpoint);
         if (progress >= 1)
@@ -116,10 +117,11 @@ void Lane::update()
     }
 }
 
-int Lane::pitch_to_voltage(Config *config, byte pitch, int bend)
+int Lane::pitch_to_voltage(byte pitch, int bend)
 {
-    float bent_pitch = (float)pitch + (float)bend * config->get_pitch_bend_range() / 8192.0;
-    float voltage = (bent_pitch - MIDI_MIN_PITCH) / 12.0 / AMP_GAIN + config->get_voltage_offset();
+    float bent_pitch = (float)pitch + (float)bend * _config->get_pitch_bend_range() / 8192.0;
+    float voltage = _tuning->scale * 1000.0 * (bent_pitch - MIDI_MIN_PITCH) / 12.0 / AMP_GAIN + _tuning->offset + 1000.0 * _config->get_voltage_offset();
+
     if (voltage < 0)
     {
         voltage = 0;
@@ -128,7 +130,7 @@ int Lane::pitch_to_voltage(Config *config, byte pitch, int bend)
     {
         voltage = DAC_VMAX;
     }
-    return (int)(1000 * voltage);
+    return (int)(voltage);
 }
 
 int Lane::velocity_to_voltage(byte velocity) {

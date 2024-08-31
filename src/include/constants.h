@@ -39,8 +39,6 @@
 #define MIDI_CONTROL_GLIDE_CHROMATIC 80  // B1 ON
 #define MIDI_CONTROL_GLIDE_LEGATO 81     // B2 ON
 #define MIDI_CONTROL_PITCH_BEND_RANGE 75 // S2 OFF
-#define MIDI_CONTROL_SOURCE 74           // R1 OFF
-#define MIDI_CONTROL_TIME 71             // R2 OFF
 #define MIDI_CONTROL_HOLD 83             // B4 ON
 #define MIDI_CONTROL_VOLTAGE_OFFSET 2    // R4 ON
 
@@ -79,7 +77,7 @@
 
 // General constants
 
-#define DAC_VMAX 4.096       // Volts
+#define DAC_VMAX 4096        // millivolts
 #define AMP_GAIN 1.9531      // 8V / 4.096V
 #define MIDI_MIN_PITCH 20    // Semitons
 #define PITCH_BEND_RANGE 2.0 // Semitons

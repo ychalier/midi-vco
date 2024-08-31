@@ -15,6 +15,10 @@ Config::Config()
     _tuning = false;
     _bend_channel_switch = false;
     _glide_channel_switch = false;
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        _tunings[i] = {0.0, 1.0};
+    }
 }
 
 void Config::setup()
@@ -240,4 +244,9 @@ bool Config::get_glide_channel_switch()
 byte Config::get_minimum_velocity()
 {
     return _minimum_velocity;
+}
+
+Tuning* Config::get_tuning_ref(int lane_id)
+{
+    return &_tunings[lane_id];
 }

@@ -23,7 +23,7 @@ public:
      * @param channel If true, use `Coupler` channel A; otherwise use channel
      *   B.
      */
-    Lane(Config *config, Coupler *coupler, bool channel);
+    Lane(Config *config, Coupler *coupler, bool channel, Tuning *tuning);
 
     /**
      * Initialize hardware connections. Must be called once in the main program
@@ -86,9 +86,9 @@ public:
      * @param bend Signed 14-bit encoding of the pitch bend.
      * @return DAC input value corresponding to that note.
      */
-    static int pitch_to_voltage(Config *config, byte pitch, int bend);
+    int pitch_to_voltage(byte pitch, int bend);
 
-    static int velocity_to_voltage(byte velocity);
+    int velocity_to_voltage(byte velocity);
 
     /**
      * Reverse the pitch to voltage computation.
@@ -104,6 +104,7 @@ private:
     Coupler *_coupler;
     bool _channel;
     int _led_id;
+    Tuning *_tuning;
 
     /// True if the lane is currently active.
     bool _active;

@@ -12,16 +12,16 @@ Router::Router(Config *config)
     _coupler_3 = new Coupler(PIN_SS_CV_3, PIN_GATE_3, _dac_2->get(CHANNEL_A));
     _coupler_4 = new Coupler(PIN_SS_CV_4, PIN_GATE_4, _dac_2->get(CHANNEL_B));
     _coupler_5 = new Coupler(PIN_SS_CV_5, PIN_GATE_5, _dac_3->get(CHANNEL_A));
-    _lane_1  = new Lane(config, _coupler_1, CHANNEL_A);
-    _lane_2  = new Lane(config, _coupler_1, CHANNEL_B);
-    _lane_3  = new Lane(config, _coupler_2, CHANNEL_A);
-    _lane_4  = new Lane(config, _coupler_2, CHANNEL_B);
-    _lane_5  = new Lane(config, _coupler_3, CHANNEL_A);
-    _lane_6  = new Lane(config, _coupler_3, CHANNEL_B);
-    _lane_7  = new Lane(config, _coupler_4, CHANNEL_A);
-    _lane_8  = new Lane(config, _coupler_4, CHANNEL_B);
-    _lane_9  = new Lane(config, _coupler_5, CHANNEL_A);
-    _lane_10 = new Lane(config, _coupler_5, CHANNEL_B);
+    _lane_1  = new Lane(config, _coupler_1, CHANNEL_A, _config->get_tuning_ref(0));
+    _lane_2  = new Lane(config, _coupler_1, CHANNEL_B, _config->get_tuning_ref(1));
+    _lane_3  = new Lane(config, _coupler_2, CHANNEL_A, _config->get_tuning_ref(2));
+    _lane_4  = new Lane(config, _coupler_2, CHANNEL_B, _config->get_tuning_ref(3));
+    _lane_5  = new Lane(config, _coupler_3, CHANNEL_A, _config->get_tuning_ref(4));
+    _lane_6  = new Lane(config, _coupler_3, CHANNEL_B, _config->get_tuning_ref(5));
+    _lane_7  = new Lane(config, _coupler_4, CHANNEL_A, _config->get_tuning_ref(6));
+    _lane_8  = new Lane(config, _coupler_4, CHANNEL_B, _config->get_tuning_ref(7));
+    _lane_9  = new Lane(config, _coupler_5, CHANNEL_A, _config->get_tuning_ref(8));
+    _lane_10 = new Lane(config, _coupler_5, CHANNEL_B, _config->get_tuning_ref(9));
 }
 
 void Router::setup()
@@ -102,12 +102,21 @@ Lane *Router::select(int lane_id)
 
 void Router::broadcast(byte pitch, int gate)
 {
-    int setpoint = Lane::pitch_to_voltage(_config, pitch, 0);
-    _coupler_1->broadcast(setpoint, gate);
-    _coupler_2->broadcast(setpoint, gate);
-    _coupler_3->broadcast(setpoint, gate);
-    _coupler_4->broadcast(setpoint, gate);
-    _coupler_5->broadcast(setpoint, gate);
+    _coupler_1->set_gate(gate);
+    _coupler_2->set_gate(gate);
+    _coupler_3->set_gate(gate);
+    _coupler_4->set_gate(gate);
+    _coupler_5->set_gate(gate);
+    _lane_1->start(_lane_1->pitch_to_voltage(pitch, 0), 0);
+    _lane_2->start(_lane_2->pitch_to_voltage(pitch, 0), 0);
+    _lane_3->start(_lane_3->pitch_to_voltage(pitch, 0), 0);
+    _lane_4->start(_lane_4->pitch_to_voltage(pitch, 0), 0);
+    _lane_5->start(_lane_5->pitch_to_voltage(pitch, 0), 0);
+    _lane_6->start(_lane_6->pitch_to_voltage(pitch, 0), 0);
+    _lane_7->start(_lane_7->pitch_to_voltage(pitch, 0), 0);
+    _lane_8->start(_lane_8->pitch_to_voltage(pitch, 0), 0);
+    _lane_9->start(_lane_9->pitch_to_voltage(pitch, 0), 0);
+    _lane_10->start(_lane_10->pitch_to_voltage(pitch, 0), 0);
 }
 
 Channel* Router::get_spare_channel() {

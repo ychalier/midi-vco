@@ -9,6 +9,12 @@ typedef struct Note
     byte velocity;
 } Note;
 
+typedef struct Tuning
+{
+    float offset;
+    float scale;
+} Tuning;
+
 /**
  * Simple data structure holding information for a note glide.
  */

@@ -57,7 +57,7 @@ public:
      */
     void update();
 
-    void broadcast(int setpoint_cv, int gate);
+    void set_gate(int gate);
 
 private:
     /// A DAC interface to control the CV signals.

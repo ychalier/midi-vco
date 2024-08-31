@@ -3,6 +3,7 @@
 
 #include "Arduino.h"
 #include "constants.h"
+#include "structs.h"
 
 /**
  * Main wrapper for the user interface.
@@ -92,6 +93,8 @@ public:
 
     byte get_minimum_velocity();
 
+    Tuning *get_tuning_ref(int lane_id);
+
 private:
     byte _polyphony_mode;
     byte _priority_mode;
@@ -106,6 +109,7 @@ private:
     bool _bend_channel_switch;
     bool _glide_channel_switch;
     byte _minimum_velocity;
+    Tuning _tunings[LANE_COUNT];
 
     bool _read_polyphony_mode();
     void _read_pitch_bend_range();

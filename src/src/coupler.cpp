@@ -100,18 +100,7 @@ void Coupler::update()
     {
         _dac->updateDAC();
     }
-    if (_gate != gate)
-    {
-        _gate = gate;
-        if (gate)
-        {
-            digitalWrite(_gate_pin, HIGH);
-        }
-        else
-        {
-            digitalWrite(_gate_pin, LOW);
-        }
-    }
+    set_gate(gate);
     int vel = _vel_setpoint_a;
     if (!_active_a && _active_b) {
         vel = _vel_setpoint_b;
@@ -124,10 +113,16 @@ void Coupler::update()
     }
 }
 
-void Coupler::broadcast(int setpoint_cv, int gate)
+void Coupler::set_gate(int gate)
 {
-    digitalWrite(_gate_pin, gate);
-    _dac->setVoltageA(setpoint_cv);
-    _dac->setVoltageB(setpoint_cv);
-    _dac->updateDAC();
+    if (_gate == gate) return;
+    _gate = gate;
+    if (gate)
+    {
+        digitalWrite(_gate_pin, HIGH);
+    }
+    else
+    {
+        digitalWrite(_gate_pin, LOW);
+    }
 }
