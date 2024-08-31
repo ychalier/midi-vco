@@ -1,12 +1,11 @@
 #include "Arduino.h"
 #include "../include/lane.h"
 
-Lane::Lane(Config *config, Coupler *coupler, bool channel, int led_id)
+Lane::Lane(Config *config, Coupler *coupler, bool channel)
 {
     _config = config;
     _coupler = coupler;
     _channel = channel;
-    _led_id = led_id;
     _current_cv_setpoint = 0;
     _glide = {false, 0, 0, 0, 0};
     _active = false;

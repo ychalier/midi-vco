@@ -12,16 +12,16 @@ Router::Router(Config *config)
     _coupler_3 = new Coupler(PIN_SS_CV_3, PIN_GATE_3, _dac_2->get(CHANNEL_A));
     _coupler_4 = new Coupler(PIN_SS_CV_4, PIN_GATE_4, _dac_2->get(CHANNEL_B));
     _coupler_5 = new Coupler(PIN_SS_CV_5, PIN_GATE_5, _dac_3->get(CHANNEL_A));
-    _lane_1  = new Lane(config, _coupler_1, CHANNEL_A, 0);
-    _lane_2  = new Lane(config, _coupler_1, CHANNEL_B, 1);
-    _lane_3  = new Lane(config, _coupler_2, CHANNEL_A, 2);
-    _lane_4  = new Lane(config, _coupler_2, CHANNEL_B, 3);
-    _lane_5  = new Lane(config, _coupler_3, CHANNEL_A, 4);
-    _lane_6  = new Lane(config, _coupler_3, CHANNEL_B, 5);
-    _lane_7  = new Lane(config, _coupler_4, CHANNEL_A, 6);
-    _lane_8  = new Lane(config, _coupler_4, CHANNEL_B, 7);
-    _lane_9  = new Lane(config, _coupler_5, CHANNEL_A, 8);
-    _lane_10 = new Lane(config, _coupler_5, CHANNEL_B, 9);
+    _lane_1  = new Lane(config, _coupler_1, CHANNEL_A);
+    _lane_2  = new Lane(config, _coupler_1, CHANNEL_B);
+    _lane_3  = new Lane(config, _coupler_2, CHANNEL_A);
+    _lane_4  = new Lane(config, _coupler_2, CHANNEL_B);
+    _lane_5  = new Lane(config, _coupler_3, CHANNEL_A);
+    _lane_6  = new Lane(config, _coupler_3, CHANNEL_B);
+    _lane_7  = new Lane(config, _coupler_4, CHANNEL_A);
+    _lane_8  = new Lane(config, _coupler_4, CHANNEL_B);
+    _lane_9  = new Lane(config, _coupler_5, CHANNEL_A);
+    _lane_10 = new Lane(config, _coupler_5, CHANNEL_B);
 }
 
 void Router::setup()
