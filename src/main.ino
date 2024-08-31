@@ -7,6 +7,7 @@
  */
 
 #include <MIDI.h>
+#include <EEPROM.h>
 #include "include/config.h"
 #include "include/allocator.h"
 #include "include/structs.h"
@@ -39,6 +40,16 @@ void setup()
     pinMode(PIN_LED, OUTPUT);
     blink();
     old_led_state = false;
+    byte eeprom_first_byte = EEPROM.read(0);
+    if (eeprom_first_byte == 255)
+    {
+        EEPROM.write(0, 0);
+        config->write_tunings_to_eeprom();
+    }
+    else
+    {
+        config->read_tunings_from_eeprom();
+    }
 }
 
 void loop()

@@ -2,6 +2,7 @@
 #define config_h
 
 #include "Arduino.h"
+#include <EEPROM.h>
 #include "constants.h"
 #include "structs.h"
 
@@ -94,6 +95,10 @@ public:
     byte get_minimum_velocity();
 
     Tuning *get_tuning_ref(int lane_id);
+
+    void read_tunings_from_eeprom();
+
+    void write_tunings_to_eeprom();
 
 private:
     byte _polyphony_mode;
