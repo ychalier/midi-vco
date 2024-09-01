@@ -79,19 +79,14 @@ void update_config()
     {
         allocator->set_lane_masks();
     }
-    if (changed & CONFIG_CHANGE_TUNING_FAST) {
-        //TODO
-        // allocator->reset();
-        // if (config->is_tuning())
-        // {
-        //     allocator->broadcast(PITCH_A5, GATE_STATE_DURING_TUNING);
-        // }
+    if ((changed & CONFIG_CHANGE_TUNING_FAST) && config->get_tuning_fast()) {
+        tuner->tune_fast(allocator);
     }
     if (changed & CONFIG_CHANGE_TUNING_FULL)
     {
         //TODO
     }
-    if (changed & CONFIG_CHANGE_TUNING_RESET)
+    if ((changed & CONFIG_CHANGE_TUNING_RESET) && config->get_tuning_reset())
     {
         tuner->reset_tunings();
     }

@@ -77,6 +77,8 @@ public:
      */
     void update();
 
+    static float base_pitch_to_voltage(float pitch);
+
     /**
      * Compute the DAC input value from a note.
      *

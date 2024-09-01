@@ -102,7 +102,7 @@ public:
     /**
      * Artificially send an output to all lanes. This is used during tuning.
      */
-    void broadcast(byte pitch, int gate);
+    void broadcast(int setpoint, int gate);
 
     /**
      * Checks whether a bit mask includes a value.

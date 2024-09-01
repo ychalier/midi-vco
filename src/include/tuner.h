@@ -6,6 +6,8 @@
 #include "constants.h"
 #include "structs.h"
 
+class Allocator;
+
 class Tuner
 {
 public:
@@ -16,6 +18,8 @@ public:
     Tuning *get_tuning_ref(int lane_id);
 
     void reset_tunings();
+
+    void tune_fast(Allocator *allocator);
 
 private:
     Tuning _tunings[LANE_COUNT];

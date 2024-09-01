@@ -8,6 +8,16 @@
 #define PIN_GLIDE_INTENSITY A11
 #define PIN_DETUNE A13           
 #define PIN_MINIMUM_VELOCITY A7
+#define PIN_CV_LOOPBACK_1  A0
+#define PIN_CV_LOOPBACK_2  A1
+#define PIN_CV_LOOPBACK_3  A2
+#define PIN_CV_LOOPBACK_4  A3
+#define PIN_CV_LOOPBACK_5  A4
+#define PIN_CV_LOOPBACK_6  A5
+#define PIN_CV_LOOPBACK_7  A6
+#define PIN_CV_LOOPBACK_8  A7
+#define PIN_CV_LOOPBACK_9  A8
+#define PIN_CV_LOOPBACK_10 A9
 
 #define PIN_PRIORITY_MODE 37 // Toggle replacement priority newest/oldest
 #define PIN_BEND_CHANNEL_SWITCH 39
@@ -34,6 +44,10 @@
 #define PIN_GATE_5 23
 
 #define PIN_LED 41
+
+#define PIN_LED_TUNING_FAST 42
+#define PIN_LED_TUNING_FULL 43
+#define PIN_LED_TUNING_RESET 44
 
 // MIDI Controls
 
@@ -105,5 +119,15 @@ const int DETUNE_VALUES[DETUNE_VALUE_COUNT] = {-24, -12, -10, -8, -6, -4, -2, 0,
 
 #define CHANNEL_A true
 #define CHANNEL_B false
+
+#define FREQUENCY_ESTIMATION_PERIOD 2000000 // Microseconds (2s)
+#define FREQUENCY_THRESHOLD         614     // On a 0-1023 scale
+#define TUNING_OFFSET_PITCH         81      // A5 880 Hz
+#define TUNING_REFERENCE_FREQUENCY  440.0f  // Hz
+
+
+// Pre-computed constants
+
+#define LOG2                        0.69314718056f
 
 #endif

@@ -42,7 +42,7 @@ public:
      */
     Lane *select(int lane_id);
 
-    void broadcast(byte pitch, int gate);
+    void broadcast(int setpoint, int gate);
 
     Channel *get_spare_channel();
 

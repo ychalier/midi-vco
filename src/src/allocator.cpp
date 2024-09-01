@@ -173,9 +173,9 @@ void Allocator::hold_off()
     }
 }
 
-void Allocator::broadcast(byte pitch, int gate)
+void Allocator::broadcast(int setpoint, int gate)
 {
-    _router->broadcast(pitch, gate);
+    _router->broadcast(setpoint, gate);
 }
 
 bool Allocator::check_mask(uint16_t mask, int value)
