@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['config_221',['Config',['../class_config.html',1,'']]],
-  ['coupler_222',['Coupler',['../class_coupler.html',1,'']]]
+  ['channel_284',['Channel',['../class_channel.html',1,'']]],
+  ['config_285',['Config',['../class_config.html',1,'']]],
+  ['coupler_286',['Coupler',['../class_coupler.html',1,'']]]
 ];

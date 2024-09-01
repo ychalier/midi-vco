@@ -4,9 +4,9 @@
 #include "Arduino.h"
 #include "constants.h"
 #include "config.h"
-#include "lane.h"
 #include "coupler.h"
 #include "dac.h"
+#include "lane.h"
 #include <MCP48xx.h>
 #include "tuner.h"
 
@@ -20,6 +20,7 @@ public:
      * Constructor.
      *
      * @param config A pointer to the global config.
+     * @param tuner A pointer to the tuner, holding all tuning parameters.
      */
     Router(Config *config, Tuner *tuner);
 
@@ -42,8 +43,18 @@ public:
      */
     Lane *select(int lane_id);
 
+    /**
+     * Artificially send an output to all lanes. This is used during tuning.
+     * 
+     * @param setpoint CV setpoint to broadcast to all lanes
+     * @param gate Gate state to broadcast to all couplers
+     */
     void broadcast(int setpoint, int gate);
 
+    /**
+     * Getter for the spare DAC channel. There are 5 velocity outputs and 6 DAC
+     * channels available. Returns the unused one, for outputting MOD. 
+     */
     Channel *get_spare_channel();
 
 private:

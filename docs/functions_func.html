@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.1</span>
+   &#160;<span id="projectnumber">3.0.0-dev.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -86,11 +86,20 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 &#160;
 
 <h3><a id="index__5F"></a>- _ -</h3><ul>
+<li>_read_bend_channel_switch()
+: <a class="el" href="class_config.html#aa58ad2e417b6f9a622a898c4fdf0383e">Config</a>
+</li>
 <li>_read_detune()
 : <a class="el" href="class_config.html#aa0e27cad523186b193a6ebfb8b206f1a">Config</a>
 </li>
+<li>_read_glide_channel_switch()
+: <a class="el" href="class_config.html#ad079a649039c283cab906c4a7d8a5c02">Config</a>
+</li>
 <li>_read_glide_intensity()
 : <a class="el" href="class_config.html#a7b769758c2e43d7f99f859d635eead38">Config</a>
+</li>
+<li>_read_minimum_velocity()
+: <a class="el" href="class_config.html#ae4050b44fa200f04af5e0bb067a1bfd1">Config</a>
 </li>
 <li>_read_pitch_bend_range()
 : <a class="el" href="class_config.html#a14264978e1a9205b39f125bc050a1c33">Config</a>
@@ -101,8 +110,20 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>_read_priority_mode()
 : <a class="el" href="class_config.html#a2b2122a7a4f6f4fae4167ae348c265ad">Config</a>
 </li>
-<li>_read_tuning()
-: <a class="el" href="class_config.html#a54afb307157ad1dee6540422316c2710">Config</a>
+<li>_read_tuning_fast()
+: <a class="el" href="class_config.html#abc767cf3c795a237b8e40f47e3257c88">Config</a>
+</li>
+<li>_read_tuning_full()
+: <a class="el" href="class_config.html#a9892fb15ebaf345cdbe66f68a76a6378">Config</a>
+</li>
+<li>_read_tuning_reset()
+: <a class="el" href="class_config.html#a46a22bd742f8f2f25b9287363df72e71">Config</a>
+</li>
+<li>_read_tunings_from_eeprom()
+: <a class="el" href="class_tuner.html#afad0b11daba99cec12cb65a08a6ce035">Tuner</a>
+</li>
+<li>_write_tunings_to_eeprom()
+: <a class="el" href="class_tuner.html#a3c273f35f532e479b07cf102827327be">Tuner</a>
 </li>
 </ul>
 
@@ -111,12 +132,6 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>activate()
 : <a class="el" href="class_coupler.html#a5b31285724d1196967ee14891695f685">Coupler</a>
 </li>
-<li>after_touch_channel()
-: <a class="el" href="class_allocator.html#ab311c3e6337039e165aba2bf3dda7204">Allocator</a>
-</li>
-<li>after_touch_poly()
-: <a class="el" href="class_allocator.html#afdcc9c3183472f13fa4d4f37f78b5202">Allocator</a>
-</li>
 <li>Allocator()
 : <a class="el" href="class_allocator.html#a00cf536230082b72e6e68fe6a68a3537">Allocator</a>
 </li>
@@ -124,40 +139,48 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_b"></a>- b -</h3><ul>
+<li>base_pitch_to_voltage()
+: <a class="el" href="class_lane.html#ab54460a59d5d406f502e6643743ad7f9">Lane</a>
+</li>
 <li>bend()
 : <a class="el" href="class_pool.html#a966575094e29fd6ad4004f7610273ed1">Pool</a>
 </li>
 <li>broadcast()
-: <a class="el" href="class_allocator.html#a44afb72b39aa0da19c93e720eea214ea">Allocator</a>
-, <a class="el" href="class_coupler.html#ac17a7bea30c90db6a1d1bfd203e8e0c9">Coupler</a>
-, <a class="el" href="class_router.html#ab086b6247637dac64b2bf02d9c5c37e4">Router</a>
+: <a class="el" href="class_allocator.html#a4e01e87d6ad1fe370b4c2b4f073f13f0">Allocator</a>
+, <a class="el" href="class_router.html#ad4f2dd7fd21b7894c054c820974637fc">Router</a>
 </li>
 <li>Buffer()
 : <a class="el" href="class_buffer.html#ae7ef2cd201190fde551dcb902627112b">Buffer</a>
 </li>
 <li>buffer_contains()
-: <a class="el" href="class_pool.html#af4d8bd23fdda0312c06d7b54a44df808">Pool</a>
+: <a class="el" href="class_pool.html#ab271305972c9df4a217aeda2aa33733f">Pool</a>
 </li>
 </ul>
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
+<li>Channel()
+: <a class="el" href="class_channel.html#aa6f99766ad774ccb58efe55f0dc3293c">Channel</a>
+</li>
 <li>check_mask()
-: <a class="el" href="class_allocator.html#abcff54dc19e2ae05f0cd569a7ca116ae">Allocator</a>
+: <a class="el" href="class_allocator.html#a1996b50ddc52dd6022235c91a8eadd00">Allocator</a>
 </li>
 <li>Config()
 : <a class="el" href="class_config.html#abd0c571c116924871e30444b192b792a">Config</a>
 </li>
 <li>contains()
-: <a class="el" href="class_buffer.html#a0c05ab7e9ee0df3313f140904d4f0642">Buffer</a>
+: <a class="el" href="class_buffer.html#a33ce71d8693b229408f78155d6c3e108">Buffer</a>
 </li>
 <li>Coupler()
-: <a class="el" href="class_coupler.html#af26f2529ff4c67efc8c81fb5f88a67cc">Coupler</a>
+: <a class="el" href="class_coupler.html#a620c67c1e7eff9d34c8abf9e7da932d9">Coupler</a>
 </li>
 </ul>
 
 
 <h3><a id="index_d"></a>- d -</h3><ul>
+<li>Dac()
+: <a class="el" href="class_dac.html#aaaafbf7038c5e139015fc562941f0ecf">Dac</a>
+</li>
 <li>deactivate()
 : <a class="el" href="class_coupler.html#ac1da7bbdf99a3ee92d96423c9beb12fd">Coupler</a>
 </li>
@@ -173,16 +196,23 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 <h3><a id="index_g"></a>- g -</h3><ul>
 <li>get()
-: <a class="el" href="class_buffer.html#a14805d40b38f7f7c927eed79bf41d37a">Buffer</a>
+: <a class="el" href="class_buffer.html#acc1482054df6e6651efffcadc8c119a5">Buffer</a>
+, <a class="el" href="class_dac.html#aeb56aa303ddeb5e0eb90b56fab02489d">Dac</a>
 </li>
 <li>get_at_index()
-: <a class="el" href="class_buffer.html#a80df93c6fc7678b12f8153bb7ef94afe">Buffer</a>
+: <a class="el" href="class_buffer.html#acd71ac784527e820976fcb8640ac798c">Buffer</a>
+</li>
+<li>get_bend_channel_switch()
+: <a class="el" href="class_config.html#ad87a8f5bb10cc47ff1ef2b5f6343aabe">Config</a>
 </li>
 <li>get_detune()
 : <a class="el" href="class_config.html#a10dfde2200ee48189b9d783273f3797b">Config</a>
 </li>
 <li>get_era()
 : <a class="el" href="class_pool.html#af23bc62de2e464c2045c9d3436d66c50">Pool</a>
+</li>
+<li>get_glide_channel_switch()
+: <a class="el" href="class_config.html#a355e1d6bc03fd5c81617a7c72b2da25e">Config</a>
 </li>
 <li>get_glide_flags()
 : <a class="el" href="class_config.html#a76a8f85d90b01fb1b13f06a23f44fc14">Config</a>
@@ -192,6 +222,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </li>
 <li>get_hold()
 : <a class="el" href="class_config.html#a36cea646b62ad7a6ce12b39756787c4f">Config</a>
+</li>
+<li>get_minimum_velocity()
+: <a class="el" href="class_config.html#a95d5fd3fdaa70364c0994fefaa83f314">Config</a>
 </li>
 <li>get_pitch_bend_range()
 : <a class="el" href="class_config.html#a4dc62c1320996e0e75da8945648c8e65">Config</a>
@@ -205,6 +238,21 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>get_size()
 : <a class="el" href="class_buffer.html#aeb2720e9ab213820fddec500f755dfba">Buffer</a>
 </li>
+<li>get_spare_channel()
+: <a class="el" href="class_router.html#aa3302c7563bd99fb4345713c13a5612f">Router</a>
+</li>
+<li>get_tuning_fast()
+: <a class="el" href="class_config.html#a0defbfb657165e9ca49cd4119e4044e8">Config</a>
+</li>
+<li>get_tuning_full()
+: <a class="el" href="class_config.html#a3d76b1cfbe6239099a4fca56fe2f0965">Config</a>
+</li>
+<li>get_tuning_ref()
+: <a class="el" href="class_tuner.html#a19d286601d2ae0ccbb7c18c45ba07c34">Tuner</a>
+</li>
+<li>get_tuning_reset()
+: <a class="el" href="class_config.html#a8a39c51618de5420b54b431e1c31e321">Config</a>
+</li>
 <li>get_voltage_offset()
 : <a class="el" href="class_config.html#a4b0b5a0ccc5bad1927ff25df18c5fbaf">Config</a>
 </li>
@@ -212,20 +260,8 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_h"></a>- h -</h3><ul>
-<li>handle_control_change()
-: <a class="el" href="class_midi_interface.html#a0d86eb1920e49473fa76fac7933a16f1">MidiInterface</a>
-</li>
 <li>handle_midi_control()
 : <a class="el" href="class_config.html#a1c49acc176759cc117bce847b84efa3d">Config</a>
-</li>
-<li>handle_note_off()
-: <a class="el" href="class_midi_interface.html#ac641e0ae77e02d97769d5b381c0a1110">MidiInterface</a>
-</li>
-<li>handle_note_on()
-: <a class="el" href="class_midi_interface.html#afb74c78652e952221879bc6d32bcac9e">MidiInterface</a>
-</li>
-<li>handle_pitch_bend()
-: <a class="el" href="class_midi_interface.html#a5363cf2764adb4da03f48acb68309db2">MidiInterface</a>
 </li>
 <li>hold_off()
 : <a class="el" href="class_allocator.html#ab1c36dcc85e01100ef49180b84ff007c">Allocator</a>
@@ -250,18 +286,15 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>is_glide_proportional()
 : <a class="el" href="class_config.html#a26eaa14ccd344ecf577f05e72554d80c">Config</a>
 </li>
-<li>is_tuning()
-: <a class="el" href="class_config.html#a83fb50ae9ef5cd7648971f0d84dfc1aa">Config</a>
-</li>
 </ul>
 
 
 <h3><a id="index_l"></a>- l -</h3><ul>
 <li>Lane()
-: <a class="el" href="class_lane.html#a634964e68bd2103c9095e462b2fc123f">Lane</a>
+: <a class="el" href="class_lane.html#a433a58d6d583d94814ca46dcaeed1cb1">Lane</a>
 </li>
 <li>load()
-: <a class="el" href="class_pool.html#a46b41a1443844aa1b9533a27bf479816">Pool</a>
+: <a class="el" href="class_pool.html#a1b54262c292f6e1171a432bb013479d7">Pool</a>
 </li>
 <li>load_buffer()
 : <a class="el" href="class_pool.html#a79bb3db5a6043a18074c2996a078de3d">Pool</a>
@@ -272,25 +305,18 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </ul>
 
 
-<h3><a id="index_m"></a>- m -</h3><ul>
-<li>MidiInterface()
-: <a class="el" href="class_midi_interface.html#ac1ce4737a2bf416d5cef02f1b9847f46">MidiInterface</a>
-</li>
-</ul>
-
-
 <h3><a id="index_n"></a>- n -</h3><ul>
 <li>note_off()
-: <a class="el" href="class_allocator.html#a0763f8fa7283a96d833d981bf8d86a26">Allocator</a>
+: <a class="el" href="class_allocator.html#a503686789d548982a45389b201385c8a">Allocator</a>
 </li>
 <li>note_off_masked()
-: <a class="el" href="class_allocator.html#ab3bad6e7b7ee29f6bbda02bf7c658955">Allocator</a>
+: <a class="el" href="class_allocator.html#ad98c2438c7e0a3a54960a03fcecd5a96">Allocator</a>
 </li>
 <li>note_on()
-: <a class="el" href="class_allocator.html#a1d070a2acf06ed6696d196003185bcde">Allocator</a>
+: <a class="el" href="class_allocator.html#ac488e12b005e2ac5ffd222ea69825a34">Allocator</a>
 </li>
 <li>note_on_masked()
-: <a class="el" href="class_allocator.html#a7a10dafb52918226a66a29172563b15b">Allocator</a>
+: <a class="el" href="class_allocator.html#a7f12578c85b0f9bbcd764aca1de3fc1d">Allocator</a>
 </li>
 </ul>
 
@@ -300,16 +326,16 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 : <a class="el" href="class_allocator.html#aaa7680ace34db4aec04e7e36cb2970f5">Allocator</a>
 </li>
 <li>pitch_to_voltage()
-: <a class="el" href="class_lane.html#a7e90731ca046f42ce5e8edab2c998c72">Lane</a>
+: <a class="el" href="class_lane.html#a1e467c4df8085b9067c05ffd4e58120a">Lane</a>
 </li>
 <li>Pool()
 : <a class="el" href="class_pool.html#ad204880feb8c71e73348485fc09de612">Pool</a>
 </li>
 <li>pop()
-: <a class="el" href="class_buffer.html#a7e0b6b0c9d633a61a3a2a1e4ff554312">Buffer</a>
+: <a class="el" href="class_buffer.html#a650109ed0ac2e1513a37fcc46a595829">Buffer</a>
 </li>
 <li>push()
-: <a class="el" href="class_buffer.html#ab8731eb81c7288fb57ecfe8211a0bf15">Buffer</a>
+: <a class="el" href="class_buffer.html#acec71205058fb10fc57c94c8bdcf7dc5">Buffer</a>
 </li>
 </ul>
 
@@ -323,10 +349,13 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 , <a class="el" href="class_buffer.html#a52170368aefdfbbdcd4a4f79fbf66678">Buffer</a>
 </li>
 <li>reset_masked()
-: <a class="el" href="class_allocator.html#a550dd05e331ee14ed8b89a6d2a8c9105">Allocator</a>
+: <a class="el" href="class_allocator.html#a884367370a230577537dda3270075b88">Allocator</a>
+</li>
+<li>reset_tunings()
+: <a class="el" href="class_tuner.html#afb69c9b1224835c6099c3a39cb153749">Tuner</a>
 </li>
 <li>Router()
-: <a class="el" href="class_router.html#a8d406465372c4f7f88ed4a2ac88c2bdd">Router</a>
+: <a class="el" href="class_router.html#afe5620daef0669d69d29fe05320676a1">Router</a>
 </li>
 </ul>
 
@@ -336,17 +365,21 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 : <a class="el" href="class_router.html#af4641f2500f092754121c21360d592bd">Router</a>
 </li>
 <li>set()
-: <a class="el" href="class_coupler.html#a49769ab58eecddc918f6fd5fec27d7a8">Coupler</a>
-, <a class="el" href="class_lane.html#aafa90d0e5e6f5311ddba99ce2bddde6a">Lane</a>
+: <a class="el" href="class_channel.html#abf5fdd49e15b1a8739ee2fec15d5cd95">Channel</a>
+, <a class="el" href="class_coupler.html#aa21b3b458241dc623e258082a3b8fcfd">Coupler</a>
+, <a class="el" href="class_lane.html#a5d200779bf5b20ac14c57498fb1a92c6">Lane</a>
+</li>
+<li>set_gate()
+: <a class="el" href="class_coupler.html#ade65914599f98a68bdee22b7fc3d3017">Coupler</a>
 </li>
 <li>set_lane_mask()
-: <a class="el" href="class_pool.html#af89ed85059dc352cb0dfc824478e4ea6">Pool</a>
+: <a class="el" href="class_pool.html#a349abc3c1639470b905104519abd3578">Pool</a>
 </li>
 <li>set_lane_masks()
 : <a class="el" href="class_allocator.html#a35d3f88c4761b5b78dbe27f50930b68b">Allocator</a>
 </li>
-<li>set_pitch()
-: <a class="el" href="class_lane.html#ad6ca465fb6dc7189981088c34f215eaf">Lane</a>
+<li>set_note()
+: <a class="el" href="class_lane.html#a18306f0f90e84b16f514c4caef3cd30b">Lane</a>
 </li>
 <li>setpoint_to_pitch()
 : <a class="el" href="class_lane.html#a91c79ec6e49e76269940b7b9f519b006">Lane</a>
@@ -355,18 +388,18 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 : <a class="el" href="class_allocator.html#abd222486ac63d3a9b4e7cabb91569617">Allocator</a>
 , <a class="el" href="class_config.html#add9dfc573e6408dd4c1fd1e5c6293ba0">Config</a>
 , <a class="el" href="class_coupler.html#a4c9da194e45e555f5efa789df1844e96">Coupler</a>
-, <a class="el" href="class_lane.html#acdb78fd93cd0f8e17c775b4d410f63f4">Lane</a>
-, <a class="el" href="class_midi_interface.html#a6646022409fc4f2dff3dceb417d10f55">MidiInterface</a>
+, <a class="el" href="class_dac.html#ad976e111400c456985b2af630ff747b6">Dac</a>
 , <a class="el" href="class_router.html#ad42d4039bd4a012c34c7da685148a8b5">Router</a>
+, <a class="el" href="class_tuner.html#af7ab2775d9b3a5e5c6c2e6fc729bc114">Tuner</a>
 </li>
 <li>shift()
 : <a class="el" href="class_buffer.html#a1dd0d7cc03c72d098a929326c8e15119">Buffer</a>
 </li>
 <li>start()
-: <a class="el" href="class_lane.html#ab49f94d71f3a290e8086ed6ad4f25461">Lane</a>
+: <a class="el" href="class_lane.html#a3d6695365a51b20840389777d430742c">Lane</a>
 </li>
-<li>start_pitch()
-: <a class="el" href="class_lane.html#a239a940bc2427e2cc731ba86d3b79db8">Lane</a>
+<li>start_note()
+: <a class="el" href="class_lane.html#ac5a76a6f82a93740a1625f86dc0a5c66">Lane</a>
 </li>
 <li>stop()
 : <a class="el" href="class_lane.html#ade5504da830139b0588bb21a6fd7c52a">Lane</a>
@@ -375,9 +408,19 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </ul>
 
 
+<h3><a id="index_t"></a>- t -</h3><ul>
+<li>tune_fast()
+: <a class="el" href="class_tuner.html#a8962f486cba07837bd690300aeb9637a">Tuner</a>
+</li>
+<li>Tuner()
+: <a class="el" href="class_tuner.html#a5e1f77893d0e3f5ed2cf3a14fdbc321c">Tuner</a>
+</li>
+</ul>
+
+
 <h3><a id="index_u"></a>- u -</h3><ul>
 <li>unload()
-: <a class="el" href="class_pool.html#aa4dfd5c0e081c926995d5fd54f0c6915">Pool</a>
+: <a class="el" href="class_pool.html#a71587a75fb716a41cbfc8ed0a0621776">Pool</a>
 </li>
 <li>unlock()
 : <a class="el" href="class_pool.html#ab670c863ad1caf464e659f6143d7b915">Pool</a>
@@ -388,12 +431,19 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 , <a class="el" href="class_router.html#aa1b7b08c47135938efc721249f36a6a1">Router</a>
 </li>
 </ul>
+
+
+<h3><a id="index_v"></a>- v -</h3><ul>
+<li>velocity_to_voltage()
+: <a class="el" href="class_lane.html#ad95006de59f45072ed6025b1d3f90c68">Lane</a>
+</li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Aug 28 2024 20:57:55 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Sep 1 2024 18:03:42 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

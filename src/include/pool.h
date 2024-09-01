@@ -2,10 +2,10 @@
 #define pool_h
 
 #include "Arduino.h"
-#include <MIDI.h>
-#include "constants.h"
-#include "router.h"
 #include "buffer.h"
+#include "constants.h"
+#include <MIDI.h>
+#include "router.h"
 #include "structs.h"
 
 /**
@@ -84,7 +84,7 @@ public:
     /**
      * Propagate the *pitch-bend* message to the lanes.
      *
-     * @param bend_value The amount of bending (pitch bend & after touch)
+     * @param bend_value The amount of bending (between -8192 and 8191).
      */
     void bend(int bend_value);
 
@@ -107,6 +107,7 @@ public:
 
     /**
      * Check whether the pool's buffer contains a note.
+     * Two notes are considered equal if they have the same pitch.
      *
      * @param note The note to find.
      * @return `true` if the internal buffer contains that note.

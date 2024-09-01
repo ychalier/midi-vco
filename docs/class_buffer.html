@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.1</span>
+   &#160;<span id="projectnumber">3.0.0-dev.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -100,33 +100,33 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae7ef2cd201190fde551dcb902627112b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4261c1a06920df9c964e4e1ef03353eb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a4261c1a06920df9c964e4e1ef03353eb">empty</a> ()</td></tr>
 <tr class="separator:a4261c1a06920df9c964e4e1ef03353eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8731eb81c7288fb57ecfe8211a0bf15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#ab8731eb81c7288fb57ecfe8211a0bf15">push</a> (byte pitch)</td></tr>
-<tr class="separator:ab8731eb81c7288fb57ecfe8211a0bf15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14805d40b38f7f7c927eed79bf41d37a"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a14805d40b38f7f7c927eed79bf41d37a">get</a> (bool &amp;found)</td></tr>
-<tr class="separator:a14805d40b38f7f7c927eed79bf41d37a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e0b6b0c9d633a61a3a2a1e4ff554312"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a7e0b6b0c9d633a61a3a2a1e4ff554312">pop</a> (byte pitch)</td></tr>
-<tr class="separator:a7e0b6b0c9d633a61a3a2a1e4ff554312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acec71205058fb10fc57c94c8bdcf7dc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#acec71205058fb10fc57c94c8bdcf7dc5">push</a> (<a class="el" href="struct_note.html">Note</a> note)</td></tr>
+<tr class="separator:acec71205058fb10fc57c94c8bdcf7dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc1482054df6e6651efffcadc8c119a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_note.html">Note</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#acc1482054df6e6651efffcadc8c119a5">get</a> (bool &amp;found)</td></tr>
+<tr class="separator:acc1482054df6e6651efffcadc8c119a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a650109ed0ac2e1513a37fcc46a595829"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a650109ed0ac2e1513a37fcc46a595829">pop</a> (<a class="el" href="struct_note.html">Note</a> note)</td></tr>
+<tr class="separator:a650109ed0ac2e1513a37fcc46a595829"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1dd0d7cc03c72d098a929326c8e15119"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a1dd0d7cc03c72d098a929326c8e15119">shift</a> (int start)</td></tr>
 <tr class="separator:a1dd0d7cc03c72d098a929326c8e15119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52170368aefdfbbdcd4a4f79fbf66678"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a52170368aefdfbbdcd4a4f79fbf66678">reset</a> ()</td></tr>
 <tr class="separator:a52170368aefdfbbdcd4a4f79fbf66678"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb2720e9ab213820fddec500f755dfba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#aeb2720e9ab213820fddec500f755dfba">get_size</a> ()</td></tr>
 <tr class="separator:aeb2720e9ab213820fddec500f755dfba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80df93c6fc7678b12f8153bb7ef94afe"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a80df93c6fc7678b12f8153bb7ef94afe">get_at_index</a> (int index)</td></tr>
-<tr class="separator:a80df93c6fc7678b12f8153bb7ef94afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c05ab7e9ee0df3313f140904d4f0642"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a0c05ab7e9ee0df3313f140904d4f0642">contains</a> (byte pitch)</td></tr>
-<tr class="separator:a0c05ab7e9ee0df3313f140904d4f0642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd71ac784527e820976fcb8640ac798c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_note.html">Note</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#acd71ac784527e820976fcb8640ac798c">get_at_index</a> (int index)</td></tr>
+<tr class="separator:acd71ac784527e820976fcb8640ac798c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ce71d8693b229408f78155d6c3e108"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a33ce71d8693b229408f78155d6c3e108">contains</a> (<a class="el" href="struct_note.html">Note</a> note)</td></tr>
+<tr class="separator:a33ce71d8693b229408f78155d6c3e108"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a9a445f3dc50238d978fb6f669dbb97d7"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a> [<a class="el" href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>]</td></tr>
-<tr class="memdesc:a9a445f3dc50238d978fb6f669dbb97d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory for the notes.  <a href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">More...</a><br /></td></tr>
-<tr class="separator:a9a445f3dc50238d978fb6f669dbb97d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a735658b563de9085f3bed61c32a956ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_note.html">Note</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a> [<a class="el" href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>]</td></tr>
+<tr class="memdesc:a735658b563de9085f3bed61c32a956ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory for the notes.  <a href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">More...</a><br /></td></tr>
+<tr class="separator:a735658b563de9085f3bed61c32a956ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ba209b1e8b58edb64d5d0e148aeb1e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a></td></tr>
 <tr class="separator:a7ba209b1e8b58edb64d5d0e148aeb1e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Note buffer. Allows for remembering previously triggered notes that were replaced in the allocation process but that are still active (no note-off) message received about them. If the latest note ends before the replaced one, the replaced one will be played again. </p>
+<div class="textblock"><p><a class="el" href="struct_note.html">Note</a> buffer. Allows for remembering previously triggered notes that were replaced in the allocation process but that are still active (no note-off) message received about them. If the latest note ends before the replaced one, the replaced one will be played again. </p>
 
 <p class="definition">Definition at line <a class="el" href="buffer_8h_source.html#l00014">14</a> of file <a class="el" href="buffer_8h_source.html">buffer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -150,18 +150,18 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a> = -1;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>; i++)</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a>[i] = 0;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a>[i] = {0, 0};</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    }</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
+<div class="ttc" id="aclass_buffer_html_a735658b563de9085f3bed61c32a956ac"><div class="ttname"><a href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">Buffer::_notes</a></div><div class="ttdeci">Note _notes[BUFFER_SIZE]</div><div class="ttdoc">Memory for the notes.</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8h_source.html#l00094">buffer.h:94</a></div></div>
 <div class="ttc" id="aclass_buffer_html_a7ba209b1e8b58edb64d5d0e148aeb1e1"><div class="ttname"><a href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">Buffer::_cursor</a></div><div class="ttdeci">int _cursor</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8h_source.html#l00098">buffer.h:98</a></div></div>
-<div class="ttc" id="aclass_buffer_html_a9a445f3dc50238d978fb6f669dbb97d7"><div class="ttname"><a href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">Buffer::_notes</a></div><div class="ttdeci">byte _notes[BUFFER_SIZE]</div><div class="ttdoc">Memory for the notes.</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8h_source.html#l00094">buffer.h:94</a></div></div>
-<div class="ttc" id="aconstants_8h_html_a6b20d41d6252e9871430c242cb1a56e7"><div class="ttname"><a href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a></div><div class="ttdeci">#define BUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="constants_8h_source.html#l00083">constants.h:83</a></div></div>
+<div class="ttc" id="aconstants_8h_html_a6b20d41d6252e9871430c242cb1a56e7"><div class="ttname"><a href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a></div><div class="ttdeci">#define BUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="constants_8h_source.html#l00107">constants.h:107</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0c05ab7e9ee0df3313f140904d4f0642"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c05ab7e9ee0df3313f140904d4f0642">&#9670;&nbsp;</a></span>contains()</h2>
+<a id="a33ce71d8693b229408f78155d6c3e108"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33ce71d8693b229408f78155d6c3e108">&#9670;&nbsp;</a></span>contains()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,8 +169,8 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool Buffer::contains </td>
           <td>(</td>
-          <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>pitch</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_note.html">Note</a>&#160;</td>
+          <td class="paramname"><em>note</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -189,7 +189,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">bool</span> found = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt;= <a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a>; i++)</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a>[i] == pitch)</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a>[i].pitch == note.<a class="code" href="struct_note.html#a33af0cf423b895fa60d6a0d8e9cdfd7b">pitch</a>)</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        {</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            found = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keywordflow">break</span>;</div>
@@ -197,6 +197,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">return</span> found;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div>
+<div class="ttc" id="astruct_note_html_a33af0cf423b895fa60d6a0d8e9cdfd7b"><div class="ttname"><a href="struct_note.html#a33af0cf423b895fa60d6a0d8e9cdfd7b">Note::pitch</a></div><div class="ttdeci">byte pitch</div><div class="ttdoc">MIDI pitch, between 0 and 127 (G9).</div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00012">structs.h:12</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -224,14 +225,14 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a14805d40b38f7f7c927eed79bf41d37a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14805d40b38f7f7c927eed79bf41d37a">&#9670;&nbsp;</a></span>get()</h2>
+<a id="acc1482054df6e6651efffcadc8c119a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc1482054df6e6651efffcadc8c119a5">&#9670;&nbsp;</a></span>get()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">byte Buffer::get </td>
+          <td class="memname"><a class="el" href="struct_note.html">Note</a> Buffer::get </td>
           <td>(</td>
           <td class="paramtype">bool &amp;&#160;</td>
           <td class="paramname"><em>found</em></td><td>)</td>
@@ -247,25 +248,25 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a> &gt;= 0)</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    {</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        found = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a>[<a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a>];</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a>[<a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a>];</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    }</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    {</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        found = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a>[0];</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a>[0];</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a80df93c6fc7678b12f8153bb7ef94afe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80df93c6fc7678b12f8153bb7ef94afe">&#9670;&nbsp;</a></span>get_at_index()</h2>
+<a id="acd71ac784527e820976fcb8640ac798c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd71ac784527e820976fcb8640ac798c">&#9670;&nbsp;</a></span>get_at_index()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">byte Buffer::get_at_index </td>
+          <td class="memname"><a class="el" href="struct_note.html">Note</a> Buffer::get_at_index </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -286,9 +287,9 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (index &gt;= 0 &amp;&amp; index &lt;= <a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a>)</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a>[index];</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a>[index];</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">return</span> {0, 0};</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
@@ -317,8 +318,8 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a7e0b6b0c9d633a61a3a2a1e4ff554312"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e0b6b0c9d633a61a3a2a1e4ff554312">&#9670;&nbsp;</a></span>pop()</h2>
+<a id="a650109ed0ac2e1513a37fcc46a595829"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a650109ed0ac2e1513a37fcc46a595829">&#9670;&nbsp;</a></span>pop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -326,8 +327,8 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool Buffer::pop </td>
           <td>(</td>
-          <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>pitch</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_note.html">Note</a>&#160;</td>
+          <td class="paramname"><em>note</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -346,7 +347,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> found = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt;= <a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a>; i++)</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a>[i] == pitch)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a>[i].pitch == note.<a class="code" href="struct_note.html#a33af0cf423b895fa60d6a0d8e9cdfd7b">pitch</a>)</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        {</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <a class="code" href="class_buffer.html#a1dd0d7cc03c72d098a929326c8e15119">shift</a>(i);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a>--;</div>
@@ -360,8 +361,8 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="ab8731eb81c7288fb57ecfe8211a0bf15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8731eb81c7288fb57ecfe8211a0bf15">&#9670;&nbsp;</a></span>push()</h2>
+<a id="acec71205058fb10fc57c94c8bdcf7dc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acec71205058fb10fc57c94c8bdcf7dc5">&#9670;&nbsp;</a></span>push()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -369,8 +370,8 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Buffer::push </td>
           <td>(</td>
-          <td class="paramtype">byte&#160;</td>
-          <td class="paramname"><em>pitch</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_note.html">Note</a>&#160;</td>
+          <td class="paramname"><em>note</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -385,7 +386,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="class_buffer.html#a1dd0d7cc03c72d098a929326c8e15119">shift</a>(0);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a> = <a class="code" href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a> - 1;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a>[<a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a>] = pitch;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a>[<a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a>] = note;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
@@ -411,7 +412,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a> = -1;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>; i++)</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a>[i] = 0;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a>[i] = {0, 0};</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
 </div><!-- fragment -->
@@ -444,7 +445,7 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = start; i &lt; <a class="code" href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a> - 1; i++)</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a>[i] = <a class="code" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a>[i + 1];</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a>[i] = <a class="code" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a>[i + 1];</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
 </div><!-- fragment -->
@@ -476,8 +477,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9a445f3dc50238d978fb6f669dbb97d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a445f3dc50238d978fb6f669dbb97d7">&#9670;&nbsp;</a></span>_notes</h2>
+<a id="a735658b563de9085f3bed61c32a956ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a735658b563de9085f3bed61c32a956ac">&#9670;&nbsp;</a></span>_notes</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -486,7 +487,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">byte Buffer::_notes[<a class="el" href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>]</td>
+          <td class="memname"><a class="el" href="struct_note.html">Note</a> Buffer::_notes[<a class="el" href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>]</td>
         </tr>
       </table>
   </td>
@@ -512,7 +513,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_buffer.html">Buffer</a></li>
-    <li class="footer">Generated on Wed Aug 28 2024 20:57:54 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Sep 1 2024 18:03:42 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

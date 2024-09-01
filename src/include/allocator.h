@@ -4,9 +4,9 @@
 #include "Arduino.h"
 #include "constants.h"
 #include "config.h"
-#include "structs.h"
 #include "pool.h"
 #include "router.h"
+#include "structs.h"
 
 /**
  * Main wrapper for the pools that handles callbacks from the MIDI library.
@@ -71,14 +71,14 @@ public:
      *
      * @see `Allocator.check_mask`
      *
-     * @param mask An 16-bit pool mask
+     * @param mask A 16-bit pool mask
      */
     void note_off_masked(Note note, uint16_t mask);
 
     /**
      * Handler for the *pitch-bend* MIDI message.
      *
-     * @param bend Signed 14-bit integer, sum of pitch bend and after touch
+     * @param bend Signed 14-bit integer (between -8192 and 8191).
      */
     void pitch_bend(int bend);
 
@@ -87,6 +87,11 @@ public:
      */
     void reset();
 
+    /**
+     * Force reset pools corresponding to the mask.
+     * 
+     * @param mask Selector for pools to reset.
+     */
     void reset_masked(uint16_t mask);
 
     /**
@@ -101,6 +106,9 @@ public:
 
     /**
      * Artificially send an output to all lanes. This is used during tuning.
+     * 
+     * @param setpoint CV setpoint to broadcast to all lanes
+     * @param gate Gate state to broadcast to all couplers
      */
     void broadcast(int setpoint, int gate);
 
@@ -115,6 +123,12 @@ public:
      */
     static bool check_mask(uint16_t mask, int value);
 
+    /**
+     * Check if at least one pool is active.
+     * 
+     * @return true At least one pool is active.
+     * @return false All pools are inactive.
+     */
     bool is_active();
 
 private:

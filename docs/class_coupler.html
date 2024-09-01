@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.1</span>
+   &#160;<span id="projectnumber">3.0.0-dev.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -96,55 +96,68 @@ $(document).ready(function(){initNavTree('class_coupler.html',''); initResizable
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af26f2529ff4c67efc8c81fb5f88a67cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#af26f2529ff4c67efc8c81fb5f88a67cc">Coupler</a> (int dac_pin, int gate_pin)</td></tr>
-<tr class="separator:af26f2529ff4c67efc8c81fb5f88a67cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a620c67c1e7eff9d34c8abf9e7da932d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a620c67c1e7eff9d34c8abf9e7da932d9">Coupler</a> (int dac_pin, int gate_pin, <a class="el" href="class_channel.html">Channel</a> *vel_channel)</td></tr>
+<tr class="separator:a620c67c1e7eff9d34c8abf9e7da932d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c9da194e45e555f5efa789df1844e96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a4c9da194e45e555f5efa789df1844e96">setup</a> ()</td></tr>
 <tr class="separator:a4c9da194e45e555f5efa789df1844e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49769ab58eecddc918f6fd5fec27d7a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a49769ab58eecddc918f6fd5fec27d7a8">set</a> (bool channel, int setpoint)</td></tr>
-<tr class="separator:a49769ab58eecddc918f6fd5fec27d7a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa21b3b458241dc623e258082a3b8fcfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#aa21b3b458241dc623e258082a3b8fcfd">set</a> (bool channel, int setpoint_cv, int setpoint_vel)</td></tr>
+<tr class="separator:aa21b3b458241dc623e258082a3b8fcfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b31285724d1196967ee14891695f685"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a5b31285724d1196967ee14891695f685">activate</a> (bool channel)</td></tr>
 <tr class="separator:a5b31285724d1196967ee14891695f685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1da7bbdf99a3ee92d96423c9beb12fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#ac1da7bbdf99a3ee92d96423c9beb12fd">deactivate</a> (bool channel)</td></tr>
 <tr class="separator:ac1da7bbdf99a3ee92d96423c9beb12fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a2aa1008ebf486d2096d4832e728288"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a2a2aa1008ebf486d2096d4832e728288">update</a> ()</td></tr>
 <tr class="separator:a2a2aa1008ebf486d2096d4832e728288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac17a7bea30c90db6a1d1bfd203e8e0c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#ac17a7bea30c90db6a1d1bfd203e8e0c9">broadcast</a> (int setpoint, int gate)</td></tr>
-<tr class="separator:ac17a7bea30c90db6a1d1bfd203e8e0c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade65914599f98a68bdee22b7fc3d3017"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#ade65914599f98a68bdee22b7fc3d3017">set_gate</a> (int gate)</td></tr>
+<tr class="separator:ade65914599f98a68bdee22b7fc3d3017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a9292573cf54f051986a638007290d1c4"><td class="memItemLeft" align="right" valign="top">MCP4822 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a></td></tr>
 <tr class="memdesc:a9292573cf54f051986a638007290d1c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">A DAC interface to control the CV signals.  <a href="class_coupler.html#a9292573cf54f051986a638007290d1c4">More...</a><br /></td></tr>
 <tr class="separator:a9292573cf54f051986a638007290d1c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a502204404224274e910f08cfa349ad3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_channel.html">Channel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a502204404224274e910f08cfa349ad3a">_vel_channel</a></td></tr>
+<tr class="memdesc:a502204404224274e910f08cfa349ad3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A reference to the DAC <a class="el" href="class_channel.html">Channel</a> for outputting velocity.  <a href="class_coupler.html#a502204404224274e910f08cfa349ad3a">More...</a><br /></td></tr>
+<tr class="separator:a502204404224274e910f08cfa349ad3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7731078ecd865845157670d7f43cec06"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a></td></tr>
 <tr class="memdesc:a7731078ecd865845157670d7f43cec06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the channel A is active or not.  <a href="class_coupler.html#a7731078ecd865845157670d7f43cec06">More...</a><br /></td></tr>
 <tr class="separator:a7731078ecd865845157670d7f43cec06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab1ee6b1a288f9c825d77d08850aab61"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a></td></tr>
 <tr class="memdesc:aab1ee6b1a288f9c825d77d08850aab61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the channel B is active or not.  <a href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">More...</a><br /></td></tr>
 <tr class="separator:aab1ee6b1a288f9c825d77d08850aab61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c52535100198f194c79534eef86ea0a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a5c52535100198f194c79534eef86ea0a">_setpoint_a</a></td></tr>
-<tr class="memdesc:a5c52535100198f194c79534eef86ea0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical CV setpoint for channel A. This ignores the value of channel B.  <a href="class_coupler.html#a5c52535100198f194c79534eef86ea0a">More...</a><br /></td></tr>
-<tr class="separator:a5c52535100198f194c79534eef86ea0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a614a7a4fbcca43a4746065aacff63c55"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a614a7a4fbcca43a4746065aacff63c55">_setpoint_b</a></td></tr>
-<tr class="memdesc:a614a7a4fbcca43a4746065aacff63c55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical CV setpoint for channel B. This ignores the value of channel A.  <a href="class_coupler.html#a614a7a4fbcca43a4746065aacff63c55">More...</a><br /></td></tr>
-<tr class="separator:a614a7a4fbcca43a4746065aacff63c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d3a5848723ce2e16ad30a3786356982"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a2d3a5848723ce2e16ad30a3786356982">_cv_setpoint_a</a></td></tr>
+<tr class="memdesc:a2d3a5848723ce2e16ad30a3786356982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical CV setpoint for channel A. This ignores the value of channel B.  <a href="class_coupler.html#a2d3a5848723ce2e16ad30a3786356982">More...</a><br /></td></tr>
+<tr class="separator:a2d3a5848723ce2e16ad30a3786356982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c2f4a04b941aac1558cb7474b3e4388"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a2c2f4a04b941aac1558cb7474b3e4388">_cv_setpoint_b</a></td></tr>
+<tr class="memdesc:a2c2f4a04b941aac1558cb7474b3e4388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical CV setpoint for channel B. This ignores the value of channel A.  <a href="class_coupler.html#a2c2f4a04b941aac1558cb7474b3e4388">More...</a><br /></td></tr>
+<tr class="separator:a2c2f4a04b941aac1558cb7474b3e4388"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a4624eb8fe0d28ef94e4493a5d7e275"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a1a4624eb8fe0d28ef94e4493a5d7e275">_cv_a</a></td></tr>
 <tr class="separator:a1a4624eb8fe0d28ef94e4493a5d7e275"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37bad99eb7a45ff1b190b04d6b68289d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a37bad99eb7a45ff1b190b04d6b68289d">_cv_b</a></td></tr>
 <tr class="separator:a37bad99eb7a45ff1b190b04d6b68289d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bc6b98caae495445658ddf455e5d19c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a5bc6b98caae495445658ddf455e5d19c">_vel_setpoint_a</a></td></tr>
+<tr class="memdesc:a5bc6b98caae495445658ddf455e5d19c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical velocity setpoint for channel A.  <a href="class_coupler.html#a5bc6b98caae495445658ddf455e5d19c">More...</a><br /></td></tr>
+<tr class="separator:a5bc6b98caae495445658ddf455e5d19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a4a56dd4ae33462979c3537bd4a3054"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a6a4a56dd4ae33462979c3537bd4a3054">_vel_setpoint_b</a></td></tr>
+<tr class="memdesc:a6a4a56dd4ae33462979c3537bd4a3054"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical velocity setpoint for channel B.  <a href="class_coupler.html#a6a4a56dd4ae33462979c3537bd4a3054">More...</a><br /></td></tr>
+<tr class="separator:a6a4a56dd4ae33462979c3537bd4a3054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add063502043762bd3ffd98e42a6be9fb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#add063502043762bd3ffd98e42a6be9fb">_vel</a></td></tr>
+<tr class="memdesc:add063502043762bd3ffd98e42a6be9fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actual velocity setpoint.  <a href="class_coupler.html#add063502043762bd3ffd98e42a6be9fb">More...</a><br /></td></tr>
+<tr class="separator:add063502043762bd3ffd98e42a6be9fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0821ee1cc6ecbfad4b39a52908298ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#ae0821ee1cc6ecbfad4b39a52908298ef">_gate</a></td></tr>
 <tr class="memdesc:ae0821ee1cc6ecbfad4b39a52908298ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current state of the GATE signal.  <a href="class_coupler.html#ae0821ee1cc6ecbfad4b39a52908298ef">More...</a><br /></td></tr>
 <tr class="separator:ae0821ee1cc6ecbfad4b39a52908298ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a647fec88d0e311c8efc5b146bf7140d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a></td></tr>
+<tr class="memdesc:a647fec88d0e311c8efc5b146bf7140d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gate pin.  <a href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">More...</a><br /></td></tr>
 <tr class="separator:a647fec88d0e311c8efc5b146bf7140d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implements the paraphonic feature. Simulates two output lanes using two CV signals and one shared GATE signal. </p>
+<div class="textblock"><p>Implements the paraphonic feature. Simulates two output lanes using two CV signals, one shared GATE signal and one shared VELOCITY signal. </p>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00014">14</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00012">12</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af26f2529ff4c67efc8c81fb5f88a67cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af26f2529ff4c67efc8c81fb5f88a67cc">&#9670;&nbsp;</a></span>Coupler()</h2>
+<a id="a620c67c1e7eff9d34c8abf9e7da932d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a620c67c1e7eff9d34c8abf9e7da932d9">&#9670;&nbsp;</a></span>Coupler()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +172,13 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>gate_pin</em>&#160;</td>
+          <td class="paramname"><em>gate_pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_channel.html">Channel</a> *&#160;</td>
+          <td class="paramname"><em>vel_channel</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -173,6 +192,7 @@ Private Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">dac_pin</td><td>SS PIN controller for the DAC corresponding to the two lanes bound to the coupler. </td></tr>
     <tr><td class="paramname">gate_pin</td><td>PIN for the output GATE signal. </td></tr>
+    <tr><td class="paramname">vel_channel</td><td>Reference to a DAC channel for the velocity output. </td></tr>
   </table>
   </dd>
 </dl>
@@ -180,24 +200,32 @@ Private Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00004">4</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a> = <span class="keyword">new</span> MCP4822(dac_pin);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="class_coupler.html#a5c52535100198f194c79534eef86ea0a">_setpoint_a</a> = 0;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="class_coupler.html#a614a7a4fbcca43a4746065aacff63c55">_setpoint_b</a> = 0;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="class_coupler.html#a1a4624eb8fe0d28ef94e4493a5d7e275">_cv_a</a> = 0;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="class_coupler.html#a37bad99eb7a45ff1b190b04d6b68289d">_cv_b</a> = 0;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_coupler.html#ae0821ee1cc6ecbfad4b39a52908298ef">_gate</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a> = gate_pin;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
-<div class="ttc" id="aclass_coupler_html_a1a4624eb8fe0d28ef94e4493a5d7e275"><div class="ttname"><a href="class_coupler.html#a1a4624eb8fe0d28ef94e4493a5d7e275">Coupler::_cv_a</a></div><div class="ttdeci">int _cv_a</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00081">coupler.h:81</a></div></div>
-<div class="ttc" id="aclass_coupler_html_a37bad99eb7a45ff1b190b04d6b68289d"><div class="ttname"><a href="class_coupler.html#a37bad99eb7a45ff1b190b04d6b68289d">Coupler::_cv_b</a></div><div class="ttdeci">int _cv_b</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00085">coupler.h:85</a></div></div>
-<div class="ttc" id="aclass_coupler_html_a5c52535100198f194c79534eef86ea0a"><div class="ttname"><a href="class_coupler.html#a5c52535100198f194c79534eef86ea0a">Coupler::_setpoint_a</a></div><div class="ttdeci">int _setpoint_a</div><div class="ttdoc">Logical CV setpoint for channel A. This ignores the value of channel B.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00074">coupler.h:74</a></div></div>
-<div class="ttc" id="aclass_coupler_html_a614a7a4fbcca43a4746065aacff63c55"><div class="ttname"><a href="class_coupler.html#a614a7a4fbcca43a4746065aacff63c55">Coupler::_setpoint_b</a></div><div class="ttdeci">int _setpoint_b</div><div class="ttdoc">Logical CV setpoint for channel B. This ignores the value of channel A.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00077">coupler.h:77</a></div></div>
-<div class="ttc" id="aclass_coupler_html_a647fec88d0e311c8efc5b146bf7140d4"><div class="ttname"><a href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">Coupler::_gate_pin</a></div><div class="ttdeci">int _gate_pin</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00090">coupler.h:90</a></div></div>
-<div class="ttc" id="aclass_coupler_html_a7731078ecd865845157670d7f43cec06"><div class="ttname"><a href="class_coupler.html#a7731078ecd865845157670d7f43cec06">Coupler::_active_a</a></div><div class="ttdeci">bool _active_a</div><div class="ttdoc">Whether the channel A is active or not.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00068">coupler.h:68</a></div></div>
-<div class="ttc" id="aclass_coupler_html_a9292573cf54f051986a638007290d1c4"><div class="ttname"><a href="class_coupler.html#a9292573cf54f051986a638007290d1c4">Coupler::_dac</a></div><div class="ttdeci">MCP4822 * _dac</div><div class="ttdoc">A DAC interface to control the CV signals.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00065">coupler.h:65</a></div></div>
-<div class="ttc" id="aclass_coupler_html_aab1ee6b1a288f9c825d77d08850aab61"><div class="ttname"><a href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">Coupler::_active_b</a></div><div class="ttdeci">bool _active_b</div><div class="ttdoc">Whether the channel B is active or not.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00071">coupler.h:71</a></div></div>
-<div class="ttc" id="aclass_coupler_html_ae0821ee1cc6ecbfad4b39a52908298ef"><div class="ttname"><a href="class_coupler.html#ae0821ee1cc6ecbfad4b39a52908298ef">Coupler::_gate</a></div><div class="ttdeci">bool _gate</div><div class="ttdoc">Current state of the GATE signal.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00088">coupler.h:88</a></div></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="class_coupler.html#a502204404224274e910f08cfa349ad3a">_vel_channel</a> = vel_channel;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="class_coupler.html#a2d3a5848723ce2e16ad30a3786356982">_cv_setpoint_a</a> = 0;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="class_coupler.html#a2c2f4a04b941aac1558cb7474b3e4388">_cv_setpoint_b</a> = 0;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="class_coupler.html#a1a4624eb8fe0d28ef94e4493a5d7e275">_cv_a</a> = 0;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_coupler.html#a37bad99eb7a45ff1b190b04d6b68289d">_cv_b</a> = 0;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_coupler.html#a5bc6b98caae495445658ddf455e5d19c">_vel_setpoint_a</a> = 0;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="class_coupler.html#a6a4a56dd4ae33462979c3537bd4a3054">_vel_setpoint_b</a> = 0;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_coupler.html#add063502043762bd3ffd98e42a6be9fb">_vel</a> = 0;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_coupler.html#ae0821ee1cc6ecbfad4b39a52908298ef">_gate</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a> = gate_pin;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
+<div class="ttc" id="aclass_coupler_html_a1a4624eb8fe0d28ef94e4493a5d7e275"><div class="ttname"><a href="class_coupler.html#a1a4624eb8fe0d28ef94e4493a5d7e275">Coupler::_cv_a</a></div><div class="ttdeci">int _cv_a</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00090">coupler.h:90</a></div></div>
+<div class="ttc" id="aclass_coupler_html_a2c2f4a04b941aac1558cb7474b3e4388"><div class="ttname"><a href="class_coupler.html#a2c2f4a04b941aac1558cb7474b3e4388">Coupler::_cv_setpoint_b</a></div><div class="ttdeci">int _cv_setpoint_b</div><div class="ttdoc">Logical CV setpoint for channel B. This ignores the value of channel A.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00086">coupler.h:86</a></div></div>
+<div class="ttc" id="aclass_coupler_html_a2d3a5848723ce2e16ad30a3786356982"><div class="ttname"><a href="class_coupler.html#a2d3a5848723ce2e16ad30a3786356982">Coupler::_cv_setpoint_a</a></div><div class="ttdeci">int _cv_setpoint_a</div><div class="ttdoc">Logical CV setpoint for channel A. This ignores the value of channel B.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00083">coupler.h:83</a></div></div>
+<div class="ttc" id="aclass_coupler_html_a37bad99eb7a45ff1b190b04d6b68289d"><div class="ttname"><a href="class_coupler.html#a37bad99eb7a45ff1b190b04d6b68289d">Coupler::_cv_b</a></div><div class="ttdeci">int _cv_b</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00094">coupler.h:94</a></div></div>
+<div class="ttc" id="aclass_coupler_html_a502204404224274e910f08cfa349ad3a"><div class="ttname"><a href="class_coupler.html#a502204404224274e910f08cfa349ad3a">Coupler::_vel_channel</a></div><div class="ttdeci">Channel * _vel_channel</div><div class="ttdoc">A reference to the DAC Channel for outputting velocity.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00074">coupler.h:74</a></div></div>
+<div class="ttc" id="aclass_coupler_html_a5bc6b98caae495445658ddf455e5d19c"><div class="ttname"><a href="class_coupler.html#a5bc6b98caae495445658ddf455e5d19c">Coupler::_vel_setpoint_a</a></div><div class="ttdeci">int _vel_setpoint_a</div><div class="ttdoc">Logical velocity setpoint for channel A.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00097">coupler.h:97</a></div></div>
+<div class="ttc" id="aclass_coupler_html_a647fec88d0e311c8efc5b146bf7140d4"><div class="ttname"><a href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">Coupler::_gate_pin</a></div><div class="ttdeci">int _gate_pin</div><div class="ttdoc">Gate pin.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00109">coupler.h:109</a></div></div>
+<div class="ttc" id="aclass_coupler_html_a6a4a56dd4ae33462979c3537bd4a3054"><div class="ttname"><a href="class_coupler.html#a6a4a56dd4ae33462979c3537bd4a3054">Coupler::_vel_setpoint_b</a></div><div class="ttdeci">int _vel_setpoint_b</div><div class="ttdoc">Logical velocity setpoint for channel B.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00100">coupler.h:100</a></div></div>
+<div class="ttc" id="aclass_coupler_html_a7731078ecd865845157670d7f43cec06"><div class="ttname"><a href="class_coupler.html#a7731078ecd865845157670d7f43cec06">Coupler::_active_a</a></div><div class="ttdeci">bool _active_a</div><div class="ttdoc">Whether the channel A is active or not.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00077">coupler.h:77</a></div></div>
+<div class="ttc" id="aclass_coupler_html_a9292573cf54f051986a638007290d1c4"><div class="ttname"><a href="class_coupler.html#a9292573cf54f051986a638007290d1c4">Coupler::_dac</a></div><div class="ttdeci">MCP4822 * _dac</div><div class="ttdoc">A DAC interface to control the CV signals.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00071">coupler.h:71</a></div></div>
+<div class="ttc" id="aclass_coupler_html_aab1ee6b1a288f9c825d77d08850aab61"><div class="ttname"><a href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">Coupler::_active_b</a></div><div class="ttdeci">bool _active_b</div><div class="ttdoc">Whether the channel B is active or not.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00080">coupler.h:80</a></div></div>
+<div class="ttc" id="aclass_coupler_html_add063502043762bd3ffd98e42a6be9fb"><div class="ttname"><a href="class_coupler.html#add063502043762bd3ffd98e42a6be9fb">Coupler::_vel</a></div><div class="ttdeci">int _vel</div><div class="ttdoc">Actual velocity setpoint.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00103">coupler.h:103</a></div></div>
+<div class="ttc" id="aclass_coupler_html_ae0821ee1cc6ecbfad4b39a52908298ef"><div class="ttname"><a href="class_coupler.html#ae0821ee1cc6ecbfad4b39a52908298ef">Coupler::_gate</a></div><div class="ttdeci">bool _gate</div><div class="ttdoc">Current state of the GATE signal.</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8h_source.html#l00106">coupler.h:106</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -225,55 +253,19 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00041">41</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">if</span> (channel)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="class_coupler.html#a2a2aa1008ebf486d2096d4832e728288">update</a>();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
-<div class="ttc" id="aclass_coupler_html_a2a2aa1008ebf486d2096d4832e728288"><div class="ttname"><a href="class_coupler.html#a2a2aa1008ebf486d2096d4832e728288">Coupler::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8cpp_source.html#l00067">coupler.cpp:67</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ac17a7bea30c90db6a1d1bfd203e8e0c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac17a7bea30c90db6a1d1bfd203e8e0c9">&#9670;&nbsp;</a></span>broadcast()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Coupler::broadcast </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>setpoint</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>gate</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00111">111</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    digitalWrite(<a class="code" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a>, gate);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;setVoltageA(setpoint);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;setVoltageB(setpoint);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;updateDAC();</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00047">47</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">if</span> (channel)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_coupler.html#a2a2aa1008ebf486d2096d4832e728288">update</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+<div class="ttc" id="aclass_coupler_html_a2a2aa1008ebf486d2096d4832e728288"><div class="ttname"><a href="class_coupler.html#a2a2aa1008ebf486d2096d4832e728288">Coupler::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8cpp_source.html#l00073">coupler.cpp:73</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -300,23 +292,23 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00054">54</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">if</span> (channel)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="class_coupler.html#a2a2aa1008ebf486d2096d4832e728288">update</a>();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00060">60</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">if</span> (channel)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="class_coupler.html#a2a2aa1008ebf486d2096d4832e728288">update</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a49769ab58eecddc918f6fd5fec27d7a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49769ab58eecddc918f6fd5fec27d7a8">&#9670;&nbsp;</a></span>set()</h2>
+<a id="aa21b3b458241dc623e258082a3b8fcfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa21b3b458241dc623e258082a3b8fcfd">&#9670;&nbsp;</a></span>set()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -331,7 +323,13 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>setpoint</em>&#160;</td>
+          <td class="paramname"><em>setpoint_cv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>setpoint_vel</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -344,23 +342,65 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">channel</td><td>Selector for which lane to update (A is <code>true</code>, B is <code>false</code>). </td></tr>
-    <tr><td class="paramname">setpoint</td><td>DAC setpoint value. </td></tr>
+    <tr><td class="paramname">setpoint_cv</td><td>Setpoint for CV output (0-4096). </td></tr>
+    <tr><td class="paramname">setpoint_vel</td><td>Setpoint for velocity output (0-4096). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00028">28</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> (channel)</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="class_coupler.html#a5c52535100198f194c79534eef86ea0a">_setpoint_a</a> = setpoint;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">else</span></div>
+<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00032">32</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">if</span> (channel)</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="class_coupler.html#a614a7a4fbcca43a4746065aacff63c55">_setpoint_b</a> = setpoint;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_coupler.html#a2a2aa1008ebf486d2096d4832e728288">update</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="class_coupler.html#a2d3a5848723ce2e16ad30a3786356982">_cv_setpoint_a</a> = setpoint_cv;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="class_coupler.html#a5bc6b98caae495445658ddf455e5d19c">_vel_setpoint_a</a> = setpoint_vel;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="class_coupler.html#a2c2f4a04b941aac1558cb7474b3e4388">_cv_setpoint_b</a> = setpoint_cv;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="class_coupler.html#a6a4a56dd4ae33462979c3537bd4a3054">_vel_setpoint_b</a> = setpoint_vel;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_coupler.html#a2a2aa1008ebf486d2096d4832e728288">update</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ade65914599f98a68bdee22b7fc3d3017"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade65914599f98a68bdee22b7fc3d3017">&#9670;&nbsp;</a></span>set_gate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Coupler::set_gate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>gate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Turn the gate signal on or off. Does not force: if the gate passed as argument is the same as the internal state, nothing happens.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gate</td><td>Gate state, <code>HIGH</code> or <code>LOW</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00116">116</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_coupler.html#ae0821ee1cc6ecbfad4b39a52908298ef">_gate</a> == gate) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="class_coupler.html#ae0821ee1cc6ecbfad4b39a52908298ef">_gate</a> = gate;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">if</span> (gate)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        digitalWrite(<a class="code" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a>, HIGH);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        digitalWrite(<a class="code" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a>, LOW);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -380,16 +420,16 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Initialize hardware connections. Must be called once in the main program setup phase. </p>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00017">17</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;init();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;turnOnChannelA();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;setGainA(MCP4822::High);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;turnOnChannelB();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;setGainB(MCP4822::High);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    pinMode(<a class="code" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a>, OUTPUT);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    digitalWrite(<a class="code" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a>, LOW);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00021">21</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;init();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;turnOnChannelA();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;setGainA(MCP4822::High);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;turnOnChannelB();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;setGainB(MCP4822::High);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    pinMode(<a class="code" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a>, OUTPUT);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    digitalWrite(<a class="code" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a>, LOW);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -409,49 +449,50 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Update the real output based on the previous and the current logical state. </p>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00067">67</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">int</span> cv_a = <a class="code" href="class_coupler.html#a5c52535100198f194c79534eef86ea0a">_setpoint_a</a>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">int</span> cv_b = <a class="code" href="class_coupler.html#a614a7a4fbcca43a4746065aacff63c55">_setpoint_b</a>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">bool</span> gate = <a class="code" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a> || <a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">bool</span> update_dac = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">if</span> (gate &amp;&amp; !<a class="code" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a>)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        cv_a = <a class="code" href="class_coupler.html#a614a7a4fbcca43a4746065aacff63c55">_setpoint_b</a>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (gate &amp;&amp; !<a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a>)</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        cv_b = <a class="code" href="class_coupler.html#a5c52535100198f194c79534eef86ea0a">_setpoint_a</a>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_coupler.html#a1a4624eb8fe0d28ef94e4493a5d7e275">_cv_a</a> != cv_a)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="class_coupler.html#a1a4624eb8fe0d28ef94e4493a5d7e275">_cv_a</a> = cv_a;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;setVoltageA(cv_a);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        update_dac = <span class="keyword">true</span>;</div>
+<p class="definition">Definition at line <a class="el" href="coupler_8cpp_source.html#l00073">73</a> of file <a class="el" href="coupler_8cpp_source.html">coupler.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">int</span> cv_a = <a class="code" href="class_coupler.html#a2d3a5848723ce2e16ad30a3786356982">_cv_setpoint_a</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">int</span> cv_b = <a class="code" href="class_coupler.html#a2c2f4a04b941aac1558cb7474b3e4388">_cv_setpoint_b</a>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">bool</span> gate = <a class="code" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a> || <a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">bool</span> update_dac = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">if</span> (gate &amp;&amp; !<a class="code" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a>)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        cv_a = <a class="code" href="class_coupler.html#a2c2f4a04b941aac1558cb7474b3e4388">_cv_setpoint_b</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (gate &amp;&amp; !<a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a>)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        cv_b = <a class="code" href="class_coupler.html#a2d3a5848723ce2e16ad30a3786356982">_cv_setpoint_a</a>;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_coupler.html#a37bad99eb7a45ff1b190b04d6b68289d">_cv_b</a> != cv_b)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_coupler.html#a1a4624eb8fe0d28ef94e4493a5d7e275">_cv_a</a> != cv_a)</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <a class="code" href="class_coupler.html#a37bad99eb7a45ff1b190b04d6b68289d">_cv_b</a> = cv_b;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;setVoltageB(cv_b);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <a class="code" href="class_coupler.html#a1a4624eb8fe0d28ef94e4493a5d7e275">_cv_a</a> = cv_a;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;setVoltageA(cv_a);</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        update_dac = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">if</span> (update_dac)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_coupler.html#a37bad99eb7a45ff1b190b04d6b68289d">_cv_b</a> != cv_b)</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;updateDAC();</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_coupler.html#ae0821ee1cc6ecbfad4b39a52908298ef">_gate</a> != gate)</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    {</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="class_coupler.html#ae0821ee1cc6ecbfad4b39a52908298ef">_gate</a> = gate;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">if</span> (gate)</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            digitalWrite(<a class="code" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a>, HIGH);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            digitalWrite(<a class="code" href="class_coupler.html#a647fec88d0e311c8efc5b146bf7140d4">_gate_pin</a>, LOW);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="class_coupler.html#a37bad99eb7a45ff1b190b04d6b68289d">_cv_b</a> = cv_b;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;setVoltageB(cv_b);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        update_dac = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span> (update_dac)</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <a class="code" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">_dac</a>-&gt;updateDAC();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="class_coupler.html#ade65914599f98a68bdee22b7fc3d3017">set_gate</a>(gate);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">int</span> vel = <a class="code" href="class_coupler.html#a5bc6b98caae495445658ddf455e5d19c">_vel_setpoint_a</a>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="class_coupler.html#a7731078ecd865845157670d7f43cec06">_active_a</a> &amp;&amp; <a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a>) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        vel = <a class="code" href="class_coupler.html#a6a4a56dd4ae33462979c3537bd4a3054">_vel_setpoint_b</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">_active_b</a>) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        vel = (<a class="code" href="class_coupler.html#a5bc6b98caae495445658ddf455e5d19c">_vel_setpoint_a</a> + <a class="code" href="class_coupler.html#a6a4a56dd4ae33462979c3537bd4a3054">_vel_setpoint_b</a>) / 2;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">if</span> (vel != <a class="code" href="class_coupler.html#add063502043762bd3ffd98e42a6be9fb">_vel</a>) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="class_coupler.html#add063502043762bd3ffd98e42a6be9fb">_vel</a> = vel;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <a class="code" href="class_coupler.html#a502204404224274e910f08cfa349ad3a">_vel_channel</a>-&gt;<a class="code" href="class_channel.html#abf5fdd49e15b1a8739ee2fec15d5cd95">set</a>(vel);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
+<div class="ttc" id="aclass_channel_html_abf5fdd49e15b1a8739ee2fec15d5cd95"><div class="ttname"><a href="class_channel.html#abf5fdd49e15b1a8739ee2fec15d5cd95">Channel::set</a></div><div class="ttdeci">void set(int setpoint)</div><div class="ttdef"><b>Definition:</b> <a href="channel_8cpp_source.html#l00010">channel.cpp:10</a></div></div>
+<div class="ttc" id="aclass_coupler_html_ade65914599f98a68bdee22b7fc3d3017"><div class="ttname"><a href="class_coupler.html#ade65914599f98a68bdee22b7fc3d3017">Coupler::set_gate</a></div><div class="ttdeci">void set_gate(int gate)</div><div class="ttdef"><b>Definition:</b> <a href="coupler_8cpp_source.html#l00116">coupler.cpp:116</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -478,7 +519,7 @@ Private Attributes</h2></td></tr>
 
 <p>Whether the channel A is active or not. </p>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00068">68</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00077">77</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
 
 </div>
 </div>
@@ -504,7 +545,7 @@ Private Attributes</h2></td></tr>
 
 <p>Whether the channel B is active or not. </p>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00071">71</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00080">80</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
 
 </div>
 </div>
@@ -527,9 +568,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Actual CV setpoint for channel A. May differ from <code>_setpoint_a</code> if the channel is off while the other is on. </p>
+<p>Actual CV setpoint for channel A. May differ from <code>_cv_setpoint_a</code> if the channel is off while the other is on. </p>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00081">81</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00090">90</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
 
 </div>
 </div>
@@ -552,9 +593,61 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Actual CV setpoint for channel B. May differ from <code>_setpoint_b</code> if the channel is off while the other is on. </p>
+<p>Actual CV setpoint for channel B. May differ from <code>_cv_setpoint_b</code> if the channel is off while the other is on. </p>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00085">85</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00094">94</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+
+</div>
+</div>
+<a id="a2d3a5848723ce2e16ad30a3786356982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d3a5848723ce2e16ad30a3786356982">&#9670;&nbsp;</a></span>_cv_setpoint_a</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Coupler::_cv_setpoint_a</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Logical CV setpoint for channel A. This ignores the value of channel B. </p>
+
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00083">83</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+
+</div>
+</div>
+<a id="a2c2f4a04b941aac1558cb7474b3e4388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c2f4a04b941aac1558cb7474b3e4388">&#9670;&nbsp;</a></span>_cv_setpoint_b</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Coupler::_cv_setpoint_b</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Logical CV setpoint for channel B. This ignores the value of channel A. </p>
+
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00086">86</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
 
 </div>
 </div>
@@ -580,7 +673,7 @@ Private Attributes</h2></td></tr>
 
 <p>A DAC interface to control the CV signals. </p>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00065">65</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00071">71</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
 
 </div>
 </div>
@@ -606,7 +699,7 @@ Private Attributes</h2></td></tr>
 
 <p>Current state of the GATE signal. </p>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00088">88</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00106">106</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
 
 </div>
 </div>
@@ -630,12 +723,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00090">90</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+<p>Gate pin. </p>
+
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00109">109</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
 
 </div>
 </div>
-<a id="a5c52535100198f194c79534eef86ea0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c52535100198f194c79534eef86ea0a">&#9670;&nbsp;</a></span>_setpoint_a</h2>
+<a id="add063502043762bd3ffd98e42a6be9fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add063502043762bd3ffd98e42a6be9fb">&#9670;&nbsp;</a></span>_vel</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -644,7 +739,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Coupler::_setpoint_a</td>
+          <td class="memname">int Coupler::_vel</td>
         </tr>
       </table>
   </td>
@@ -654,14 +749,40 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Logical CV setpoint for channel A. This ignores the value of channel B. </p>
+<p>Actual velocity setpoint. </p>
+
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00103">103</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+
+</div>
+</div>
+<a id="a502204404224274e910f08cfa349ad3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a502204404224274e910f08cfa349ad3a">&#9670;&nbsp;</a></span>_vel_channel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_channel.html">Channel</a>* Coupler::_vel_channel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A reference to the DAC <a class="el" href="class_channel.html">Channel</a> for outputting velocity. </p>
 
 <p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00074">74</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
 
 </div>
 </div>
-<a id="a614a7a4fbcca43a4746065aacff63c55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a614a7a4fbcca43a4746065aacff63c55">&#9670;&nbsp;</a></span>_setpoint_b</h2>
+<a id="a5bc6b98caae495445658ddf455e5d19c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bc6b98caae495445658ddf455e5d19c">&#9670;&nbsp;</a></span>_vel_setpoint_a</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -670,7 +791,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Coupler::_setpoint_b</td>
+          <td class="memname">int Coupler::_vel_setpoint_a</td>
         </tr>
       </table>
   </td>
@@ -680,9 +801,35 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Logical CV setpoint for channel B. This ignores the value of channel A. </p>
+<p>Logical velocity setpoint for channel A. </p>
 
-<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00077">77</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00097">97</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
+
+</div>
+</div>
+<a id="a6a4a56dd4ae33462979c3537bd4a3054"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a4a56dd4ae33462979c3537bd4a3054">&#9670;&nbsp;</a></span>_vel_setpoint_b</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Coupler::_vel_setpoint_b</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Logical velocity setpoint for channel B. </p>
+
+<p class="definition">Definition at line <a class="el" href="coupler_8h_source.html#l00100">100</a> of file <a class="el" href="coupler_8h_source.html">coupler.h</a>.</p>
 
 </div>
 </div>
@@ -696,7 +843,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_coupler.html">Coupler</a></li>
-    <li class="footer">Generated on Wed Aug 28 2024 20:57:54 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Sep 1 2024 18:03:42 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

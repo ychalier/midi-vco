@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.1</span>
+   &#160;<span id="projectnumber">3.0.0-dev.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -96,17 +96,21 @@ $(document).ready(function(){initNavTree('structs_8h.html',''); initResizable();
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_glide.html">Glide</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_note.html">Note</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_midi_event.html">MidiEvent</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tuning.html">Tuning</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_glide.html">Glide</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:a820e8754f76d4d189d5347d302964a1d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_note.html">Note</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs_8h.html#a820e8754f76d4d189d5347d302964a1d">Note</a></td></tr>
+<tr class="separator:a820e8754f76d4d189d5347d302964a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aade9389993911d5c5bcdf3d9f9fec9"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_tuning.html">Tuning</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs_8h.html#a1aade9389993911d5c5bcdf3d9f9fec9">Tuning</a></td></tr>
+<tr class="separator:a1aade9389993911d5c5bcdf3d9f9fec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0c17949ae6e85b4c86252784894ca8a"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_glide.html">Glide</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs_8h.html#ac0c17949ae6e85b4c86252784894ca8a">Glide</a></td></tr>
 <tr class="separator:ac0c17949ae6e85b4c86252784894ca8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99fe673a85b0af40b65e5680dfeecb84"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_midi_event.html">MidiEvent</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs_8h.html#a99fe673a85b0af40b65e5680dfeecb84">MidiEvent</a></td></tr>
-<tr class="separator:a99fe673a85b0af40b65e5680dfeecb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="ac0c17949ae6e85b4c86252784894ca8a"></a>
@@ -124,18 +128,33 @@ Typedefs</h2></td></tr>
 
 </div>
 </div>
-<a id="a99fe673a85b0af40b65e5680dfeecb84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99fe673a85b0af40b65e5680dfeecb84">&#9670;&nbsp;</a></span>MidiEvent</h2>
+<a id="a820e8754f76d4d189d5347d302964a1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a820e8754f76d4d189d5347d302964a1d">&#9670;&nbsp;</a></span>Note</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="struct_midi_event.html">MidiEvent</a> <a class="el" href="struct_midi_event.html">MidiEvent</a></td>
+          <td class="memname">typedef struct <a class="el" href="struct_note.html">Note</a> <a class="el" href="struct_note.html">Note</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Data representation of a sequencer event, either a note-on or a note-off message. </p>
+<p>Structure holding a MIDI note. </p>
+
+</div>
+</div>
+<a id="a1aade9389993911d5c5bcdf3d9f9fec9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1aade9389993911d5c5bcdf3d9f9fec9">&#9670;&nbsp;</a></span>Tuning</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="struct_tuning.html">Tuning</a> <a class="el" href="struct_tuning.html">Tuning</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="struct_tuning.html">Tuning</a> parameters, relative to the DAC setpoint (signed 14 bit integers). </p>
 
 </div>
 </div>
@@ -145,7 +164,7 @@ Typedefs</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b0856f6b0d80ccb263b2f415c91f9e17.html">include</a></li><li class="navelem"><a class="el" href="structs_8h.html">structs.h</a></li>
-    <li class="footer">Generated on Wed Aug 28 2024 20:57:53 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Sep 1 2024 18:03:41 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

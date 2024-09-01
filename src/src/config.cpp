@@ -7,7 +7,7 @@ Config::Config()
     _priority_mode = PRIORITY_REPLACE_OLDEST;
     _glide_flags = 0;
     _glide_intensity = 0;
-    _pitch_bend_range = PITCH_BEND_RANGE;
+    _pitch_bend_range = DEFAULT_PITCH_BEND_RANGE;
     _glide_proportional = false;
     _hold = false;
     _voltage_offset = 0;
@@ -31,6 +31,7 @@ void Config::setup()
     pinMode(PIN_BUTTON_TUNING_FAST, INPUT);
     pinMode(PIN_BUTTON_TUNING_FULL, INPUT);
     pinMode(PIN_BUTTON_TUNING_RESET, INPUT);
+    pinMode(PIN_MINIMUM_VELOCITY, INPUT);
 }
 
 bool Config::_read_polyphony_mode()

@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.1</span>
+   &#160;<span id="projectnumber">3.0.0-dev.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -91,10 +91,10 @@ $(document).ready(function(){initNavTree('pool_8h_source.html',''); initResizabl
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define pool_h</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;Arduino.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;MIDI.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="buffer_8h.html">buffer.h</a>&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="constants_8h.html">constants.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="router_8h.html">router.h</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="buffer_8h.html">buffer.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;MIDI.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="router_8h.html">router.h</a>&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="structs_8h.html">structs.h</a>&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_pool.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pool.html">Pool</a></div>
@@ -103,7 +103,7 @@ $(document).ready(function(){initNavTree('pool_8h_source.html',''); initResizabl
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_pool.html#ad204880feb8c71e73348485fc09de612">Pool</a>(<a class="code" href="class_router.html">Router</a> *router);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pool.html#af89ed85059dc352cb0dfc824478e4ea6">set_lane_mask</a>(<span class="keywordtype">byte</span> lane_mask);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pool.html#a349abc3c1639470b905104519abd3578">set_lane_mask</a>(uint16_t lane_mask);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pool.html#aea355f50869629b54135c86843762c70">is_enabled</a>();</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
@@ -111,9 +111,9 @@ $(document).ready(function(){initNavTree('pool_8h_source.html',''); initResizabl
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pool.html#ad6c71a83d60a1c69fad7f4ebcd02d633">is_active</a>();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pool.html#a46b41a1443844aa1b9533a27bf479816">load</a>(<span class="keywordtype">byte</span> pitch);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pool.html#a1b54262c292f6e1171a432bb013479d7">load</a>(<a class="code" href="struct_note.html">Note</a> note);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pool.html#aa4dfd5c0e081c926995d5fd54f0c6915">unload</a>(<span class="keywordtype">byte</span> pitch);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pool.html#a71587a75fb716a41cbfc8ed0a0621776">unload</a>(<a class="code" href="struct_note.html">Note</a> note);</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pool.html#a79bb3db5a6043a18074c2996a078de3d">load_buffer</a>(<span class="keywordtype">int</span> <a class="code" href="class_pool.html#a966575094e29fd6ad4004f7610273ed1">bend</a>, <span class="keywordtype">bool</span> set_only);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
@@ -127,49 +127,50 @@ $(document).ready(function(){initNavTree('pool_8h_source.html',''); initResizabl
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pool.html#ab670c863ad1caf464e659f6143d7b915">unlock</a>();</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pool.html#af4d8bd23fdda0312c06d7b54a44df808">buffer_contains</a>(<span class="keywordtype">byte</span> pitch);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">  117</a></span>&#160;    <a class="code" href="class_router.html">Router</a> *<a class="code" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">_router</a>;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">  120</a></span>&#160;    <span class="keywordtype">byte</span> <a class="code" href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">_lane_mask</a>;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">  123</a></span>&#160;    <a class="code" href="class_buffer.html">Buffer</a> *<a class="code" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">_buffer</a>;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">  126</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">_era</a>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">  129</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">_active</a>;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="class_pool.html#a54638ab7f5e0bf898dcd4301740d3c3a">  132</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pool.html#a54638ab7f5e0bf898dcd4301740d3c3a">_locked</a>;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;};</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pool.html#ab271305972c9df4a217aeda2aa33733f">buffer_contains</a>(<a class="code" href="struct_note.html">Note</a> note);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">  118</a></span>&#160;    <a class="code" href="class_router.html">Router</a> *<a class="code" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">_router</a>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="class_pool.html#aab6552e00d17e6d8604cdf07ccafe188">  121</a></span>&#160;    uint16_t <a class="code" href="class_pool.html#aab6552e00d17e6d8604cdf07ccafe188">_lane_mask</a>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">  124</a></span>&#160;    <a class="code" href="class_buffer.html">Buffer</a> *<a class="code" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">_buffer</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">  127</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">_era</a>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">  130</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">_active</a>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="class_pool.html#a54638ab7f5e0bf898dcd4301740d3c3a">  133</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pool.html#a54638ab7f5e0bf898dcd4301740d3c3a">_locked</a>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;};</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="abuffer_8h_html"><div class="ttname"><a href="buffer_8h.html">buffer.h</a></div></div>
 <div class="ttc" id="aclass_buffer_html"><div class="ttname"><a href="class_buffer.html">Buffer</a></div><div class="ttdef"><b>Definition:</b> <a href="buffer_8h_source.html#l00014">buffer.h:15</a></div></div>
 <div class="ttc" id="aclass_pool_html"><div class="ttname"><a href="class_pool.html">Pool</a></div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00016">pool.h:17</a></div></div>
 <div class="ttc" id="aclass_pool_html_a03c32bb13f21f64f8bc4b9ae79c7048c"><div class="ttname"><a href="class_pool.html#a03c32bb13f21f64f8bc4b9ae79c7048c">Pool::lock</a></div><div class="ttdeci">void lock()</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00114">pool.cpp:114</a></div></div>
-<div class="ttc" id="aclass_pool_html_a216f871252d089c2c098ed45508ebb3d"><div class="ttname"><a href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">Pool::_active</a></div><div class="ttdeci">bool _active</div><div class="ttdoc">Whether a note is currently loaded in the pool.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00129">pool.h:129</a></div></div>
-<div class="ttc" id="aclass_pool_html_a3e65544f1f31243433b5d6f8735ac81a"><div class="ttname"><a href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">Pool::_lane_mask</a></div><div class="ttdeci">byte _lane_mask</div><div class="ttdoc">Mask for the lanes included in the pool.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00120">pool.h:120</a></div></div>
-<div class="ttc" id="aclass_pool_html_a46b41a1443844aa1b9533a27bf479816"><div class="ttname"><a href="class_pool.html#a46b41a1443844aa1b9533a27bf479816">Pool::load</a></div><div class="ttdeci">void load(byte pitch)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00057">pool.cpp:57</a></div></div>
-<div class="ttc" id="aclass_pool_html_a54638ab7f5e0bf898dcd4301740d3c3a"><div class="ttname"><a href="class_pool.html#a54638ab7f5e0bf898dcd4301740d3c3a">Pool::_locked</a></div><div class="ttdeci">bool _locked</div><div class="ttdoc">Whether the pool is locked.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00132">pool.h:132</a></div></div>
+<div class="ttc" id="aclass_pool_html_a1b54262c292f6e1171a432bb013479d7"><div class="ttname"><a href="class_pool.html#a1b54262c292f6e1171a432bb013479d7">Pool::load</a></div><div class="ttdeci">void load(Note note)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00057">pool.cpp:57</a></div></div>
+<div class="ttc" id="aclass_pool_html_a216f871252d089c2c098ed45508ebb3d"><div class="ttname"><a href="class_pool.html#a216f871252d089c2c098ed45508ebb3d">Pool::_active</a></div><div class="ttdeci">bool _active</div><div class="ttdoc">Whether a note is currently loaded in the pool.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00130">pool.h:130</a></div></div>
+<div class="ttc" id="aclass_pool_html_a349abc3c1639470b905104519abd3578"><div class="ttname"><a href="class_pool.html#a349abc3c1639470b905104519abd3578">Pool::set_lane_mask</a></div><div class="ttdeci">void set_lane_mask(uint16_t lane_mask)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00014">pool.cpp:14</a></div></div>
+<div class="ttc" id="aclass_pool_html_a54638ab7f5e0bf898dcd4301740d3c3a"><div class="ttname"><a href="class_pool.html#a54638ab7f5e0bf898dcd4301740d3c3a">Pool::_locked</a></div><div class="ttdeci">bool _locked</div><div class="ttdoc">Whether the pool is locked.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00133">pool.h:133</a></div></div>
 <div class="ttc" id="aclass_pool_html_a55ccbf59553e90c49e32c437e6e8f6b5"><div class="ttname"><a href="class_pool.html#a55ccbf59553e90c49e32c437e6e8f6b5">Pool::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00068">pool.cpp:68</a></div></div>
 <div class="ttc" id="aclass_pool_html_a703287c34419cae6dc60ec8089a05e53"><div class="ttname"><a href="class_pool.html#a703287c34419cae6dc60ec8089a05e53">Pool::is_free</a></div><div class="ttdeci">bool is_free()</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00024">pool.cpp:24</a></div></div>
+<div class="ttc" id="aclass_pool_html_a71587a75fb716a41cbfc8ed0a0621776"><div class="ttname"><a href="class_pool.html#a71587a75fb716a41cbfc8ed0a0621776">Pool::unload</a></div><div class="ttdeci">bool unload(Note note)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00081">pool.cpp:81</a></div></div>
 <div class="ttc" id="aclass_pool_html_a79bb3db5a6043a18074c2996a078de3d"><div class="ttname"><a href="class_pool.html#a79bb3db5a6043a18074c2996a078de3d">Pool::load_buffer</a></div><div class="ttdeci">void load_buffer(int bend, bool set_only)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00034">pool.cpp:34</a></div></div>
 <div class="ttc" id="aclass_pool_html_a966575094e29fd6ad4004f7610273ed1"><div class="ttname"><a href="class_pool.html#a966575094e29fd6ad4004f7610273ed1">Pool::bend</a></div><div class="ttdeci">void bend(int bend_value)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00104">pool.cpp:104</a></div></div>
-<div class="ttc" id="aclass_pool_html_aa4dfd5c0e081c926995d5fd54f0c6915"><div class="ttname"><a href="class_pool.html#aa4dfd5c0e081c926995d5fd54f0c6915">Pool::unload</a></div><div class="ttdeci">bool unload(byte pitch)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00081">pool.cpp:81</a></div></div>
+<div class="ttc" id="aclass_pool_html_aab6552e00d17e6d8604cdf07ccafe188"><div class="ttname"><a href="class_pool.html#aab6552e00d17e6d8604cdf07ccafe188">Pool::_lane_mask</a></div><div class="ttdeci">uint16_t _lane_mask</div><div class="ttdoc">Mask for the lanes included in the pool.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00121">pool.h:121</a></div></div>
+<div class="ttc" id="aclass_pool_html_ab271305972c9df4a217aeda2aa33733f"><div class="ttname"><a href="class_pool.html#ab271305972c9df4a217aeda2aa33733f">Pool::buffer_contains</a></div><div class="ttdeci">bool buffer_contains(Note note)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00135">pool.cpp:135</a></div></div>
 <div class="ttc" id="aclass_pool_html_ab670c863ad1caf464e659f6143d7b915"><div class="ttname"><a href="class_pool.html#ab670c863ad1caf464e659f6143d7b915">Pool::unlock</a></div><div class="ttdeci">void unlock()</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00119">pool.cpp:119</a></div></div>
-<div class="ttc" id="aclass_pool_html_ac3680a12338b33f8a446d3ec6e9c31ba"><div class="ttname"><a href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">Pool::_era</a></div><div class="ttdeci">unsigned long _era</div><div class="ttdoc">Timestamp of last note activation.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00126">pool.h:126</a></div></div>
+<div class="ttc" id="aclass_pool_html_ac3680a12338b33f8a446d3ec6e9c31ba"><div class="ttname"><a href="class_pool.html#ac3680a12338b33f8a446d3ec6e9c31ba">Pool::_era</a></div><div class="ttdeci">unsigned long _era</div><div class="ttdoc">Timestamp of last note activation.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00127">pool.h:127</a></div></div>
 <div class="ttc" id="aclass_pool_html_ad204880feb8c71e73348485fc09de612"><div class="ttname"><a href="class_pool.html#ad204880feb8c71e73348485fc09de612">Pool::Pool</a></div><div class="ttdeci">Pool(Router *router)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00004">pool.cpp:4</a></div></div>
-<div class="ttc" id="aclass_pool_html_ad4026ff2c9204a6b758df42d3620013f"><div class="ttname"><a href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">Pool::_buffer</a></div><div class="ttdeci">Buffer * _buffer</div><div class="ttdoc">Note buffer.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00123">pool.h:123</a></div></div>
+<div class="ttc" id="aclass_pool_html_ad4026ff2c9204a6b758df42d3620013f"><div class="ttname"><a href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">Pool::_buffer</a></div><div class="ttdeci">Buffer * _buffer</div><div class="ttdoc">Note buffer.</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00124">pool.h:124</a></div></div>
 <div class="ttc" id="aclass_pool_html_ad6c71a83d60a1c69fad7f4ebcd02d633"><div class="ttname"><a href="class_pool.html#ad6c71a83d60a1c69fad7f4ebcd02d633">Pool::is_active</a></div><div class="ttdeci">bool is_active()</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00029">pool.cpp:29</a></div></div>
-<div class="ttc" id="aclass_pool_html_ae588dfc760e666b868a4184154e453f1"><div class="ttname"><a href="class_pool.html#ae588dfc760e666b868a4184154e453f1">Pool::_router</a></div><div class="ttdeci">Router * _router</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00117">pool.h:117</a></div></div>
+<div class="ttc" id="aclass_pool_html_ae588dfc760e666b868a4184154e453f1"><div class="ttname"><a href="class_pool.html#ae588dfc760e666b868a4184154e453f1">Pool::_router</a></div><div class="ttdeci">Router * _router</div><div class="ttdef"><b>Definition:</b> <a href="pool_8h_source.html#l00118">pool.h:118</a></div></div>
 <div class="ttc" id="aclass_pool_html_aea355f50869629b54135c86843762c70"><div class="ttname"><a href="class_pool.html#aea355f50869629b54135c86843762c70">Pool::is_enabled</a></div><div class="ttdeci">bool is_enabled()</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00019">pool.cpp:19</a></div></div>
 <div class="ttc" id="aclass_pool_html_af23bc62de2e464c2045c9d3436d66c50"><div class="ttname"><a href="class_pool.html#af23bc62de2e464c2045c9d3436d66c50">Pool::get_era</a></div><div class="ttdeci">unsigned long get_era()</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00109">pool.cpp:109</a></div></div>
-<div class="ttc" id="aclass_pool_html_af4d8bd23fdda0312c06d7b54a44df808"><div class="ttname"><a href="class_pool.html#af4d8bd23fdda0312c06d7b54a44df808">Pool::buffer_contains</a></div><div class="ttdeci">bool buffer_contains(byte pitch)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00135">pool.cpp:135</a></div></div>
-<div class="ttc" id="aclass_pool_html_af89ed85059dc352cb0dfc824478e4ea6"><div class="ttname"><a href="class_pool.html#af89ed85059dc352cb0dfc824478e4ea6">Pool::set_lane_mask</a></div><div class="ttdeci">void set_lane_mask(byte lane_mask)</div><div class="ttdef"><b>Definition:</b> <a href="pool_8cpp_source.html#l00014">pool.cpp:14</a></div></div>
-<div class="ttc" id="aclass_router_html"><div class="ttname"><a href="class_router.html">Router</a></div><div class="ttdef"><b>Definition:</b> <a href="router_8h_source.html#l00012">router.h:13</a></div></div>
+<div class="ttc" id="aclass_router_html"><div class="ttname"><a href="class_router.html">Router</a></div><div class="ttdef"><b>Definition:</b> <a href="router_8h_source.html#l00016">router.h:17</a></div></div>
 <div class="ttc" id="aconstants_8h_html"><div class="ttname"><a href="constants_8h.html">constants.h</a></div></div>
 <div class="ttc" id="arouter_8h_html"><div class="ttname"><a href="router_8h.html">router.h</a></div></div>
+<div class="ttc" id="astruct_note_html"><div class="ttname"><a href="struct_note.html">Note</a></div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00009">structs.h:10</a></div></div>
 <div class="ttc" id="astructs_8h_html"><div class="ttname"><a href="structs_8h.html">structs.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -177,7 +178,7 @@ $(document).ready(function(){initNavTree('pool_8h_source.html',''); initResizabl
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b0856f6b0d80ccb263b2f415c91f9e17.html">include</a></li><li class="navelem"><a class="el" href="pool_8h.html">pool.h</a></li>
-    <li class="footer">Generated on Wed Aug 28 2024 20:57:53 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Sep 1 2024 18:03:41 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['output_5fpitch_5fbend_5ffactor_417',['OUTPUT_PITCH_BEND_FACTOR',['../constants_8h.html#a2624021562d71f5562426b300ff31816',1,'constants.h']]]
+  ['lane_5fcount_511',['LANE_COUNT',['../constants_8h.html#a73afc0e3de7253b20d26d43395608527',1,'constants.h']]],
+  ['log2_512',['LOG2',['../constants_8h.html#a07267dcd6834194cfed517197ab1e2ad',1,'constants.h']]]
 ];

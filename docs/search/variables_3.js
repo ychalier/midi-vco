@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mask_377',['mask',['../struct_midi_event.html#a9fef325d40882b73d2be739a4f6634bd',1,'MidiEvent']]]
+  ['offset_479',['offset',['../struct_tuning.html#a34432397dcb7acf4d626b8bb38867515',1,'Tuning']]]
 ];

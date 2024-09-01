@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.1</span>
+   &#160;<span id="projectnumber">3.0.0-dev.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -90,108 +90,135 @@ $(document).ready(function(){initNavTree('constants_8h_source.html',''); initRes
 <a href="constants_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef constants_h</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define constants_h</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// PINs wiring</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Analog input</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="constants_8h.html#afc5e3b25b761b8c1fed22d41367a82e8">    6</a></span>&#160;<span class="preprocessor">#define PIN_POLYPHONY_MODE A9    </span><span class="comment">// Mono, Poly 2, Poly 4, Poly 8</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="constants_8h.html#a11795024a5915dea419cb70c1d92bf63">    7</a></span>&#160;<span class="preprocessor">#define PIN_PITCH_BEND_RANGE A10 </span><span class="comment">// Also impacts aftertouch</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="constants_8h.html#afc46fe5ea818375d37fb6f518a3e426e">    8</a></span>&#160;<span class="preprocessor">#define PIN_GLIDE_INTENSITY A11</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="constants_8h.html#ad019c4b64e3b672d22089f22e643639e">    9</a></span>&#160;<span class="preprocessor">#define PIN_DETUNE A13           </span><span class="comment">// Not implemented</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="constants_8h.html#a48f7f11e7a881176e4c42be447f81ebb">   11</a></span>&#160;<span class="preprocessor">#define PIN_TUNE 35</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="constants_8h.html#a09f27c5b98d2535a26f2b184a6639cc4">   12</a></span>&#160;<span class="preprocessor">#define PIN_PRIORITY_MODE 37 </span><span class="comment">// Toggle replacement priority newest/oldest</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="constants_8h.html#af8b7ae34e5bce2c7924cb915100f9ca6">   14</a></span>&#160;<span class="preprocessor">#define PIN_SS_CV_1 29</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="constants_8h.html#a6de6771bf863dbfab1e1b53f3ce1810c">   15</a></span>&#160;<span class="preprocessor">#define PIN_SS_CV_2 27</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="constants_8h.html#a7e7aa9fc4c6511511b2b4c1f1d7b6b1f">   16</a></span>&#160;<span class="preprocessor">#define PIN_SS_CV_3 25</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="constants_8h.html#a445be358d214f920fe80648c91df096d">   17</a></span>&#160;<span class="preprocessor">#define PIN_SS_CV_4 23</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="constants_8h.html#a9385338ee8888ad52aa536ec042116a1">   18</a></span>&#160;<span class="preprocessor">#define PIN_SS_BEND 31</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="constants_8h.html#a324ef689235f8a6f855a319ad2744bff">   20</a></span>&#160;<span class="preprocessor">#define PIN_GATE_1 28</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="constants_8h.html#ab61fbddf9e4234dd94ed248fed2fa4e9">   21</a></span>&#160;<span class="preprocessor">#define PIN_GATE_2 26</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="constants_8h.html#a0939dae965340e85e849ed6ceb6d142a">   22</a></span>&#160;<span class="preprocessor">#define PIN_GATE_3 24</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="constants_8h.html#a774e5a21aa7affe4436ce191108880da">   23</a></span>&#160;<span class="preprocessor">#define PIN_GATE_4 22</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="constants_8h.html#ae70934b3338990d4a3faecf2ee172d92">   25</a></span>&#160;<span class="preprocessor">#define PIN_LED 41</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// MIDI Controls</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="constants_8h.html#aaa538483702c5c56c91043f1ebcbc660">   29</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_MOD 1</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="constants_8h.html#a0c3ee94cecec35fa74a18e28cd5fdfde">   30</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_GLIDE_INTENSITY 73  </span><span class="comment">// S1 OFF</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="constants_8h.html#a6f5f51e4392bb25ad7a635fcf6e9ae12">   31</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_GLIDE_CHROMATIC 80  </span><span class="comment">// B1 ON</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="constants_8h.html#a341edd74be666aadea1c3acc0d35aadd">   32</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_GLIDE_LEGATO 81     </span><span class="comment">// B2 ON</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="constants_8h.html#af3735eb3ac8a43e8907b1f3cdafdc7f1">   33</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_PITCH_BEND_RANGE 75 </span><span class="comment">// S2 OFF</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="constants_8h.html#a004d9265cdc8a596713cce1bba94f4ac">   34</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_SOURCE 74           </span><span class="comment">// R1 OFF</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="constants_8h.html#a15581949a5b8381f0149cf58de366665">   35</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_TIME 71             </span><span class="comment">// R2 OFF</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="constants_8h.html#ae73ec183f1c46df700059a7106e5a533">   36</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_HOLD 83             </span><span class="comment">// B4 ON</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="constants_8h.html#aff6c4842cd4e232ad55bd056864daa71">   37</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_VOLTAGE_OFFSET 2    </span><span class="comment">// R4 ON</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">// Enumerations</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="constants_8h.html#a2a33587f0528d88828ffca16d9623130">   41</a></span>&#160;<span class="preprocessor">#define MODE_MONOPHONIC 0</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="constants_8h.html#a45bff5fc91e80789fafb31cc3f95ef5f">   42</a></span>&#160;<span class="preprocessor">#define MODE_DUOPHONIC 1</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="constants_8h.html#acd74d69a69f038b2f32b3ac39418e800">   43</a></span>&#160;<span class="preprocessor">#define MODE_QUADROPHONIC 2</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="constants_8h.html#a9c52b96cf8a40e99ced21bb65d9cf91a">   44</a></span>&#160;<span class="preprocessor">#define MODE_OCTOPHONIC 3</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="constants_8h.html#a8d6465348cb10efb2d574fc6bfd19784">   46</a></span>&#160;<span class="preprocessor">#define PRIORITY_KEEP_FIRST 0</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="constants_8h.html#ace4e8deed14c4892e4e17b87e72cb7f1">   47</a></span>&#160;<span class="preprocessor">#define PRIORITY_REPLACE_OLDEST 1</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="constants_8h.html#abb34546c88a59c7ea2218f7e7f2cc309">   48</a></span>&#160;<span class="preprocessor">#define PRIORITY_REPLACE_NEWEST 2</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">// Flags</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="constants_8h.html#af4dea31478161cb49c154875c42b1af7">   52</a></span>&#160;<span class="preprocessor">#define CONFIG_CHANGE_POLYPHONY_MODE 1</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="constants_8h.html#a2099814e5c7c42c6fd8d9be22874e73b">   53</a></span>&#160;<span class="preprocessor">#define CONFIG_CHANGE_PRIORITY_MODE 2</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="constants_8h.html#a683f98bc0e63932740ce72fc3394663b">   54</a></span>&#160;<span class="preprocessor">#define CONFIG_CHANGE_RECORD 4</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="constants_8h.html#aed0b57e6ff85a14105e4c814b125c00a">   55</a></span>&#160;<span class="preprocessor">#define CONFIG_CHANGE_TUNING 8</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="constants_8h.html#a3a2943cae25a006ed27df51f4dfd4616">   56</a></span>&#160;<span class="preprocessor">#define CONFIG_CHANGE_HOLD 16</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="constants_8h.html#adf1ef12bc0ec70bf8920b91b6f82f621">   58</a></span>&#160;<span class="preprocessor">#define GLIDE_FLAG_PROPORTIONAL 1</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="constants_8h.html#a410ada84f2b0066c5fe34945aa868fce">   59</a></span>&#160;<span class="preprocessor">#define GLIDE_FLAG_CHROMATIC 2</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="constants_8h.html#a24ab05484dfd17e083bba5953643f141">   60</a></span>&#160;<span class="preprocessor">#define GLIDE_FLAG_LEGATO 4</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">// Notes</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="constants_8h.html#a0f03a88e1aece55d74c9b20422cdec5f">   64</a></span>&#160;<span class="preprocessor">#define PITCH_A0 21  </span><span class="comment">// 27.5 Hz</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="constants_8h.html#a7c282a54b572587a32baed65027b67e5">   65</a></span>&#160;<span class="preprocessor">#define PITCH_A1 33  </span><span class="comment">// 55 Hz</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="constants_8h.html#a827846e293079490e976fdbc4ca59396">   66</a></span>&#160;<span class="preprocessor">#define PITCH_A2 45  </span><span class="comment">// 110 Hz</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="constants_8h.html#a8f0eaa195a473ed2a171b97153a939ae">   67</a></span>&#160;<span class="preprocessor">#define PITCH_A3 57  </span><span class="comment">// 220 Hz</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="constants_8h.html#a4b13dfe6cbda1431e794f77205857402">   68</a></span>&#160;<span class="preprocessor">#define PITCH_A4 69  </span><span class="comment">// 440 Hz</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="constants_8h.html#a2e81e62becefd7a729faf785574fbf5b">   69</a></span>&#160;<span class="preprocessor">#define PITCH_A5 81  </span><span class="comment">// 880 Hz</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="constants_8h.html#a9f5011c59b6816e1b4f38c54c11d7b7e">   70</a></span>&#160;<span class="preprocessor">#define PITCH_A6 93  </span><span class="comment">// 1760 Hz</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="constants_8h.html#a809943946267b7a90802b2506e910b64">   71</a></span>&#160;<span class="preprocessor">#define PITCH_A7 105 </span><span class="comment">// 3520 Hz</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="constants_8h.html#aa9519b5e95e26f4689357bc833e79af6">   72</a></span>&#160;<span class="preprocessor">#define PITCH_A8 117 </span><span class="comment">// 7040 Hz</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">// General constants</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="constants_8h.html#a47580cc5f371cab4485280db10855e6e">   76</a></span>&#160;<span class="preprocessor">#define DAC_VMAX 4.096       </span><span class="comment">// Volts</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="constants_8h.html#a41cdbe8b9863be840443009aaf0f0790">   77</a></span>&#160;<span class="preprocessor">#define AMP_GAIN 1.9531      </span><span class="comment">// 8V / 4.096V</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="constants_8h.html#a5a4813366397b194aa7fd51b50c01b19">   78</a></span>&#160;<span class="preprocessor">#define MIDI_MIN_PITCH 20    </span><span class="comment">// Semitons</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="constants_8h.html#a62a22c87884bffa1cccdf68f74e557d0">   79</a></span>&#160;<span class="preprocessor">#define PITCH_BEND_RANGE 2.0 </span><span class="comment">// Semitons</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="constants_8h.html#a8edcf5c46b21be9ecab350d9e9a96aa5">   81</a></span>&#160;<span class="preprocessor">#define POOL_COUNT 8</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">   83</a></span>&#160;<span class="preprocessor">#define BUFFER_SIZE 8</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="constants_8h.html#a27492bc42f2240dc6f6e69299dc77ab6">   85</a></span>&#160;<span class="preprocessor">#define GLIDE_MAX_RATE 50  </span><span class="comment">// Milliseconds per semitones</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="constants_8h.html#a1faa35ceed46ed1ac9643132663300fc">   86</a></span>&#160;<span class="preprocessor">#define GLIDE_MAX_TIME 500 </span><span class="comment">// Milliseconds</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="constants_8h.html#ac59aa431989be4dc3e14268c6ddd2c34">   87</a></span>&#160;<span class="preprocessor">#define GLIDE_INTENSITY_POWER 2</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="constants_8h.html#a2624021562d71f5562426b300ff31816">   89</a></span>&#160;<span class="preprocessor">#define OUTPUT_PITCH_BEND_FACTOR 3.2766 </span><span class="comment">// @see MidiInterface.handle_pitch_bend</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="constants_8h.html#a2f50933856d1830c76d1a2dccbf6b41f">   91</a></span>&#160;<span class="preprocessor">#define DETUNE_VALUE_COUNT 15</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="constants_8h.html#a960ef338f39a22f74e2f45e1c6ea8629">   92</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="constants_8h.html#a960ef338f39a22f74e2f45e1c6ea8629">DETUNE_VALUES</a>[<a class="code" href="constants_8h.html#a2f50933856d1830c76d1a2dccbf6b41f">DETUNE_VALUE_COUNT</a>] = {-24, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 24};  <span class="comment">// Semitones</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="constants_8h.html#accc28abc0077faabf365d2e2d4b06a8c">   94</a></span>&#160;<span class="preprocessor">#define GATE_STATE_DURING_TUNING LOW</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="constants_8h.html#afc5e3b25b761b8c1fed22d41367a82e8">    6</a></span>&#160;<span class="preprocessor">#define PIN_POLYPHONY_MODE   A0</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="constants_8h.html#a11795024a5915dea419cb70c1d92bf63">    7</a></span>&#160;<span class="preprocessor">#define PIN_PITCH_BEND_RANGE A1</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="constants_8h.html#afc46fe5ea818375d37fb6f518a3e426e">    8</a></span>&#160;<span class="preprocessor">#define PIN_GLIDE_INTENSITY  A2</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="constants_8h.html#ad019c4b64e3b672d22089f22e643639e">    9</a></span>&#160;<span class="preprocessor">#define PIN_DETUNE           A3           </span></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="constants_8h.html#a3a85a6849855495a6bcd018dc2ba35c6">   10</a></span>&#160;<span class="preprocessor">#define PIN_MINIMUM_VELOCITY A4</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="constants_8h.html#a0ff68e49e78eb1079607630bc8b10b36">   11</a></span>&#160;<span class="preprocessor">#define PIN_CV_LOOPBACK_1    A5</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="constants_8h.html#a2a8401fa74c03fda58efb30dd864cc3e">   12</a></span>&#160;<span class="preprocessor">#define PIN_CV_LOOPBACK_2    A6</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="constants_8h.html#a3d60c25b5f1c4a038cceee40fe3b9f5a">   13</a></span>&#160;<span class="preprocessor">#define PIN_CV_LOOPBACK_3    A7</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="constants_8h.html#a61e9ee5e1579a4facd355b2b88128205">   14</a></span>&#160;<span class="preprocessor">#define PIN_CV_LOOPBACK_4    A8</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="constants_8h.html#ac3363c3b86c294b1928ade573b8a9649">   15</a></span>&#160;<span class="preprocessor">#define PIN_CV_LOOPBACK_5    A9</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="constants_8h.html#a9cef6f4904e0b433c0b720e7d8cfee0f">   16</a></span>&#160;<span class="preprocessor">#define PIN_CV_LOOPBACK_6    A10</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="constants_8h.html#ab9d2b4a26f18d223ed16ff60c57ddb0e">   17</a></span>&#160;<span class="preprocessor">#define PIN_CV_LOOPBACK_7    A11</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="constants_8h.html#a383141c294afa1efb625a4e069cbaa9d">   18</a></span>&#160;<span class="preprocessor">#define PIN_CV_LOOPBACK_8    A12</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="constants_8h.html#a340fe2c3bf8d70018cce388fa619fab8">   19</a></span>&#160;<span class="preprocessor">#define PIN_CV_LOOPBACK_9    A13</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="constants_8h.html#a6db84a9952386e313dc254f8bcc3e0ec">   20</a></span>&#160;<span class="preprocessor">#define PIN_CV_LOOPBACK_10   A14</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">// Digital input</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="constants_8h.html#a09f27c5b98d2535a26f2b184a6639cc4">   24</a></span>&#160;<span class="preprocessor">#define PIN_PRIORITY_MODE        1</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="constants_8h.html#af1aae16275585643887c2632f7a48c6c">   25</a></span>&#160;<span class="preprocessor">#define PIN_BEND_CHANNEL_SWITCH  2</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="constants_8h.html#a6d61b1b160f5aae98b4eb730c09ee9a1">   26</a></span>&#160;<span class="preprocessor">#define PIN_GLIDE_CHANNEL_SWITCH 3</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="constants_8h.html#a0efee6c82309316ec3c6c67e1f227ffa">   27</a></span>&#160;<span class="preprocessor">#define PIN_BUTTON_TUNING_FAST   4</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="constants_8h.html#a83b19f7f86e0ef98b24188ad7c7e0202">   28</a></span>&#160;<span class="preprocessor">#define PIN_BUTTON_TUNING_FULL   5</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="constants_8h.html#aa74418ad6c7aa235c0a5242df3419f14">   29</a></span>&#160;<span class="preprocessor">#define PIN_BUTTON_TUNING_RESET  6</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">// Digital output</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="constants_8h.html#af8b7ae34e5bce2c7924cb915100f9ca6">   33</a></span>&#160;<span class="preprocessor">#define PIN_SS_CV_1              7</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="constants_8h.html#a6de6771bf863dbfab1e1b53f3ce1810c">   34</a></span>&#160;<span class="preprocessor">#define PIN_SS_CV_2              8</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="constants_8h.html#a7e7aa9fc4c6511511b2b4c1f1d7b6b1f">   35</a></span>&#160;<span class="preprocessor">#define PIN_SS_CV_3              9</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="constants_8h.html#a445be358d214f920fe80648c91df096d">   36</a></span>&#160;<span class="preprocessor">#define PIN_SS_CV_4              10</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="constants_8h.html#a53a0b6ce4a247a98e052d6885bddfff5">   37</a></span>&#160;<span class="preprocessor">#define PIN_SS_CV_5              11</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="constants_8h.html#a055693c3da54a5176acaea46e72e7e54">   38</a></span>&#160;<span class="preprocessor">#define PIN_SS_VEL_1             12</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="constants_8h.html#af59f34784555ffa759a9f9e0dede1d2f">   39</a></span>&#160;<span class="preprocessor">#define PIN_SS_VEL_2             13</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="constants_8h.html#aba799002db2db805d40b89c9dfbd4446">   40</a></span>&#160;<span class="preprocessor">#define PIN_SS_VEL_3             14</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="constants_8h.html#a324ef689235f8a6f855a319ad2744bff">   41</a></span>&#160;<span class="preprocessor">#define PIN_GATE_1               15</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="constants_8h.html#ab61fbddf9e4234dd94ed248fed2fa4e9">   42</a></span>&#160;<span class="preprocessor">#define PIN_GATE_2               16</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="constants_8h.html#a0939dae965340e85e849ed6ceb6d142a">   43</a></span>&#160;<span class="preprocessor">#define PIN_GATE_3               17</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="constants_8h.html#a774e5a21aa7affe4436ce191108880da">   44</a></span>&#160;<span class="preprocessor">#define PIN_GATE_4               18</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="constants_8h.html#a0637a1d4ee619b832e0cbf8d80805d20">   45</a></span>&#160;<span class="preprocessor">#define PIN_GATE_5               19</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="constants_8h.html#ae6885ed4e84e3586319222f92845ba82">   46</a></span>&#160;<span class="preprocessor">#define PIN_LED_MIDI             20</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="constants_8h.html#a01b8a5abe8a7cf7579e3656f995e903f">   47</a></span>&#160;<span class="preprocessor">#define PIN_LED_TUNING_FAST      21</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="constants_8h.html#aed2b93d3f081a3b436e253a5d9af5d03">   48</a></span>&#160;<span class="preprocessor">#define PIN_LED_TUNING_FULL      22</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="constants_8h.html#aa45d675cb144795d01e598cdb310d329">   49</a></span>&#160;<span class="preprocessor">#define PIN_LED_TUNING_RESET     23</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">// MIDI Controls</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="constants_8h.html#aaa538483702c5c56c91043f1ebcbc660">   53</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_MOD              1</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="constants_8h.html#a0c3ee94cecec35fa74a18e28cd5fdfde">   54</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_GLIDE_INTENSITY  73 </span><span class="comment">// S1 OFF</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="constants_8h.html#a6f5f51e4392bb25ad7a635fcf6e9ae12">   55</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_GLIDE_CHROMATIC  80 </span><span class="comment">// B1 ON</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="constants_8h.html#a341edd74be666aadea1c3acc0d35aadd">   56</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_GLIDE_LEGATO     81 </span><span class="comment">// B2 ON</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="constants_8h.html#af3735eb3ac8a43e8907b1f3cdafdc7f1">   57</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_PITCH_BEND_RANGE 75 </span><span class="comment">// S2 OFF</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="constants_8h.html#ae73ec183f1c46df700059a7106e5a533">   58</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_HOLD             83 </span><span class="comment">// B4 ON</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="constants_8h.html#aff6c4842cd4e232ad55bd056864daa71">   59</a></span>&#160;<span class="preprocessor">#define MIDI_CONTROL_VOLTAGE_OFFSET   2  </span><span class="comment">// R4 ON</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">// Enumerations</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="constants_8h.html#a2a33587f0528d88828ffca16d9623130">   63</a></span>&#160;<span class="preprocessor">#define MODE_MONOPHONIC 0</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="constants_8h.html#a9368bc590e88c60c855c79d873d43ac3">   64</a></span>&#160;<span class="preprocessor">#define MODE_POLY5      1</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="constants_8h.html#ad81599d4814909f66949e31432d04856">   65</a></span>&#160;<span class="preprocessor">#define MODE_POLY10     2</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="constants_8h.html#a8d6465348cb10efb2d574fc6bfd19784">   67</a></span>&#160;<span class="preprocessor">#define PRIORITY_KEEP_FIRST     0</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="constants_8h.html#ace4e8deed14c4892e4e17b87e72cb7f1">   68</a></span>&#160;<span class="preprocessor">#define PRIORITY_REPLACE_OLDEST 1</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="constants_8h.html#abb34546c88a59c7ea2218f7e7f2cc309">   69</a></span>&#160;<span class="preprocessor">#define PRIORITY_REPLACE_NEWEST 2</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">// Flags</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="constants_8h.html#af4dea31478161cb49c154875c42b1af7">   73</a></span>&#160;<span class="preprocessor">#define CONFIG_CHANGE_POLYPHONY_MODE 1</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="constants_8h.html#a2099814e5c7c42c6fd8d9be22874e73b">   74</a></span>&#160;<span class="preprocessor">#define CONFIG_CHANGE_PRIORITY_MODE  2</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="constants_8h.html#a3a2943cae25a006ed27df51f4dfd4616">   75</a></span>&#160;<span class="preprocessor">#define CONFIG_CHANGE_HOLD           4</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="constants_8h.html#af068ad24bcaa2b958948727c7c255892">   76</a></span>&#160;<span class="preprocessor">#define CONFIG_CHANGE_TUNING_FAST    8</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="constants_8h.html#a0f78061cb5922f0be0a2bbb80f450072">   77</a></span>&#160;<span class="preprocessor">#define CONFIG_CHANGE_TUNING_FULL   16</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="constants_8h.html#a2f5a97b2ada9e2da9f6a2ffd10914868">   78</a></span>&#160;<span class="preprocessor">#define CONFIG_CHANGE_TUNING_RESET  32</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="constants_8h.html#adf1ef12bc0ec70bf8920b91b6f82f621">   80</a></span>&#160;<span class="preprocessor">#define GLIDE_FLAG_PROPORTIONAL 1</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="constants_8h.html#a410ada84f2b0066c5fe34945aa868fce">   81</a></span>&#160;<span class="preprocessor">#define GLIDE_FLAG_CHROMATIC    2</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="constants_8h.html#a24ab05484dfd17e083bba5953643f141">   82</a></span>&#160;<span class="preprocessor">#define GLIDE_FLAG_LEGATO       4</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">// Constants</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="constants_8h.html#a0f03a88e1aece55d74c9b20422cdec5f">   86</a></span>&#160;<span class="preprocessor">#define PITCH_A0 21  </span><span class="comment">// 27.5 Hz</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="constants_8h.html#a7c282a54b572587a32baed65027b67e5">   87</a></span>&#160;<span class="preprocessor">#define PITCH_A1 33  </span><span class="comment">// 55 Hz</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="constants_8h.html#a827846e293079490e976fdbc4ca59396">   88</a></span>&#160;<span class="preprocessor">#define PITCH_A2 45  </span><span class="comment">// 110 Hz</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="constants_8h.html#a8f0eaa195a473ed2a171b97153a939ae">   89</a></span>&#160;<span class="preprocessor">#define PITCH_A3 57  </span><span class="comment">// 220 Hz</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="constants_8h.html#a4b13dfe6cbda1431e794f77205857402">   90</a></span>&#160;<span class="preprocessor">#define PITCH_A4 69  </span><span class="comment">// 440 Hz</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="constants_8h.html#a2e81e62becefd7a729faf785574fbf5b">   91</a></span>&#160;<span class="preprocessor">#define PITCH_A5 81  </span><span class="comment">// 880 Hz</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="constants_8h.html#a9f5011c59b6816e1b4f38c54c11d7b7e">   92</a></span>&#160;<span class="preprocessor">#define PITCH_A6 93  </span><span class="comment">// 1760 Hz</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="constants_8h.html#a809943946267b7a90802b2506e910b64">   93</a></span>&#160;<span class="preprocessor">#define PITCH_A7 105 </span><span class="comment">// 3520 Hz</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="constants_8h.html#aa9519b5e95e26f4689357bc833e79af6">   94</a></span>&#160;<span class="preprocessor">#define PITCH_A8 117 </span><span class="comment">// 7040 Hz</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aconstants_8h_html_a2f50933856d1830c76d1a2dccbf6b41f"><div class="ttname"><a href="constants_8h.html#a2f50933856d1830c76d1a2dccbf6b41f">DETUNE_VALUE_COUNT</a></div><div class="ttdeci">#define DETUNE_VALUE_COUNT</div><div class="ttdef"><b>Definition:</b> <a href="constants_8h_source.html#l00091">constants.h:91</a></div></div>
-<div class="ttc" id="aconstants_8h_html_a960ef338f39a22f74e2f45e1c6ea8629"><div class="ttname"><a href="constants_8h.html#a960ef338f39a22f74e2f45e1c6ea8629">DETUNE_VALUES</a></div><div class="ttdeci">const int DETUNE_VALUES[DETUNE_VALUE_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="constants_8h_source.html#l00092">constants.h:92</a></div></div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="constants_8h.html#ac0d7906cb15245de34095a6b4885e7f2">   96</a></span>&#160;<span class="preprocessor">#define CHANNEL_A true</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="constants_8h.html#a0dd7f83e17aef557e421aae81d420e35">   97</a></span>&#160;<span class="preprocessor">#define CHANNEL_B false</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">// Pre-computed numbers</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="constants_8h.html#a07267dcd6834194cfed517197ab1e2ad">  101</a></span>&#160;<span class="preprocessor">#define LOG2 0.69314718056f</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">// Parameters</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="constants_8h.html#a8edcf5c46b21be9ecab350d9e9a96aa5">  105</a></span>&#160;<span class="preprocessor">#define POOL_COUNT                  10</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="constants_8h.html#a73afc0e3de7253b20d26d43395608527">  106</a></span>&#160;<span class="preprocessor">#define LANE_COUNT                  10</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="constants_8h.html#a6b20d41d6252e9871430c242cb1a56e7">  107</a></span>&#160;<span class="preprocessor">#define BUFFER_SIZE                 10</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="constants_8h.html#a47580cc5f371cab4485280db10855e6e">  108</a></span>&#160;<span class="preprocessor">#define DAC_VMAX                    4096    </span><span class="comment">// millivolts</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="constants_8h.html#a41cdbe8b9863be840443009aaf0f0790">  109</a></span>&#160;<span class="preprocessor">#define AMP_GAIN                    1.9531  </span><span class="comment">// 8V / 4.096V</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="constants_8h.html#a5a4813366397b194aa7fd51b50c01b19">  110</a></span>&#160;<span class="preprocessor">#define MIDI_MIN_PITCH              20      </span><span class="comment">// Semitons</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="constants_8h.html#a34bb292c190ce28c3dc675871ee0f7ad">  111</a></span>&#160;<span class="preprocessor">#define DEFAULT_PITCH_BEND_RANGE    2.0     </span><span class="comment">// Semitons</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="constants_8h.html#a27492bc42f2240dc6f6e69299dc77ab6">  112</a></span>&#160;<span class="preprocessor">#define GLIDE_MAX_RATE              50      </span><span class="comment">// Milliseconds per semitones</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="constants_8h.html#a1faa35ceed46ed1ac9643132663300fc">  113</a></span>&#160;<span class="preprocessor">#define GLIDE_MAX_TIME              500     </span><span class="comment">// Milliseconds</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="constants_8h.html#ac59aa431989be4dc3e14268c6ddd2c34">  114</a></span>&#160;<span class="preprocessor">#define GLIDE_INTENSITY_POWER       2</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="constants_8h.html#accc28abc0077faabf365d2e2d4b06a8c">  115</a></span>&#160;<span class="preprocessor">#define GATE_STATE_DURING_TUNING    LOW</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="constants_8h.html#a9e2e8ffd4efd54a450688084f132b1e4">  116</a></span>&#160;<span class="preprocessor">#define FREQUENCY_ESTIMATION_PERIOD 2000000 </span><span class="comment">// Microseconds (2s)</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="constants_8h.html#ac8e7865fff023edd87e69885468664fa">  117</a></span>&#160;<span class="preprocessor">#define FREQUENCY_THRESHOLD         614     </span><span class="comment">// On a 0-1023 scale</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="constants_8h.html#ae4b45b7a14adb95f9b6ca87f893f729e">  118</a></span>&#160;<span class="preprocessor">#define TUNING_OFFSET_PITCH         81      </span><span class="comment">// A5 880 Hz</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="constants_8h.html#ac576ca8e10690261eee7d5914c156f4b">  119</a></span>&#160;<span class="preprocessor">#define TUNING_REFERENCE_FREQUENCY  440.0f  </span><span class="comment">// Hz</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="constants_8h.html#a2f50933856d1830c76d1a2dccbf6b41f">  120</a></span>&#160;<span class="preprocessor">#define DETUNE_VALUE_COUNT 15</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="constants_8h.html#a960ef338f39a22f74e2f45e1c6ea8629">  121</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="constants_8h.html#a960ef338f39a22f74e2f45e1c6ea8629">DETUNE_VALUES</a>[<a class="code" href="constants_8h.html#a2f50933856d1830c76d1a2dccbf6b41f">DETUNE_VALUE_COUNT</a>] = {-24, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 24};  <span class="comment">// Semitones</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aconstants_8h_html_a2f50933856d1830c76d1a2dccbf6b41f"><div class="ttname"><a href="constants_8h.html#a2f50933856d1830c76d1a2dccbf6b41f">DETUNE_VALUE_COUNT</a></div><div class="ttdeci">#define DETUNE_VALUE_COUNT</div><div class="ttdef"><b>Definition:</b> <a href="constants_8h_source.html#l00120">constants.h:120</a></div></div>
+<div class="ttc" id="aconstants_8h_html_a960ef338f39a22f74e2f45e1c6ea8629"><div class="ttname"><a href="constants_8h.html#a960ef338f39a22f74e2f45e1c6ea8629">DETUNE_VALUES</a></div><div class="ttdeci">const int DETUNE_VALUES[DETUNE_VALUE_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="constants_8h_source.html#l00121">constants.h:121</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b0856f6b0d80ccb263b2f415c91f9e17.html">include</a></li><li class="navelem"><a class="el" href="constants_8h.html">constants.h</a></li>
-    <li class="footer">Generated on Wed Aug 28 2024 20:57:53 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Sep 1 2024 18:03:41 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

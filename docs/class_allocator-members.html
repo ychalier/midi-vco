@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.1</span>
+   &#160;<span id="projectnumber">3.0.0-dev.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -93,21 +93,19 @@ $(document).ready(function(){initNavTree('class_allocator.html',''); initResizab
   <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a725cbc92da006250a9ab26c7f14e9fc4">_config</a></td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_allocator.html#a3b1e1d92dad52fd9a6d30d9348c9403e">_pools</a></td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#ae41a618541abf323cde7244f014339bf">_router</a></td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_allocator.html#ab311c3e6337039e165aba2bf3dda7204">after_touch_channel</a>(int bend)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#afdcc9c3183472f13fa4d4f37f78b5202">after_touch_poly</a>(byte pitch, int bend)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_allocator.html#a00cf536230082b72e6e68fe6a68a3537">Allocator</a>(Config *config, Router *router)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a44afb72b39aa0da19c93e720eea214ea">broadcast</a>(byte pitch, int gate)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_allocator.html#abcff54dc19e2ae05f0cd569a7ca116ae">check_mask</a>(byte mask, int value)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a4e01e87d6ad1fe370b4c2b4f073f13f0">broadcast</a>(int setpoint, int gate)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_allocator.html#a1996b50ddc52dd6022235c91a8eadd00">check_mask</a>(uint16_t mask, int value)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#ab1c36dcc85e01100ef49180b84ff007c">hold_off</a>()</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_allocator.html#a2d694e79fc61a52a38faf9f5b8c26de9">hold_on</a>()</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a1cc2dc10c9e01c08a83c585b716cf8f9">is_active</a>()</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_allocator.html#a0763f8fa7283a96d833d981bf8d86a26">note_off</a>(byte pitch)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#ab3bad6e7b7ee29f6bbda02bf7c658955">note_off_masked</a>(byte pitch, byte mask)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_allocator.html#a1d070a2acf06ed6696d196003185bcde">note_on</a>(byte pitch)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a7a10dafb52918226a66a29172563b15b">note_on_masked</a>(byte pitch, byte mask)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_allocator.html#a503686789d548982a45389b201385c8a">note_off</a>(Note note)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#ad98c2438c7e0a3a54960a03fcecd5a96">note_off_masked</a>(Note note, uint16_t mask)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_allocator.html#ac488e12b005e2ac5ffd222ea69825a34">note_on</a>(Note note)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a7f12578c85b0f9bbcd764aca1de3fc1d">note_on_masked</a>(Note note, uint16_t mask)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_allocator.html#aaa7680ace34db4aec04e7e36cb2970f5">pitch_bend</a>(int bend)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#ac0b00e8377f23b4775cb2c3cf6e79f25">reset</a>()</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_allocator.html#a550dd05e331ee14ed8b89a6d2a8c9105">reset_masked</a>(byte mask)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_allocator.html#a884367370a230577537dda3270075b88">reset_masked</a>(uint16_t mask)</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_allocator.html#a35d3f88c4761b5b78dbe27f50930b68b">set_lane_masks</a>()</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_allocator.html#abd222486ac63d3a9b4e7cabb91569617">setup</a>()</td><td class="entry"><a class="el" href="class_allocator.html">Allocator</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
@@ -115,7 +113,7 @@ $(document).ready(function(){initNavTree('class_allocator.html',''); initResizab
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Aug 28 2024 20:57:54 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Sep 1 2024 18:03:42 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

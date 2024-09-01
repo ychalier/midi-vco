@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.1</span>
+   &#160;<span id="projectnumber">3.0.0-dev.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -100,6 +100,12 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
+<li>CHANNEL_A
+: <a class="el" href="constants_8h.html#ac0d7906cb15245de34095a6b4885e7f2">constants.h</a>
+</li>
+<li>CHANNEL_B
+: <a class="el" href="constants_8h.html#a0dd7f83e17aef557e421aae81d420e35">constants.h</a>
+</li>
 <li>CONFIG_CHANGE_HOLD
 : <a class="el" href="constants_8h.html#a3a2943cae25a006ed27df51f4dfd4616">constants.h</a>
 </li>
@@ -109,17 +115,14 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>CONFIG_CHANGE_PRIORITY_MODE
 : <a class="el" href="constants_8h.html#a2099814e5c7c42c6fd8d9be22874e73b">constants.h</a>
 </li>
-<li>CONFIG_CHANGE_RECORD
-: <a class="el" href="constants_8h.html#a683f98bc0e63932740ce72fc3394663b">constants.h</a>
+<li>CONFIG_CHANGE_TUNING_FAST
+: <a class="el" href="constants_8h.html#af068ad24bcaa2b958948727c7c255892">constants.h</a>
 </li>
-<li>CONFIG_CHANGE_TUNING
-: <a class="el" href="constants_8h.html#aed0b57e6ff85a14105e4c814b125c00a">constants.h</a>
+<li>CONFIG_CHANGE_TUNING_FULL
+: <a class="el" href="constants_8h.html#a0f78061cb5922f0be0a2bbb80f450072">constants.h</a>
 </li>
-<li>COUPLER_A
-: <a class="el" href="coupler_8h.html#a74285532b5d97d0f8cc03fcff4111f81">coupler.h</a>
-</li>
-<li>COUPLER_B
-: <a class="el" href="coupler_8h.html#a24f9f6ce1ce8631170c7352287fb4882">coupler.h</a>
+<li>CONFIG_CHANGE_TUNING_RESET
+: <a class="el" href="constants_8h.html#a2f5a97b2ada9e2da9f6a2ffd10914868">constants.h</a>
 </li>
 </ul>
 
@@ -128,11 +131,31 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>DAC_VMAX
 : <a class="el" href="constants_8h.html#a47580cc5f371cab4485280db10855e6e">constants.h</a>
 </li>
+<li>DEFAULT_PITCH_BEND_RANGE
+: <a class="el" href="constants_8h.html#a34bb292c190ce28c3dc675871ee0f7ad">constants.h</a>
+</li>
 <li>DETUNE_VALUE_COUNT
 : <a class="el" href="constants_8h.html#a2f50933856d1830c76d1a2dccbf6b41f">constants.h</a>
 </li>
 <li>DETUNE_VALUES
 : <a class="el" href="constants_8h.html#a960ef338f39a22f74e2f45e1c6ea8629">constants.h</a>
+</li>
+</ul>
+
+
+<h3><a id="index_e"></a>- e -</h3><ul>
+<li>estimate_frequencies()
+: <a class="el" href="tuner_8cpp.html#a73e5ab8db80ceec9a5d454a656720e78">tuner.cpp</a>
+</li>
+</ul>
+
+
+<h3><a id="index_f"></a>- f -</h3><ul>
+<li>FREQUENCY_ESTIMATION_PERIOD
+: <a class="el" href="constants_8h.html#a9e2e8ffd4efd54a450688084f132b1e4">constants.h</a>
+</li>
+<li>FREQUENCY_THRESHOLD
+: <a class="el" href="constants_8h.html#ac8e7865fff023edd87e69885468664fa">constants.h</a>
 </li>
 </ul>
 
@@ -165,6 +188,16 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 </ul>
 
 
+<h3><a id="index_l"></a>- l -</h3><ul>
+<li>LANE_COUNT
+: <a class="el" href="constants_8h.html#a73afc0e3de7253b20d26d43395608527">constants.h</a>
+</li>
+<li>LOG2
+: <a class="el" href="constants_8h.html#a07267dcd6834194cfed517197ab1e2ad">constants.h</a>
+</li>
+</ul>
+
+
 <h3><a id="index_m"></a>- m -</h3><ul>
 <li>MIDI_CONTROL_GLIDE_CHROMATIC
 : <a class="el" href="constants_8h.html#a6f5f51e4392bb25ad7a635fcf6e9ae12">constants.h</a>
@@ -184,44 +217,74 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>MIDI_CONTROL_PITCH_BEND_RANGE
 : <a class="el" href="constants_8h.html#af3735eb3ac8a43e8907b1f3cdafdc7f1">constants.h</a>
 </li>
-<li>MIDI_CONTROL_SOURCE
-: <a class="el" href="constants_8h.html#a004d9265cdc8a596713cce1bba94f4ac">constants.h</a>
-</li>
-<li>MIDI_CONTROL_TIME
-: <a class="el" href="constants_8h.html#a15581949a5b8381f0149cf58de366665">constants.h</a>
-</li>
 <li>MIDI_CONTROL_VOLTAGE_OFFSET
 : <a class="el" href="constants_8h.html#aff6c4842cd4e232ad55bd056864daa71">constants.h</a>
 </li>
 <li>MIDI_MIN_PITCH
 : <a class="el" href="constants_8h.html#a5a4813366397b194aa7fd51b50c01b19">constants.h</a>
 </li>
-<li>MidiEvent
-: <a class="el" href="structs_8h.html#a99fe673a85b0af40b65e5680dfeecb84">structs.h</a>
-</li>
-<li>MODE_DUOPHONIC
-: <a class="el" href="constants_8h.html#a45bff5fc91e80789fafb31cc3f95ef5f">constants.h</a>
-</li>
 <li>MODE_MONOPHONIC
 : <a class="el" href="constants_8h.html#a2a33587f0528d88828ffca16d9623130">constants.h</a>
 </li>
-<li>MODE_OCTOPHONIC
-: <a class="el" href="constants_8h.html#a9c52b96cf8a40e99ced21bb65d9cf91a">constants.h</a>
+<li>MODE_POLY10
+: <a class="el" href="constants_8h.html#ad81599d4814909f66949e31432d04856">constants.h</a>
 </li>
-<li>MODE_QUADROPHONIC
-: <a class="el" href="constants_8h.html#acd74d69a69f038b2f32b3ac39418e800">constants.h</a>
+<li>MODE_POLY5
+: <a class="el" href="constants_8h.html#a9368bc590e88c60c855c79d873d43ac3">constants.h</a>
 </li>
 </ul>
 
 
-<h3><a id="index_o"></a>- o -</h3><ul>
-<li>OUTPUT_PITCH_BEND_FACTOR
-: <a class="el" href="constants_8h.html#a2624021562d71f5562426b300ff31816">constants.h</a>
+<h3><a id="index_n"></a>- n -</h3><ul>
+<li>Note
+: <a class="el" href="structs_8h.html#a820e8754f76d4d189d5347d302964a1d">structs.h</a>
 </li>
 </ul>
 
 
 <h3><a id="index_p"></a>- p -</h3><ul>
+<li>PIN_BEND_CHANNEL_SWITCH
+: <a class="el" href="constants_8h.html#af1aae16275585643887c2632f7a48c6c">constants.h</a>
+</li>
+<li>PIN_BUTTON_TUNING_FAST
+: <a class="el" href="constants_8h.html#a0efee6c82309316ec3c6c67e1f227ffa">constants.h</a>
+</li>
+<li>PIN_BUTTON_TUNING_FULL
+: <a class="el" href="constants_8h.html#a83b19f7f86e0ef98b24188ad7c7e0202">constants.h</a>
+</li>
+<li>PIN_BUTTON_TUNING_RESET
+: <a class="el" href="constants_8h.html#aa74418ad6c7aa235c0a5242df3419f14">constants.h</a>
+</li>
+<li>PIN_CV_LOOPBACK_1
+: <a class="el" href="constants_8h.html#a0ff68e49e78eb1079607630bc8b10b36">constants.h</a>
+</li>
+<li>PIN_CV_LOOPBACK_10
+: <a class="el" href="constants_8h.html#a6db84a9952386e313dc254f8bcc3e0ec">constants.h</a>
+</li>
+<li>PIN_CV_LOOPBACK_2
+: <a class="el" href="constants_8h.html#a2a8401fa74c03fda58efb30dd864cc3e">constants.h</a>
+</li>
+<li>PIN_CV_LOOPBACK_3
+: <a class="el" href="constants_8h.html#a3d60c25b5f1c4a038cceee40fe3b9f5a">constants.h</a>
+</li>
+<li>PIN_CV_LOOPBACK_4
+: <a class="el" href="constants_8h.html#a61e9ee5e1579a4facd355b2b88128205">constants.h</a>
+</li>
+<li>PIN_CV_LOOPBACK_5
+: <a class="el" href="constants_8h.html#ac3363c3b86c294b1928ade573b8a9649">constants.h</a>
+</li>
+<li>PIN_CV_LOOPBACK_6
+: <a class="el" href="constants_8h.html#a9cef6f4904e0b433c0b720e7d8cfee0f">constants.h</a>
+</li>
+<li>PIN_CV_LOOPBACK_7
+: <a class="el" href="constants_8h.html#ab9d2b4a26f18d223ed16ff60c57ddb0e">constants.h</a>
+</li>
+<li>PIN_CV_LOOPBACK_8
+: <a class="el" href="constants_8h.html#a383141c294afa1efb625a4e069cbaa9d">constants.h</a>
+</li>
+<li>PIN_CV_LOOPBACK_9
+: <a class="el" href="constants_8h.html#a340fe2c3bf8d70018cce388fa619fab8">constants.h</a>
+</li>
 <li>PIN_DETUNE
 : <a class="el" href="constants_8h.html#ad019c4b64e3b672d22089f22e643639e">constants.h</a>
 </li>
@@ -237,11 +300,29 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>PIN_GATE_4
 : <a class="el" href="constants_8h.html#a774e5a21aa7affe4436ce191108880da">constants.h</a>
 </li>
+<li>PIN_GATE_5
+: <a class="el" href="constants_8h.html#a0637a1d4ee619b832e0cbf8d80805d20">constants.h</a>
+</li>
+<li>PIN_GLIDE_CHANNEL_SWITCH
+: <a class="el" href="constants_8h.html#a6d61b1b160f5aae98b4eb730c09ee9a1">constants.h</a>
+</li>
 <li>PIN_GLIDE_INTENSITY
 : <a class="el" href="constants_8h.html#afc46fe5ea818375d37fb6f518a3e426e">constants.h</a>
 </li>
-<li>PIN_LED
-: <a class="el" href="constants_8h.html#ae70934b3338990d4a3faecf2ee172d92">constants.h</a>
+<li>PIN_LED_MIDI
+: <a class="el" href="constants_8h.html#ae6885ed4e84e3586319222f92845ba82">constants.h</a>
+</li>
+<li>PIN_LED_TUNING_FAST
+: <a class="el" href="constants_8h.html#a01b8a5abe8a7cf7579e3656f995e903f">constants.h</a>
+</li>
+<li>PIN_LED_TUNING_FULL
+: <a class="el" href="constants_8h.html#aed2b93d3f081a3b436e253a5d9af5d03">constants.h</a>
+</li>
+<li>PIN_LED_TUNING_RESET
+: <a class="el" href="constants_8h.html#aa45d675cb144795d01e598cdb310d329">constants.h</a>
+</li>
+<li>PIN_MINIMUM_VELOCITY
+: <a class="el" href="constants_8h.html#a3a85a6849855495a6bcd018dc2ba35c6">constants.h</a>
 </li>
 <li>PIN_PITCH_BEND_RANGE
 : <a class="el" href="constants_8h.html#a11795024a5915dea419cb70c1d92bf63">constants.h</a>
@@ -251,9 +332,6 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 </li>
 <li>PIN_PRIORITY_MODE
 : <a class="el" href="constants_8h.html#a09f27c5b98d2535a26f2b184a6639cc4">constants.h</a>
-</li>
-<li>PIN_SS_BEND
-: <a class="el" href="constants_8h.html#a9385338ee8888ad52aa536ec042116a1">constants.h</a>
 </li>
 <li>PIN_SS_CV_1
 : <a class="el" href="constants_8h.html#af8b7ae34e5bce2c7924cb915100f9ca6">constants.h</a>
@@ -267,8 +345,17 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>PIN_SS_CV_4
 : <a class="el" href="constants_8h.html#a445be358d214f920fe80648c91df096d">constants.h</a>
 </li>
-<li>PIN_TUNE
-: <a class="el" href="constants_8h.html#a48f7f11e7a881176e4c42be447f81ebb">constants.h</a>
+<li>PIN_SS_CV_5
+: <a class="el" href="constants_8h.html#a53a0b6ce4a247a98e052d6885bddfff5">constants.h</a>
+</li>
+<li>PIN_SS_VEL_1
+: <a class="el" href="constants_8h.html#a055693c3da54a5176acaea46e72e7e54">constants.h</a>
+</li>
+<li>PIN_SS_VEL_2
+: <a class="el" href="constants_8h.html#af59f34784555ffa759a9f9e0dede1d2f">constants.h</a>
+</li>
+<li>PIN_SS_VEL_3
+: <a class="el" href="constants_8h.html#aba799002db2db805d40b89c9dfbd4446">constants.h</a>
 </li>
 <li>PITCH_A0
 : <a class="el" href="constants_8h.html#a0f03a88e1aece55d74c9b20422cdec5f">constants.h</a>
@@ -297,9 +384,6 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>PITCH_A8
 : <a class="el" href="constants_8h.html#aa9519b5e95e26f4689357bc833e79af6">constants.h</a>
 </li>
-<li>PITCH_BEND_RANGE
-: <a class="el" href="constants_8h.html#a62a22c87884bffa1cccdf68f74e557d0">constants.h</a>
-</li>
 <li>POOL_COUNT
 : <a class="el" href="constants_8h.html#a8edcf5c46b21be9ecab350d9e9a96aa5">constants.h</a>
 </li>
@@ -313,12 +397,25 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 : <a class="el" href="constants_8h.html#ace4e8deed14c4892e4e17b87e72cb7f1">constants.h</a>
 </li>
 </ul>
+
+
+<h3><a id="index_t"></a>- t -</h3><ul>
+<li>Tuning
+: <a class="el" href="structs_8h.html#a1aade9389993911d5c5bcdf3d9f9fec9">structs.h</a>
+</li>
+<li>TUNING_OFFSET_PITCH
+: <a class="el" href="constants_8h.html#ae4b45b7a14adb95f9b6ca87f893f729e">constants.h</a>
+</li>
+<li>TUNING_REFERENCE_FREQUENCY
+: <a class="el" href="constants_8h.html#ac576ca8e10690261eee7d5914c156f4b">constants.h</a>
+</li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Aug 28 2024 20:57:55 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Sep 1 2024 18:03:42 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

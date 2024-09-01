@@ -7,18 +7,18 @@
  */
 
 #include <MIDI.h>
-#include "include/config.h"
 #include "include/allocator.h"
-#include "include/structs.h"
-#include "include/router.h"
 #include "include/channel.h"
+#include "include/config.h"
+#include "include/router.h"
+#include "include/structs.h"
 #include "include/tuner.h"
 
 MIDI_CREATE_DEFAULT_INSTANCE();
-Config *config;
 Allocator *allocator;
-Router *router;
+Config *config;
 Channel *mod_channel;
+Router *router;
 Tuner *tuner;
 bool old_led_state;
 
@@ -40,7 +40,7 @@ void setup()
     MIDI.setHandleNoteOff(handle_note_off);
     MIDI.setHandlePitchBend(handle_pitch_bend);
     MIDI.setHandleControlChange(handle_control_change);
-    pinMode(PIN_LED, OUTPUT);
+    pinMode(PIN_LED_MIDI, OUTPUT);
     blink();
     old_led_state = false;
 }
@@ -59,17 +59,17 @@ void loop()
  */
 void blink()
 {
-    digitalWrite(PIN_LED, HIGH);
+    digitalWrite(PIN_LED_MIDI, HIGH);
     delay(100);
-    digitalWrite(PIN_LED, LOW);
+    digitalWrite(PIN_LED_MIDI, LOW);
     delay(100);
-    digitalWrite(PIN_LED, HIGH);
+    digitalWrite(PIN_LED_MIDI, HIGH);
     delay(100);
-    digitalWrite(PIN_LED, LOW);
+    digitalWrite(PIN_LED_MIDI, LOW);
     delay(100);
-    digitalWrite(PIN_LED, HIGH);
+    digitalWrite(PIN_LED_MIDI, HIGH);
     delay(100);
-    digitalWrite(PIN_LED, LOW);
+    digitalWrite(PIN_LED_MIDI, LOW);
 }
 
 void update_config()
@@ -99,11 +99,11 @@ void update_led()
     {
         if (led_state)
         {
-            digitalWrite(PIN_LED, HIGH);
+            digitalWrite(PIN_LED_MIDI, HIGH);
         }
         else
         {
-            digitalWrite(PIN_LED, LOW);
+            digitalWrite(PIN_LED_MIDI, LOW);
         }
     }
     old_led_state = led_state;

@@ -12,10 +12,6 @@ Lane::Lane(Config *config, Coupler *coupler, bool channel, Tuning *tuning)
     _tuning = tuning;
 }
 
-void Lane::setup()
-{
-}
-
 void Lane::set(int cv_setpoint, int vel_setpoint)
 {
     _current_cv_setpoint = cv_setpoint;

@@ -34,16 +34,6 @@ void Router::setup()
     _coupler_3->setup();
     _coupler_4->setup();
     _coupler_5->setup();
-    _lane_1->setup();
-    _lane_2->setup();
-    _lane_3->setup();
-    _lane_4->setup();
-    _lane_5->setup();
-    _lane_6->setup();
-    _lane_7->setup();
-    _lane_8->setup();
-    _lane_9->setup();
-    _lane_10->setup();
 }
 
 void Router::update()

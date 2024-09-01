@@ -1,7 +1,8 @@
 var class_router =
 [
-    [ "Router", "class_router.html#a8d406465372c4f7f88ed4a2ac88c2bdd", null ],
-    [ "broadcast", "class_router.html#ab086b6247637dac64b2bf02d9c5c37e4", null ],
+    [ "Router", "class_router.html#afe5620daef0669d69d29fe05320676a1", null ],
+    [ "broadcast", "class_router.html#ad4f2dd7fd21b7894c054c820974637fc", null ],
+    [ "get_spare_channel", "class_router.html#aa3302c7563bd99fb4345713c13a5612f", null ],
     [ "select", "class_router.html#af4641f2500f092754121c21360d592bd", null ],
     [ "setup", "class_router.html#ad42d4039bd4a012c34c7da685148a8b5", null ],
     [ "update", "class_router.html#aa1b7b08c47135938efc721249f36a6a1", null ],
@@ -10,12 +11,18 @@ var class_router =
     [ "_coupler_2", "class_router.html#acfca7bb1df05212e4f2b96300f0cc3c0", null ],
     [ "_coupler_3", "class_router.html#a2454d12bfc6378bb6f32ef4f3cec0a1c", null ],
     [ "_coupler_4", "class_router.html#a8738033a923e10951f53d2a87e272590", null ],
+    [ "_coupler_5", "class_router.html#a54ab2121c3feef3b1fcc854a4679045c", null ],
+    [ "_dac_1", "class_router.html#a4fac46dc51048d884dbc239db631e203", null ],
+    [ "_dac_2", "class_router.html#a872ed54e1302268c2a312bca14a23ab8", null ],
+    [ "_dac_3", "class_router.html#a316d25c7640fed7ad5964955974bf0c5", null ],
     [ "_lane_1", "class_router.html#a810ed00928f13e92edeee3775a89ae40", null ],
+    [ "_lane_10", "class_router.html#a417a653fe42026f6a6636da5c21756e7", null ],
     [ "_lane_2", "class_router.html#a5259aa3caced4019d33f4e67fe62a192", null ],
     [ "_lane_3", "class_router.html#a65d262aaa2f3c753e51f469e5327f23e", null ],
     [ "_lane_4", "class_router.html#a12225e44c339bd606083d7006201f6dc", null ],
     [ "_lane_5", "class_router.html#a50226ec1b26c8f766db5c21c8c22a54a", null ],
     [ "_lane_6", "class_router.html#a95d82b0f8b7bf97e0fa9e23160d9b720", null ],
     [ "_lane_7", "class_router.html#a67bdaf0211be01346225c5de71946297", null ],
-    [ "_lane_8", "class_router.html#adbd1ca8387722b74c07cdb993b8a5b8c", null ]
+    [ "_lane_8", "class_router.html#adbd1ca8387722b74c07cdb993b8a5b8c", null ],
+    [ "_lane_9", "class_router.html#ab12b45fb65c8b45f2681fc15f58b0c87", null ]
 ];

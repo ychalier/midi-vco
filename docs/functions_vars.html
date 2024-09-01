@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.1</span>
+   &#160;<span id="projectnumber">3.0.0-dev.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -96,19 +96,25 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <li>_active_b
 : <a class="el" href="class_coupler.html#aab1ee6b1a288f9c825d77d08850aab61">Coupler</a>
 </li>
-<li>_allocator
-: <a class="el" href="class_midi_interface.html#af3f1faa5be008ed6f7ca5d4e65b50836">MidiInterface</a>
+<li>_bend_channel_switch
+: <a class="el" href="class_config.html#a674612f24a8832fcf7d767f1ed244c00">Config</a>
 </li>
 <li>_buffer
 : <a class="el" href="class_pool.html#ad4026ff2c9204a6b758df42d3620013f">Pool</a>
 </li>
 <li>_channel
-: <a class="el" href="class_lane.html#af3043fe507a69554adacdadc54ad4ea4">Lane</a>
+: <a class="el" href="class_channel.html#abe0c75a9b199bcc6ac50b19defbd77a3">Channel</a>
+, <a class="el" href="class_lane.html#af3043fe507a69554adacdadc54ad4ea4">Lane</a>
+</li>
+<li>_channel_a
+: <a class="el" href="class_dac.html#a842a4d132451ce469c68b9aaaf332db2">Dac</a>
+</li>
+<li>_channel_b
+: <a class="el" href="class_dac.html#a2be4ff91d364150ebcba7258c1f8f603">Dac</a>
 </li>
 <li>_config
 : <a class="el" href="class_allocator.html#a725cbc92da006250a9ab26c7f14e9fc4">Allocator</a>
 , <a class="el" href="class_lane.html#a8104c94bd226391c96d70f5db04dc151">Lane</a>
-, <a class="el" href="class_midi_interface.html#a385cab99f8490b1fd96304d2d67577a7">MidiInterface</a>
 , <a class="el" href="class_router.html#a75b39c5208399a1f5034a5cd58314de2">Router</a>
 </li>
 <li>_coupler
@@ -126,8 +132,14 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <li>_coupler_4
 : <a class="el" href="class_router.html#a8738033a923e10951f53d2a87e272590">Router</a>
 </li>
-<li>_current_setpoint
-: <a class="el" href="class_lane.html#a8c23d1bb27ed968313490a9f35a03ee8">Lane</a>
+<li>_coupler_5
+: <a class="el" href="class_router.html#a54ab2121c3feef3b1fcc854a4679045c">Router</a>
+</li>
+<li>_current_cv_setpoint
+: <a class="el" href="class_lane.html#ac0685b8f8afb17fd35ae96ffb7450bbc">Lane</a>
+</li>
+<li>_current_vel_setpoint
+: <a class="el" href="class_lane.html#a4c8bba55a48ec252e8202bc57a298238">Lane</a>
 </li>
 <li>_cursor
 : <a class="el" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">Buffer</a>
@@ -138,9 +150,25 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <li>_cv_b
 : <a class="el" href="class_coupler.html#a37bad99eb7a45ff1b190b04d6b68289d">Coupler</a>
 </li>
+<li>_cv_setpoint_a
+: <a class="el" href="class_coupler.html#a2d3a5848723ce2e16ad30a3786356982">Coupler</a>
+</li>
+<li>_cv_setpoint_b
+: <a class="el" href="class_coupler.html#a2c2f4a04b941aac1558cb7474b3e4388">Coupler</a>
+</li>
 <li>_dac
-: <a class="el" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">Coupler</a>
-, <a class="el" href="class_midi_interface.html#a8906eecac3d93656fd68067cd6c16f65">MidiInterface</a>
+: <a class="el" href="class_channel.html#a22c5fab13a1e8941f00ceccf0b73f04b">Channel</a>
+, <a class="el" href="class_coupler.html#a9292573cf54f051986a638007290d1c4">Coupler</a>
+, <a class="el" href="class_dac.html#a7246a0fe5153198a6e923a821f7d9e3f">Dac</a>
+</li>
+<li>_dac_1
+: <a class="el" href="class_router.html#a4fac46dc51048d884dbc239db631e203">Router</a>
+</li>
+<li>_dac_2
+: <a class="el" href="class_router.html#a872ed54e1302268c2a312bca14a23ab8">Router</a>
+</li>
+<li>_dac_3
+: <a class="el" href="class_router.html#a316d25c7640fed7ad5964955974bf0c5">Router</a>
 </li>
 <li>_detune
 : <a class="el" href="class_config.html#ad3e19e0cdfbb7c4e98f5158beb9e1d0d">Config</a>
@@ -157,6 +185,9 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <li>_glide
 : <a class="el" href="class_lane.html#a7dd46dec4706046ad8efe5edbcfce239">Lane</a>
 </li>
+<li>_glide_channel_switch
+: <a class="el" href="class_config.html#a31475e1f87965f618357a96e7a93d437">Config</a>
+</li>
 <li>_glide_flags
 : <a class="el" href="class_config.html#aa01804fb0d927a4c02d07f423f2cc63a">Config</a>
 </li>
@@ -171,6 +202,9 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 </li>
 <li>_lane_1
 : <a class="el" href="class_router.html#a810ed00928f13e92edeee3775a89ae40">Router</a>
+</li>
+<li>_lane_10
+: <a class="el" href="class_router.html#a417a653fe42026f6a6636da5c21756e7">Router</a>
 </li>
 <li>_lane_2
 : <a class="el" href="class_router.html#a5259aa3caced4019d33f4e67fe62a192">Router</a>
@@ -193,23 +227,23 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <li>_lane_8
 : <a class="el" href="class_router.html#adbd1ca8387722b74c07cdb993b8a5b8c">Router</a>
 </li>
-<li>_lane_mask
-: <a class="el" href="class_pool.html#a3e65544f1f31243433b5d6f8735ac81a">Pool</a>
+<li>_lane_9
+: <a class="el" href="class_router.html#ab12b45fb65c8b45f2681fc15f58b0c87">Router</a>
 </li>
-<li>_led_id
-: <a class="el" href="class_lane.html#a4dbb3a06cba805b6f8c239fe874b12e9">Lane</a>
+<li>_lane_mask
+: <a class="el" href="class_pool.html#aab6552e00d17e6d8604cdf07ccafe188">Pool</a>
 </li>
 <li>_locked
 : <a class="el" href="class_pool.html#a54638ab7f5e0bf898dcd4301740d3c3a">Pool</a>
 </li>
+<li>_minimum_velocity
+: <a class="el" href="class_config.html#a3783df4ad22b5d773a93eb5bd391d710">Config</a>
+</li>
 <li>_notes
-: <a class="el" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">Buffer</a>
+: <a class="el" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">Buffer</a>
 </li>
 <li>_pitch_bend_range
 : <a class="el" href="class_config.html#a5f1fe62dca0b6dbac333f1f00a02a7f3">Config</a>
-</li>
-<li>_pitch_bend_value
-: <a class="el" href="class_midi_interface.html#aab5ae7f26c1b41067e6e93fb3add44f6">MidiInterface</a>
 </li>
 <li>_polyphony_mode
 : <a class="el" href="class_config.html#a854182219145c9e592fba7be0f7bcd2b">Config</a>
@@ -224,14 +258,32 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 : <a class="el" href="class_allocator.html#ae41a618541abf323cde7244f014339bf">Allocator</a>
 , <a class="el" href="class_pool.html#ae588dfc760e666b868a4184154e453f1">Pool</a>
 </li>
-<li>_setpoint_a
-: <a class="el" href="class_coupler.html#a5c52535100198f194c79534eef86ea0a">Coupler</a>
-</li>
-<li>_setpoint_b
-: <a class="el" href="class_coupler.html#a614a7a4fbcca43a4746065aacff63c55">Coupler</a>
-</li>
 <li>_tuning
-: <a class="el" href="class_config.html#ae8cd70834caff6c21d11dcd4656d00ec">Config</a>
+: <a class="el" href="class_lane.html#a6714b74e73f17710ac2e5e020bf35bae">Lane</a>
+</li>
+<li>_tuning_fast
+: <a class="el" href="class_config.html#a6c041d6dfe52e7a94fdf935bc3618a3c">Config</a>
+</li>
+<li>_tuning_full
+: <a class="el" href="class_config.html#a9f56f673deac58f8df31a9c68f276ec4">Config</a>
+</li>
+<li>_tuning_reset
+: <a class="el" href="class_config.html#a14e29a7094a88aa207484fe9472d623b">Config</a>
+</li>
+<li>_tunings
+: <a class="el" href="class_tuner.html#a6d9f05f42a8be248404062d55583d703">Tuner</a>
+</li>
+<li>_vel
+: <a class="el" href="class_coupler.html#add063502043762bd3ffd98e42a6be9fb">Coupler</a>
+</li>
+<li>_vel_channel
+: <a class="el" href="class_coupler.html#a502204404224274e910f08cfa349ad3a">Coupler</a>
+</li>
+<li>_vel_setpoint_a
+: <a class="el" href="class_coupler.html#a5bc6b98caae495445658ddf455e5d19c">Coupler</a>
+</li>
+<li>_vel_setpoint_b
+: <a class="el" href="class_coupler.html#a6a4a56dd4ae33462979c3537bd4a3054">Coupler</a>
 </li>
 <li>_voltage_offset
 : <a class="el" href="class_config.html#af738fd604a26320caba42fe5d2d1a609">Config</a>
@@ -247,30 +299,30 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 
 
 <h3><a id="index_d"></a>- d -</h3><ul>
-<li>division
-: <a class="el" href="struct_midi_event.html#a65e5f5b321f50b5e89f17f4ef493bffd">MidiEvent</a>
-</li>
 <li>duration
 : <a class="el" href="struct_glide.html#ad7ab601dfccc73120a2661e214b3c208">Glide</a>
 </li>
 </ul>
 
 
-<h3><a id="index_m"></a>- m -</h3><ul>
-<li>mask
-: <a class="el" href="struct_midi_event.html#a9fef325d40882b73d2be739a4f6634bd">MidiEvent</a>
+<h3><a id="index_o"></a>- o -</h3><ul>
+<li>offset
+: <a class="el" href="struct_tuning.html#a34432397dcb7acf4d626b8bb38867515">Tuning</a>
 </li>
 </ul>
 
 
 <h3><a id="index_p"></a>- p -</h3><ul>
 <li>pitch
-: <a class="el" href="struct_midi_event.html#a653cbf19925580394b1cfbfe8b70253d">MidiEvent</a>
+: <a class="el" href="struct_note.html#a33af0cf423b895fa60d6a0d8e9cdfd7b">Note</a>
 </li>
 </ul>
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
+<li>scale
+: <a class="el" href="struct_tuning.html#a50f1f0dd04209a4f538e93d65752ef09">Tuning</a>
+</li>
 <li>setpoint_end
 : <a class="el" href="struct_glide.html#af207d1b7de45bb44342ea13ff3276404">Glide</a>
 </li>
@@ -284,8 +336,12 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <li>time_start
 : <a class="el" href="struct_glide.html#a13fda5f5f416e9c4f05d9bfe82a3c8d9">Glide</a>
 </li>
-<li>type
-: <a class="el" href="struct_midi_event.html#a83b39faf75c231e5609f953e8e471f4e">MidiEvent</a>
+</ul>
+
+
+<h3><a id="index_v"></a>- v -</h3><ul>
+<li>velocity
+: <a class="el" href="struct_note.html#a7fcfd3c6608bc499e15fec6896668d8d">Note</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -293,7 +349,7 @@ $(document).ready(function(){initNavTree('functions_vars.html',''); initResizabl
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Aug 28 2024 20:57:55 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Sep 1 2024 18:03:42 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

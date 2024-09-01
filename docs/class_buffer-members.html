@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MIDI-VCO
-   &#160;<span id="projectnumber">0.3.1</span>
+   &#160;<span id="projectnumber">3.0.0-dev.1</span>
    </div>
    <div id="projectbrief">Arduino firmware for an interface between a MIDI keyboard and a set of VCOs.</div>
   </td>
@@ -91,15 +91,15 @@ $(document).ready(function(){initNavTree('class_buffer.html',''); initResizable(
 <p>This is the complete list of members for <a class="el" href="class_buffer.html">Buffer</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="class_buffer.html#a7ba209b1e8b58edb64d5d0e148aeb1e1">_cursor</a></td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_buffer.html#a9a445f3dc50238d978fb6f669dbb97d7">_notes</a></td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_buffer.html#a735658b563de9085f3bed61c32a956ac">_notes</a></td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_buffer.html#ae7ef2cd201190fde551dcb902627112b">Buffer</a>()</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_buffer.html#a0c05ab7e9ee0df3313f140904d4f0642">contains</a>(byte pitch)</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_buffer.html#a33ce71d8693b229408f78155d6c3e108">contains</a>(Note note)</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_buffer.html#a4261c1a06920df9c964e4e1ef03353eb">empty</a>()</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_buffer.html#a14805d40b38f7f7c927eed79bf41d37a">get</a>(bool &amp;found)</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_buffer.html#a80df93c6fc7678b12f8153bb7ef94afe">get_at_index</a>(int index)</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_buffer.html#acc1482054df6e6651efffcadc8c119a5">get</a>(bool &amp;found)</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_buffer.html#acd71ac784527e820976fcb8640ac798c">get_at_index</a>(int index)</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_buffer.html#aeb2720e9ab213820fddec500f755dfba">get_size</a>()</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_buffer.html#a7e0b6b0c9d633a61a3a2a1e4ff554312">pop</a>(byte pitch)</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_buffer.html#ab8731eb81c7288fb57ecfe8211a0bf15">push</a>(byte pitch)</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_buffer.html#a650109ed0ac2e1513a37fcc46a595829">pop</a>(Note note)</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_buffer.html#acec71205058fb10fc57c94c8bdcf7dc5">push</a>(Note note)</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_buffer.html#a52170368aefdfbbdcd4a4f79fbf66678">reset</a>()</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_buffer.html#a1dd0d7cc03c72d098a929326c8e15119">shift</a>(int start)</td><td class="entry"><a class="el" href="class_buffer.html">Buffer</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
@@ -107,7 +107,7 @@ $(document).ready(function(){initNavTree('class_buffer.html',''); initResizable(
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Aug 28 2024 20:57:54 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Sep 1 2024 18:03:42 for MIDI-VCO by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

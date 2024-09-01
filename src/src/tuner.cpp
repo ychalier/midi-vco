@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "../include/tuner.h"
 #include "../include/lane.h"
-#include "../include/allocator.h"
+#include "../include/allocator.h" // Prevent circular dependencies
 
 Tuner::Tuner()
 {

@@ -2,8 +2,8 @@
 #define config_h
 
 #include "Arduino.h"
-#include <EEPROM.h>
 #include "constants.h"
+#include <EEPROM.h>
 #include "structs.h"
 
 /**
@@ -25,31 +25,45 @@ public:
      * configuration.
      *
      * @return Whether any change in configuration occured during the reading.
+     *         See flags in constants.h to interpret this value.
      */
     int read();
 
     /**
-     * Getter for the _polyphony_mode attribute.
+     * Getter for the `_polyphony_mode` attribute. Values are defined
+     * in constants.h.
+     * - 0: MONO
+     * - 1: POLY 5
+     * - 2: POLY 10
      */
     byte get_polyphony_mode();
 
     /**
-     * Getter for the _priority_mode attribute.
+     * Getter for the `_priority_mode` attribute. Values are defined in
+     * constants.h.
+     * - 0: KEEP FIRST
+     * - 1: REPLACE OLDEST
+     * - 2: REPLACE NEWEST
      */
     byte get_priority_mode();
 
     /**
-     * Getter for the _glide_flags attribute.
+     * Getter for the `_glide_flags` attribute. Values are defined in constants.h.
+     * - PROPORTIONAL : 1
+     * - CHROMATIC : 2
+     * - LEGATO : 4
      */
     byte get_glide_flags();
 
     /**
-     * Getter for the _glide_intensity attribute.
+     * Getter for the `_glide_intensity` attribute. Value between -1 and 1.
+     * 0 means glide is off.
      */
     float get_glide_intensity();
 
     /**
-     * Getter for the _pitch_bend_range attribute.
+     * Getter for the `_pitch_bend_range` attribute. Value in semitons, with a
+     * step of 4: 0, 4, 8 and 12.
      */
     float get_pitch_bend_range();
 
@@ -64,35 +78,61 @@ public:
     int handle_midi_control(byte number, byte value);
 
     /**
-     * Getter for the _glide_proportional attribute.
+     * Getter for the `_glide_proportional` attribute.
      */
     bool is_glide_proportional();
 
     /**
-     * Getter for the _hold attribute.
+     * Getter for the `_hold` attribute.
      */
     bool get_hold();
 
     /**
-     * Getter for the _voltage_offset attribute.
+     * Getter for the `_voltage_offset` attribute.
+     * Value is in volts, between 0 and 1.
      */
     float get_voltage_offset();
 
     /**
-     * Getter for the _detune attribute.
+     * Getter for for the `_detune` attribute. Value is between 0 and
+     * `DETUNE_VALUE_COUNT`. It is the index for the `DETUNE_VALUES` constant
+     * array defined in `constants.h`.
      */
     int get_detune();
 
+    /**
+     * Getter for the `_bend_channel_switch` attribute.
+     * Represents the state of a toggle switch. `true` means `HIGH`.
+     */
     bool get_bend_channel_switch();
 
+    /**
+     * Getter for the `_glide_channel_switch` attribute.
+     * Represents the state of a toggle switch. `true` means `HIGH`.
+     */
     bool get_glide_channel_switch();
 
+    /**
+     * Getter for the `_minimum_velocity` attribute. Value is between 0 and 127.
+     */
     byte get_minimum_velocity();
 
+    /**
+     * Getter the `_tuning_fast` attribute.
+     * Represents the state of an instantaneous button. `true` means `HIGH`.
+     */
     bool get_tuning_fast();
 
+    /**
+     * Getter the `_tuning_fast` attribute.
+     * Represents the state of an instantaneous button. `true` means `HIGH`.
+     */
     bool get_tuning_full();
 
+    /**
+     * Getter the `_tuning_reset` attribute.
+     * Represents the state of an instantaneous button. `true` means `HIGH`.
+     */
     bool get_tuning_reset();
 
 private:

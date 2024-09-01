@@ -3,15 +3,27 @@
 
 #include "Arduino.h"
 
+/**
+ * Structure holding a MIDI note.
+ */
 typedef struct Note
 {
+    /// MIDI pitch, between 0 and 127 (G9).
     byte pitch;
+
+    /// Velocity attached to the note, between 0 and 127.
     byte velocity;
 } Note;
 
+/**
+ * Tuning parameters, relative to the DAC setpoint (signed 14 bit integers).
+ */
 typedef struct Tuning
 {
+    /// Affine offset. Default is 0.0f (no offset).
     float offset;
+
+    /// Linear scaling (untested). Default is 1.0f (no scaling).
     float scale;
 } Tuning;
 

@@ -21,7 +21,7 @@ public:
     /**
      * Set the signal of the DAC on the specified channel.
      *
-     * @param setpoint DAC setpoint value.
+     * @param setpoint DAC setpoint value, between 0 and 4096.
      */
     void set(int setpoint);
 
@@ -29,7 +29,7 @@ private:
     /// A DAC interface.
     MCP4822 *_dac;
 
-    /// Channel
+    /// Channel (`true` for A, `false` for B)
     bool _channel;
 
 };
