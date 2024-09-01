@@ -111,6 +111,7 @@
 #define FREQUENCY_THRESHOLD         614     // On a 0-1023 scale
 #define TUNING_OFFSET_PITCH         81      // A5 880 Hz
 #define TUNING_REFERENCE_FREQUENCY  440.0f  // Hz
+#define MIDI_LED_TIMEOUT            300     // milliseconds
 #define DETUNE_VALUE_COUNT 15
 const int DETUNE_VALUES[DETUNE_VALUE_COUNT] = {-24, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 24};  // Semitones
 

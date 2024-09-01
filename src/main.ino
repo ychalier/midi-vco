@@ -20,7 +20,9 @@ Config *config;
 Channel *mod_channel;
 Router *router;
 Tuner *tuner;
-bool old_led_state;
+bool previous_midi_led_state;
+bool current_midi_led_state;
+unsigned long midi_led_high_time_ms;
 
 void setup()
 {
@@ -42,7 +44,9 @@ void setup()
     MIDI.setHandleControlChange(handle_control_change);
     pinMode(PIN_LED_MIDI, OUTPUT);
     blink();
-    old_led_state = false;
+    previous_midi_led_state = false;
+    current_midi_led_state = false;
+    midi_led_high_time_ms = 0;
 }
 
 void loop()
@@ -50,7 +54,7 @@ void loop()
     MIDI.read();
     update_config();
     router->update();
-    update_led();
+    update_midi_led();
 }
 
 /**
@@ -92,25 +96,30 @@ void update_config()
     }
 }
 
-void update_led()
+void set_midi_led_high()
 {
-    bool led_state = allocator->is_active();
-    if (led_state != old_led_state)
+    current_midi_led_state = true;
+    if (previous_midi_led_state != current_midi_led_state)
     {
-        if (led_state)
-        {
-            digitalWrite(PIN_LED_MIDI, HIGH);
-        }
-        else
-        {
-            digitalWrite(PIN_LED_MIDI, LOW);
-        }
+        digitalWrite(PIN_LED_MIDI, HIGH);
+        previous_midi_led_state = true;
     }
-    old_led_state = led_state;
+    midi_led_high_time_ms = millis();
+}
+
+void update_midi_led()
+{
+    if (current_midi_led_state && (millis() - midi_led_high_time_ms > MIDI_LED_TIMEOUT))
+    {
+        current_midi_led_state = false;
+        digitalWrite(PIN_LED_MIDI, LOW);
+    }
+    previous_midi_led_state = current_midi_led_state;
 }
 
 void handle_note_on([[maybe_unused]] byte channel, byte pitch, byte velocity)
 {
+    set_midi_led_high();
     if (velocity == 0)
     {
         allocator->note_off({pitch, velocity});
@@ -127,16 +136,19 @@ void handle_note_on([[maybe_unused]] byte channel, byte pitch, byte velocity)
 
 void handle_note_off([[maybe_unused]] byte channel, byte pitch, byte velocity)
 {
+    set_midi_led_high();
     allocator->note_off({pitch, velocity});
 }
 
 void handle_pitch_bend([[maybe_unused]] byte channel, int bend)
 {
+    set_midi_led_high();
     allocator->pitch_bend(bend);
 }
 
 void handle_control_change([[maybe_unused]] byte channel, byte number, byte value)
 {
+    set_midi_led_high();
     if (number == MIDI_CONTROL_MOD)
     {
         mod_channel->set(map(value, 0, 127, 0, 4096));
