@@ -141,16 +141,4 @@ void handle_control_change([[maybe_unused]] byte channel, byte number, byte valu
     {
         mod_channel->set(map(value, 0, 127, 0, 4096));
     }
-    int changed = config->handle_midi_control(number, value);
-    if (changed & CONFIG_CHANGE_HOLD)
-    {
-        if (config->get_hold())
-        {
-            allocator->hold_on();
-        }
-        else
-        {
-            allocator->hold_off();
-        }
-    }
 }

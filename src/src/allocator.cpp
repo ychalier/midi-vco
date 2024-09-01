@@ -154,25 +154,6 @@ void Allocator::pitch_bend(int bend_value)
     }
 }
 
-void Allocator::hold_on()
-{
-    for (int i = 0; i < POOL_COUNT; i++)
-    {
-        if (_pools[i]->is_active())
-        {
-            _pools[i]->lock();
-        }
-    }
-}
-
-void Allocator::hold_off()
-{
-    for (int i = 0; i < POOL_COUNT; i++)
-    {
-        _pools[i]->unlock();
-    }
-}
-
 void Allocator::broadcast(int setpoint, int gate)
 {
     _router->broadcast(setpoint, gate);

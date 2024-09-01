@@ -95,16 +95,6 @@ public:
     void reset_masked(uint16_t mask);
 
     /**
-     * Lock all active pools in their current state.
-     */
-    void hold_on();
-
-    /**
-     * Unlock all locked pools.
-     */
-    void hold_off();
-
-    /**
      * Artificially send an output to all lanes. This is used during tuning.
      * 
      * @param setpoint CV setpoint to broadcast to all lanes

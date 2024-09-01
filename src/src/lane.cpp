@@ -28,7 +28,7 @@ void Lane::start(int cv_setpoint, int vel_setpoint)
         glide_intensity = _config->get_glide_intensity();
     }
     if (ignore_glide || glide_intensity == 0 ||
-        (!_active && (GLIDE_FLAG_LEGATO & _config->get_glide_flags())))
+        (!_active && (GLIDE_FLAG_LEGATO & GLIDE_FLAGS)))
     {
         set(cv_setpoint, vel_setpoint);
     }
@@ -101,7 +101,7 @@ void Lane::update()
             progress = 1;
         }
         float setpoint = (1 - progress) * _glide.setpoint_start + progress * _glide.setpoint_end;
-        if (GLIDE_FLAG_CHROMATIC & _config->get_glide_flags() && progress < 1)
+        if (GLIDE_FLAG_CHROMATIC & GLIDE_FLAGS && progress < 1)
         {
             setpoint = pitch_to_voltage(setpoint_to_pitch(setpoint), 0);
         }
@@ -121,7 +121,7 @@ float Lane::base_pitch_to_voltage(float pitch)
 int Lane::pitch_to_voltage(byte pitch, int bend)
 {
     float bent_pitch = (float)pitch + (float)bend * _config->get_pitch_bend_range() / 8192.0;
-    float voltage = _tuning->scale * base_pitch_to_voltage(bent_pitch) + _tuning->offset + 1000.0 * _config->get_voltage_offset();
+    float voltage = _tuning->scale * base_pitch_to_voltage(bent_pitch) + _tuning->offset;
     if (voltage < 0)
     {
         voltage = 0;

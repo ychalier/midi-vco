@@ -48,14 +48,6 @@ public:
     byte get_priority_mode();
 
     /**
-     * Getter for the `_glide_flags` attribute. Values are defined in constants.h.
-     * - PROPORTIONAL : 1
-     * - CHROMATIC : 2
-     * - LEGATO : 4
-     */
-    byte get_glide_flags();
-
-    /**
      * Getter for the `_glide_intensity` attribute. Value between -1 and 1.
      * 0 means glide is off.
      */
@@ -68,30 +60,9 @@ public:
     float get_pitch_bend_range();
 
     /**
-     * Callback to handle MIDI controls.
-     *
-     * @param number The control identifier.
-     * @param value The current control value, a 7-bit integer.
-     * @return A bit-encoding of which inner parameter changed, defined by
-     *   constants named `CONFIG_CHANGE_*`
-     */
-    int handle_midi_control(byte number, byte value);
-
-    /**
      * Getter for the `_glide_proportional` attribute.
      */
     bool is_glide_proportional();
-
-    /**
-     * Getter for the `_hold` attribute.
-     */
-    bool get_hold();
-
-    /**
-     * Getter for the `_voltage_offset` attribute.
-     * Value is in volts, between 0 and 1.
-     */
-    float get_voltage_offset();
 
     /**
      * Getter for for the `_detune` attribute. Value is between 0 and
@@ -138,12 +109,9 @@ public:
 private:
     byte _polyphony_mode;
     byte _priority_mode;
-    byte _glide_flags;
     float _glide_intensity;
     bool _glide_proportional;
     float _pitch_bend_range;
-    bool _hold;
-    float _voltage_offset;
     int _detune;
     bool _bend_channel_switch;
     bool _glide_channel_switch;

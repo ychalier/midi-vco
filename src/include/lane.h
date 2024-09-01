@@ -77,8 +77,8 @@ public:
     void update();
 
     /**
-     * Basic computation for the DAC input value from a pitch. Independent of
-     * runtime configuration.
+     * Basic computation for the DAC input value from a pitch. Does not take
+     * tuning into account.
      *
      * @see https://github.com/ychalier/midi-vco/wiki/Conversion-du-MIDI-en-tension
      *
@@ -88,8 +88,7 @@ public:
     static float base_pitch_to_voltage(float pitch);
 
     /**
-     * Compute the DAC input value from a pitch. Takes voltage offset (see
-     * `Config`) and tuning into account.
+     * Compute the DAC input value from a pitch. Takes tuning into account.
      *
      * @see https://github.com/ychalier/midi-vco/wiki/Conversion-du-MIDI-en-tension
      *

@@ -50,13 +50,7 @@
 
 // MIDI Controls
 
-#define MIDI_CONTROL_MOD              1
-#define MIDI_CONTROL_GLIDE_INTENSITY  73 // S1 OFF
-#define MIDI_CONTROL_GLIDE_CHROMATIC  80 // B1 ON
-#define MIDI_CONTROL_GLIDE_LEGATO     81 // B2 ON
-#define MIDI_CONTROL_PITCH_BEND_RANGE 75 // S2 OFF
-#define MIDI_CONTROL_HOLD             83 // B4 ON
-#define MIDI_CONTROL_VOLTAGE_OFFSET   2  // R4 ON
+#define MIDI_CONTROL_MOD 1
 
 // Enumerations
 
@@ -77,9 +71,8 @@
 #define CONFIG_CHANGE_TUNING_FULL   16
 #define CONFIG_CHANGE_TUNING_RESET  32
 
-#define GLIDE_FLAG_PROPORTIONAL 1
-#define GLIDE_FLAG_CHROMATIC    2
-#define GLIDE_FLAG_LEGATO       4
+#define GLIDE_FLAG_CHROMATIC 1 // Glide goes through semitones
+#define GLIDE_FLAG_LEGATO    2 // Glide only active when notes overlap
 
 // Constants
 
@@ -112,6 +105,7 @@
 #define GLIDE_MAX_RATE              50      // Milliseconds per semitones
 #define GLIDE_MAX_TIME              500     // Milliseconds
 #define GLIDE_INTENSITY_POWER       2
+#define GLIDE_FLAGS                 0
 #define GATE_STATE_DURING_TUNING    LOW
 #define FREQUENCY_ESTIMATION_PERIOD 2000000 // Microseconds (2s)
 #define FREQUENCY_THRESHOLD         614     // On a 0-1023 scale
