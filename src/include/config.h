@@ -83,16 +83,17 @@ public:
      */
     int get_detune();
 
-    /**
-     * Getter for the _tuning attribute.
-     */
-    bool is_tuning();
-
     bool get_bend_channel_switch();
 
     bool get_glide_channel_switch();
 
     byte get_minimum_velocity();
+
+    bool get_tuning_fast();
+
+    bool get_tuning_full();
+
+    bool get_tuning_reset();
 
 private:
     byte _polyphony_mode;
@@ -104,20 +105,24 @@ private:
     bool _hold;
     float _voltage_offset;
     int _detune;
-    bool _tuning;
     bool _bend_channel_switch;
     bool _glide_channel_switch;
     byte _minimum_velocity;
+    bool _tuning_fast;
+    bool _tuning_full;
+    bool _tuning_reset;
 
     bool _read_polyphony_mode();
     void _read_pitch_bend_range();
     void _read_glide_intensity();
     void _read_detune();
     bool _read_priority_mode();
-    bool _read_tuning();
     void _read_bend_channel_switch();
     void _read_glide_channel_switch();
     void _read_minimum_velocity();
+    bool _read_tuning_fast();
+    bool _read_tuning_full();
+    bool _read_tuning_reset();
 };
 
 #endif

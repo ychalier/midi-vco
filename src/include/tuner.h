@@ -15,6 +15,8 @@ public:
 
     Tuning *get_tuning_ref(int lane_id);
 
+    void reset_tunings();
+
 private:
     Tuning _tunings[LANE_COUNT];
 

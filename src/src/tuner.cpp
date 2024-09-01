@@ -5,7 +5,7 @@ Tuner::Tuner()
 {
     for (int i = 0; i < LANE_COUNT; i++)
     {
-        _tunings[i] = {0.0, 1.0};
+        _tunings[i] = {0.0f, 1.0f};
     }
 }
 
@@ -26,6 +26,15 @@ void Tuner::setup()
 Tuning* Tuner::get_tuning_ref(int lane_id)
 {
     return &_tunings[lane_id];
+}
+
+void Tuner::reset_tunings()
+{
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        _tunings[i] = {0.0f, 1.0f};
+    }
+    _write_tunings_to_eeprom();
 }
 
 void Tuner::_read_tunings_from_eeprom()

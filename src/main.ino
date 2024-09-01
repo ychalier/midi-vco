@@ -79,19 +79,27 @@ void update_config()
     {
         allocator->set_lane_masks();
     }
-    if (changed & CONFIG_CHANGE_TUNING)
+    if (changed & CONFIG_CHANGE_TUNING_FAST) {
+        //TODO
+        // allocator->reset();
+        // if (config->is_tuning())
+        // {
+        //     allocator->broadcast(PITCH_A5, GATE_STATE_DURING_TUNING);
+        // }
+    }
+    if (changed & CONFIG_CHANGE_TUNING_FULL)
     {
-        allocator->reset();
-        if (config->is_tuning())
-        {
-            allocator->broadcast(PITCH_A5, GATE_STATE_DURING_TUNING);
-        }
+        //TODO
+    }
+    if (changed & CONFIG_CHANGE_TUNING_RESET)
+    {
+        tuner->reset_tunings();
     }
 }
 
 void update_led()
 {
-    bool led_state = config->is_tuning() || allocator->is_active();
+    bool led_state = allocator->is_active();
     if (led_state != old_led_state)
     {
         if (led_state)

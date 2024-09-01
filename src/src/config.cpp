@@ -12,9 +12,11 @@ Config::Config()
     _hold = false;
     _voltage_offset = 0;
     _detune = 0;
-    _tuning = false;
     _bend_channel_switch = false;
     _glide_channel_switch = false;
+    _tuning_fast = false;
+    _tuning_full = false;
+    _tuning_reset = false;
 }
 
 void Config::setup()
@@ -24,9 +26,11 @@ void Config::setup()
     pinMode(PIN_GLIDE_INTENSITY, INPUT);
     pinMode(PIN_DETUNE, INPUT);
     pinMode(PIN_PRIORITY_MODE, INPUT);
-    pinMode(PIN_TUNE, INPUT);
     pinMode(PIN_BEND_CHANNEL_SWITCH, INPUT);
     pinMode(PIN_GLIDE_CHANNEL_SWITCH, INPUT);
+    pinMode(PIN_BUTTON_TUNING_FAST, INPUT);
+    pinMode(PIN_BUTTON_TUNING_FULL, INPUT);
+    pinMode(PIN_BUTTON_TUNING_RESET, INPUT);
 }
 
 bool Config::_read_polyphony_mode()
@@ -86,15 +90,6 @@ bool Config::_read_priority_mode()
     return changed;
 }
 
-bool Config::_read_tuning()
-{
-    int value = digitalRead(PIN_TUNE);
-    bool tuning = value == HIGH;
-    bool changed = _tuning != tuning;
-    _tuning = tuning;
-    return changed;
-}
-
 void Config::_read_bend_channel_switch()
 {
     int value = digitalRead(PIN_BEND_CHANNEL_SWITCH);
@@ -112,6 +107,33 @@ void Config::_read_minimum_velocity()
     _minimum_velocity = map(analogRead(PIN_MINIMUM_VELOCITY), 0, 1023, 0, 127);
 }
 
+bool Config::_read_tuning_fast()
+{
+    int value = digitalRead(PIN_BUTTON_TUNING_FAST);
+    bool tuning_fast = value == HIGH;
+    bool changed = _tuning_fast != tuning_fast;
+    _tuning_fast = tuning_fast;
+    return changed;
+}
+
+bool Config::_read_tuning_full()
+{
+    int value = digitalRead(PIN_BUTTON_TUNING_FULL);
+    bool tuning_full = value == HIGH;
+    bool changed = _tuning_full != tuning_full;
+    _tuning_full = tuning_full;
+    return changed;
+}
+
+bool Config::_read_tuning_reset()
+{
+    int value = digitalRead(PIN_BUTTON_TUNING_RESET);
+    bool tuning_reset = value == HIGH;
+    bool changed = _tuning_reset != tuning_reset;
+    _tuning_reset = tuning_reset;
+    return changed;
+}
+
 int Config::read()
 {
     int changed = 0;
@@ -123,9 +145,17 @@ int Config::read()
     {
         changed = changed + CONFIG_CHANGE_PRIORITY_MODE;
     }
-    if (_read_tuning())
+    if (_read_tuning_fast())
     {
-        changed = changed + CONFIG_CHANGE_TUNING;
+        changed = changed + CONFIG_CHANGE_TUNING_FAST;
+    }
+    if (_read_tuning_full())
+    {
+        changed = changed + CONFIG_CHANGE_TUNING_FULL;
+    }
+    if (_read_tuning_reset())
+    {
+        changed = changed + CONFIG_CHANGE_TUNING_RESET;
     }
     _read_bend_channel_switch();
     _read_glide_channel_switch();
@@ -222,11 +252,6 @@ int Config::get_detune()
     return _detune;
 }
 
-bool Config::is_tuning()
-{
-    return _tuning;
-}
-
 bool Config::get_bend_channel_switch()
 {
     return _bend_channel_switch;
@@ -240,4 +265,19 @@ bool Config::get_glide_channel_switch()
 byte Config::get_minimum_velocity()
 {
     return _minimum_velocity;
+}
+
+bool Config::get_tuning_fast()
+{
+    return _tuning_fast;
+}
+
+bool Config::get_tuning_full()
+{
+    return _tuning_full;
+}
+
+bool Config::get_tuning_reset()
+{
+    return _tuning_reset;
 }
