@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['handle_5fmidi_5fcontrol_153',['handle_midi_control',['../class_config.html#a1c49acc176759cc117bce847b84efa3d',1,'Config']]],
-  ['hold_5foff_154',['hold_off',['../class_allocator.html#ab1c36dcc85e01100ef49180b84ff007c',1,'Allocator']]],
-  ['hold_5fon_155',['hold_on',['../class_allocator.html#a2d694e79fc61a52a38faf9f5b8c26de9',1,'Allocator']]]
+  ['is_5factive_147',['is_active',['../class_allocator.html#a1cc2dc10c9e01c08a83c585b716cf8f9',1,'Allocator::is_active()'],['../class_pool.html#ad6c71a83d60a1c69fad7f4ebcd02d633',1,'Pool::is_active()']]],
+  ['is_5fenabled_148',['is_enabled',['../class_pool.html#aea355f50869629b54135c86843762c70',1,'Pool']]],
+  ['is_5ffree_149',['is_free',['../class_pool.html#a703287c34419cae6dc60ec8089a05e53',1,'Pool']]],
+  ['is_5fglide_5fproportional_150',['is_glide_proportional',['../class_config.html#a26eaa14ccd344ecf577f05e72554d80c',1,'Config']]]
 ];

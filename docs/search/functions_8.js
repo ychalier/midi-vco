@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['is_5factive_371',['is_active',['../class_allocator.html#a1cc2dc10c9e01c08a83c585b716cf8f9',1,'Allocator::is_active()'],['../class_pool.html#ad6c71a83d60a1c69fad7f4ebcd02d633',1,'Pool::is_active()']]],
-  ['is_5fenabled_372',['is_enabled',['../class_pool.html#aea355f50869629b54135c86843762c70',1,'Pool']]],
-  ['is_5ffree_373',['is_free',['../class_pool.html#a703287c34419cae6dc60ec8089a05e53',1,'Pool']]],
-  ['is_5fglide_5fproportional_374',['is_glide_proportional',['../class_config.html#a26eaa14ccd344ecf577f05e72554d80c',1,'Config']]]
+  ['lane_355',['Lane',['../class_lane.html#a433a58d6d583d94814ca46dcaeed1cb1',1,'Lane']]],
+  ['load_356',['load',['../class_pool.html#a1b54262c292f6e1171a432bb013479d7',1,'Pool']]],
+  ['load_5fbuffer_357',['load_buffer',['../class_pool.html#a79bb3db5a6043a18074c2996a078de3d',1,'Pool']]],
+  ['lock_358',['lock',['../class_pool.html#a03c32bb13f21f64f8bc4b9ae79c7048c',1,'Pool']]]
 ];
