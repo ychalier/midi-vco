@@ -7,18 +7,19 @@
  */
 
 #include <MIDI.h>
-#include <EEPROM.h>
 #include "include/config.h"
 #include "include/allocator.h"
 #include "include/structs.h"
 #include "include/router.h"
 #include "include/channel.h"
+#include "include/tuner.h"
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 Config *config;
 Allocator *allocator;
 Router *router;
 Channel *mod_channel;
+Tuner *tuner;
 bool old_led_state;
 
 void setup()
@@ -26,7 +27,9 @@ void setup()
     config = new Config();
     config->setup();
     config->read();
-    router = new Router(config);
+    tuner = new Tuner();
+    tuner->setup();
+    router = new Router(config, tuner);
     router->setup();
     mod_channel = router->get_spare_channel();
     mod_channel->set(2048);
@@ -40,16 +43,6 @@ void setup()
     pinMode(PIN_LED, OUTPUT);
     blink();
     old_led_state = false;
-    byte eeprom_first_byte = EEPROM.read(0);
-    if (eeprom_first_byte == 255)
-    {
-        EEPROM.write(0, 0);
-        config->write_tunings_to_eeprom();
-    }
-    else
-    {
-        config->read_tunings_from_eeprom();
-    }
 }
 
 void loop()

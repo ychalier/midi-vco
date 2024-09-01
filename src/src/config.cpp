@@ -15,10 +15,6 @@ Config::Config()
     _tuning = false;
     _bend_channel_switch = false;
     _glide_channel_switch = false;
-    for (int i = 0; i < LANE_COUNT; i++)
-    {
-        _tunings[i] = {0.0, 1.0};
-    }
 }
 
 void Config::setup()
@@ -244,29 +240,4 @@ bool Config::get_glide_channel_switch()
 byte Config::get_minimum_velocity()
 {
     return _minimum_velocity;
-}
-
-Tuning* Config::get_tuning_ref(int lane_id)
-{
-    return &_tunings[lane_id];
-}
-
-void Config::read_tunings_from_eeprom()
-{
-    for (int i = 0; i < LANE_COUNT; i++)
-    {
-        int address = 1 + sizeof(Tuning) * i;
-        Tuning tuning;
-        EEPROM.get(address, tuning);
-
-    }
-}
-
-void Config::write_tunings_to_eeprom()
-{
-    for (int i = 0; i < LANE_COUNT; i++)
-    {
-        int address = 1 + sizeof(Tuning) * i;
-        EEPROM.put(address, _tunings[i]);
-    }
 }

@@ -8,6 +8,7 @@
 #include "coupler.h"
 #include "dac.h"
 #include <MCP48xx.h>
+#include "tuner.h"
 
 /**
  * Holder for the different lanes.
@@ -20,7 +21,7 @@ public:
      *
      * @param config A pointer to the global config.
      */
-    Router(Config *config);
+    Router(Config *config, Tuner *tuner);
 
     /**
      * Initialize hardware connections. Must be called once in the main program
