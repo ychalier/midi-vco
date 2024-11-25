@@ -3,10 +3,10 @@
 
 // Analog input
 
-#define PIN_POLYPHONY_MODE   A0
-#define PIN_PITCH_BEND_RANGE A1
-#define PIN_GLIDE_INTENSITY  A2
-#define PIN_DETUNE           A3           
+#define PIN_PITCH_BEND_RANGE A0
+#define PIN_DETUNE           A1
+#define PIN_POLYPHONY_MODE   A2
+#define PIN_GLIDE_INTENSITY  A3
 #define PIN_MINIMUM_VELOCITY A4
 #define PIN_CV_LOOPBACK_1    A5
 #define PIN_CV_LOOPBACK_2    A6
@@ -21,32 +21,32 @@
 
 // Digital input
 
-#define PIN_PRIORITY_MODE        1
-#define PIN_BEND_CHANNEL_SWITCH  2
-#define PIN_GLIDE_CHANNEL_SWITCH 3
-#define PIN_BUTTON_TUNING_FAST   4
-#define PIN_BUTTON_TUNING_FULL   5
-#define PIN_BUTTON_TUNING_RESET  6
+#define PIN_PRIORITY_MODE        39
+#define PIN_BEND_CHANNEL_SWITCH  41
+#define PIN_GLIDE_CHANNEL_SWITCH 43
+#define PIN_BUTTON_TUNING_FAST   45
+#define PIN_BUTTON_TUNING_FULL   47
+#define PIN_BUTTON_TUNING_RESET  49
 
 // Digital output
 
-#define PIN_SS_CV_1              7
-#define PIN_SS_CV_2              8
-#define PIN_SS_CV_3              9
-#define PIN_SS_CV_4              10
-#define PIN_SS_CV_5              11
-#define PIN_SS_VEL_1             12
-#define PIN_SS_VEL_2             13
-#define PIN_SS_VEL_3             14
-#define PIN_GATE_1               15
-#define PIN_GATE_2               16
-#define PIN_GATE_3               17
-#define PIN_GATE_4               18
-#define PIN_GATE_5               19
-#define PIN_LED_MIDI             20
-#define PIN_LED_TUNING_FAST      21
-#define PIN_LED_TUNING_FULL      22
-#define PIN_LED_TUNING_RESET     23
+#define PIN_SS_CV_1              23
+#define PIN_SS_CV_2              25
+#define PIN_SS_CV_3              27
+#define PIN_SS_CV_4              29
+#define PIN_SS_CV_5              31
+#define PIN_SS_VEL_1             34 // Vel 1 & 2
+#define PIN_SS_VEL_2             35 // Vel 3 & 4
+#define PIN_SS_VEL_3             32 // Vel 5 (Channel A) & MOD (Channel B)
+#define PIN_GATE_1               22
+#define PIN_GATE_2               24
+#define PIN_GATE_3               26
+#define PIN_GATE_4               28
+#define PIN_GATE_5               30
+#define PIN_LED_MIDI             44
+#define PIN_LED_TUNING_RESET     46
+#define PIN_LED_TUNING_FULL      48
+#define PIN_LED_TUNING_FAST      50
 
 // MIDI Controls
 
