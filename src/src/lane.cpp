@@ -134,7 +134,7 @@ int Lane::pitch_to_voltage(byte pitch, int bend)
 }
 
 int Lane::velocity_to_voltage(byte velocity) {
-    return map(velocity, 0, 127, 0, 4096);
+    return (int) ((float)velocity * 4096.0 / 127.0 / AMP_GAIN);
 }
 
 byte Lane::setpoint_to_pitch(int setpoint)
