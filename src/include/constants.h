@@ -43,7 +43,7 @@
 #define PIN_GATE_3               26
 #define PIN_GATE_4               28
 #define PIN_GATE_5               30
-#define PIN_LED_MIDI             44
+#define PIN_LED_MIDI             LED_BUILTIN // TODO: DEBUG only, real value is 44
 #define PIN_LED_TUNING_RESET     46
 #define PIN_LED_TUNING_FULL      48
 #define PIN_LED_TUNING_FAST      50

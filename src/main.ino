@@ -66,7 +66,7 @@ void loop()
 
 /**
  * Initial LED animation, triggered when the synthetizer starts.
- * It lasts for 500 milliseconds.
+ * It lasts for 800 milliseconds.
  */
 void blink()
 {
@@ -79,7 +79,7 @@ void blink()
     digitalWrite(PIN_LED_MIDI, LOW);
     delay(100);
     digitalWrite(PIN_LED_MIDI, HIGH);
-    delay(100);
+    delay(400);
     digitalWrite(PIN_LED_MIDI, LOW);
 }
 
