@@ -12,16 +12,16 @@ Router::Router(Config *config, Tuner *tuner)
     _coupler_3 = new Coupler(PIN_SS_CV_3, PIN_GATE_3, _dac_2->get(CHANNEL_A));
     _coupler_4 = new Coupler(PIN_SS_CV_4, PIN_GATE_4, _dac_2->get(CHANNEL_B));
     _coupler_5 = new Coupler(PIN_SS_CV_5, PIN_GATE_5, _dac_3->get(CHANNEL_A));
-    _lane_1  = new Lane(config, _coupler_1, CHANNEL_A, tuner->get_tuning_ref(0));
-    _lane_2  = new Lane(config, _coupler_1, CHANNEL_B, tuner->get_tuning_ref(1));
-    _lane_3  = new Lane(config, _coupler_2, CHANNEL_A, tuner->get_tuning_ref(2));
-    _lane_4  = new Lane(config, _coupler_2, CHANNEL_B, tuner->get_tuning_ref(3));
-    _lane_5  = new Lane(config, _coupler_3, CHANNEL_A, tuner->get_tuning_ref(4));
-    _lane_6  = new Lane(config, _coupler_3, CHANNEL_B, tuner->get_tuning_ref(5));
-    _lane_7  = new Lane(config, _coupler_4, CHANNEL_A, tuner->get_tuning_ref(6));
-    _lane_8  = new Lane(config, _coupler_4, CHANNEL_B, tuner->get_tuning_ref(7));
-    _lane_9  = new Lane(config, _coupler_5, CHANNEL_A, tuner->get_tuning_ref(8));
-    _lane_10 = new Lane(config, _coupler_5, CHANNEL_B, tuner->get_tuning_ref(9));
+    _lane_1  = new Lane( 1, config, _coupler_1, CHANNEL_A, tuner->get_tuning_ref(0));
+    _lane_2  = new Lane( 2, config, _coupler_1, CHANNEL_B, tuner->get_tuning_ref(1));
+    _lane_3  = new Lane( 3, config, _coupler_2, CHANNEL_A, tuner->get_tuning_ref(2));
+    _lane_4  = new Lane( 4, config, _coupler_2, CHANNEL_B, tuner->get_tuning_ref(3));
+    _lane_5  = new Lane( 5, config, _coupler_3, CHANNEL_A, tuner->get_tuning_ref(4));
+    _lane_6  = new Lane( 6, config, _coupler_3, CHANNEL_B, tuner->get_tuning_ref(5));
+    _lane_7  = new Lane( 7, config, _coupler_4, CHANNEL_A, tuner->get_tuning_ref(6));
+    _lane_8  = new Lane( 8, config, _coupler_4, CHANNEL_B, tuner->get_tuning_ref(7));
+    _lane_9  = new Lane( 9, config, _coupler_5, CHANNEL_A, tuner->get_tuning_ref(8));
+    _lane_10 = new Lane(10, config, _coupler_5, CHANNEL_B, tuner->get_tuning_ref(9));
 }
 
 void Router::setup()

@@ -1,8 +1,9 @@
 #include "Arduino.h"
 #include "../include/lane.h"
 
-Lane::Lane(Config *config, Coupler *coupler, bool channel, Tuning *tuning)
+Lane::Lane(int id, Config *config, Coupler *coupler, bool channel, Tuning *tuning)
 {
+    _id = id;
     _config = config;
     _coupler = coupler;
     _channel = channel;
@@ -14,6 +15,14 @@ Lane::Lane(Config *config, Coupler *coupler, bool channel, Tuning *tuning)
 
 void Lane::set(int cv_setpoint, int vel_setpoint)
 {
+    #ifdef DEBUG
+    Serial.print("Setting lane ");
+    Serial.print(_id);
+    Serial.print(" ");
+    Serial.print(cv_setpoint);
+    Serial.print("/");
+    Serial.println(vel_setpoint);
+    #endif
     _current_cv_setpoint = cv_setpoint;
     _current_vel_setpoint = vel_setpoint;
     _coupler->set(_channel, cv_setpoint, vel_setpoint);
@@ -21,6 +30,14 @@ void Lane::set(int cv_setpoint, int vel_setpoint)
 
 void Lane::start(int cv_setpoint, int vel_setpoint)
 {
+    #ifdef DEBUG
+    Serial.print("Starting lane ");
+    Serial.print(_id);
+    Serial.print(" ");
+    Serial.print(cv_setpoint);
+    Serial.print("/");
+    Serial.println(vel_setpoint);
+    #endif
     bool ignore_glide = !_channel && _config->get_glide_channel_switch();
     float glide_intensity;
     if (!ignore_glide)

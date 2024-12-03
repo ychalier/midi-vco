@@ -26,6 +26,10 @@ unsigned long midi_led_high_time_ms;
 
 void setup()
 {
+    #ifdef DEBUG
+    Serial.begin(9600);
+    Serial.println("Entering setup");
+    #endif
     config = new Config();
     config->setup();
     config->read();
@@ -47,6 +51,9 @@ void setup()
     previous_midi_led_state = false;
     current_midi_led_state = false;
     midi_led_high_time_ms = 0;
+    #ifdef DEBUG
+    Serial.println("Leaving setup");
+    #endif
 }
 
 void loop()
@@ -119,6 +126,14 @@ void update_midi_led()
 
 void handle_note_on([[maybe_unused]] byte channel, byte pitch, byte velocity)
 {
+    #ifdef DEBUG
+    Serial.print("MIDI Note On: ");
+    Serial.print(channel);
+    Serial.print("/");
+    Serial.print(pitch);
+    Serial.print("/");
+    Serial.println(velocity);
+    #endif
     set_midi_led_high();
     if (velocity == 0)
     {
@@ -136,6 +151,14 @@ void handle_note_on([[maybe_unused]] byte channel, byte pitch, byte velocity)
 
 void handle_note_off([[maybe_unused]] byte channel, byte pitch, byte velocity)
 {
+    #ifdef DEBUG
+    Serial.print("MIDI Note Off: ");
+    Serial.print(channel);
+    Serial.print("/");
+    Serial.print(pitch);
+    Serial.print("/");
+    Serial.println(velocity);
+    #endif
     set_midi_led_high();
     allocator->note_off({pitch, velocity});
 }
@@ -151,6 +174,13 @@ void handle_control_change([[maybe_unused]] byte channel, byte number, byte valu
     set_midi_led_high();
     if (number == MIDI_CONTROL_MOD)
     {
-        mod_channel->set((float)value * DAC_VMAX_REDUCED / 127.0);
+        int setpoint = (float)value * DAC_VMAX_REDUCED / 127.0;
+        #ifdef DEBUG
+        Serial.print("MIDI Control MOD: ");
+        Serial.print(value);
+        Serial.print("/");
+        Serial.println(setpoint);
+        #endif
+        mod_channel->set(setpoint);
     }
 }

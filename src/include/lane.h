@@ -17,6 +17,7 @@ public:
     /**
      * Constructor.
      *
+     * @param id Numerical lane ID for logging
      * @param config A pointer to the global configuration.
      * @param coupler A pointer to `Coupler` controlling the CV and GATE
      *   signals.
@@ -24,7 +25,7 @@ public:
      *   B.
      * @param tuning A pointer to the `Tuning` parameters of this lane
      */
-    Lane(Config *config, Coupler *coupler, bool channel, Tuning *tuning);
+    Lane(int id, Config *config, Coupler *coupler, bool channel, Tuning *tuning);
 
     /**
      * Set the CV and velocity signals to setpoints.
@@ -116,6 +117,8 @@ public:
     static byte setpoint_to_pitch(int setpoint);
 
 private:
+    int _id;
+
     Config *_config;
     Coupler *_coupler;
     bool _channel;
