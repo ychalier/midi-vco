@@ -151,6 +151,6 @@ void handle_control_change([[maybe_unused]] byte channel, byte number, byte valu
     set_midi_led_high();
     if (number == MIDI_CONTROL_MOD)
     {
-        mod_channel->set((float)value * 4096.0 / 127.0 / AMP_GAIN);
+        mod_channel->set((float)value * DAC_VMAX_REDUCED / 127.0);
     }
 }

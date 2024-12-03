@@ -38,6 +38,7 @@ void Lane::start(int cv_setpoint, int vel_setpoint)
         _glide.setpoint_start = _current_cv_setpoint;
         _glide.setpoint_end = cv_setpoint;
         _glide.time_start = millis();
+        _current_vel_setpoint = vel_setpoint;
         if (_config->is_glide_proportional())
         {
             float gap = setpoint_to_pitch(fabs(_current_cv_setpoint - cv_setpoint)) - MIDI_MIN_PITCH;
@@ -134,7 +135,7 @@ int Lane::pitch_to_voltage(byte pitch, int bend)
 }
 
 int Lane::velocity_to_voltage(byte velocity) {
-    return (int) ((float)velocity * 4096.0 / 127.0 / AMP_GAIN);
+    return (int) ((float)velocity * DAC_VMAX_REDUCED / 127.0);
 }
 
 byte Lane::setpoint_to_pitch(int setpoint)

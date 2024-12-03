@@ -56,6 +56,10 @@ void Config::_read_pitch_bend_range()
 
 void Config::_read_glide_intensity()
 {
+    // TODO: DEBUG only, remove this!
+    _glide_intensity = 0.0;
+    _glide_proportional = false;
+    /*
     int value = analogRead(PIN_GLIDE_INTENSITY);
     if (value < 512)
     {
@@ -67,6 +71,7 @@ void Config::_read_glide_intensity()
         _glide_intensity = (float)(value - 512) / 511.0;
         _glide_proportional = true;
     }
+    */
 }
 
 void Config::_read_detune()

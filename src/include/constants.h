@@ -100,6 +100,7 @@
 #define BUFFER_SIZE                 10
 #define DAC_VMAX                    4096    // millivolts
 #define AMP_GAIN                    1.9531  // 8V / 4.096V
+#define DAC_VMAX_REDUCED            2097.2  // millivolts (4096 / 1.9531)
 #define MIDI_MIN_PITCH              36      // Semitons (36 = C1)
 #define DEFAULT_PITCH_BEND_RANGE    2.0     // Semitons
 #define GLIDE_MAX_RATE              50      // Milliseconds per semitones
