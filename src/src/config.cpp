@@ -34,6 +34,8 @@ void Config::setup()
 bool Config::_read_polyphony_mode()
 {
     int value = analogRead(PIN_POLYPHONY_MODE);
+    // Serial.print("Polyphony: ");
+    // Serial.println(value);
     int polyphony_mode = MODE_MONOPHONIC;
     if (value >= 682)
     {
@@ -51,15 +53,15 @@ bool Config::_read_polyphony_mode()
 void Config::_read_pitch_bend_range()
 {
     int value = analogRead(PIN_PITCH_BEND_RANGE);
+    // Serial.print("Pitch bend: ");
+    // Serial.println(value);
     _pitch_bend_range = round((float)value / 1023.0 * 12.0 * 4.0) / 4.0;
 }
 
 void Config::_read_glide_intensity()
 {
-    // TODO: DEBUG only, remove this!
-    _glide_intensity = 0.0;
-    _glide_proportional = false;
-    /*
+    // Serial.print("Glide: ");
+    // Serial.println(value);
     int value = analogRead(PIN_GLIDE_INTENSITY);
     if (value < 512)
     {
@@ -71,18 +73,24 @@ void Config::_read_glide_intensity()
         _glide_intensity = (float)(value - 512) / 511.0;
         _glide_proportional = true;
     }
-    */
 }
 
 void Config::_read_detune()
 {
-    int index = map(analogRead(PIN_DETUNE), 0, 1023, 0, DETUNE_VALUE_COUNT);
+    int value = analogRead(PIN_DETUNE);
+    // Serial.print("Detune: ");
+    // Serial.println(value);
+    int index = map(value, 0, 1024, 0, DETUNE_VALUE_COUNT);
     _detune = DETUNE_VALUES[index];
+    // Serial.print("Detune mapped: ");
+    // Serial.println(_detune);
 }
 
 bool Config::_read_priority_mode()
 {
     int value = digitalRead(PIN_PRIORITY_MODE);
+    // Serial.print("Priority: ");
+    // Serial.println(value);
     byte priority_mode = PRIORITY_REPLACE_NEWEST;
     if (value == HIGH)
     {
@@ -96,18 +104,25 @@ bool Config::_read_priority_mode()
 void Config::_read_bend_channel_switch()
 {
     int value = digitalRead(PIN_BEND_CHANNEL_SWITCH);
+    // Serial.print("Pitch bend switch: ");
+    // Serial.println(value);
     _bend_channel_switch = value == HIGH;
 }
 
 void Config::_read_glide_channel_switch()
 {
     int value = digitalRead(PIN_GLIDE_CHANNEL_SWITCH);
+    // Serial.print("Glide switch: ");
+    // Serial.println(value);
     _glide_channel_switch = value == HIGH;
 }
 
 void Config::_read_minimum_velocity()
 {
-    _minimum_velocity = map(analogRead(PIN_MINIMUM_VELOCITY), 0, 1023, 0, 127);
+    int value = analogRead(PIN_MINIMUM_VELOCITY);
+    // Serial.print("MinVelocity: ");
+    // Serial.println(value);
+    _minimum_velocity = map(value, 0, 1023, 0, 127);
 }
 
 bool Config::_read_tuning_fast()
@@ -116,6 +131,8 @@ bool Config::_read_tuning_fast()
     bool tuning_fast = value == HIGH;
     bool changed = _tuning_fast != tuning_fast;
     _tuning_fast = tuning_fast;
+    // Serial.print("TUNE: ");
+    // Serial.println(value);
     return changed;
 }
 
@@ -125,6 +142,8 @@ bool Config::_read_tuning_full()
     bool tuning_full = value == HIGH;
     bool changed = _tuning_full != tuning_full;
     _tuning_full = tuning_full;
+    // Serial.print("SCALE: ");
+    // Serial.println(value);
     return changed;
 }
 
@@ -134,12 +153,15 @@ bool Config::_read_tuning_reset()
     bool tuning_reset = value == HIGH;
     bool changed = _tuning_reset != tuning_reset;
     _tuning_reset = tuning_reset;
+    // Serial.print("RESET: ");
+    // Serial.println(value);
     return changed;
 }
 
 int Config::read()
 {
     int changed = 0;
+
     if (_read_polyphony_mode())
     {
         changed = changed + CONFIG_CHANGE_POLYPHONY_MODE;

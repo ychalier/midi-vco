@@ -6,8 +6,8 @@
 #define PIN_PITCH_BEND_RANGE A0
 #define PIN_DETUNE           A1
 #define PIN_POLYPHONY_MODE   A2
-#define PIN_GLIDE_INTENSITY  A3
-#define PIN_MINIMUM_VELOCITY A4
+#define PIN_MINIMUM_VELOCITY A3
+#define PIN_GLIDE_INTENSITY  A4
 #define PIN_CV_LOOPBACK_1    A5
 #define PIN_CV_LOOPBACK_2    A6
 #define PIN_CV_LOOPBACK_3    A7
@@ -21,12 +21,12 @@
 
 // Digital input
 
-#define PIN_PRIORITY_MODE        39
-#define PIN_BEND_CHANNEL_SWITCH  41
-#define PIN_GLIDE_CHANNEL_SWITCH 43
-#define PIN_BUTTON_TUNING_FAST   45
-#define PIN_BUTTON_TUNING_FULL   47
-#define PIN_BUTTON_TUNING_RESET  49
+#define PIN_PRIORITY_MODE        49
+#define PIN_GLIDE_CHANNEL_SWITCH 47
+#define PIN_BEND_CHANNEL_SWITCH  45
+#define PIN_BUTTON_TUNING_FAST   43
+#define PIN_BUTTON_TUNING_FULL   41
+#define PIN_BUTTON_TUNING_RESET  39
 
 // Digital output
 
@@ -43,10 +43,11 @@
 #define PIN_GATE_3               26
 #define PIN_GATE_4               28
 #define PIN_GATE_5               30
-#define PIN_LED_MIDI             LED_BUILTIN // TODO: DEBUG only, real value is 44
-#define PIN_LED_TUNING_RESET     46
-#define PIN_LED_TUNING_FULL      48
-#define PIN_LED_TUNING_FAST      50
+
+#define PIN_LED_MIDI             50
+#define PIN_LED_TUNING_RESET     48
+#define PIN_LED_TUNING_FULL      46
+#define PIN_LED_TUNING_FAST      44
 
 // MIDI Controls
 
@@ -100,7 +101,7 @@
 #define BUFFER_SIZE                 10
 #define DAC_VMAX                    4096    // millivolts
 #define AMP_GAIN                    1.9531  // 8V / 4.096V
-#define DAC_VMAX_REDUCED            2097.2  // millivolts (4096 / 1.9531)
+#define DAC_VMAX_REDUCED            2560    // millivolts (4096 / 0-5V apres DAC)
 #define MIDI_MIN_PITCH              36      // Semitons (36 = C1)
 #define DEFAULT_PITCH_BEND_RANGE    2.0     // Semitons
 #define GLIDE_MAX_RATE              50      // Milliseconds per semitones
@@ -113,7 +114,7 @@
 #define TUNING_OFFSET_PITCH         81      // A5 880 Hz
 #define TUNING_REFERENCE_FREQUENCY  440.0f  // Hz
 #define MIDI_LED_TIMEOUT            300     // milliseconds
-#define DETUNE_VALUE_COUNT 15
-const int DETUNE_VALUES[DETUNE_VALUE_COUNT] = {-24, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 24};  // Semitones
+#define DETUNE_VALUE_COUNT 8
+const int DETUNE_VALUES[DETUNE_VALUE_COUNT] = {-24, -12, -7, -5, 0, 5, 7, 12};  // Semitones
 
 #endif

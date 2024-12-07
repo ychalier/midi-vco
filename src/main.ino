@@ -27,7 +27,7 @@ unsigned long midi_led_high_time_ms;
 void setup()
 {
     #ifdef DEBUG
-    Serial.begin(9600);
+    Serial.begin(31250);
     Serial.println("Entering setup");
     #endif
     config = new Config();
