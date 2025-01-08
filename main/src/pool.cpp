@@ -69,7 +69,7 @@ void Pool::stop()
 {
     _active = false;
     _buffer->reset();
-    for (byte lane_id = 0; lane_id < 8; lane_id++)
+    for (byte lane_id = 0; lane_id < LANE_COUNT; lane_id++)
     {
         if ((_lane_mask & (1 << lane_id)) > 0)
         {
