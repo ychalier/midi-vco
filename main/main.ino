@@ -137,7 +137,7 @@ void handle_note_on([[maybe_unused]] byte channel, byte pitch, byte velocity)
     set_midi_led_high();
     if (velocity == 0)
     {
-        allocator->note_off({pitch, velocity});
+        allocator->note_off({pitch + 12, velocity});
     }
     else
     {
@@ -145,7 +145,7 @@ void handle_note_on([[maybe_unused]] byte channel, byte pitch, byte velocity)
         {
             velocity = config->get_minimum_velocity();
         }
-        allocator->note_on({pitch, velocity});
+        allocator->note_on({pitch + 12, velocity});
     }
 }
 
@@ -160,7 +160,7 @@ void handle_note_off([[maybe_unused]] byte channel, byte pitch, byte velocity)
     Serial.println(velocity);
     #endif
     set_midi_led_high();
-    allocator->note_off({pitch, velocity});
+    allocator->note_off({pitch + 12, velocity});
 }
 
 void handle_pitch_bend([[maybe_unused]] byte channel, int bend)
