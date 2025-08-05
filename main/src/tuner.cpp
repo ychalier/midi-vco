@@ -165,7 +165,7 @@ void estimate_frequencies(float *frequencies)
     }
 }
 
-void run_estimations(int pitch, int &expected_setpoint, float *measured_setpoints)
+void run_estimations(Allocator *allocator, int pitch, int &expected_setpoint, float *measured_setpoints)
 {
     int tuning_setpoint = (int)Lane::base_pitch_to_voltage((float)pitch);
     expected_setpoint = (int)Lane::base_pitch_to_voltage((float)pitch - 12);
@@ -229,7 +229,7 @@ void Tuner::tune_fast(Allocator *allocator)
     digitalWrite(PIN_LED_TUNING_FAST, HIGH);
     int expected_setpoint;
     float measured_setpoints[LANE_COUNT];
-    run_estimations(TUNING_FAST_PITCH, expected_setpoint, measured_setpoints);
+    run_estimations(allocator, TUNING_FAST_PITCH, expected_setpoint, measured_setpoints);
     for (int i = 0; i < LANE_COUNT; i++)
     {
         _tunings[i].scale = 1.0f;
@@ -254,10 +254,10 @@ void Tuner::tune_full(Allocator *allocator)
     digitalWrite(PIN_LED_TUNING_FULL, HIGH);
     int expected_setpoint_low;
     float measured_setpoints_low[LANE_COUNT];
-    run_estimations(TUNING_FULL_PITCH_LOW, expected_setpoint_low, measured_setpoints_low);
+    run_estimations(allocator, TUNING_FULL_PITCH_LOW, expected_setpoint_low, measured_setpoints_low);
     int expected_setpoint_high;
     float measured_setpoints_high[LANE_COUNT];
-    run_estimations(TUNING_FULL_PITCH_HIGH, expected_setpoint_high, measured_setpoints_high);
+    run_estimations(allocator, TUNING_FULL_PITCH_HIGH, expected_setpoint_high, measured_setpoints_high);
     for (int i = 0; i < LANE_COUNT; i++)
     {
         _tunings[i].scale = ((float)expected_setpoint_high - (float)expected_setpoint_low) / (measured_setpoints_high[i] - measured_setpoints_low[i]);

@@ -38,7 +38,7 @@ void Lane::start(int cv_setpoint, int vel_setpoint)
     Serial.print("/");
     Serial.println(vel_setpoint);
     #endif
-    bool is_tuning = config->get_tuning_fast() || config->get_tuning_full();
+    bool is_tuning = _config->get_tuning_fast() || _config->get_tuning_full();
     bool ignore_glide = is_tuning || (!_channel && _config->get_glide_channel_switch());
     float glide_intensity;
     if (!ignore_glide)
