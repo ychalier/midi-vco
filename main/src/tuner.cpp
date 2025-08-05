@@ -115,7 +115,7 @@ void estimate_frequencies(float *frequencies)
         {
             t_prev = t_cur;
             t_cur = micros();
-            if (t_cur - t_start > FREQUENCY_ESTIMATION_PERIOD)
+            if (t_cur - t_start > TUNING_FAST_PERIOD)
             {
                 break;
             }
@@ -165,15 +165,10 @@ void estimate_frequencies(float *frequencies)
     }
 }
 
-void Tuner::tune_fast(Allocator *allocator)
+void run_estimations(int pitch, int &expected_setpoint, float *measured_setpoints)
 {
-    #ifdef DEBUG
-    Serial.println("Entering Tuner::tune_fast");
-    #endif
-    digitalWrite(PIN_LED_TUNING_FAST, HIGH);
-    allocator->reset();
-    int tuning_setpoint = (int)Lane::base_pitch_to_voltage((float)TUNING_OFFSET_PITCH);
-    int expected_setpoint = (int)Lane::base_pitch_to_voltage((float)TUNING_OFFSET_PITCH - 12);
+    int tuning_setpoint = (int)Lane::base_pitch_to_voltage((float)pitch);
+    expected_setpoint = (int)Lane::base_pitch_to_voltage((float)pitch - 12);
     if (tuning_setpoint < 0)
     {
         tuning_setpoint = 0;
@@ -183,32 +178,97 @@ void Tuner::tune_fast(Allocator *allocator)
         tuning_setpoint = DAC_VMAX;
     }
     #ifdef DEBUG
-    Serial.print("Tuning setpoint (81 A5 880HZ): ");
+    Serial.print("Tuning pitch: ");
+    Serial.print(pitch);
+    Serial.print(" Setpoint: ");
     Serial.print(tuning_setpoint);
     Serial.print(" Expected: ");
     Serial.println(expected_setpoint);
     #endif
+    allocator->reset();
     allocator->broadcast(tuning_setpoint, GATE_STATE_DURING_TUNING);
     float estimated_frequencies[LANE_COUNT];
     estimate_frequencies(estimated_frequencies);
     for (int i = 0; i < LANE_COUNT; i++)
     {
         float estimated_pitch = 12.0f * log(estimated_frequencies[i] / TUNING_REFERENCE_FREQUENCY) / LOG2 + 69.0f;
-        float estimated_setpoint = Lane::base_pitch_to_voltage(estimated_pitch);
-        _tunings[i].offset = (float)expected_setpoint - estimated_setpoint;
+        measured_setpoints[i] = Lane::base_pitch_to_voltage(estimated_pitch);
         #ifdef DEBUG
-        Serial.print("Lane ");
+        Serial.print("Lane: ");
         Serial.print(i);
-        Serial.print(" Estimated Pitch: ");
+        Serial.print(" Expected: ");
+        Serial.print(pitch - 12);
+        Serial.print("/");
+        Serial.print(expected_setpoint);
+        Serial.print(" Measured:");
         Serial.print(estimated_pitch);
-        Serial.print(" / Setpoint: ");
-        Serial.println(estimated_setpoint);
+        Serial.print("/");
+        Serial.println(measured_setpoints[i]);
         #endif
     }
-    _write_tunings_to_eeprom();
     allocator->reset();
+}
+
+#ifdef DEBUG
+void print_tuning(int lane, float scale, float offset)
+{
+    Serial.print("Lane: ");
+    Serial.print(lane);
+    Serial.print(" Scale: ");
+    Serial.print(scale);
+    Serial.print(" Offset: ");
+    Serial.println(offset);
+}
+#endif
+
+void Tuner::tune_fast(Allocator *allocator)
+{
+    #ifdef DEBUG
+    Serial.println("Entering Tuner::tune_fast");
+    #endif
+    digitalWrite(PIN_LED_TUNING_FAST, HIGH);
+    int expected_setpoint;
+    float measured_setpoints[LANE_COUNT];
+    run_estimations(TUNING_FAST_PITCH, expected_setpoint, measured_setpoints);
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        _tunings[i].scale = 1.0f;
+        _tunings[i].offset = (float)expected_setpoint - measured_setpoints[i];
+        #ifdef DEBUG
+        print_tuning(i, _tunings[i].scale, _tunings[i].offset);
+        #endif
+        
+    }
+    _write_tunings_to_eeprom();
     digitalWrite(PIN_LED_TUNING_FAST, LOW);
     #ifdef DEBUG
     Serial.println("Leaving Tuner::tune_fast");
+    #endif
+}
+
+void Tuner::tune_full(Allocator *allocator)
+{
+    #ifdef DEBUG
+    Serial.println("Entering Tuner::tune_full");
+    #endif
+    digitalWrite(PIN_LED_TUNING_FULL, HIGH);
+    int expected_setpoint_low;
+    float measured_setpoints_low[LANE_COUNT];
+    run_estimations(TUNING_FULL_PITCH_LOW, expected_setpoint_low, measured_setpoints_low);
+    int expected_setpoint_high;
+    float measured_setpoints_high[LANE_COUNT];
+    run_estimations(TUNING_FULL_PITCH_HIGH, expected_setpoint_high, measured_setpoints_high);
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        _tunings[i].scale = ((float)expected_setpoint_high - (float)expected_setpoint_low) / (measured_setpoints_high[i] - measured_setpoints_low[i]);
+        _tunings[i].offset = (float)expected_setpoint_high - _tunings[i].scale * measured_setpoints_high[i];
+        #ifdef DEBUG
+        print_tuning(i, _tunings[i].scale, _tunings[i].offset);
+        #endif
+    }
+    _write_tunings_to_eeprom();
+    digitalWrite(PIN_LED_TUNING_FULL, LOW);
+    #ifdef DEBUG
+    Serial.println("Leaving Tuner::tune_full");
     #endif
 }

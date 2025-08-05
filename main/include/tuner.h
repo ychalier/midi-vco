@@ -45,6 +45,13 @@ public:
      */
     void tune_fast(Allocator *allocator);
 
+    /**
+     * Automatically compute the offset and scale tuning parameters, for all lanes.
+     * 
+     * @param allocator A pointer to the allocator for broadcasting a signal.
+     */
+    void tune_full(Allocator *allocator);
+
 private:
     Tuning _tunings[LANE_COUNT];
 

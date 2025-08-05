@@ -95,7 +95,7 @@ void update_config()
     }
     if (changed & CONFIG_CHANGE_TUNING_FULL)
     {
-        //TODO
+        tuner->tune_full(allocator);
     }
     if ((changed & CONFIG_CHANGE_TUNING_RESET) && config->get_tuning_reset())
     {
