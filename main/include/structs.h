@@ -25,6 +25,9 @@ typedef struct Tuning
 
     /// Linear scaling (untested). Default is 1.0f (no scaling).
     float scale;
+
+    /// Affine offset. Default is 0.0f (no offset).
+    float bonusOffset;
 } Tuning;
 
 /**

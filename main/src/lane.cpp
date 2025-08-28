@@ -140,7 +140,7 @@ float Lane::base_pitch_to_voltage(float pitch)
 int Lane::pitch_to_voltage(byte pitch, int bend)
 {
     float bent_pitch = (float)pitch + (float)bend * _config->get_pitch_bend_range() / 8192.0;
-    float voltage = _tuning->scale * base_pitch_to_voltage(bent_pitch) + _tuning->offset;
+    float voltage = _tuning->scale * base_pitch_to_voltage(bent_pitch) + _tuning->offset + _tuning->bonusOffset;
     if (voltage < 0)
     {
         voltage = 0;

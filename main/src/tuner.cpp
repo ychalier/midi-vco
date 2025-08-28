@@ -62,8 +62,8 @@ void Tuner::_read_tunings_from_eeprom()
         // int address = 1 + sizeof(Tuning) * i;
         // Tuning tuning;
         // EEPROM.get(address, tuning);
-        // _tunings[i] = {tuning.offset, tuning.scale};
-        _tunings[i] = {0.0f, 1.0f};
+        // _tunings[i] = {tuning.offset, tuning.scale, tuning.bonusOffset};
+        _tunings[i] = {0.0f, 1.0f, 0.0f};
     }
 }
 
@@ -210,14 +210,16 @@ void run_estimations(Allocator *allocator, int pitch, int &expected_setpoint, fl
 }
 
 #ifdef DEBUG
-void print_tuning(int lane, float scale, float offset)
+void print_tuning(int lane, float scale, float offset, float bonusOffset)
 {
     Serial.print("Lane: ");
     Serial.print(lane);
     Serial.print(" Scale: ");
     Serial.print(scale);
     Serial.print(" Offset: ");
-    Serial.println(offset);
+    Serial.print(offset);
+    Serial.print(" Bonus Offset: ");
+    Serial.println(bonusOffset);
 }
 #endif
 
@@ -232,10 +234,11 @@ void Tuner::tune_fast(Allocator *allocator)
     run_estimations(allocator, TUNING_FAST_PITCH, expected_setpoint, measured_setpoints);
     for (int i = 0; i < LANE_COUNT; i++)
     {
-        _tunings[i].scale = 1.0f;
-        _tunings[i].offset = (float)expected_setpoint - measured_setpoints[i];
+        // _tunings[i].scale = 1.0f;
+        // _tunings[i].offset = 0.0f;
+        _tunings[i].bonusOffset = (float)expected_setpoint - measured_setpoints[i];
         #ifdef DEBUG
-        print_tuning(i, _tunings[i].scale, _tunings[i].offset);
+        print_tuning(i, _tunings[i].scale, _tunings[i].offset, _tunings[i].bonusOffset);
         #endif
         
     }
@@ -262,12 +265,14 @@ void Tuner::tune_full(Allocator *allocator)
     {
         _tunings[i].scale = ((float)expected_setpoint_high - (float)expected_setpoint_low) / (measured_setpoints_high[i] - measured_setpoints_low[i]);
         _tunings[i].offset = (float)expected_setpoint_high - _tunings[i].scale * measured_setpoints_high[i];
+        _tunings[i].bonusOffset = 0.0f;
         #ifdef DEBUG
-        print_tuning(i, _tunings[i].scale, _tunings[i].offset);
+        print_tuning(i, _tunings[i].scale, _tunings[i].offset, , _tunings[i].bonusOffset);
         #endif
     }
     _write_tunings_to_eeprom();
     digitalWrite(PIN_LED_TUNING_FULL, LOW);
+    tune_fast(allocator);
     #ifdef DEBUG
     Serial.println("Leaving Tuner::tune_full");
     #endif
