@@ -92,11 +92,6 @@ Lane *Router::select(int lane_id)
 
 void Router::broadcast(int setpoint, int gate)
 {
-    _coupler_1->set_gate(gate);
-    _coupler_2->set_gate(gate);
-    _coupler_3->set_gate(gate);
-    _coupler_4->set_gate(gate);
-    _coupler_5->set_gate(gate);
     _lane_1->start(setpoint, 0);
     _lane_2->start(setpoint, 0);
     _lane_3->start(setpoint, 0);
@@ -107,6 +102,11 @@ void Router::broadcast(int setpoint, int gate)
     _lane_8->start(setpoint, 0);
     _lane_9->start(setpoint, 0);
     _lane_10->start(setpoint, 0);
+    _coupler_1->set_gate(gate);
+    _coupler_2->set_gate(gate);
+    _coupler_3->set_gate(gate);
+    _coupler_4->set_gate(gate);
+    _coupler_5->set_gate(gate);
 }
 
 Channel* Router::get_spare_channel() {
