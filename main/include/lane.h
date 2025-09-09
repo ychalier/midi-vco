@@ -100,6 +100,16 @@ public:
     int pitch_to_voltage(byte pitch, int bend);
 
     /**
+     * Apply the scale (and base offset) tuning to a given setpoint.
+     * Multiplies by the lane's scale tuning factor,
+     * and adds lane's base (NOT BONUS!) offset factor.
+     * 
+     * @param setpoint The CV setpoint to modify.
+     * @return The scaled setpoint.
+     */
+    int scaled_setpoint(int setpoint);
+
+    /**
      * Map a velocity to a voltage.
      * 
      * @param velocity Velocity value between 0 and 127.

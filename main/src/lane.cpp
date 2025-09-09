@@ -152,6 +152,11 @@ int Lane::pitch_to_voltage(byte pitch, int bend)
     return (int)(voltage);
 }
 
+int Lane::scaled_setpoint(int setpoint)
+{
+    return _tuning->scale * setpoint + _tuning->offset;
+}
+
 int Lane::velocity_to_voltage(byte velocity) {
     return (int) ((float)velocity * DAC_VMAX_REDUCED / 127.0);
 }

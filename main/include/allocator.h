@@ -99,8 +99,9 @@ public:
      * 
      * @param setpoint CV setpoint to broadcast to all lanes
      * @param gate Gate state to broadcast to all couplers
+     * @param apply_scale Whether to apply scale tuning to notes
      */
-    void broadcast(int setpoint, int gate);
+    void broadcast(int setpoint, int gate, bool apply_scale);
 
     /**
      * Checks whether a bit mask includes a value.

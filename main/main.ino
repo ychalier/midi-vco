@@ -90,10 +90,11 @@ void update_config()
     {
         allocator->set_lane_masks();
     }
-    if ((changed & CONFIG_CHANGE_TUNING_FAST) && config->get_tuning_fast()) {
+    if ((changed & CONFIG_CHANGE_TUNING_FAST) && config->get_tuning_fast())
+    {
         tuner->tune_fast(allocator);
     }
-    if (changed & CONFIG_CHANGE_TUNING_FULL)
+    if ((changed & CONFIG_CHANGE_TUNING_FULL) && config->get_tuning_full())
     {
         tuner->tune_full(allocator);
     }
@@ -138,6 +139,10 @@ void handle_note_on([[maybe_unused]] byte channel, byte pitch, byte velocity)
     if (velocity == 0)
     {
         allocator->note_off({pitch + 12, velocity});
+    }
+    else if (config->get_tuning_fast() || config->get_tuning_full())
+    {
+        return;
     }
     else
     {

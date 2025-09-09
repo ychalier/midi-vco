@@ -48,8 +48,9 @@ public:
      * 
      * @param setpoint CV setpoint to broadcast to all lanes
      * @param gate Gate state to broadcast to all couplers
+     * @param apply_scale Whether to apply tuning scale or not
      */
-    void broadcast(int setpoint, int gate);
+    void broadcast(int setpoint, int gate, bool apply_scale);
 
     /**
      * Getter for the spare DAC channel. There are 5 velocity outputs and 6 DAC

@@ -90,18 +90,34 @@ Lane *Router::select(int lane_id)
     return _lane_1;
 }
 
-void Router::broadcast(int setpoint, int gate)
+void Router::broadcast(int setpoint, int gate, bool apply_scale)
 {
-    _lane_1->start(setpoint, 0);
-    _lane_2->start(setpoint, 0);
-    _lane_3->start(setpoint, 0);
-    _lane_4->start(setpoint, 0);
-    _lane_5->start(setpoint, 0);
-    _lane_6->start(setpoint, 0);
-    _lane_7->start(setpoint, 0);
-    _lane_8->start(setpoint, 0);
-    _lane_9->start(setpoint, 0);
-    _lane_10->start(setpoint, 0);
+    if (apply_scale)
+    {
+        _lane_1->start(_lane_1->scaled_setpoint(setpoint), 0);
+        _lane_2->start(_lane_2->scaled_setpoint(setpoint), 0);
+        _lane_3->start(_lane_3->scaled_setpoint(setpoint), 0);
+        _lane_4->start(_lane_4->scaled_setpoint(setpoint), 0);
+        _lane_5->start(_lane_5->scaled_setpoint(setpoint), 0);
+        _lane_6->start(_lane_6->scaled_setpoint(setpoint), 0);
+        _lane_7->start(_lane_7->scaled_setpoint(setpoint), 0);
+        _lane_8->start(_lane_8->scaled_setpoint(setpoint), 0);
+        _lane_9->start(_lane_9->scaled_setpoint(setpoint), 0);
+        _lane_10->start(_lane_10->scaled_setpoint(setpoint), 0);
+    }
+    else
+    {
+        _lane_1->start(setpoint, 0);
+        _lane_2->start(setpoint, 0);
+        _lane_3->start(setpoint, 0);
+        _lane_4->start(setpoint, 0);
+        _lane_5->start(setpoint, 0);
+        _lane_6->start(setpoint, 0);
+        _lane_7->start(setpoint, 0);
+        _lane_8->start(setpoint, 0);
+        _lane_9->start(setpoint, 0);
+        _lane_10->start(setpoint, 0);
+    }
     _coupler_1->set_gate(gate);
     _coupler_2->set_gate(gate);
     _coupler_3->set_gate(gate);

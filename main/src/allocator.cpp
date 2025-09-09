@@ -154,9 +154,9 @@ void Allocator::pitch_bend(int bend_value)
     }
 }
 
-void Allocator::broadcast(int setpoint, int gate)
+void Allocator::broadcast(int setpoint, int gate, bool apply_scale)
 {
-    _router->broadcast(setpoint, gate);
+    _router->broadcast(setpoint, gate, apply_scale);
 }
 
 bool Allocator::check_mask(uint16_t mask, int value)

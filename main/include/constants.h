@@ -115,7 +115,7 @@
 #define TUNING_FULL_PERIOD          5000000 // Microseconds (5s) // TODO: try reducing that time
 #define FREQUENCY_THRESHOLD         150     // On a 0-1023 scale
 #define TUNING_FAST_PITCH           81      // 81 : A5 880 Hz (warning: actually detuned one octave down, -12 semitones)
-#define TUNING_FULL_PITCH_LOW       69      // 69 : A4 440 Hz (warning: actually detuned one octave down, -12 semitones)
+#define TUNING_FULL_PITCH_LOW       57      // 57 : A3 220 Hz (warning: actually detuned one octave down, -12 semitones)
 #define TUNING_FULL_PITCH_HIGH      93      // 93 : A6 1760 Hz (warning: actually detuned one octave down, -12 semitones)
 #define TUNING_REFERENCE_FREQUENCY  440.0f  // Hz
 #define MIDI_LED_TIMEOUT            300     // milliseconds
